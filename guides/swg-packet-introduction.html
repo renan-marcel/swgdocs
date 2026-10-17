@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SWG Packet Introduction | SWG Docs</title>
+  <meta name="description" content="Foundational introduction to the SWG network packet architecture, packet wrapping, and UDP encapsulation hierarchy.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="active">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>Generic Tutorials</h3><ul class='sidebar-nav'><li><a href='binary-and-hex.html' >Binary &amp; Hex</a></li></ul><h3>SOE / SWG Packet Related Tutorials</h3><ul class='sidebar-nav'><li><a href='swg-packet-introduction.html' class='active'>SWG Packet Introduction</a></li><li><a href='soe-protocol-breakdown.html' >SOE Protocol Breakdown</a></li><li><a href='swg-packet-encryption.html' >SWG Packet Encryption</a></li><li><a href='swg-packet-crc.html' >SWG Packet CRC</a></li><li><a href='swg-packet-compression.html' >SWG Packet Compression</a></li><li><a href='swg-packet-footer.html' >SWG Packet Footer</a></li><li><a href='swg-packets.html' >SWG Packets</a></li><li><a href='reversing-structs.html' >Reversing Structs</a></li></ul>
+        
+        <h3>Guides Overview</h3>
+        <ul class="sidebar-nav">
+          <li><a href="index.html">← All Packet Guides</a></li>
+          <li><a href="../content/guides/swg-packet-introduction.md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/SWG_Packet_Introduction" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">/</span>
+          <a href="index.html">Packet Guides</a>
+          <span class="sep">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">SWG Packet Introduction</span>
+        </div>
+
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>SWG Packet Introduction</span>
+          </h1>
+          <div class="article-meta">
+            <span class="badge" style="background:rgba(56, 189, 248, 0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-weight:600;">Guide</span>
+            <span style="color:var(--text-muted); font-size:0.85rem;">Category: <strong>SOE / SWG Packet Related Tutorials</strong></span>
+            <span style="color:var(--text-muted); font-size:0.85rem;">Wiki Rev: <strong>#2315</strong></span>
+          </div>
+          <p style="color:var(--text-secondary); margin-top:0.75rem; font-size:1rem; line-height:1.6;">Foundational introduction to the SWG network packet architecture, packet wrapping, and UDP encapsulation hierarchy.</p>
+        </header>
+
+        <article class="guide-body">
+          <h1 id="introduction-to-packets"><span class="mw-headline" id="Introduction_to_Packets">Introduction to Packets</span></h1>
+<p>Packets are a form of data communication over networks. In online games, packets are sent between the client(game) and a server to communicate various technical aspects of the game such as health,location,item data, player messages, etc. 
+</p><p>They are usually just a chain of 0's and 1's that can be interpreted. Because binary is difficult to read, packets are usually
+displayed in hexadecimal, which is a base 16 number system that makes them smaller and easier to read.
+</p><p>Instead of "01011100", you would read "5C". The rest of the packet documentation assumes you understand binary and hexadecimal number systems.
+</p><p>SWG uses an outer protocol that is unique to only SOE games. From now on this will be refered to as the "SOE Protocol". It's purpose is to enhance the UDP packet system they use for the game. Google "UDP vs TCP" to learn more about the two network protocols.
+</p><p>There are a few various ways SOE protocol can be used along with SWG packets.
+</p><p><b>(SOE Protocol)(*Footer)</b> - This form is just a standalone packet that is part of the SOE protocol, no SWG data is attached to it.
+</p><p><b>(SOE Protocol)(SWG Packet)(Footer)</b> - This form is an SWG packet wrapped around the SOE protocol.
+</p><p><b>(SOE Protocol)((SOE Protocol)(SWG Packet))(Footer)</b> - Multiple SOE protocol pieces are put together.
+</p><p><b>(SWG Packet)(Footer)</b> - This is a stand-alone SWG packet, its only common for data that does not need to be verified by the server or client and can potentially be lost without causing problems. 
+</p><p><b>((SWG Packet)(SWG Packet))(Footer)</b> - 2 SWG packets can be combined within the same set of data. 
+</p><p><b>(SOE Protocol)((SWG Packet)(SWG Packet))(Footer)</b> - Same as above but wrapped around the SOE protocol. 
+</p><p>Packets can even get as complicated as this:
+</p><p><b>(SOE Protocol)((SOE Protocol)(SOE Protocol(((SWG Packet)(SWG Packet)))(SOE Protocol)(SWG Packet))(Footer)</b>
+</p><p><b><font color="orange">Notice</font></b>: Every packet regardless of its formation has a footer. There are a few exceptions in the SOE Protocol. See SOE Protocol for more information on it.
+</p><p>Within the footer of a packet is a CRC32 checksum which is used to check the validity of a packet transmitted. SWG also has its packets encrypted, and some are also compressed. Please read the corresponding articles for more information.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20261017160922
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.009 seconds
+Real time usage: 0.009 seconds
+Preprocessor visited node count: 3/1000000
+Preprocessor generated node count: 10/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+<!-- Saved in parser cache with key swganh_wiki:pcache:idhash:1828-0!*!*!*!*!*!* and timestamp 20261017160922 and revision id 2315
+ -->
+
+        </article>
+
+        <footer style="margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border-color); font-size:0.85rem; color:var(--text-muted);">
+          <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <div>Source: <a href="https://wiki.swganh.org/index.php/SWG_Packet_Introduction" target="_blank" rel="noopener">https://wiki.swganh.org/index.php/SWG_Packet_Introduction</a></div>
+            <div>Wiki Revision ID: 2315 | Verified against live wiki</div>
+          </div>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

@@ -1,144 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Packet:SWGPacket | SWG Docs</title>
-  <meta name="description" content="Technical documentation and packet structure for Packet:SWGPacket in Star Wars Galaxies.">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <meta http-equiv="refresh" content="0; url=swg-packets.html">
+  <link rel="canonical" href="swg-packets.html">
+  <title>Redirecting to SWG Packets...</title>
+  <script>window.location.replace("swg-packets.html");</script>
 </head>
-<body data-root="../">
-  
-  <header class="navbar">
-    <div class="brand">
-      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
-        <span style="font-size:1.4rem;">🪐</span>
-        <span>SWG Docs</span>
-      </a>
-      <span class="tag">Protocol Wiki</span>
-    </div>
-    <ul class="nav-links">
-      <li><a href="../protocols/index.html" class="">Protocols</a></li>
-      <li><a href="../commands/index.html" class="">Commands</a></li>
-      <li><a href="../controllers/index.html" class="">Controllers</a></li>
-      <li><a href="../baselines/index.html" class="">Baselines</a></li>
-      <li><a href="../deltas/index.html" class="">Deltas</a></li>
-      <li><a href="../guides/index.html" class="active">Guides</a></li>
-      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
-    </ul>
-    <div class="nav-actions">
-      <div class="search-bar-wrap">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
-        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
-      </div>
-      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
-    </div>
-  </header>
-
-  
-  <div class="container">
-    <div class="layout-with-sidebar">
-      <aside class="sidebar">
-        <h3>Protocol Guides</h3>
-        <ul class="sidebar-nav">
-          <li><a href="../guides/Binary & Hex.html" class="">Binary &amp; Hex</a></li>
-<li><a href="../guides/Packet Guide.html" class="">Packet Guide</a></li>
-<li><a href="../guides/Packet Guides.html" class="">Packet Guides</a></li>
-<li><a href="../guides/Packet Template.html" class="">Packet Template</a></li>
-<li><a href="../guides/Packet%3ACompression.html" class="">Packet:Compression</a></li>
-<li><a href="../guides/Packet%3ACRC.html" class="">Packet:CRC</a></li>
-<li><a href="../guides/Packet%3AEncryption.html" class="">Packet:Encryption</a></li>
-<li><a href="../guides/Packet%3AHexBinary.html" class="">Packet:HexBinary</a></li>
-<li><a href="../guides/Packet%3AIntro.html" class="">Packet:Intro</a></li>
-<li><a href="../guides/Packet%3APacket Guides.html" class="">Packet:Packet Guides</a></li>
-<li><a href="../guides/Packet%3APacketFooter.html" class="">Packet:PacketFooter</a></li>
-<li><a href="../guides/Packet%3APacketTemplates.html" class="">Packet:PacketTemplates</a></li>
-<li><a href="../guides/Packet%3ASOEProtocol.html" class="">Packet:SOEProtocol</a></li>
-<li><a href="../guides/Packet%3ASWGPacket.html" class="active">Packet:SWGPacket</a></li>
-<li><a href="../guides/Reversing Structs.html" class="">Reversing Structs</a></li>
-<li><a href="../guides/SOE Protocol Breakdown.html" class="">SOE Protocol Breakdown</a></li>
-<li><a href="../guides/SWG Packet Compression.html" class="">SWG Packet Compression</a></li>
-<li><a href="../guides/SWG Packet CRC.html" class="">SWG Packet CRC</a></li>
-<li><a href="../guides/SWG Packet Encryption.html" class="">SWG Packet Encryption</a></li>
-<li><a href="../guides/SWG Packet Footer.html" class="">SWG Packet Footer</a></li>
-<li><a href="../guides/SWG Packet Introduction.html" class="">SWG Packet Introduction</a></li>
-<li><a href="../guides/SWG Packets.html" class="">SWG Packets</a></li>
-
-        </ul>
-        <h3>Section Links</h3>
-        <ul class="sidebar-nav">
-          <li><a href="../guides/index.html">← Packet Guides Index</a></li>
-          <li><a href="../content/guides/Packet%3ASWGPacket.md" target="_blank">📄 View Raw Markdown</a></li>
-          <li><a href="https://wiki.swganh.org/index.php/Packet%3ASWGPacket" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
-        </ul>
-      </aside>
-
-      <main class="main-content">
-        
-    <div class="breadcrumb">
-      <a href="../index.html">Home</a>
-      <span class="sep">/</span>
-      <a href="../guides/index.html">Packet Guides</a>
-      <span class="sep">/</span>
-      <span style="color:var(--text-primary); font-weight:600;">Packet:SWGPacket</span>
-    </div>
-    
-        
-        <header class="article-header">
-          <h1 class="article-title">
-            <span>Packet:SWGPacket</span>
-            
-          </h1>
-          <div class="article-meta">
-            
-            <span class="badge badge-unknown">unknown Complete</span>
-            <span class="badge badge-sample-absent">Sample: absent</span>
-            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Packet Guides</strong></span>
-            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Other</strong></span>
-          </div>
-        </header>
-
-        
-        
-        
-        <section class="doc-section">
-          <h2>📐 Packet Structure</h2>
-          <div style="color:var(--text-muted); font-style:italic;">No structure table recorded for this packet.</div>
-        </section>
-        
-        
-        
-        <section class="doc-section">
-          <h2>📝 Notes & Warnings</h2>
-          
-            <div class="alert-box">
-              <strong>NOTE:</strong> There are a few other ways an "opperand" can be counted. Lists that have a counter preceeding them is
-            </div>
-            
-        </section>
-        
-        
-        
-      </main>
-    </div>
-  </div>
-
-  
-  <footer>
-    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
-      <div>
-        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
-      </div>
-      <div style="display:flex; gap:1.25rem;">
-        <a href="../data/all_packets.csv">Download CSV</a>
-        <a href="../data/packets_summary.json">Download JSON</a>
-        <a href="../index.html">Master Index</a>
-        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="../assets/js/app.js"></script>
+<body style="background:#0f172a; color:#f8fafc; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding:2rem; text-align:center;">
+  <h2>Redirecting...</h2>
+  <p>This page has moved to <a href="swg-packets.html" style="color:#38bdf8; font-weight:600;">swg-packets.html</a>.</p>
+  <p>If you are not redirected automatically, click the link above.</p>
 </body>
 </html>

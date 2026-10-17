@@ -1,53 +1,48 @@
 ---
 title: Packet:Packet Guides
-url: https://wiki.swganh.org/index.php/Packet%3APacket_Guides
-page_type: Other
-opcode: 
-revision_id: 1682
-last_modified: 2006-12-09T01:30:14Z
-completion: unknown
-direction: unknown
-sample_status: absent
-categories: []
-templates: []
+section: guides
+wiki_url: https://wiki.swganh.org/index.php/Packet%3APacket_Guides
+wiki_revid: 1682
+layout: guide
+date_audited: 2026-10-17
 ---
 
 # Packet:Packet Guides
 
-## Notices
-_none_
+Packet Related Guides
 
-## Description
-_none_
+Introduction to Packets
 
-## Struct
-_none_
+Hex & Binary
 
-## Variable Descriptions
-_none_
+SOE Protocol
 
-## Notes
-_none_
+Encryption
 
-## Tags
-_none_
+Compression
 
-## Sample Packet
-_none_
+CRC
 
-## Related Pages
-- [[Packet:Intro]]
-- [[Packet:HexBinary]]
-- [[Packet:SOEProtocol]]
-- [[Packet:Encryption]]
-- [[Packet:Compression]]
-- [[Packet:CRC]]
-- [[Packet:PacketFooter]]
-- [[Packet:SWGPacket]]
-- [[Packet:PacketTemplates]]
+Packet Footer
 
-## Other Sections
-_none_
+SWG Packets
 
-## Categories
-_none_
+Packet Templates List
+
+NewPP limit report
+Cached time: 20261017165639
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.013 seconds
+Real time usage: 0.014 seconds
+Preprocessor visited node count: 1/1000000
+Preprocessor generated node count: 4/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 1/40
+Expensive parser function count: 0/100
+
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+
+Saved in parser cache with key swganh_wiki:pcache:idhash:1545-0!*!0!*!*!*!* and timestamp 20261017165639 and revision id 1682

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reversing Structs | SWG Docs</title>
+  <meta name="description" content="Step-by-step methodology for analyzing unknown packet byte streams, identifying datatypes, and reconstructing struct definitions.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="active">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>Generic Tutorials</h3><ul class='sidebar-nav'><li><a href='binary-and-hex.html' >Binary &amp; Hex</a></li></ul><h3>SOE / SWG Packet Related Tutorials</h3><ul class='sidebar-nav'><li><a href='swg-packet-introduction.html' >SWG Packet Introduction</a></li><li><a href='soe-protocol-breakdown.html' >SOE Protocol Breakdown</a></li><li><a href='swg-packet-encryption.html' >SWG Packet Encryption</a></li><li><a href='swg-packet-crc.html' >SWG Packet CRC</a></li><li><a href='swg-packet-compression.html' >SWG Packet Compression</a></li><li><a href='swg-packet-footer.html' >SWG Packet Footer</a></li><li><a href='swg-packets.html' >SWG Packets</a></li><li><a href='reversing-structs.html' class='active'>Reversing Structs</a></li></ul>
+        
+        <h3>Guides Overview</h3>
+        <ul class="sidebar-nav">
+          <li><a href="index.html">← All Packet Guides</a></li>
+          <li><a href="../content/guides/reversing-structs.md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/Reversing_Structs" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">/</span>
+          <a href="index.html">Packet Guides</a>
+          <span class="sep">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Reversing Structs</span>
+        </div>
+
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>Reversing Structs</span>
+          </h1>
+          <div class="article-meta">
+            <span class="badge" style="background:rgba(56, 189, 248, 0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-weight:600;">Guide</span>
+            <span style="color:var(--text-muted); font-size:0.85rem;">Category: <strong>SOE / SWG Packet Related Tutorials</strong></span>
+            <span style="color:var(--text-muted); font-size:0.85rem;">Wiki Rev: <strong>#9224</strong></span>
+          </div>
+          <p style="color:var(--text-secondary); margin-top:0.75rem; font-size:1rem; line-height:1.6;">Step-by-step methodology for analyzing unknown packet byte streams, identifying datatypes, and reconstructing struct definitions.</p>
+        </header>
+
+        <article class="guide-body">
+          <p>How to reverse packet structures via live debugging in ollydbg:
+</p><p>1. Set a break point at location: 0x0118B064, it should read POP EBX
+</p><p>2. Send your packet
+</p><p>3. Olly should break, the client is now reading your packet, the number of bytes it is reading is in register ESI,
+</p><p>you must first let it read the header, so you should go through a sequence of two bytes then four bytes, three times, eg:
+</p><p>ESI reads:
+</p><p>2
+</p><p>4
+</p><p>2
+</p><p>4
+</p><p>2
+</p><p>4
+</p><p><br/>
+4. Hit play every time you want the next value, after going through the header you are in the data!  Write down ESI and hit play continually until the client stops breaking at that location
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20261017154724
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.003 seconds
+Real time usage: 0.002 seconds
+Preprocessor visited node count: 1/1000000
+Preprocessor generated node count: 4/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 1/40
+Expensive parser function count: 0/100
+-->
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+<!-- Saved in parser cache with key swganh_wiki:pcache:idhash:3501-0!*!*!*!*!*!* and timestamp 20261017154724 and revision id 9224
+ -->
+
+        </article>
+
+        <footer style="margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border-color); font-size:0.85rem; color:var(--text-muted);">
+          <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <div>Source: <a href="https://wiki.swganh.org/index.php/Reversing_Structs" target="_blank" rel="noopener">https://wiki.swganh.org/index.php/Reversing_Structs</a></div>
+            <div>Wiki Revision ID: 9224 | Verified against live wiki</div>
+          </div>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
