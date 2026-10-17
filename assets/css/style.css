@@ -262,6 +262,9 @@ a:hover { color: var(--accent-blue); text-decoration: underline; }
 .badge-50 { background-color: var(--badge-warn-bg); color: var(--badge-warn-text); }
 .badge-25 { background-color: var(--badge-warn-bg); color: #fb923c; }
 .badge-0 { background-color: var(--badge-danger-bg); color: var(--badge-danger-text); }
+.badge-pending { background-color: var(--badge-danger-bg); color: var(--badge-danger-text); }
+.badge-group { background-color: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.25); }
+.badge-overview { background-color: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.25); }
 .badge-sample-present { background-color: var(--badge-done-bg); color: var(--badge-done-text); }
 .badge-sample-placeholder { background-color: var(--badge-warn-bg); color: var(--badge-warn-text); }
 .badge-sample-absent { background-color: var(--border-color); color: var(--text-muted); }
