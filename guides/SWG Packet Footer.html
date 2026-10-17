@@ -1,143 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SWG Packet Footer | SWG Docs</title>
-  <meta name="description" content="Trailing packet footer format, 2-byte CRC checksum, and encryption status flags.">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <meta http-equiv="refresh" content="0; url=swg-packet-footer.html">
+  <link rel="canonical" href="swg-packet-footer.html">
+  <title>Redirecting to SWG Packet Footer...</title>
+  <script>window.location.replace("swg-packet-footer.html");</script>
 </head>
-<body data-root="../">
-  
-  <header class="navbar">
-    <div class="brand">
-      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
-        <span style="font-size:1.4rem;">🪐</span>
-        <span>SWG Docs</span>
-      </a>
-      <span class="tag">Protocol Wiki</span>
-    </div>
-    <ul class="nav-links">
-      <li><a href="../protocols/index.html" class="">Protocols</a></li>
-      <li><a href="../commands/index.html" class="">Commands</a></li>
-      <li><a href="../controllers/index.html" class="">Controllers</a></li>
-      <li><a href="../baselines/index.html" class="">Baselines</a></li>
-      <li><a href="../deltas/index.html" class="">Deltas</a></li>
-      <li><a href="../guides/index.html" class="active">Guides</a></li>
-      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
-    </ul>
-    <div class="nav-actions">
-      <div class="search-bar-wrap">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
-        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
-      </div>
-      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
-    </div>
-  </header>
-
-
-  <div class="container">
-    <div class="layout-with-sidebar">
-      <aside class="sidebar">
-        <h3>Security & Transport</h3><ul class='sidebar-nav'><li><a href='../guides/SWG Packet CRC.html' >SWG Packet CRC</a></li><li><a href='../guides/SWG Packet Compression.html' >SWG Packet Compression</a></li><li><a href='../guides/SWG Packet Encryption.html' >SWG Packet Encryption</a></li><li><a href='../guides/SWG Packet Footer.html' class='active'>SWG Packet Footer</a></li></ul>
-        
-        <h3>Guides Overview</h3>
-        <ul class="sidebar-nav">
-          <li><a href="../guides/index.html">← All Packet Guides</a></li>
-          <li><a href="../content/guides/SWG Packet Footer.md" target="_blank">📄 View Raw Markdown</a></li>
-          <li><a href="https://wiki.swganh.org/index.php/SWG_Packet_Footer" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
-        </ul>
-      </aside>
-
-      <main class="main-content">
-        <div class="breadcrumb">
-          <a href="../index.html">Home</a>
-          <span class="sep">/</span>
-          <a href="../guides/index.html">Packet Guides</a>
-          <span class="sep">/</span>
-          <span style="color:var(--text-primary); font-weight:600;">SWG Packet Footer</span>
-        </div>
-
-        <header class="article-header">
-          <h1 class="article-title">
-            <span>SWG Packet Footer</span>
-          </h1>
-          <div class="article-meta">
-            <span class="badge badge-100">Specification</span>
-            <span style="color:var(--text-muted); font-size:0.8rem;">Category: <strong>Security & Transport</strong></span>
-            <span style="color:var(--text-muted); font-size:0.8rem;">Wiki Rev: <strong>#2307</strong></span>
-          </div>
-          <p style="color:var(--text-secondary); margin-top:0.75rem; font-size:1rem;">Trailing packet footer format, 2-byte CRC checksum, and encryption status flags.</p>
-        </header>
-
-        <article class="guide-body">
-          <h1 id="packet-footers"><span class="mw-headline" id="Packet_Footers">Packet Footers</span></h1>
-<p>Every packet in SWG, regardless wether it is just SOE Protocol, just an SWG Packet, or a combination of the both, has a footer.
-</p><p>The footer's format is as follows:
-</p>
-<div class="code-container"><div class="code-header"><span>Specification / Code</span><button class="copy-btn" onclick="copyToClipboard(`
-[Compression Flag: 1 byte][CRC value:2 bytes]
-total of 3 bytes
-[CompFlag][CRC1][CRC2]
-`, this)">Copy</button></div><pre class="code-block"><code>
-[Compression Flag: 1 byte][CRC value:2 bytes]
-total of 3 bytes
-[CompFlag][CRC1][CRC2]
-</code></pre></div>
-<p>The checksum algorithm used is a seeded CRC32 checksum of all the data in a packet EXCEPT the crc value located in the footer
-(so that includes the compression flag). The CRC is calculated after the compression and then encryption are both applied.
-</p><p><br/>
-The compression used is a default level ZLIB compression applied on the data BETWEEN the SOE opcode(part of the SOE Protocol) and the footer. So far no record has been made of a compressed packet that is NOT inside the SOE Protocol. If the packet is compressed, the Compression Flag (CompFlag) is a 1. Uncompressed packets have a Compression Flag (CompFlag) of 0.
-</p>
-<!-- 
-NewPP limit report
-Cached time: 20261017165725
-Cache expiry: 86400
-Dynamic content: false
-CPU time usage: 0.012 seconds
-Real time usage: 0.032 seconds
-Preprocessor visited node count: 5/1000000
-Preprocessor generated node count: 28/1000000
-Post‐expand include size: 0/2097152 bytes
-Template argument size: 0/2097152 bytes
-Highest expansion depth: 2/40
-Expensive parser function count: 0/100
--->
-<!-- 
-Transclusion expansion time report (%,ms,calls,template)
-100.00%    0.000      1 - -total
--->
-<!-- Saved in parser cache with key swganh_wiki:pcache:idhash:1824-0!*!*!*!*!*!* and timestamp 20261017165725 and revision id 2307
- -->
-
-        </article>
-
-        <footer style="margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border-color); font-size:0.85rem; color:var(--text-muted);">
-          <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
-            <div>Source: <a href="https://wiki.swganh.org/index.php/SWG_Packet_Footer" target="_blank" rel="noopener">https://wiki.swganh.org/index.php/SWG_Packet_Footer</a></div>
-            <div>Wiki Revision ID: 2307 | Verified against live wiki</div>
-          </div>
-        </footer>
-      </main>
-    </div>
-  </div>
-
-  
-  <footer>
-    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
-      <div>
-        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
-      </div>
-      <div style="display:flex; gap:1.25rem;">
-        <a href="../data/all_packets.csv">Download CSV</a>
-        <a href="../data/packets_summary.json">Download JSON</a>
-        <a href="../index.html">Master Index</a>
-        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="../assets/js/app.js"></script>
+<body style="background:#0f172a; color:#f8fafc; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding:2rem; text-align:center;">
+  <h2>Redirecting...</h2>
+  <p>This page has moved to <a href="swg-packet-footer.html" style="color:#38bdf8; font-weight:600;">swg-packet-footer.html</a>.</p>
+  <p>If you are not redirected automatically, click the link above.</p>
 </body>
 </html>

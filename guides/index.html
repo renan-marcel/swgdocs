@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Packet Guides & Protocols | SWG Docs</title>
-  <meta name="description" content="Technical tutorials and foundational architecture references on Star Wars Galaxies networking, SOE protocol, encryption, CRC checksums, and struct reversing.">
+  <title>Guides - Packet Guides | SWG Docs</title>
+  <meta name="description" content="Technical tutorials and foundational architecture references on Star Wars Galaxies networking, SOE protocol, encryption, CRC checksums, and packet reversing.">
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body data-root="../">
@@ -37,274 +37,175 @@
   </header>
 
 
-  <div class="container">
+  <div class="container" style="max-width:1200px; margin:2rem auto; padding:0 1.5rem;">
     <div class="breadcrumb">
       <a href="../index.html">Home</a>
       <span class="sep">/</span>
       <span style="color:var(--text-primary); font-weight:600;">Packet Guides</span>
     </div>
 
-    <div style="margin-bottom:2.5rem; padding-bottom:1.5rem; border-bottom:1px solid var(--border-color);">
-      <h1 style="font-size:2.5rem; font-weight:800; letter-spacing:-0.025em; margin-bottom:0.5rem;">Packet Guides & Architecture</h1>
-      <p style="color:var(--text-secondary); font-size:1.1rem; max-width:850px;">
-        Curated reading list and comprehensive engineering tutorials on the Star Wars Galaxies network stack.
-        Covers everything from binary math and SOE UDP protocol mechanics to CRC32 polynomial lookup tables, encryption ciphers, and packet reversing.
-      </p>
+    <!-- MediaWiki-Faithful Heading Box -->
+    <div class="wiki-header-box" style="background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; margin-bottom:2.5rem; overflow:hidden;">
+      <div style="padding:0.85rem 1.25rem; background:rgba(56, 189, 248, 0.08); border-bottom:1px solid var(--border-color); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;">
+        <h1 style="font-size:1.75rem; font-weight:800; color:var(--accent-cyan); margin:0;">Guides - Packet Guides</h1>
+        <span class="badge" style="background:rgba(56, 189, 248, 0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-weight:600;">9 Guides Documented</span>
+      </div>
+      <div style="padding:1.1rem 1.25rem; font-size:1rem; color:var(--text-secondary); line-height:1.6;">
+        <strong style="color:var(--text-primary);">SWGANH Wiki</strong> is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.
+      </div>
     </div>
 
     
-    <div style="margin-bottom:2.5rem;">
-      <h2 style="font-size:1.4rem; font-weight:700; margin-bottom:1rem; border-bottom:1px solid var(--border-color); padding-bottom:0.5rem; display:flex; justify-content:space-between; align-items:center;">
+    <div style="margin-bottom:3rem;">
+      <h2 style="font-size:1.4rem; font-weight:700; margin-bottom:1.25rem; border-bottom:1px solid var(--border-color); padding-bottom:0.6rem; display:flex; justify-content:space-between; align-items:center;">
         <span>Generic Tutorials</span>
-        <span style="font-size:0.85rem; color:var(--text-muted); font-weight:500;">2 guides</span>
+        <span style="font-size:0.85rem; color:var(--accent-cyan); background:rgba(56, 189, 248, 0.1); border:1px solid rgba(56, 189, 248, 0.2); padding:0.2rem 0.6rem; border-radius:9999px; font-weight:600;">1 guide</span>
       </h2>
-      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:1rem;">
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:1.25rem;">
         
-        <a href="Binary & Hex.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">Binary &amp; Hex</div>
-            <span class="badge badge-100">Tutorial</span>
+        <a href="binary-and-hex.html" class="section-card" style="padding:1.35rem; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="section-card-header" style="margin-bottom:0.75rem; align-items:flex-start;">
+              <div style="font-weight:700; font-size:1.15rem; color:var(--text-primary); line-height:1.3;">Binary &amp; Hex</div>
+              <span class="badge" style="background:rgba(56, 189, 248, 0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-weight:600; white-space:nowrap;">Guide</span>
+            </div>
+            <div class="section-card-desc" style="font-size:0.875rem; color:var(--text-secondary); line-height:1.5; margin-bottom:1.25rem;">
+              Essential foundation in bits, bytes, endianness, signed vs unsigned integer representations, and hexadecimal notation for packet analysis.
+            </div>
           </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Comprehensive foundation in bits, bytes, endianness, and hexadecimal notation.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
-        </a>
-        
-        <a href="Reversing Structs.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">Reversing Structs</div>
-            <span class="badge badge-100">Tutorial</span>
+          <div style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600; display:flex; align-items:center; gap:0.25rem;">
+            Read Guide →
           </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Practical guide to identifying and reconstructing data structures from packet dumps.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
         </a>
         
       </div>
     </div>
     
-    <div style="margin-bottom:2.5rem;">
-      <h2 style="font-size:1.4rem; font-weight:700; margin-bottom:1rem; border-bottom:1px solid var(--border-color); padding-bottom:0.5rem; display:flex; justify-content:space-between; align-items:center;">
-        <span>Network Architecture</span>
-        <span style="font-size:0.85rem; color:var(--text-muted); font-weight:500;">4 guides</span>
+    <div style="margin-bottom:3rem;">
+      <h2 style="font-size:1.4rem; font-weight:700; margin-bottom:1.25rem; border-bottom:1px solid var(--border-color); padding-bottom:0.6rem; display:flex; justify-content:space-between; align-items:center;">
+        <span>SOE / SWG Packet Related Tutorials</span>
+        <span style="font-size:0.85rem; color:var(--accent-cyan); background:rgba(56, 189, 248, 0.1); border:1px solid rgba(56, 189, 248, 0.2); padding:0.2rem 0.6rem; border-radius:9999px; font-weight:600;">8 guides</span>
       </h2>
-      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:1rem;">
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:1.25rem;">
         
-        <a href="SWG Packet Introduction.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">SWG Packet Introduction</div>
-            <span class="badge badge-100">Architecture</span>
+        <a href="swg-packet-introduction.html" class="section-card" style="padding:1.35rem; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="section-card-header" style="margin-bottom:0.75rem; align-items:flex-start;">
+              <div style="font-weight:700; font-size:1.15rem; color:var(--text-primary); line-height:1.3;">SWG Packet Introduction</div>
+              <span class="badge" style="background:rgba(56, 189, 248, 0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-weight:600; white-space:nowrap;">Guide</span>
+            </div>
+            <div class="section-card-desc" style="font-size:0.875rem; color:var(--text-secondary); line-height:1.5; margin-bottom:1.25rem;">
+              Foundational introduction to the SWG network packet architecture, packet wrapping, and UDP encapsulation hierarchy.
+            </div>
           </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Foundational introduction to the SWG network protocol stack and packet hierarchy.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
+          <div style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600; display:flex; align-items:center; gap:0.25rem;">
+            Read Guide →
+          </div>
         </a>
         
-        <a href="SOE Protocol Breakdown.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">SOE Protocol Breakdown</div>
-            <span class="badge badge-100">Specification</span>
+        <a href="soe-protocol-breakdown.html" class="section-card" style="padding:1.35rem; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="section-card-header" style="margin-bottom:0.75rem; align-items:flex-start;">
+              <div style="font-weight:700; font-size:1.15rem; color:var(--text-primary); line-height:1.3;">SOE Protocol Breakdown</div>
+              <span class="badge" style="background:rgba(56, 189, 248, 0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-weight:600; white-space:nowrap;">Guide</span>
+            </div>
+            <div class="section-card-desc" style="font-size:0.875rem; color:var(--text-secondary); line-height:1.5; margin-bottom:1.25rem;">
+              Comprehensive specification of the SOE UDP protocol layer, operational channels (0x00 to 0x1E), ACKs, multi-packet, and sequencing.
+            </div>
           </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Full protocol specification of the SOE UDP transport layer, channels, and opcodes.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
+          <div style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600; display:flex; align-items:center; gap:0.25rem;">
+            Read Guide →
+          </div>
         </a>
         
-        <a href="SWGPacketExamples.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">SWGPacketExamples</div>
-            <span class="badge badge-100">Reference</span>
+        <a href="swg-packet-encryption.html" class="section-card" style="padding:1.35rem; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="section-card-header" style="margin-bottom:0.75rem; align-items:flex-start;">
+              <div style="font-weight:700; font-size:1.15rem; color:var(--text-primary); line-height:1.3;">SWG Packet Encryption</div>
+              <span class="badge" style="background:rgba(56, 189, 248, 0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-weight:600; white-space:nowrap;">Guide</span>
+            </div>
+            <div class="section-card-desc" style="font-size:0.875rem; color:var(--text-secondary); line-height:1.5; margin-bottom:1.25rem;">
+              Mechanics of the SOE XOR mask stream cipher, key derivation from the CRC seed, and decryption implementation in C++.
+            </div>
           </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Comprehensive sample packet library containing Min/Max dumps for all SOE operations.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
+          <div style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600; display:flex; align-items:center; gap:0.25rem;">
+            Read Guide →
+          </div>
         </a>
         
-        <a href="SWG Packets.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">SWG Packets</div>
-            <span class="badge badge-100">Specification</span>
+        <a href="swg-packet-crc.html" class="section-card" style="padding:1.35rem; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="section-card-header" style="margin-bottom:0.75rem; align-items:flex-start;">
+              <div style="font-weight:700; font-size:1.15rem; color:var(--text-primary); line-height:1.3;">SWG Packet CRC</div>
+              <span class="badge" style="background:rgba(56, 189, 248, 0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-weight:600; white-space:nowrap;">Guide</span>
+            </div>
+            <div class="section-card-desc" style="font-size:0.875rem; color:var(--text-secondary); line-height:1.5; margin-bottom:1.25rem;">
+              Cyclic Redundancy Check (CRC32) algorithm, polynomial table generation, seed initialization, and checksum verification routines.
+            </div>
           </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Structure and layout of SWG game payloads encapsulated inside SOE Channel 0.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
+          <div style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600; display:flex; align-items:center; gap:0.25rem;">
+            Read Guide →
+          </div>
         </a>
         
-      </div>
-    </div>
-    
-    <div style="margin-bottom:2.5rem;">
-      <h2 style="font-size:1.4rem; font-weight:700; margin-bottom:1rem; border-bottom:1px solid var(--border-color); padding-bottom:0.5rem; display:flex; justify-content:space-between; align-items:center;">
-        <span>Security & Transport</span>
-        <span style="font-size:0.85rem; color:var(--text-muted); font-weight:500;">4 guides</span>
-      </h2>
-      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:1rem;">
-        
-        <a href="SWG Packet CRC.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">SWG Packet CRC</div>
-            <span class="badge badge-100">Algorithm</span>
+        <a href="swg-packet-compression.html" class="section-card" style="padding:1.35rem; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="section-card-header" style="margin-bottom:0.75rem; align-items:flex-start;">
+              <div style="font-weight:700; font-size:1.15rem; color:var(--text-primary); line-height:1.3;">SWG Packet Compression</div>
+              <span class="badge" style="background:rgba(56, 189, 248, 0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-weight:600; white-space:nowrap;">Guide</span>
+            </div>
+            <div class="section-card-desc" style="font-size:0.875rem; color:var(--text-secondary); line-height:1.5; margin-bottom:1.25rem;">
+              Zlib compression rules, payload compression flags (0x01), byte-length thresholds, and decompression pipeline.
+            </div>
           </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">CRC32 checksum algorithm, polynomial lookup tables, and seed calculations in C++.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
+          <div style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600; display:flex; align-items:center; gap:0.25rem;">
+            Read Guide →
+          </div>
         </a>
         
-        <a href="SWG Packet Compression.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">SWG Packet Compression</div>
-            <span class="badge badge-100">Algorithm</span>
+        <a href="swg-packet-footer.html" class="section-card" style="padding:1.35rem; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="section-card-header" style="margin-bottom:0.75rem; align-items:flex-start;">
+              <div style="font-weight:700; font-size:1.15rem; color:var(--text-primary); line-height:1.3;">SWG Packet Footer</div>
+              <span class="badge" style="background:rgba(56, 189, 248, 0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-weight:600; white-space:nowrap;">Guide</span>
+            </div>
+            <div class="section-card-desc" style="font-size:0.875rem; color:var(--text-secondary); line-height:1.5; margin-bottom:1.25rem;">
+              Structure of the trailing packet footer, 2-byte CRC calculation, and encryption/compression flag byte positions.
+            </div>
           </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Zlib compression thresholds, flag bits, and packet decompression rules.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
+          <div style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600; display:flex; align-items:center; gap:0.25rem;">
+            Read Guide →
+          </div>
         </a>
         
-        <a href="SWG Packet Encryption.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">SWG Packet Encryption</div>
-            <span class="badge badge-100">Security</span>
+        <a href="swg-packets.html" class="section-card" style="padding:1.35rem; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="section-card-header" style="margin-bottom:0.75rem; align-items:flex-start;">
+              <div style="font-weight:700; font-size:1.15rem; color:var(--text-primary); line-height:1.3;">SWG Packets</div>
+              <span class="badge" style="background:rgba(56, 189, 248, 0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-weight:600; white-space:nowrap;">Guide</span>
+            </div>
+            <div class="section-card-desc" style="font-size:0.875rem; color:var(--text-secondary); line-height:1.5; margin-bottom:1.25rem;">
+              Format and structure of game-level packets encapsulated within SOE Channel 0, including operand counts and opcode dispatch.
+            </div>
           </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">SOE XOR mask stream cipher, key derivation from CRC seed, and decrypt implementation.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
+          <div style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600; display:flex; align-items:center; gap:0.25rem;">
+            Read Guide →
+          </div>
         </a>
         
-        <a href="SWG Packet Footer.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">SWG Packet Footer</div>
-            <span class="badge badge-100">Specification</span>
+        <a href="reversing-structs.html" class="section-card" style="padding:1.35rem; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div class="section-card-header" style="margin-bottom:0.75rem; align-items:flex-start;">
+              <div style="font-weight:700; font-size:1.15rem; color:var(--text-primary); line-height:1.3;">Reversing Structs</div>
+              <span class="badge" style="background:rgba(56, 189, 248, 0.15); color:var(--accent-cyan); border:1px solid var(--accent-cyan); font-weight:600; white-space:nowrap;">Guide</span>
+            </div>
+            <div class="section-card-desc" style="font-size:0.875rem; color:var(--text-secondary); line-height:1.5; margin-bottom:1.25rem;">
+              Step-by-step methodology for analyzing unknown packet byte streams, identifying datatypes, and reconstructing struct definitions.
+            </div>
           </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Trailing packet footer format, 2-byte CRC checksum, and encryption status flags.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
-        </a>
-        
-      </div>
-    </div>
-    
-    <div style="margin-bottom:2.5rem;">
-      <h2 style="font-size:1.4rem; font-weight:700; margin-bottom:1rem; border-bottom:1px solid var(--border-color); padding-bottom:0.5rem; display:flex; justify-content:space-between; align-items:center;">
-        <span>Documentation Standards</span>
-        <span style="font-size:0.85rem; color:var(--text-muted); font-weight:500;">3 guides</span>
-      </h2>
-      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:1rem;">
-        
-        <a href="Packet Guide.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">Packet Guide</div>
-            <span class="badge badge-100">Standard</span>
+          <div style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600; display:flex; align-items:center; gap:0.25rem;">
+            Read Guide →
           </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Formal specification of how packet structures, fields, and datatypes are documented.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
-        </a>
-        
-        <a href="Packet Template.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">Packet Template</div>
-            <span class="badge badge-100">Template</span>
-          </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Reference guide and templates used to document SWG network packets.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
-        </a>
-        
-        <a href="Packet Tags.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">Packet Tags</div>
-            <span class="badge badge-100">Glossary</span>
-          </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Complete glossary of packet direction (S→C/C→S), era (PreCU/CU/NGE), and status tags.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
-        </a>
-        
-      </div>
-    </div>
-    
-    <div style="margin-bottom:2.5rem;">
-      <h2 style="font-size:1.4rem; font-weight:700; margin-bottom:1rem; border-bottom:1px solid var(--border-color); padding-bottom:0.5rem; display:flex; justify-content:space-between; align-items:center;">
-        <span>Historical Reference</span>
-        <span style="font-size:0.85rem; color:var(--text-muted); font-weight:500;">10 guides</span>
-      </h2>
-      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:1rem;">
-        
-        <a href="Packet%3AIntro.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">Packet:Intro</div>
-            <span class="badge badge-100">Historical</span>
-          </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Historical wiki draft of SWG Packet Introduction.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
-        </a>
-        
-        <a href="Packet%3AHexBinary.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">Packet:HexBinary</div>
-            <span class="badge badge-100">Historical</span>
-          </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Historical wiki draft of Binary &amp; Hex tutorial.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
-        </a>
-        
-        <a href="Packet%3ASOEProtocol.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">Packet:SOEProtocol</div>
-            <span class="badge badge-100">Historical</span>
-          </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Historical wiki draft of SOE Protocol Breakdown.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
-        </a>
-        
-        <a href="Packet%3ASWGPacket.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">Packet:SWGPacket</div>
-            <span class="badge badge-100">Historical</span>
-          </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Historical wiki draft of SWG Packets.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
-        </a>
-        
-        <a href="Packet%3ACRC.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">Packet:CRC</div>
-            <span class="badge badge-100">Historical</span>
-          </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Historical wiki draft of SWG Packet CRC.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
-        </a>
-        
-        <a href="Packet%3ACompression.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">Packet:Compression</div>
-            <span class="badge badge-100">Historical</span>
-          </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Historical wiki draft of SWG Packet Compression.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
-        </a>
-        
-        <a href="Packet%3AEncryption.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">Packet:Encryption</div>
-            <span class="badge badge-100">Historical</span>
-          </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Historical wiki draft of SWG Packet Encryption.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
-        </a>
-        
-        <a href="Packet%3APacketFooter.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">Packet:PacketFooter</div>
-            <span class="badge badge-100">Historical</span>
-          </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Historical wiki draft of SWG Packet Footer.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
-        </a>
-        
-        <a href="Packet%3APacket Guides.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">Packet:Packet Guides</div>
-            <span class="badge badge-100">Historical</span>
-          </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Historical wiki draft of Packet Guides index.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
-        </a>
-        
-        <a href="Packet%3APacketTemplates.html" class="section-card" style="padding:1.25rem;">
-          <div class="section-card-header">
-            <div style="font-weight:700; font-size:1.1rem; color:var(--text-primary);">Packet:PacketTemplates</div>
-            <span class="badge badge-100">Historical</span>
-          </div>
-          <div class="section-card-desc" style="font-size:0.875rem; margin-bottom:0.75rem;">Historical wiki draft of Packet Template.</div>
-          <div style="font-size:0.8rem; color:var(--accent-cyan); font-weight:600;">Read Tutorial →</div>
         </a>
         
       </div>

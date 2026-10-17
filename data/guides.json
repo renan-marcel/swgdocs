@@ -1,0 +1,122 @@
+{
+  "title": "Packet Guides",
+  "wiki_title": "Packet Guides",
+  "wiki_url": "https://wiki.swganh.org/index.php/Packet_Guides",
+  "description": "Technical tutorials and foundational architecture references on Star Wars Galaxies networking, SOE protocol, encryption, CRC checksums, and packet reversing.",
+  "total_guides": 9,
+  "sections": [
+    {
+      "id": "generic-tutorials",
+      "title": "Generic Tutorials",
+      "count": 1,
+      "guides": [
+        {
+          "title": "Binary & Hex",
+          "slug": "binary-and-hex",
+          "html_file": "binary-and-hex.html",
+          "md_file": "binary-and-hex.md",
+          "wiki_url": "https://wiki.swganh.org/index.php/Binary_%26_Hex",
+          "wiki_revid": 44447,
+          "badge": "Guide",
+          "summary": "Essential foundation in bits, bytes, endianness, signed vs unsigned integer representations, and hexadecimal notation for packet analysis.",
+          "category": "Generic Tutorials"
+        }
+      ]
+    },
+    {
+      "id": "soe-swg-packet-related-tutorials",
+      "title": "SOE / SWG Packet Related Tutorials",
+      "count": 8,
+      "guides": [
+        {
+          "title": "SWG Packet Introduction",
+          "slug": "swg-packet-introduction",
+          "html_file": "swg-packet-introduction.html",
+          "md_file": "swg-packet-introduction.md",
+          "wiki_url": "https://wiki.swganh.org/index.php/SWG_Packet_Introduction",
+          "wiki_revid": 2315,
+          "badge": "Guide",
+          "summary": "Foundational introduction to the SWG network packet architecture, packet wrapping, and UDP encapsulation hierarchy.",
+          "category": "SOE / SWG Packet Related Tutorials"
+        },
+        {
+          "title": "SOE Protocol Breakdown",
+          "slug": "soe-protocol-breakdown",
+          "html_file": "soe-protocol-breakdown.html",
+          "md_file": "soe-protocol-breakdown.md",
+          "wiki_url": "https://wiki.swganh.org/index.php/SOE_Protocol_Breakdown",
+          "wiki_revid": 257057,
+          "badge": "Guide",
+          "summary": "Comprehensive specification of the SOE UDP protocol layer, operational channels (0x00 to 0x1E), ACKs, multi-packet, and sequencing.",
+          "category": "SOE / SWG Packet Related Tutorials"
+        },
+        {
+          "title": "SWG Packet Encryption",
+          "slug": "swg-packet-encryption",
+          "html_file": "swg-packet-encryption.html",
+          "md_file": "swg-packet-encryption.md",
+          "wiki_url": "https://wiki.swganh.org/index.php/SWG_Packet_Encryption",
+          "wiki_revid": 2316,
+          "badge": "Guide",
+          "summary": "Mechanics of the SOE XOR mask stream cipher, key derivation from the CRC seed, and decryption implementation in C++.",
+          "category": "SOE / SWG Packet Related Tutorials"
+        },
+        {
+          "title": "SWG Packet CRC",
+          "slug": "swg-packet-crc",
+          "html_file": "swg-packet-crc.html",
+          "md_file": "swg-packet-crc.md",
+          "wiki_url": "https://wiki.swganh.org/index.php/SWG_Packet_CRC",
+          "wiki_revid": 11463,
+          "badge": "Guide",
+          "summary": "Cyclic Redundancy Check (CRC32) algorithm, polynomial table generation, seed initialization, and checksum verification routines.",
+          "category": "SOE / SWG Packet Related Tutorials"
+        },
+        {
+          "title": "SWG Packet Compression",
+          "slug": "swg-packet-compression",
+          "html_file": "swg-packet-compression.html",
+          "md_file": "swg-packet-compression.md",
+          "wiki_url": "https://wiki.swganh.org/index.php/SWG_Packet_Compression",
+          "wiki_revid": 2308,
+          "badge": "Guide",
+          "summary": "Zlib compression rules, payload compression flags (0x01), byte-length thresholds, and decompression pipeline.",
+          "category": "SOE / SWG Packet Related Tutorials"
+        },
+        {
+          "title": "SWG Packet Footer",
+          "slug": "swg-packet-footer",
+          "html_file": "swg-packet-footer.html",
+          "md_file": "swg-packet-footer.md",
+          "wiki_url": "https://wiki.swganh.org/index.php/SWG_Packet_Footer",
+          "wiki_revid": 2307,
+          "badge": "Guide",
+          "summary": "Structure of the trailing packet footer, 2-byte CRC calculation, and encryption/compression flag byte positions.",
+          "category": "SOE / SWG Packet Related Tutorials"
+        },
+        {
+          "title": "SWG Packets",
+          "slug": "swg-packets",
+          "html_file": "swg-packets.html",
+          "md_file": "swg-packets.md",
+          "wiki_url": "https://wiki.swganh.org/index.php/SWG_Packets",
+          "wiki_revid": 2523,
+          "badge": "Guide",
+          "summary": "Format and structure of game-level packets encapsulated within SOE Channel 0, including operand counts and opcode dispatch.",
+          "category": "SOE / SWG Packet Related Tutorials"
+        },
+        {
+          "title": "Reversing Structs",
+          "slug": "reversing-structs",
+          "html_file": "reversing-structs.html",
+          "md_file": "reversing-structs.md",
+          "wiki_url": "https://wiki.swganh.org/index.php/Reversing_Structs",
+          "wiki_revid": 9224,
+          "badge": "Guide",
+          "summary": "Step-by-step methodology for analyzing unknown packet byte streams, identifying datatypes, and reconstructing struct definitions.",
+          "category": "SOE / SWG Packet Related Tutorials"
+        }
+      ]
+    }
+  ]
+}
