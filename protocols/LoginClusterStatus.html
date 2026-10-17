@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LoginClusterStatus | SWG Docs</title>
+  <meta name="description" content="Technical documentation and packet structure for LoginClusterStatus in Star Wars Galaxies.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="active">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>Login & Connection</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../protocols/CharacterSheetResponseMessage.html" class="">CharacterSheetResponseMessage</a></li>
+<li><a href="../protocols/ClientCreateCharacter.html" class="">ClientCreateCharacter</a></li>
+<li><a href="../protocols/ClientCreateCharacterFailed.html" class="">ClientCreateCharacterFailed</a></li>
+<li><a href="../protocols/ClientCreateCharacterSuccess.html" class="">ClientCreateCharacterSuccess</a></li>
+<li><a href="../protocols/ClientPermissionsMessage.html" class="">ClientPermissionsMessage</a></li>
+<li><a href="../protocols/ConnectionClosed.html" class="">ConnectionClosed</a></li>
+<li><a href="../protocols/ConnectionServerConnectionClosed.html" class="">ConnectionServerConnectionClosed</a></li>
+<li><a href="../protocols/ConnectionServerConnectionFailed.html" class="">ConnectionServerConnectionFailed</a></li>
+<li><a href="../protocols/ConnectionServerConnectionOpened.html" class="">ConnectionServerConnectionOpened</a></li>
+<li><a href="../protocols/ConnectionServerConnectionReset.html" class="">ConnectionServerConnectionReset</a></li>
+<li><a href="../protocols/ConnectionServerLagResponse.html" class="">ConnectionServerLagResponse</a></li>
+<li><a href="../protocols/ConnectPlayerMessage.html" class="">ConnectPlayerMessage</a></li>
+<li><a href="../protocols/ConnectPlayerResponseMessage.html" class="">ConnectPlayerResponseMessage</a></li>
+<li><a href="../protocols/DeleteCharacterMessage.html" class="">DeleteCharacterMessage</a></li>
+<li><a href="../protocols/DeleteCharacterReplyMessage.html" class="">DeleteCharacterReplyMessage</a></li>
+<li><a href="../protocols/EnumerateCharacterId.html" class="">EnumerateCharacterId</a></li>
+<li><a href="../protocols/GameConnectionClosed.html" class="">GameConnectionClosed</a></li>
+<li><a href="../protocols/GameConnectionOpened.html" class="">GameConnectionOpened</a></li>
+<li><a href="../protocols/GameConnectionReset.html" class="">GameConnectionReset</a></li>
+<li><a href="../protocols/LoginClientId.html" class="">LoginClientId</a></li>
+<li><a href="../protocols/LoginClientToken.html" class="">LoginClientToken</a></li>
+<li><a href="../protocols/LoginClusterStatus.html" class="active">LoginClusterStatus</a></li>
+<li><a href="../protocols/LoginConnectionClosed.html" class="">LoginConnectionClosed</a></li>
+<li><a href="../protocols/LoginConnectionFailed.html" class="">LoginConnectionFailed</a></li>
+<li><a href="../protocols/LoginConnectionOpened.html" class="">LoginConnectionOpened</a></li>
+<li><a href="../protocols/LoginConnectionReset.html" class="">LoginConnectionReset</a></li>
+<li><a href="../protocols/LoginEnumCluster.html" class="">LoginEnumCluster</a></li>
+<li><a href="../protocols/Main%3A%3ACharacterSheet (PacketTypeGroup).html" class="">Main::CharacterSheet (PacketTypeGroup)</a></li>
+<li><a href="../protocols/Main%3A%3AConnectionClosed (PacketTypeGroup).html" class="">Main::ConnectionClosed (PacketTypeGroup)</a></li>
+<li><a href="../protocols/Main%3A%3ALogin (PacketTypeGroup).html" class="">Main::Login (PacketTypeGroup)</a></li>
+<li><a href="../protocols/index.html" style="color:var(--accent-cyan); font-weight:600;">View all 32 in Login & Connection →</a></li>
+        </ul>
+        <h3>Section Links</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../protocols/index.html">← SWG Protocols Index</a></li>
+          <li><a href="../content/protocols/LoginClusterStatus.md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/LoginClusterStatus" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../protocols/index.html">SWG Protocols</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">LoginClusterStatus</span>
+    </div>
+    
+        
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>LoginClusterStatus</span>
+            <span class="opcode-pill" onclick="copyToClipboard('3436AEB6', this)" title="Click to copy opcode">3436AEB6 📋</span>
+          </h1>
+          <div class="article-meta">
+            <span class="badge badge-sc" title="Server to Client">S→C (Server)</span>
+            <span class="badge badge-100">100% Complete</span>
+            <span class="badge badge-sample-present">Sample: present</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>SWG Protocols</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Server Packet</strong></span>
+          </div>
+        </header>
+
+        
+        <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:1.5rem;">SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.</div>
+        
+        <section class="doc-section">
+          <h2>📐 Packet Structure (3 fields)</h2>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th style="width:140px;">Data Type</th>
+                  <th>Field Name</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr>
+              <td><span class="type-pill">SHORT</span></td>
+              <td style="font-weight:600;">Operand_Count</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Opcode</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Server_Count</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>🏷️ Variable Descriptions</h2>
+          <div class="var-grid">
+            
+            <div class="var-card">
+              <div class="var-name">Opperand_Count</div>
+              <div class="var-val">2</div>
+            </div>
+            
+            <div class="var-card">
+              <div class="var-name">Opcode</div>
+              <div class="var-val">3436AEB6</div>
+            </div>
+            
+          </div>
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>📝 Notes & Warnings</h2>
+          
+            <div class="alert-box">
+              <strong>NOTE:</strong> This seems to be old data floating around.
+            </div>
+            
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>📦 Sample Hex Dump / Packet Payload</h2>
+          <div class="code-container">
+            <div class="code-header">
+              <span>Status: <strong>PRESENT</strong></span>
+              <button class="copy-btn" onclick="copyToClipboard(`02 00 // Op Count
+B6 AE 36 34 // LoginClusterStatus
+19 00 00 00 // Total Number of Servers
+02 00 00 00 // Server ID
+0C 00 // String Count
+31 39 39 2E 31 30 38 2E 36 2E 33 39 // 199.108.6.39
+AF AD // Server Port
+AE AD // Ping Port
+FF FF FF FF <--------------------------this here
+02 00 00 00  // server pop
+08 00 00 00  // Max Cap
+80 8F FF FF  // Max char per server
+02 00 00 00  // Distance
+01           // Status
+C4 09 00 00  // Recommended flag
+FA 00 00 00  // ??
+03 00 00 00 
+0C 00 
+31 39 39 2E 31        ............199.
+30 38 2E 36 2E 37 35 AF AD AE AD FF FF FF FF 01        108.6.75........
+00 00 00 08 00 00 00 80 8F FF FF 02 00 00 00 01        ................
+C4 09 00 00 FA 00 00 00 
+
+0C 00 00 00 0D 00 31 39        ...............1
+39 2E 31 30 38 2E 36 2E 31 33 33 AF AD AE AD FF        99.108.6.133....
+FF FF FF 02 00 00 00 08 00 00 00 80 8F FF FF 02        ................
+00 00 00 00 C4 09 00 00 FA 00 00 00 
+
+0D 00 00 00        ................
+0D 00 31 39 39 2E 31 30 38 2E 36 2E 31 38 33 AF        ...199.108.6.183
+AD AE AD FF FF FF FF 01 00 00 00 08 00 00 00 80        ................
+8F FF FF 02 00 00 00 00 C4 09 00 00 FA 00 00 00        ................
+
+0E 00 00 00 0D 00 31 39 39 2E 31 30 38 2E 38 2E        .......199.108.8
+31 30 31 AF AD AE AD FF FF FF FF 01 00 00 00 08        .101............
+00 00 00 80 8F FF FF 02 00 00 00 00 C4 09 00 00        ................
+FA 00 00 00 
+
+0F 00 00 00 0D 00 31 39 39 2E 31 30        ...........199.1
+38 2E 38 2E 31 34 35 AF AD AE AD FF FF FF FF 01        08.8.145........
+00 00 00 08 00 00 00 80 8F FF FF 02 00 00 00 00        ................
+C4 09 00 00 FA 00 00 00 
+
+10 00 00 00 0C 00 31 39        ...............1
+39 2E 31 30 38 2E 37 2E 35 31 AF AD AE AD FF FF        99.108.7.51.....
+FF FF 01 00 00 00 08 00 00 00 80 8F FF FF 02 00        ................
+00 00 00 C4 09 00 00 FA 00 00 00 
+
+11 00 00 00 0C        ................
+00 31 39 39 2E 31 30 38 2E 37 2E 38 30 AF AD AE        ..199.108.7.80..
+AD FF FF FF FF 01 00 00 00 08 00 00 00 80 8F FF        ................
+FF 02 00 00 00 00 C4 09 00 00 FA 00 00 00 12 00        ................
+00 00 0D 00 31 39 39 2E 31 30 38 2E 37 2E 31 31        .....199.108.7.1
+34 AF AD AE AD FF FF FF FF 01 00 00 00 08 00 00        14..............
+00 80 8F FF FF 02 00 00 00 00 C4 09 00 00 FA 00        ................
+00 00 13 00 00 00 0D 00 31 39 39 2E 31 94 8D           ........199.1..
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Packet : 9
+
+TransOp:[0]
+SOE_DATA_FRAG_A
+
+199.108.6.33:44453 -> 192.168.0.150:1903 (Server -> Client)
+Enc: T   Comp: T    Seed: 0xFB75D235
+
+00 0D 00 05 30 38 2E 37 2E 31 34 30 AF AD AE AD        .....08.7.140...
+FF FF FF FF 01 00 00 00 08 00 00 00 80 8F FF FF        ................
+02 00 00 00 00 C4 09 00 00 FA 00 00 00 19 00 00        ................
+00 0E 00 31 39 39 2E 31 30 38 2E 31 39 37 2E 35        ....199.108.197.
+30 AF AD AE AD FF FF FF FF 01 00 00 00 08 00 00        50..............
+00 80 8F FF FF 02 00 00 00 00 C4 09 00 00 FA 00        ................
+00 00 1A 00 00 00 0E 00 31 39 39 2E 31 30 38 2E        .........199.108
+31 39 37 2E 37 39 AF AD AE AD FF FF FF FF 01 00        .197.79.........
+00 00 08 00 00 00 80 8F FF FF 02 00 00 00 00 C4        ................
+09 00 00 FA 00 00 00 1B 00 00 00 0F 00 31 39 39        ..............19
+2E 31 30 38 2E 31 39 37 2E 31 31 38 AF AD AE AD        9.108.197.118...
+FF FF FF FF 01 00 00 00 08 00 00 00 80 8F FF FF        ................
+02 00 00 00 00 C4 09 00 00 FA 00 00 00 1C 00 00        ................
+00 0F 00 31 39 39 2E 31 30 38 2E 31 39 37 2E 31        ....199.108.197.
+33 32 AF AD AE AD FF FF FF FF 01 00 00 00 08 00        132.............
+00 00 80 8F FF FF 02 00 00 00 00 C4 09 00 00 FA        ................
+00 00 00 05 00 00 00 0E 00 31 39 39 2E 31 30 38        ..........199.10
+2E 31 39 36 2E 35 30 AF AD AE AD FF FF FF FF 02        8.196.50........
+00 00 00 08 00 00 00 80 8F FF FF 02 00 00 00 00        ................
+C4 09 00 00 FA 00 00 00 06 00 00 00 0E 00 31 39        ...............1
+39 2E 31 30 38 2E 31 39 36 2E 38 31 AF AD AE AD        99.108.196.81...
+FF FF FF FF 02 00 00 00 08 00 00 00 80 8F FF FF        ................
+02 00 00 00 00 C4 09 00 00 FA 00 00 00 07 00 00        ................
+00 0F 00 31 39 39 2E 31 30 38 2E 31 39 36 2E 31        ....199.108.196.
+31 30 AF AD AE AD FF FF FF FF 01 00 00 00 08 00        110.............
+00 00 80 8F FF FF 02 00 00 00 01 C4 09 00 00 FA        ................
+00 00 00 08 00 00 00 0F 00 31 39 39 2E 31 30 38        ..........199.10
+2E 31 39 36 2E 31 34 34 AF AD AE AD FF FF FF FF        8.196.144.......
+01 00 00 00 08 00 00 00 80 8F FF FF 02 00 00 00        ................
+01 C4 09 00 00 FA 00 00 00 09 00 00 00 0F 00 31        ................
+39 39 2E 31 30 38 2E 31 39 36 2E 31 36 27 6C           99.108.196.16'l`, this)">Copy Sample</button>
+            </div>
+            <pre class="code-block"><code>02 00 // Op Count
+B6 AE 36 34 // LoginClusterStatus
+19 00 00 00 // Total Number of Servers
+02 00 00 00 // Server ID
+0C 00 // String Count
+31 39 39 2E 31 30 38 2E 36 2E 33 39 // 199.108.6.39
+AF AD // Server Port
+AE AD // Ping Port
+FF FF FF FF &lt;--------------------------this here
+02 00 00 00  // server pop
+08 00 00 00  // Max Cap
+80 8F FF FF  // Max char per server
+02 00 00 00  // Distance
+01           // Status
+C4 09 00 00  // Recommended flag
+FA 00 00 00  // ??
+03 00 00 00 
+0C 00 
+31 39 39 2E 31        ............199.
+30 38 2E 36 2E 37 35 AF AD AE AD FF FF FF FF 01        108.6.75........
+00 00 00 08 00 00 00 80 8F FF FF 02 00 00 00 01        ................
+C4 09 00 00 FA 00 00 00 
+
+0C 00 00 00 0D 00 31 39        ...............1
+39 2E 31 30 38 2E 36 2E 31 33 33 AF AD AE AD FF        99.108.6.133....
+FF FF FF 02 00 00 00 08 00 00 00 80 8F FF FF 02        ................
+00 00 00 00 C4 09 00 00 FA 00 00 00 
+
+0D 00 00 00        ................
+0D 00 31 39 39 2E 31 30 38 2E 36 2E 31 38 33 AF        ...199.108.6.183
+AD AE AD FF FF FF FF 01 00 00 00 08 00 00 00 80        ................
+8F FF FF 02 00 00 00 00 C4 09 00 00 FA 00 00 00        ................
+
+0E 00 00 00 0D 00 31 39 39 2E 31 30 38 2E 38 2E        .......199.108.8
+31 30 31 AF AD AE AD FF FF FF FF 01 00 00 00 08        .101............
+00 00 00 80 8F FF FF 02 00 00 00 00 C4 09 00 00        ................
+FA 00 00 00 
+
+0F 00 00 00 0D 00 31 39 39 2E 31 30        ...........199.1
+38 2E 38 2E 31 34 35 AF AD AE AD FF FF FF FF 01        08.8.145........
+00 00 00 08 00 00 00 80 8F FF FF 02 00 00 00 00        ................
+C4 09 00 00 FA 00 00 00 
+
+10 00 00 00 0C 00 31 39        ...............1
+39 2E 31 30 38 2E 37 2E 35 31 AF AD AE AD FF FF        99.108.7.51.....
+FF FF 01 00 00 00 08 00 00 00 80 8F FF FF 02 00        ................
+00 00 00 C4 09 00 00 FA 00 00 00 
+
+11 00 00 00 0C        ................
+00 31 39 39 2E 31 30 38 2E 37 2E 38 30 AF AD AE        ..199.108.7.80..
+AD FF FF FF FF 01 00 00 00 08 00 00 00 80 8F FF        ................
+FF 02 00 00 00 00 C4 09 00 00 FA 00 00 00 12 00        ................
+00 00 0D 00 31 39 39 2E 31 30 38 2E 37 2E 31 31        .....199.108.7.1
+34 AF AD AE AD FF FF FF FF 01 00 00 00 08 00 00        14..............
+00 80 8F FF FF 02 00 00 00 00 C4 09 00 00 FA 00        ................
+00 00 13 00 00 00 0D 00 31 39 39 2E 31 94 8D           ........199.1..
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Packet : 9
+
+TransOp:[0]
+SOE_DATA_FRAG_A
+
+199.108.6.33:44453 -&gt; 192.168.0.150:1903 (Server -&gt; Client)
+Enc: T   Comp: T    Seed: 0xFB75D235
+
+00 0D 00 05 30 38 2E 37 2E 31 34 30 AF AD AE AD        .....08.7.140...
+FF FF FF FF 01 00 00 00 08 00 00 00 80 8F FF FF        ................
+02 00 00 00 00 C4 09 00 00 FA 00 00 00 19 00 00        ................
+00 0E 00 31 39 39 2E 31 30 38 2E 31 39 37 2E 35        ....199.108.197.
+30 AF AD AE AD FF FF FF FF 01 00 00 00 08 00 00        50..............
+00 80 8F FF FF 02 00 00 00 00 C4 09 00 00 FA 00        ................
+00 00 1A 00 00 00 0E 00 31 39 39 2E 31 30 38 2E        .........199.108
+31 39 37 2E 37 39 AF AD AE AD FF FF FF FF 01 00        .197.79.........
+00 00 08 00 00 00 80 8F FF FF 02 00 00 00 00 C4        ................
+09 00 00 FA 00 00 00 1B 00 00 00 0F 00 31 39 39        ..............19
+2E 31 30 38 2E 31 39 37 2E 31 31 38 AF AD AE AD        9.108.197.118...
+FF FF FF FF 01 00 00 00 08 00 00 00 80 8F FF FF        ................
+02 00 00 00 00 C4 09 00 00 FA 00 00 00 1C 00 00        ................
+00 0F 00 31 39 39 2E 31 30 38 2E 31 39 37 2E 31        ....199.108.197.
+33 32 AF AD AE AD FF FF FF FF 01 00 00 00 08 00        132.............
+00 00 80 8F FF FF 02 00 00 00 00 C4 09 00 00 FA        ................
+00 00 00 05 00 00 00 0E 00 31 39 39 2E 31 30 38        ..........199.10
+2E 31 39 36 2E 35 30 AF AD AE AD FF FF FF FF 02        8.196.50........
+00 00 00 08 00 00 00 80 8F FF FF 02 00 00 00 00        ................
+C4 09 00 00 FA 00 00 00 06 00 00 00 0E 00 31 39        ...............1
+39 2E 31 30 38 2E 31 39 36 2E 38 31 AF AD AE AD        99.108.196.81...
+FF FF FF FF 02 00 00 00 08 00 00 00 80 8F FF FF        ................
+02 00 00 00 00 C4 09 00 00 FA 00 00 00 07 00 00        ................
+00 0F 00 31 39 39 2E 31 30 38 2E 31 39 36 2E 31        ....199.108.196.
+31 30 AF AD AE AD FF FF FF FF 01 00 00 00 08 00        110.............
+00 00 80 8F FF FF 02 00 00 00 01 C4 09 00 00 FA        ................
+00 00 00 08 00 00 00 0F 00 31 39 39 2E 31 30 38        ..........199.10
+2E 31 39 36 2E 31 34 34 AF AD AE AD FF FF FF FF        8.196.144.......
+01 00 00 00 08 00 00 00 80 8F FF FF 02 00 00 00        ................
+01 C4 09 00 00 FA 00 00 00 09 00 00 00 0F 00 31        ................
+39 39 2E 31 30 38 2E 31 39 36 2E 31 36 27 6C           99.108.196.16&#x27;l</code></pre>
+          </div>
+        </section>
+        
+        
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

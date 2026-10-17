@@ -1,0 +1,141 @@
+---
+title: GILD03
+url: https://wiki.swganh.org/index.php/GILD03
+page_type: Baseline
+opcode: 
+revision_id: 39719
+last_modified: 2008-06-25T17:36:38Z
+completion: 100%
+direction: unknown
+sample_status: present
+categories: ['Pages with missing packet samples', 'Packets', '100% Complete']
+templates: ['Template:MissingPacket', 'Template:Ambox', 'Template:PageHeader', 'Template:GILDArchitectureNAV', 'Template:100%']
+---
+
+# GILD03
+
+## Notices
+- This article or section needs additional data . Please add a sample packet!
+
+## Description
+SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.
+
+## Struct
+| Type | Name |
+| --- | --- |
+| SHORT | ObjOpperandCount |
+| FLOAT | ?? |
+| ASTRING | STF File |
+| INT | STF Spacer |
+| ASTRING | STF Name |
+| USTRING | CustomName |
+| INT | Volume |
+| INT | GuildIDListSize |
+| INT | UpdateCounter |
+| A_STRING | GuildID:Name |
+
+## Variable Descriptions
+- Obj_OperandCount = 5
+
+## Notes
+_none_
+
+## Tags
+- **100%** - This packet has been completely reversed.
+
+## Sample Packet
+```
+05 00 
+0C 5F A7 68 // Baseline Message
+1A 24 F4 00 00 00 00 00 
+44 4C 49 47 // DLIG
+03 // 3
+E4 0D 00 00 
+05 00 
+00 00 80 3F 
+0F 00                      // string count
+73 74 72 69 6E 67 5F 69 64 // string_id
+5F 74 61 62 6C 65          // _table
+00 00 00 00 // string spacer
+00 00 00 00 // string name not used
+00 00 00 00 // u-string not used
+00 00 2C 01 // volume not used??
+00 00 00 00 // ??
+00 00 
+09 00 
+31 30 32 30 30 31 3A 57 75 // 102001:Wu
+0A 00 
+31 30 32 30 30 38 3A 57 53 41  //102008:WSA
+0C 00 
+31 30 33 30 30 31 3A 4B 4F 54 4F // ..103001:KOTO
+52 0C 00 31 30 33 30 30 32 3A 66 69 67 68 74 0B // R..103002:fight.
+00 31 30 33 30 30 33 3A 57 48 41 50 0C 00 31 30 // .103003:WHAP..10
+34 30 30 31 3A 54 52 41 44 45 09 00 31 30 34 30 // 4001:TRADE..1040
+30 32 3A 5A 46 0C 00 31 30 34 30 30 33 3A 27 53 // 02:ZF..104003:'S
+79 64 69 0C 00 31 30 35 30 30 32 3A 57 4F 4F 4B // ydi..105002:WOOK
+65 0C 00 31 30 36 30 30 31 3A 44 53 52 45 4E 0C // e..106001:DSREN.
+00 31 30 37 30 30 31 3A 42 4C 44 57 53 0B 00 31 // .107001:BLDWS..1
+30 37 30 30 35 3A 52 41 47 45 0C 00 31 30 39 30 // 07005:RAGE..1090
+30 31 3A 55 4E 47 44 43 0C 00 31 31 30 30 30 31 // 01:UNGDC..110001
+3A 73 6E 61 66 75 09 00 31 31 30 30 30 32 3A 4E // :snafu..110002:N
+47 0C 00 31 31 31 30 30 31 3A 2D 57 53 41 2D 0C // G..111001:-WSA-.
+00 31 31 34 30 30 31 3A 46 65 69 6E 74 0A 00 31 // .114001:Feint..1
+31 36 30 30 33 3A 4C 6F 45 0B 00 31 31 38 30 30 // 16003:LoE..11800
+32 3A 4F 70 75 73 0C 00 31 31 38 30 30 34 3A 2D // 2:Opus..118004:-
+56 41 47 2D 09 00 31 32 30 30 30 31 3A 4A 41 09 // VAG-..120001:JA.
+00 31 32 32 30 30 31 3A 44 4D 0B 00 31 32 33 30 // .122001:DM..1230
+30 31 3A 57 6F 54 47 0C 00 31 32 34 30 30 31 3A // 01:WoTG..124001:
+2D 20 4B 20 2D 0B 00 31 32 35 30 30 31 3A 2D 53 // - K -..125001:-S
+53 2D 0B 00 31 32 35 30 30 32 3A 4B 4E 4F 42 0C // S-..125002:KNOB.
+00 31 32 36 30 30 31 3A 45 58 49 4C 45 0A 00 31 // .126001:EXILE..1
+32 36 30 30 34 3A 47 4D 54 0B 00 33 30 30 30 31 // 26004:GMT..30001
+3A 69 43 72 65 77 0A 00 33 30 30 30 32 3A 53 4F // :iCrew..30002:SO
+45 4C 09 00 33 31 30 30 32 3A 41 4F 49 0B 00 33 // EL..31002:AOI..3
+32 30 30 31 3A 52 2D 53 2D 4F 09 00 33 01 76 B6 // 2001:R-S-O..3.v.
+
+
+Packet : 30
+199.108.7.36:44463 -> 192.168.0.100:1533 (Server->Client)
+Zone Server: Fragmented: Enc: T: Comp: T 
+
+00 0D 00 0C 34 30 30 31 3A 4C 6F 56 09 00 33 34 // ....4001:LoV..34
+30 30 32 3A 55 47 43 0B 00 33 35 30 30 33 3A 44 // 002:UGC..35003:D
+43 6F 72 64 09 00 33 35 30 30 37 3A 48 48 48 0B // Cord..35007:HHH.
+00 33 37 30 30 34 3A 42 2D 49 63 65 09 00 33 37 // .37004:B-Ice..37
+30 30 35 3A 44 53 52 08 00 33 37 30 30 37 3A 55 // 005:DSR..37007:U
+4E 09 00 33 38 30 30 31 3A 4B 6F 47 0A 00 33 38 // N..38001:KoG..38
+30 30 32 3A 4C 44 6F 47 09 00 33 38 30 30 33 3A // 002:LDoG..38003:
+42 53 4F 0B 00 33 38 30 30 34 3A 43 52 41 46 54 // BSO..38004:CRAFT
+09 00 33 38 30 30 35 3A 42 41 4D 08 00 33 39 30 // ..38005:BAM..390
+30 31 3A 43 41 0A 00 33 39 30 30 32 3A 57 6F 61 // 01:CA..39002:Woa
+48 0A 00 33 39 30 30 34 3A 2D 52 46 2D 08 00 33 // H..39004:-RF-..3
+39 30 30 38 3A 44 53 0B 00 34 30 30 30 34 3A 4D // 9008:DS..40004:M
+41 46 49 41 0B 00 34 30 30 30 35 3A 41 6C 74 75 // AFIA..40005:Altu
+73 09 00 34 30 30 30 36 3A 54 49 45 0B 00 34 30 // s..40006:TIE..40
+30 31 30 3A 45 6C 69 74 65 09 00 34 31 30 30 33 // 010:Elite..41003
+3A 54 4F 45 08 00 34 31 30 30 34 3A 44 42 09 00 // :TOE..41004:DB..
+34 31 30 30 35 3A 46 42 49 0B 00 34 32 30 30 31 // 41005:FBI..42001
+3A 41 6C 76 69 73 0B 00 34 32 30 30 33 3A 53 57 // :Alvis..42003:SW
+4F 4F 50 08 00 34 32 30 30 34 3A 47 52 09 00 34 // OOP..42004:GR..4
+32 30 30 39 3A 46 6F 48 08 00 34 33 30 30 31 3A // 2009:FoH..43001:
+44 44 0B 00 34 33 30 30 32 3A 52 65 69 67 6E 08 // DD..43002:Reign.
+00 34 33 30 30 33 3A 50 48 09 00 34 33 30 30 34 // .43003:PH..43004
+3A 61 45 6D 09 00 34 33 30 30 35 3A 45 6F 52 0B // :aEm..43005:EoR.
+00 34 33 30 30 36 3A 42 53 6B 75 6C 09 00 34 33 // .43006:BSkul..43
+30 30 37 3A 44 4B 44 0A 00 34 33 30 30 39 3A 52 // 007:DKD..43009:R
+46 4E 4B 08 00 34 33 30 31 31 3A 45 41 0A 00 34 // FNK..43011:EA..4
+33 30 31 34 3A 2D 44 53 2D 09 00 34 34 30 30 31 // 3014:-DS-..44001
+3A 47 54 46 09 00 34 34 30 30 32 3A 54 4F 52 09 // :GTF..44002:TOR.
+00 34 34 30 30 33 3A 4A 41 47 08 00 34 34 30 30 // .44003:JAG..4400
+34 3A 46 58 0A 00 34 34 30 30 37 3A 44 55 4E 45 // 4:FX..44007:DUNE
+0A 00 34 34 30 31 31 3A 52 45 41 50 0B 01 B2 B9 // ..44011:REAP....
+```
+
+## Related Pages
+_none_
+
+## Other Sections
+_none_
+
+## Categories
+Pages with missing packet samples | Packets | 100% Complete

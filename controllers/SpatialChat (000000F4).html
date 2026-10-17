@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpatialChat (000000F4) | SWG Docs</title>
+  <meta name="description" content="Technical documentation and packet structure for SpatialChat (000000F4) in Star Wars Galaxies.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="active">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>Effects & Audio (0xA1 - 0x100)</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../controllers/Animation (000000F2).html" class="">Animation (000000F2)</a></li>
+<li><a href="../controllers/CombatAction (000000CC).html" class="">CombatAction (000000CC)</a></li>
+<li><a href="../controllers/CombatDamage (000000CD).html" class="">CombatDamage (000000CD)</a></li>
+<li><a href="../controllers/DataTransformWithParent (000000F1).html" class="">DataTransformWithParent (000000F1)</a></li>
+<li><a href="../controllers/GenericResponse (000000EE).html" class="">GenericResponse (000000EE)</a></li>
+<li><a href="../controllers/HarvesterResourceData (000000EA).html" class="">HarvesterResourceData (000000EA)</a></li>
+<li><a href="../controllers/MissionCreateRequest (000000FF).html" class="">MissionCreateRequest (000000FF)</a></li>
+<li><a href="../controllers/MissionDetailsRequest (000000F7).html" class="">MissionDetailsRequest (000000F7)</a></li>
+<li><a href="../controllers/MissionDetailsResponse (000000F8).html" class="">MissionDetailsResponse (000000F8)</a></li>
+<li><a href="../controllers/MissionGenericRequest (000000F9).html" class="">MissionGenericRequest (000000F9)</a></li>
+<li><a href="../controllers/MissionGenericRequest (000000FB).html" class="">MissionGenericRequest (000000FB)</a></li>
+<li><a href="../controllers/MissionGenericResponse (000000FA).html" class="">MissionGenericResponse (000000FA)</a></li>
+<li><a href="../controllers/MissionGenericResponse (000000FC).html" class="">MissionGenericResponse (000000FC)</a></li>
+<li><a href="../controllers/MissionGenericResponse (00000100).html" class="">MissionGenericResponse (00000100)</a></li>
+<li><a href="../controllers/MissionListRequest (000000F5).html" class="">MissionListRequest (000000F5)</a></li>
+<li><a href="../controllers/MissionListResponse (000000F6).html" class="">MissionListResponse (000000F6)</a></li>
+<li><a href="../controllers/NetworkId (000000E5).html" class="">NetworkId (000000E5)</a></li>
+<li><a href="../controllers/NetworkId (000000E6).html" class="">NetworkId (000000E6)</a></li>
+<li><a href="../controllers/NetworkId (000000E7).html" class="">NetworkId (000000E7)</a></li>
+<li><a href="../controllers/NetworkId (000000E8).html" class="">NetworkId (000000E8)</a></li>
+<li><a href="../controllers/NetworkId (000000E9).html" class="">NetworkId (000000E9)</a></li>
+<li><a href="../controllers/NetworkIdPair (000000EB).html" class="">NetworkIdPair (000000EB)</a></li>
+<li><a href="../controllers/NetworkIdPair (000000EC).html" class="">NetworkIdPair (000000EC)</a></li>
+<li><a href="../controllers/NpcConversationMessage (000000DF).html" class="">NpcConversationMessage (000000DF)</a></li>
+<li><a href="../controllers/NPCConversationOptions (000000E0).html" class="">NPCConversationOptions (000000E0)</a></li>
+<li><a href="../controllers/OpponentInfo (000000E3).html" class="">OpponentInfo (000000E3)</a></li>
+<li><a href="../controllers/ResourceEmptyHopper (000000ED).html" class="">ResourceEmptyHopper (000000ED)</a></li>
+<li><a href="../controllers/SpatialChat (000000F3).html" class="">SpatialChat (000000F3)</a></li>
+<li><a href="../controllers/SpatialChat (000000F4).html" class="active">SpatialChat (000000F4)</a></li>
+<li><a href="../controllers/StartNpcConversation (000000DD).html" class="">StartNpcConversation (000000DD)</a></li>
+<li><a href="../controllers/index.html" style="color:var(--accent-cyan); font-weight:600;">View all 32 in Effects & Audio (0xA1 - 0x100) →</a></li>
+        </ul>
+        <h3>Section Links</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../controllers/index.html">← Object Controllers Index</a></li>
+          <li><a href="../content/controllers/SpatialChat (000000F4).md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/SpatialChat_%28000000F4%29" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../controllers/index.html">Object Controllers</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">SpatialChat (000000F4)</span>
+    </div>
+    
+        
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>SpatialChat (000000F4)</span>
+            <span class="opcode-pill" onclick="copyToClipboard('000000F4', this)" title="Click to copy opcode">000000F4 📋</span>
+          </h1>
+          <div class="article-meta">
+            
+            <span class="badge badge-50">50% Complete</span>
+            <span class="badge badge-sample-present">Sample: present</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Object Controllers</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Object Controller</strong></span>
+          </div>
+        </header>
+
+        
+        <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:1.5rem;">SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.</div>
+        
+        <section class="doc-section">
+          <h2>📐 Packet Structure (13 fields)</h2>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th style="width:140px;">Data Type</th>
+                  <th>Field Name</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr>
+              <td><span class="type-pill">LONG</span></td>
+              <td style="font-weight:600;">Source ID</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">??</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">LONG</span></td>
+              <td style="font-weight:600;">Source ID</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">LONG</span></td>
+              <td style="font-weight:600;">Target ID</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Unicode String Size</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">U_STRING</span></td>
+              <td style="font-weight:600;">Text</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">String Spacer</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">SHORT</span></td>
+              <td style="font-weight:600;">??</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">SHORT</span></td>
+              <td style="font-weight:600;">Mood 1</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">SHORT</span></td>
+              <td style="font-weight:600;">Mood 2</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">BYTE</span></td>
+              <td style="font-weight:600;">??</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">BYTE</span></td>
+              <td style="font-weight:600;">Language</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">LONG</span></td>
+              <td style="font-weight:600;">??</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>🏷️ Variable Descriptions</h2>
+          <div class="var-grid">
+            
+            <div class="var-card">
+              <div class="var-name">controllerID</div>
+              <div class="var-val">000000F4</div>
+            </div>
+            
+          </div>
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>📝 Notes & Warnings</h2>
+          
+            <div class="alert-box">
+              <strong>NOTE:</strong> The first ID in this OCM needs to be the ID of the receiving object
+            </div>
+            
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>📦 Sample Hex Dump / Packet Payload</h2>
+          <div class="code-container">
+            <div class="code-header">
+              <span>Status: <strong>PRESENT</strong></span>
+              <button class="copy-btn" onclick="copyToClipboard(`05 00 
+46 5E CE 80 
+0B 00 00 00 
+F4 00 00 00 
+52 1C 81 16 0F 00 00 00 
+00 00 00 00 
+A2 BB 24 B1 08 00 00 00 
+00 00 00 00 
+00 00 00 00 
+81 00 00 00 
+48 00 69 00 2C 00 20 00 57 00 65 00 6C 00   ..H.i.,. .W.e.l.
+63 00 6F 00 6D 00 65 00 20 00 74 00 6F 00 20 00   c.o.m.e. .t.o. .
+74 00 68 00 65 00 20 00 43 00 6F 00 72 00 6F 00   t.h.e. .C.o.r.o.
+6E 00 65 00 74 00 20 00 43 00 61 00 6E 00 74 00   n.e.t. .C.a.n.t.
+69 00 6E 00 61 00 21 00 20 00 53 00 69 00 74 00   i.n.a.!. .S.i.t.
+20 00 64 00 6F 00 77 00 6E 00 20 00 61 00 6E 00    .d.o.w.n. .a.n.
+64 00 20 00 77 00 61 00 74 00 63 00 68 00 20 00   d. .w.a.t.c.h. .
+74 00 68 00 65 00 20 00 65 00 6E 00 74 00 65 00   t.h.e. .e.n.t.e.
+72 00 74 00 61 00 69 00 6E 00 65 00 72 00 73 00   r.t.a.i.n.e.r.s.
+20 00 66 00 6F 00 72 00 20 00 49 00 6E 00 73 00    .f.o.r. .I.n.s.
+70 00 69 00 72 00 61 00 74 00 69 00 6F 00 6E 00   p.i.r.a.t.i.o.n.
+20 00 62 00 75 00 66 00 66 00 73 00 2E 00 20 00    .b.u.f.f.s... .
+54 00 69 00 70 00 73 00 20 00 61 00 72 00 65 00   T.i.p.s. .a.r.e.
+20 00 61 00 6C 00 73 00 6F 00 20 00 61 00 70 00    .a.l.s.o. .a.p.
+70 00 72 00 69 00 63 00 69 00 61 00 74 00 65 00   p.r.i.c.i.a.t.e.
+64 00 2E 00 20 00 54 00 68 00 61 00 6E 00 6B 00   d... .T.h.a.n.k.
+73 00 21 00 s.!.
+32 00 01 00 
+00 00 00 01 
+00 00 00 00
+00 00 00 00 
+==================================================================
+05 00 
+46 5E CE 80 
+0B 00 00 00 
+F4 00 00 00        ....F^..........
+EE B4 79 8B 33 00 00 00 // characterID
+00 00 00 00 
+EE B4 79 8B 33 00 00 00 // characterID
+00 00 00 00 
+00 00 00 00 
+23 00 00 00     // u-string count
+79 00 6F 00 20 00 68 00 6F 00 20 00 68 00 6F 00        // y.o...h.o...h.o.
+20 00 69 00 74 00 73 00 20 00 61 00 20 00 70 00        // ..i.t.s...a...p.
+69 00 72 00 61 00 74 00 65 00 73 00 20 00 6C 00        // i.r.a.t.e.s...l.
+69 00 66 00 65 00 20 00 66 00 6F 00 72 00 20 00        // i.f.e...f.o.r...
+6D 00 65 00 21 00                                      // m.e.!.
+00 00 00 00 	// string spacer
+64 00 
+50 00 00 00 
+01 00 
+00 00 00 00 
+00 00 00 
+
+
+====================================================
+
+05 00 
+46 5E CE 80 
+0B 00 00 00 
+F4 00 00 00 
+EE B4 79 8B 33 00 00 00 
+00 00 00 00 
+EE B4 79 8B 33 00 00 00 
+00 00 00 00 
+00 00 00 00 
+64 00 00 00 
+79 00 6F 00 75 00 20 00 73        ...d...y.o.u...s
+00 6F 00 20 00 68 00 61 00 69 00 72 00 79 00 20        .o...h.a.i.r.y..
+00 74 00 68 00 61 00 74 00 20 00 77 00 68 00 65        .t.h.a.t...w.h.e
+00 6E 00 20 00 79 00 6F 00 75 00 20 00 77 00 65        .n...y.o.u...w.e
+00 6E 00 74 00 20 00 74 00 6F 00 20 00 73 00 68        .n.t...t.o...s.h
+00 61 00 76 00 65 00 20 00 79 00 6F 00 75 00 72        .a.v.e...y.o.u.r
+00 20 00 63 00 72 00 6F 00 74 00 63 00 68 00 2C        ...c.r.o.t.c.h.,
+00 20 00 74 00 68 00 65 00 20 00 66 00 6C 00 65        ...t.h.e...f.l.e
+00 61 00 73 00 20 00 73 00 61 00 69 00 64 00 20        .a.s...s.a.i.d..
+00 74 00 68 00 61 00 6E 00 6B 00 20 00 67 00 6F        .t.h.a.n.k...g.o
+00 64 00 20 00 77 00 65 00 20 00 63 00 61 00 6E        .d...w.e...c.a.n
+00 20 00 73 00 65 00 65 00 20 00 74 00 68 00 65        ...s.e.e...t.h.e
+00 20 00 6C 00 69 00 67 00 68 00 74 00 21 00 
+00 00 00 00 
+32 00 
+09 00 00 00 
+01 00 
+00 00 00 00 
+00 00 00 2F 
+
+====================================================
+
+05 00
+46 5E CE 80 
+0B 00 00 00 
+F4 00 00 00 
+EE B4 79 8B 33 00 00 00 
+00 00 00 00 
+EE B4 79 8B 33 00 00 00 
+00 00 00 00 
+00 00 00 00 
+27 00 00 00 
+74 00 6F 00 20 00 62 00 65 00 20        .'...t.o...b.e..
+00 6F 00 72 00 20 00 6E 00 6F 00 74 00 20 00 74        .o.r...n.o.t...t
+00 6F 00 20 00 62 00 65 00 20 00 74 00 68 00 61        .o...b.e...t.h.a
+00 74 00 20 00 69 00 73 00 20 00 74 00 68 00 65        .t...i.s...t.h.e
+00 20 00 71 00 75 00 65 00 73 00 74 00 69 00 6F        ...q.u.e.s.t.i.o
+00 6E 00 
+00 00 00 00 
+32 00 
+34 00 00 00 
+01 00 
+00 00 00 00 
+00 00 00 2F 
+
+
+====================================================
+
+05 00 
+46 5E CE 80 
+0B 00 00 00 
+F4 00 00 00 
+EE B4 79 8B 33 00 00 00 
+00 00 00 00 
+EE B4 79 8B 33 00 00 00 
+00 00 00 00 
+00 00 00 00 
+19 00 00 00 
+6C 00 6F 00 72 00 64 00 20 00 76        .....l.o.r.d...v
+00 61 00 64 00 65 00 72 00 20 00 69 00 73 00 20        .a.d.e.r...i.s..
+00 6E 00 6F 00 74 00 20 00 70 00 6C 00 65 00 61        .n.o.t...p.l.e.a
+00 73 00 65 00 64 00 
+00 00 00 00 
+32 00 
+09 00 00 00 
+01 00 
+00 00 00 00 
+00 00 00 2F`, this)">Copy Sample</button>
+            </div>
+            <pre class="code-block"><code>05 00 
+46 5E CE 80 
+0B 00 00 00 
+F4 00 00 00 
+52 1C 81 16 0F 00 00 00 
+00 00 00 00 
+A2 BB 24 B1 08 00 00 00 
+00 00 00 00 
+00 00 00 00 
+81 00 00 00 
+48 00 69 00 2C 00 20 00 57 00 65 00 6C 00   ..H.i.,. .W.e.l.
+63 00 6F 00 6D 00 65 00 20 00 74 00 6F 00 20 00   c.o.m.e. .t.o. .
+74 00 68 00 65 00 20 00 43 00 6F 00 72 00 6F 00   t.h.e. .C.o.r.o.
+6E 00 65 00 74 00 20 00 43 00 61 00 6E 00 74 00   n.e.t. .C.a.n.t.
+69 00 6E 00 61 00 21 00 20 00 53 00 69 00 74 00   i.n.a.!. .S.i.t.
+20 00 64 00 6F 00 77 00 6E 00 20 00 61 00 6E 00    .d.o.w.n. .a.n.
+64 00 20 00 77 00 61 00 74 00 63 00 68 00 20 00   d. .w.a.t.c.h. .
+74 00 68 00 65 00 20 00 65 00 6E 00 74 00 65 00   t.h.e. .e.n.t.e.
+72 00 74 00 61 00 69 00 6E 00 65 00 72 00 73 00   r.t.a.i.n.e.r.s.
+20 00 66 00 6F 00 72 00 20 00 49 00 6E 00 73 00    .f.o.r. .I.n.s.
+70 00 69 00 72 00 61 00 74 00 69 00 6F 00 6E 00   p.i.r.a.t.i.o.n.
+20 00 62 00 75 00 66 00 66 00 73 00 2E 00 20 00    .b.u.f.f.s... .
+54 00 69 00 70 00 73 00 20 00 61 00 72 00 65 00   T.i.p.s. .a.r.e.
+20 00 61 00 6C 00 73 00 6F 00 20 00 61 00 70 00    .a.l.s.o. .a.p.
+70 00 72 00 69 00 63 00 69 00 61 00 74 00 65 00   p.r.i.c.i.a.t.e.
+64 00 2E 00 20 00 54 00 68 00 61 00 6E 00 6B 00   d... .T.h.a.n.k.
+73 00 21 00 s.!.
+32 00 01 00 
+00 00 00 01 
+00 00 00 00
+00 00 00 00 
+==================================================================
+05 00 
+46 5E CE 80 
+0B 00 00 00 
+F4 00 00 00        ....F^..........
+EE B4 79 8B 33 00 00 00 // characterID
+00 00 00 00 
+EE B4 79 8B 33 00 00 00 // characterID
+00 00 00 00 
+00 00 00 00 
+23 00 00 00     // u-string count
+79 00 6F 00 20 00 68 00 6F 00 20 00 68 00 6F 00        // y.o...h.o...h.o.
+20 00 69 00 74 00 73 00 20 00 61 00 20 00 70 00        // ..i.t.s...a...p.
+69 00 72 00 61 00 74 00 65 00 73 00 20 00 6C 00        // i.r.a.t.e.s...l.
+69 00 66 00 65 00 20 00 66 00 6F 00 72 00 20 00        // i.f.e...f.o.r...
+6D 00 65 00 21 00                                      // m.e.!.
+00 00 00 00 	// string spacer
+64 00 
+50 00 00 00 
+01 00 
+00 00 00 00 
+00 00 00 
+
+
+====================================================
+
+05 00 
+46 5E CE 80 
+0B 00 00 00 
+F4 00 00 00 
+EE B4 79 8B 33 00 00 00 
+00 00 00 00 
+EE B4 79 8B 33 00 00 00 
+00 00 00 00 
+00 00 00 00 
+64 00 00 00 
+79 00 6F 00 75 00 20 00 73        ...d...y.o.u...s
+00 6F 00 20 00 68 00 61 00 69 00 72 00 79 00 20        .o...h.a.i.r.y..
+00 74 00 68 00 61 00 74 00 20 00 77 00 68 00 65        .t.h.a.t...w.h.e
+00 6E 00 20 00 79 00 6F 00 75 00 20 00 77 00 65        .n...y.o.u...w.e
+00 6E 00 74 00 20 00 74 00 6F 00 20 00 73 00 68        .n.t...t.o...s.h
+00 61 00 76 00 65 00 20 00 79 00 6F 00 75 00 72        .a.v.e...y.o.u.r
+00 20 00 63 00 72 00 6F 00 74 00 63 00 68 00 2C        ...c.r.o.t.c.h.,
+00 20 00 74 00 68 00 65 00 20 00 66 00 6C 00 65        ...t.h.e...f.l.e
+00 61 00 73 00 20 00 73 00 61 00 69 00 64 00 20        .a.s...s.a.i.d..
+00 74 00 68 00 61 00 6E 00 6B 00 20 00 67 00 6F        .t.h.a.n.k...g.o
+00 64 00 20 00 77 00 65 00 20 00 63 00 61 00 6E        .d...w.e...c.a.n
+00 20 00 73 00 65 00 65 00 20 00 74 00 68 00 65        ...s.e.e...t.h.e
+00 20 00 6C 00 69 00 67 00 68 00 74 00 21 00 
+00 00 00 00 
+32 00 
+09 00 00 00 
+01 00 
+00 00 00 00 
+00 00 00 2F 
+
+====================================================
+
+05 00
+46 5E CE 80 
+0B 00 00 00 
+F4 00 00 00 
+EE B4 79 8B 33 00 00 00 
+00 00 00 00 
+EE B4 79 8B 33 00 00 00 
+00 00 00 00 
+00 00 00 00 
+27 00 00 00 
+74 00 6F 00 20 00 62 00 65 00 20        .&#x27;...t.o...b.e..
+00 6F 00 72 00 20 00 6E 00 6F 00 74 00 20 00 74        .o.r...n.o.t...t
+00 6F 00 20 00 62 00 65 00 20 00 74 00 68 00 61        .o...b.e...t.h.a
+00 74 00 20 00 69 00 73 00 20 00 74 00 68 00 65        .t...i.s...t.h.e
+00 20 00 71 00 75 00 65 00 73 00 74 00 69 00 6F        ...q.u.e.s.t.i.o
+00 6E 00 
+00 00 00 00 
+32 00 
+34 00 00 00 
+01 00 
+00 00 00 00 
+00 00 00 2F 
+
+
+====================================================
+
+05 00 
+46 5E CE 80 
+0B 00 00 00 
+F4 00 00 00 
+EE B4 79 8B 33 00 00 00 
+00 00 00 00 
+EE B4 79 8B 33 00 00 00 
+00 00 00 00 
+00 00 00 00 
+19 00 00 00 
+6C 00 6F 00 72 00 64 00 20 00 76        .....l.o.r.d...v
+00 61 00 64 00 65 00 72 00 20 00 69 00 73 00 20        .a.d.e.r...i.s..
+00 6E 00 6F 00 74 00 20 00 70 00 6C 00 65 00 61        .n.o.t...p.l.e.a
+00 73 00 65 00 64 00 
+00 00 00 00 
+32 00 
+09 00 00 00 
+01 00 
+00 00 00 00 
+00 00 00 2F</code></pre>
+          </div>
+        </section>
+        
+        
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

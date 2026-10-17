@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRN (FileFormat) | SWG Docs</title>
+  <meta name="description" content="Technical documentation and packet structure for TRN (FileFormat) in Star Wars Galaxies.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="active">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>Asset & File Formats</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../tre-subfiles/TNR (FileFormat).html" class="">TNR (FileFormat)</a></li>
+<li><a href="../tre-subfiles/TOC (FileFormat).html" class="">TOC (FileFormat)</a></li>
+<li><a href="../tre-subfiles/TRE FileType.html" class="">TRE FileType</a></li>
+<li><a href="../tre-subfiles/TRE QSTFileType.html" class="">TRE QSTFileType</a></li>
+<li><a href="../tre-subfiles/TRE STFFileType.html" class="">TRE STFFileType</a></li>
+<li><a href="../tre-subfiles/TRE%3ATRE Breakdown.html" class="">TRE:TRE Breakdown</a></li>
+<li><a href="../tre-subfiles/TreFile Template.html" class="">TreFile Template</a></li>
+<li><a href="../tre-subfiles/TreFiles History.html" class="">TreFiles History</a></li>
+<li><a href="../tre-subfiles/TRN (FileFormat).html" class="active">TRN (FileFormat)</a></li>
+
+        </ul>
+        <h3>Section Links</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../tre-subfiles/index.html">← TRE Sub-Files Index</a></li>
+          <li><a href="../content/tre-subfiles/TRN (FileFormat).md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/TRN_%28FileFormat%29" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../tre-subfiles/index.html">TRE Sub-Files</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">TRN (FileFormat)</span>
+    </div>
+    
+        
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>TRN (FileFormat)</span>
+            
+          </h1>
+          <div class="article-meta">
+            
+            <span class="badge badge-unknown">unknown Complete</span>
+            <span class="badge badge-sample-present">Sample: present</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>TRE Sub-Files</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>FileFormat</strong></span>
+          </div>
+        </header>
+
+        
+        <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:1.5rem;">SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.</div>
+        
+        <section class="doc-section">
+          <h2>📐 Packet Structure (4 fields)</h2>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th style="width:140px;">Data Type</th>
+                  <th>Field Name</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr>
+              <td><span class="type-pill">BREC</span></td>
+              <td style="font-weight:600;">Boundary Rectangle</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;">Delimits a rectangle using 4 float: X1, Y1, X2, Y2 (Select rectangle boundary rule properties, including feathering distance, boundary left/right and near/far coords and local water table height, shader and sahder size.)00 00 7A 44 00 00 7A 44 00 00 AF 44 
+00 00 AF 44 00 00 00 00 00 00 80 3F 
+
+(float)   X1
+(float)   Y1
+(float)   X2
+(float)   Y2
+(int)     Feathering Type
+(float)   Feathering Amount</td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">BCIR</span></td>
+              <td style="font-weight:600;">Boundary Circle</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;">Delimits a circle using 3 float: Xo, Yo, Radius  (Select circle boundary rule properties, including feathering distance, boundary center coords, and boundary radius.)00 00 48 43 00 00 48 43 00 00 48 43 
+01 00 00 00 CD CC CC 3D 
+
+(float)   X
+(float)   Y
+(float)   Radius
+(int)     Feathering Type
+(float)   Feathering Amount</td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">BPOL</span></td>
+              <td style="font-weight:600;">Boundary Polygon</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;">Delimits a n-sided closed polygon area using 2 floats (Xo,Yo) for each point.  (Select polygon boundary rule properties, includibng feathering distance  and including local water table height, shader and shader size.)Water Area example
+
+04 00 00 00 00 00 00 00 00 00 00 00 00 00 15 C3 00 00 00 00 	....................
+00 00 15 C3 00 00 15 C3 00 00 00 00 00 00 15 C3 03 00 00 00 	....................
+00 00 48 42 01 00 00 00 00 00 20 C1 00 00 00 40 77 74 65 72 	..HB............wter
+5F 73 70 65 63 00 	                                        .spec.
+
+(int)    Point Count
+
+- List -----------
+(float)  X
+(float)  Y
+------------------
+
+(int)    Fethering Type
+(float)  Shore smoothness  (0 is vertical, 50 looks normal. I don&#x27;t know what scale mesurement is used) 
+(int)    Bool Water On/Off
+(float)  Water Height
+(float)  Water Shader Size (Common size = 2)
+(string) Water Shader  (wter_spec = Look in the file header??)</td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">BPLN</span></td>
+              <td style="font-weight:600;">Boundary PolyLine</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;">Delimits a n-sided line area using 2 floats (Xo,Yo) for each point and a float for the width.  (Select polyline boundary rule properties, including feathering distance and width.)08 00 00 00 00 00 80 3E 00 00 00 3F 00 00 00 00 00 00 74 41 
+00 00 0C C1 00 00 E8 41 00 00 0C C1 00 00 50 42 00 00 78 C1 
+00 80 85 42 00 00 D8 C1 00 80 91 42 00 00 12 C2 00 00 93 42 
+00 00 41 C2 00 00 94 42 01 00 00 00 00 00 80 3F 00 00 20 41 
+
+(int)    Point Count
+
+- List -----------
+(float)  X
+(float)  Y
+------------------
+
+(int)     Feathering Type
+(float)   Feathering Amount
+(float)   Line Width</td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        
+        
+        <section class="doc-section">
+          <h2>📝 Notes & Warnings</h2>
+          
+            <div class="alert-box">
+              <strong>NOTE:</strong> Every Affector has an IHDR child wich is holding the user-custom name of the affector (here AffectorFloraCollidableConstant).
+            </div>
+            
+            <div class="alert-box">
+              <strong>NOTE:</strong> Boundaries can have a special footer allowing them to behave as a water area. (TODO)
+            </div>
+            
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>📦 Sample Hex Dump / Packet Payload</h2>
+          <div class="code-container">
+            <div class="code-header">
+              <span>Status: <strong>PRESENT</strong></span>
+              <button class="copy-btn" onclick="copyToClipboard(`4A 3A 5C 73 77 67 5C 63 75 72 72 65 6E 74 5C 64 61 74 61 5C 	J..swg.current.data.
+73 6B 75 2E 30 5C 73 79 73 2E 73 68 61 72 65 64 5C 62 75 69 	sku.0.sys.shared.bui
+6C 74 5C 67 61 6D 65 5C 74 65 72 72 61 69 6E 5C 64 61 6E 74 	lt.game.terrain.dant
+6F 6F 69 6E 65 2E 74 72 6E 00 00 00 80 46 00 00 00 41 02 00 	ooine.trn....F...A..
+00 00 01 00 00 00 CD CC CC BD 00 00 00 40 77 74 65 72 5F 64 	..............wter.d
+61 6E 74 5F 6C 61 6B 65 00 00 30 04 46 00 00 00 00 00 00 00 	ant.lake..0.F.......
+43 00 00 00 41 00 00 00 40 00 00 00 00 00 00 00 00 00 00 80 	C...A...............
+42 00 00 80 40 00 00 00 3F 00 00 00 00 00 00 00 00 00 00 F0 	B...................
+41 00 00 80 3F 00 00 00 00 00 00 00 00 00 00 00 43 00 00 00 	A...............C...
+44 00 00 00 42 00 00 00 41 00 00 00 00 	                        D...B...A....`, this)">Copy Sample</button>
+            </div>
+            <pre class="code-block"><code>4A 3A 5C 73 77 67 5C 63 75 72 72 65 6E 74 5C 64 61 74 61 5C 	J..swg.current.data.
+73 6B 75 2E 30 5C 73 79 73 2E 73 68 61 72 65 64 5C 62 75 69 	sku.0.sys.shared.bui
+6C 74 5C 67 61 6D 65 5C 74 65 72 72 61 69 6E 5C 64 61 6E 74 	lt.game.terrain.dant
+6F 6F 69 6E 65 2E 74 72 6E 00 00 00 80 46 00 00 00 41 02 00 	ooine.trn....F...A..
+00 00 01 00 00 00 CD CC CC BD 00 00 00 40 77 74 65 72 5F 64 	..............wter.d
+61 6E 74 5F 6C 61 6B 65 00 00 30 04 46 00 00 00 00 00 00 00 	ant.lake..0.F.......
+43 00 00 00 41 00 00 00 40 00 00 00 00 00 00 00 00 00 00 80 	C...A...............
+42 00 00 80 40 00 00 00 3F 00 00 00 00 00 00 00 00 00 00 F0 	B...................
+41 00 00 80 3F 00 00 00 00 00 00 00 00 00 00 00 43 00 00 00 	A...............C...
+44 00 00 00 42 00 00 00 41 00 00 00 00 	                        D...B...A....</code></pre>
+          </div>
+        </section>
+        
+        
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

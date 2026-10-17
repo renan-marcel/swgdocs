@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HINO07 | SWG Docs</title>
+  <meta name="description" content="Technical documentation and packet structure for HINO07 in Star Wars Galaxies.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="active">Deltas</a></li>
+      <li><a href="../guides/index.html" class="">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>Harvester Installation (HINO)</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../deltas/HINO03.html" class="">HINO03</a></li>
+<li><a href="../deltas/HINO06.html" class="">HINO06</a></li>
+<li><a href="../deltas/HINO07.html" class="active">HINO07</a></li>
+
+        </ul>
+        <h3>Section Links</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../deltas/index.html">← Protocol Deltas Index</a></li>
+          <li><a href="../content/deltas/HINO07.md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/HINO07" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../deltas/index.html">Protocol Deltas</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">HINO07</span>
+    </div>
+    
+        
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>HINO07</span>
+            
+          </h1>
+          <div class="article-meta">
+            
+            <span class="badge badge-75">75% Complete</span>
+            <span class="badge badge-sample-present">Sample: present</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Protocol Deltas</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Baseline</strong></span>
+          </div>
+        </header>
+
+        
+        <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:1.5rem;">SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.</div>
+        
+        <section class="doc-section">
+          <h2>📐 Packet Structure (25 fields)</h2>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th style="width:140px;">Data Type</th>
+                  <th>Field Name</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Num Items Available List Size</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Num Items Available Update Count</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">LONG</span></td>
+              <td style="font-weight:600;">Resource ID</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Num Items Available List Size</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Num Items Available Update Count</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">LONG</span></td>
+              <td style="font-weight:600;">Resource ID</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Num Items Available List Size</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Num Items Available Update Count</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">A_String</span></td>
+              <td style="font-weight:600;">Resource Name</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Num Items Available List Size</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Num Items Available Update Count</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">A_String</span></td>
+              <td style="font-weight:600;">Resource Type</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">LONG</span></td>
+              <td style="font-weight:600;">Current Resource ID active in Harvester</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">BYTE</span></td>
+              <td style="font-weight:600;">Operation Status 00 or 01</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">FLOAT</span></td>
+              <td style="font-weight:600;">Capacity</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">FLOAT</span></td>
+              <td style="font-weight:600;">Spec Rate</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">FLOAT</span></td>
+              <td style="font-weight:600;">Actual Rate</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">FLOAT</span></td>
+              <td style="font-weight:600;">Hopper Quantity</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Hopper Size</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">BYTE</span></td>
+              <td style="font-weight:600;">Count (List size +1, except when zero, so it seems)</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">List Size    Items in Hopper</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Update Count</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">LONG</span></td>
+              <td style="font-weight:600;">ResourceID</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">FLOAT</span></td>
+              <td style="font-weight:600;">Quantity</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">BYTE</span></td>
+              <td style="font-weight:600;">Integrity</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>🏷️ Variable Descriptions</h2>
+          <div class="var-grid">
+            
+            <div class="var-card">
+              <div class="var-name">Obj_OperandCount</div>
+              <div class="var-val">??</div>
+            </div>
+            
+          </div>
+        </section>
+        
+        
+        
+        <section class="doc-section">
+          <h2>📦 Sample Hex Dump / Packet Payload</h2>
+          <div class="code-container">
+            <div class="code-header">
+              <span>Status: <strong>PRESENT</strong></span>
+              <button class="copy-btn" onclick="copyToClipboard(`05 00 
+0C 5F A7 68 
+25 B2 CF 1C 21 00 00 00 // Harvester ID
+4F 4E 49 48 07 // ONIH 7
+1E 04 00 00 
+0F 
+00 01 
+16 00 00 00 
+16 00 00 00 
+56 71 D7 0A 21 00 00 00 // Resource IDS
+2B EC D9 0A 21 00 00 00 
+29 81 D9 0A 21 00 00 00 
+EC DB BD 01 21 00 00 00 
+C3 DC DD 0A 21 00 00 00 
+ED DB BD 01 21 00 00 00 
+12 36 36 03 21 00 00 00 
+92 AD D1 F2 20 00 00 00 
+5D 40 EC 19 21 00 00 00 
+6C 24 D7 0A 21 00 00 00 
+8E 8E 62 1C 21 00 00 00 
+45 E7 94 13 21 00 00 00 
+8F 11 98 13 21 00 00 00 
+7A FC 08 FB 20 00 00 00 
+2B 3E 5E 1C 21 00 00 00 
+13 39 38 03 21 00 00 00 
+5C AE DC 0A 21 00 00 00 
+D4 8F 00 FB 20 00 00 00 
+DA DC D6 0A 21 00 00 00 
+A1 D8 95 13 21 00 00 00 
+5E B2 B8 18 21 00 00 00 
+6E 4A 77 00 21 00 00 00 
+16 00 00 00 
+16 00 00 00 
+56 71 D7 0A 21 00 00 00 
+2B EC D9 0A 21 00 00 00 
+29 81 D9 0A 21 00 00 00 
+EC DB BD 01 21 00 00 00 
+C3 DC DD 0A 21 00 00 00 
+ED DB BD 01 21 00 00 00 
+12 36 36 03 21 00 00 00 
+92 AD D1 F2 20 00 00 00 
+5D 40 EC 19 21 00 00 00 
+6C 24 D7 0A 21 00 00 00 
+8E 8E 62 1C 21 00 00 00 
+45 E7 94 13 21 00 00 00 
+8F 11 98 13 21 00 00 00 
+7A FC 08 FB 20 00 00 00 
+2B 3E 5E 1C 21 00 00 00 
+13 39 38 03 21 00 00 00 
+5C AE DC 0A 21 00 00 00 
+D4 8F 00 FB 20 00 00 00 
+DA DC D6 0A 21 00 00 00 
+A1 D8 95 13 21 00 00 00 
+5E B2 B8 18 21 00 00 00 
+6E 4A 77 00 21 00 00 00 
+16 00 00 00               // Start Of resource names below
+16 00 00 00 
+09 00 
+44 75 72 6F 77 61 69 73 6D // Durowaism
+0B 00 
+4F 6D 6E 69 6A 69 77 65 69 6E 65 // Omnijiweine
+0B 00 
+44 69 6D 65 73 61 67 6F 69 73 6D // Dimesagoism
+06 00 
+41 6D 65 75 6E 69 // Ameuni
+0C 00 
+4F 6D 6E 69 70 6F 68 61 70 69 61 6E // Omnipohapian
+05 00 
+57 61 67 69 66 // Wagif
+06 00 
+45 63 61 69 61 6E // Ecaian
+07 00 
+45 69 6C 65 6B 65 70 // Eilekep
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+00 0D 05 F3 06 00 49 66 69 67 65 6F 0A 00 44 75        ......Ifigeo..Du
+72 65 6E 69 6D 72 69 73 07 00 46 6F 62 69 69 74        renimris..Fobiit
+65 07 00 41 77 6F 76 69 73 6D 09 00 4F 6D 6E 69        e..Awovism..Omni
+66 65 75 77 69 06 00 49 64 69 72 69 73 0A 00 50        feuwi..Idiris..P
+65 65 72 61 66 69 61 74 65 04 00 47 61 62 6F 04        eerafiate..Gabo.
+00 52 6F 6E 65 0D 00 4F 6D 6E 69 64 69 74 6F 63        .Rone..Omniditoc
+65 69 61 6D 06 00 4F 77 6F 69 75 6D 07 00 44 65        eiam..Owoium..De
+61 64 69 6F 6B 09 00 51 75 61 64 64 69 61 74 65        adiok..Quaddiate
+09 00 4D 6F 67 65 61 6B 69 61 6E // Mogeakian
+16 00 00 00
+16 00 00 00                // Start of resource Types Below
+1A 00 
+70 65 74 72 6F 63 68 65 6D 5F 66 // petrochem_f
+75 65 6C 5F 73 6F 6C 69 64 5F 74 79 70 65 33 11        uel_solid_type3.
+00 72 61 64 69 6F 61 63 74 69 76 65 5F 74 79 70        .radioactive_typ
+65 33 0D 00 73 74 65 65 6C 5F 72 68 6F 64 69 75        e3..steel_rhodiu
+6D 0E 00 73 74 65 65 6C 5F 63 75 62 69 72 69 61        m..steel_cubiria
+6E 0E 00 73 74 65 65 6C 5F 63 75 62 69 72 69 61        n..steel_cubiria
+6E 0F 00 73 74 65 65 6C 5F 74 68 6F 72 61 6E 69        n..steel_thorani
+75 6D 10 00 73 74 65 65 6C 5F 6E 65 75 74 72 6F        um..steel_neutro
+6E 69 75 6D 0E 00 73 74 65 65 6C 5F 64 75 72 61        nium..steel_dura
+6C 6C 6F 79 0C 00 69 72 6F 6E 5F 61 78 69 64 69        lloy..iron_axidi
+74 65 0C 00 69 72 6F 6E 5F 6B 61 6D 6D 72 69 73        te..iron_kammris
+11 00 61 6C 75 6D 69 6E 75 6D 5F 74 69 74 61 6E        ..aluminum_titan
+69 75 6D 12 00 61 6C 75 6D 69 6E 75 6D 5F 6C 69        ium..aluminum_li
+6E 6B 73 74 65 65 6C 0B 00 63 6F 70 70 65 72 5F        nksteel..copper_
+64 65 73 68 0F 00 63 6F 70 70 65 72 5F 74 68 61        desh..copper_tha
+6C 6C 69 75 6D 0E 00 63 6F 70 70 65 72 5F 64 69        llium..copper_di
+61 74 69 75 6D 0D 00 63 6F 70 70 65 72 5F 6D 79        atium..copper_my
+74 68 72 61 15 00 6F 72 65 5F 63 61 72 62 6F 6E        thra..ore_carbon
+61 74 65 5F 6C 6F 6D 6D 69 74 65 15 00 6F 72 65        ate_lommite..ore
+5F 73 69 6C 69 63 6C 61 73 74 69 63 5F 63 72 69        _siliclastic_cri
+73 6D 0E 00 61 72 6D 6F 70 68 6F 75 73 5F 72 79        sm..armophous_ry
+6C 6C 12 00 61 72 6D 6F 70 68 6F 75 73 19 5C           ll..armophous.\
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+00 0D 05 F4 5F 62 61 6C 74 61 72 61 6E 21 00 63        ...._baltaran!.c
+72 79 73 74 61 6C 6C 69 6E 65 5F 6C 61 62 6F 69        rystalline_laboi
+5F 6D 69 6E 65 72 61 6C 5F 63 72 79 73 74 61 6C        _mineral_crystal
+12 00 63 72 79 73 74 61 6C 6C 69 6E 65 5F 76 65        ..crystalline_ve
+72 74 65 78                                            rtex
+00 00 00 00 00 00 00 00 // Current Resource ID Harvesting
+00 // Harvester Status Flag 00 off 01 on
+08 00 00 00 // Capacity (float)
+00 00 00 41 // Spec Rate (float)
+00 00 00 00 // Actual Rate (float)
+00 00 00 00 // Hopper Amount (float)
+3D E3 00 00 // Hopper Size (float)
+00 
+00 00 00 00 
+00 00 00 00`, this)">Copy Sample</button>
+            </div>
+            <pre class="code-block"><code>05 00 
+0C 5F A7 68 
+25 B2 CF 1C 21 00 00 00 // Harvester ID
+4F 4E 49 48 07 // ONIH 7
+1E 04 00 00 
+0F 
+00 01 
+16 00 00 00 
+16 00 00 00 
+56 71 D7 0A 21 00 00 00 // Resource IDS
+2B EC D9 0A 21 00 00 00 
+29 81 D9 0A 21 00 00 00 
+EC DB BD 01 21 00 00 00 
+C3 DC DD 0A 21 00 00 00 
+ED DB BD 01 21 00 00 00 
+12 36 36 03 21 00 00 00 
+92 AD D1 F2 20 00 00 00 
+5D 40 EC 19 21 00 00 00 
+6C 24 D7 0A 21 00 00 00 
+8E 8E 62 1C 21 00 00 00 
+45 E7 94 13 21 00 00 00 
+8F 11 98 13 21 00 00 00 
+7A FC 08 FB 20 00 00 00 
+2B 3E 5E 1C 21 00 00 00 
+13 39 38 03 21 00 00 00 
+5C AE DC 0A 21 00 00 00 
+D4 8F 00 FB 20 00 00 00 
+DA DC D6 0A 21 00 00 00 
+A1 D8 95 13 21 00 00 00 
+5E B2 B8 18 21 00 00 00 
+6E 4A 77 00 21 00 00 00 
+16 00 00 00 
+16 00 00 00 
+56 71 D7 0A 21 00 00 00 
+2B EC D9 0A 21 00 00 00 
+29 81 D9 0A 21 00 00 00 
+EC DB BD 01 21 00 00 00 
+C3 DC DD 0A 21 00 00 00 
+ED DB BD 01 21 00 00 00 
+12 36 36 03 21 00 00 00 
+92 AD D1 F2 20 00 00 00 
+5D 40 EC 19 21 00 00 00 
+6C 24 D7 0A 21 00 00 00 
+8E 8E 62 1C 21 00 00 00 
+45 E7 94 13 21 00 00 00 
+8F 11 98 13 21 00 00 00 
+7A FC 08 FB 20 00 00 00 
+2B 3E 5E 1C 21 00 00 00 
+13 39 38 03 21 00 00 00 
+5C AE DC 0A 21 00 00 00 
+D4 8F 00 FB 20 00 00 00 
+DA DC D6 0A 21 00 00 00 
+A1 D8 95 13 21 00 00 00 
+5E B2 B8 18 21 00 00 00 
+6E 4A 77 00 21 00 00 00 
+16 00 00 00               // Start Of resource names below
+16 00 00 00 
+09 00 
+44 75 72 6F 77 61 69 73 6D // Durowaism
+0B 00 
+4F 6D 6E 69 6A 69 77 65 69 6E 65 // Omnijiweine
+0B 00 
+44 69 6D 65 73 61 67 6F 69 73 6D // Dimesagoism
+06 00 
+41 6D 65 75 6E 69 // Ameuni
+0C 00 
+4F 6D 6E 69 70 6F 68 61 70 69 61 6E // Omnipohapian
+05 00 
+57 61 67 69 66 // Wagif
+06 00 
+45 63 61 69 61 6E // Ecaian
+07 00 
+45 69 6C 65 6B 65 70 // Eilekep
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+00 0D 05 F3 06 00 49 66 69 67 65 6F 0A 00 44 75        ......Ifigeo..Du
+72 65 6E 69 6D 72 69 73 07 00 46 6F 62 69 69 74        renimris..Fobiit
+65 07 00 41 77 6F 76 69 73 6D 09 00 4F 6D 6E 69        e..Awovism..Omni
+66 65 75 77 69 06 00 49 64 69 72 69 73 0A 00 50        feuwi..Idiris..P
+65 65 72 61 66 69 61 74 65 04 00 47 61 62 6F 04        eerafiate..Gabo.
+00 52 6F 6E 65 0D 00 4F 6D 6E 69 64 69 74 6F 63        .Rone..Omniditoc
+65 69 61 6D 06 00 4F 77 6F 69 75 6D 07 00 44 65        eiam..Owoium..De
+61 64 69 6F 6B 09 00 51 75 61 64 64 69 61 74 65        adiok..Quaddiate
+09 00 4D 6F 67 65 61 6B 69 61 6E // Mogeakian
+16 00 00 00
+16 00 00 00                // Start of resource Types Below
+1A 00 
+70 65 74 72 6F 63 68 65 6D 5F 66 // petrochem_f
+75 65 6C 5F 73 6F 6C 69 64 5F 74 79 70 65 33 11        uel_solid_type3.
+00 72 61 64 69 6F 61 63 74 69 76 65 5F 74 79 70        .radioactive_typ
+65 33 0D 00 73 74 65 65 6C 5F 72 68 6F 64 69 75        e3..steel_rhodiu
+6D 0E 00 73 74 65 65 6C 5F 63 75 62 69 72 69 61        m..steel_cubiria
+6E 0E 00 73 74 65 65 6C 5F 63 75 62 69 72 69 61        n..steel_cubiria
+6E 0F 00 73 74 65 65 6C 5F 74 68 6F 72 61 6E 69        n..steel_thorani
+75 6D 10 00 73 74 65 65 6C 5F 6E 65 75 74 72 6F        um..steel_neutro
+6E 69 75 6D 0E 00 73 74 65 65 6C 5F 64 75 72 61        nium..steel_dura
+6C 6C 6F 79 0C 00 69 72 6F 6E 5F 61 78 69 64 69        lloy..iron_axidi
+74 65 0C 00 69 72 6F 6E 5F 6B 61 6D 6D 72 69 73        te..iron_kammris
+11 00 61 6C 75 6D 69 6E 75 6D 5F 74 69 74 61 6E        ..aluminum_titan
+69 75 6D 12 00 61 6C 75 6D 69 6E 75 6D 5F 6C 69        ium..aluminum_li
+6E 6B 73 74 65 65 6C 0B 00 63 6F 70 70 65 72 5F        nksteel..copper_
+64 65 73 68 0F 00 63 6F 70 70 65 72 5F 74 68 61        desh..copper_tha
+6C 6C 69 75 6D 0E 00 63 6F 70 70 65 72 5F 64 69        llium..copper_di
+61 74 69 75 6D 0D 00 63 6F 70 70 65 72 5F 6D 79        atium..copper_my
+74 68 72 61 15 00 6F 72 65 5F 63 61 72 62 6F 6E        thra..ore_carbon
+61 74 65 5F 6C 6F 6D 6D 69 74 65 15 00 6F 72 65        ate_lommite..ore
+5F 73 69 6C 69 63 6C 61 73 74 69 63 5F 63 72 69        _siliclastic_cri
+73 6D 0E 00 61 72 6D 6F 70 68 6F 75 73 5F 72 79        sm..armophous_ry
+6C 6C 12 00 61 72 6D 6F 70 68 6F 75 73 19 5C           ll..armophous.\
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+00 0D 05 F4 5F 62 61 6C 74 61 72 61 6E 21 00 63        ...._baltaran!.c
+72 79 73 74 61 6C 6C 69 6E 65 5F 6C 61 62 6F 69        rystalline_laboi
+5F 6D 69 6E 65 72 61 6C 5F 63 72 79 73 74 61 6C        _mineral_crystal
+12 00 63 72 79 73 74 61 6C 6C 69 6E 65 5F 76 65        ..crystalline_ve
+72 74 65 78                                            rtex
+00 00 00 00 00 00 00 00 // Current Resource ID Harvesting
+00 // Harvester Status Flag 00 off 01 on
+08 00 00 00 // Capacity (float)
+00 00 00 41 // Spec Rate (float)
+00 00 00 00 // Actual Rate (float)
+00 00 00 00 // Hopper Amount (float)
+3D E3 00 00 // Hopper Size (float)
+00 
+00 00 00 00 
+00 00 00 00</code></pre>
+          </div>
+        </section>
+        
+        
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

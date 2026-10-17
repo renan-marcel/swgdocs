@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOE Protocol Breakdown | SWG Docs</title>
+  <meta name="description" content="Technical documentation and packet structure for SOE Protocol Breakdown in Star Wars Galaxies.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="active">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>Protocol Guides</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../guides/Binary & Hex.html" class="">Binary &amp; Hex</a></li>
+<li><a href="../guides/Packet Guide.html" class="">Packet Guide</a></li>
+<li><a href="../guides/Packet Guides.html" class="">Packet Guides</a></li>
+<li><a href="../guides/Packet Template.html" class="">Packet Template</a></li>
+<li><a href="../guides/Packet%3ACompression.html" class="">Packet:Compression</a></li>
+<li><a href="../guides/Packet%3ACRC.html" class="">Packet:CRC</a></li>
+<li><a href="../guides/Packet%3AEncryption.html" class="">Packet:Encryption</a></li>
+<li><a href="../guides/Packet%3AHexBinary.html" class="">Packet:HexBinary</a></li>
+<li><a href="../guides/Packet%3AIntro.html" class="">Packet:Intro</a></li>
+<li><a href="../guides/Packet%3APacket Guides.html" class="">Packet:Packet Guides</a></li>
+<li><a href="../guides/Packet%3APacketFooter.html" class="">Packet:PacketFooter</a></li>
+<li><a href="../guides/Packet%3APacketTemplates.html" class="">Packet:PacketTemplates</a></li>
+<li><a href="../guides/Packet%3ASOEProtocol.html" class="">Packet:SOEProtocol</a></li>
+<li><a href="../guides/Packet%3ASWGPacket.html" class="">Packet:SWGPacket</a></li>
+<li><a href="../guides/Reversing Structs.html" class="">Reversing Structs</a></li>
+<li><a href="../guides/SOE Protocol Breakdown.html" class="active">SOE Protocol Breakdown</a></li>
+<li><a href="../guides/SWG Packet Compression.html" class="">SWG Packet Compression</a></li>
+<li><a href="../guides/SWG Packet CRC.html" class="">SWG Packet CRC</a></li>
+<li><a href="../guides/SWG Packet Encryption.html" class="">SWG Packet Encryption</a></li>
+<li><a href="../guides/SWG Packet Footer.html" class="">SWG Packet Footer</a></li>
+<li><a href="../guides/SWG Packet Introduction.html" class="">SWG Packet Introduction</a></li>
+<li><a href="../guides/SWG Packets.html" class="">SWG Packets</a></li>
+
+        </ul>
+        <h3>Section Links</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../guides/index.html">← Packet Guides Index</a></li>
+          <li><a href="../content/guides/SOE Protocol Breakdown.md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/SOE_Protocol_Breakdown" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../guides/index.html">Packet Guides</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">SOE Protocol Breakdown</span>
+    </div>
+    
+        
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>SOE Protocol Breakdown</span>
+            
+          </h1>
+          <div class="article-meta">
+            
+            <span class="badge badge-unknown">unknown Complete</span>
+            <span class="badge badge-sample-present">Sample: present</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Packet Guides</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Guides</strong></span>
+          </div>
+        </header>
+
+        
+        <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:1.5rem;">SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.</div>
+        
+        <section class="doc-section">
+          <h2>📐 Packet Structure (15 fields)</h2>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th style="width:140px;">Data Type</th>
+                  <th>Field Name</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr>
+              <td><span class="type-pill">ID</span></td>
+              <td style="font-weight:600;">String</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">0</span></td>
+              <td style="font-weight:600;">None</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">1</span></td>
+              <td style="font-weight:600;">ICMP Error</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">2</span></td>
+              <td style="font-weight:600;">Timeout</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">3</span></td>
+              <td style="font-weight:600;">Other side terminated</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">4</span></td>
+              <td style="font-weight:600;">Manager deleted</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">5</span></td>
+              <td style="font-weight:600;">Connect fail</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">6</span></td>
+              <td style="font-weight:600;">Application</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">7</span></td>
+              <td style="font-weight:600;">Unreachable connection</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">8</span></td>
+              <td style="font-weight:600;">Unacknowledged timeout</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">9</span></td>
+              <td style="font-weight:600;">New connection attempt</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">10</span></td>
+              <td style="font-weight:600;">Connection refused</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">11</span></td>
+              <td style="font-weight:600;">Mutual connect error</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">12</span></td>
+              <td style="font-weight:600;">Connecting to self</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">13</span></td>
+              <td style="font-weight:600;">Reliable overflow</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        
+        
+        <section class="doc-section">
+          <h2>📝 Notes & Warnings</h2>
+          
+            <div class="alert-box">
+              <strong>NOTE:</strong> The Size field will never exceed 255.
+            </div>
+            
+            <div class="alert-box">
+              <strong>NOTE:</strong> This packet is usually compressed but is optional.
+            </div>
+            
+            <div class="alert-box">
+              <strong>NOTE:</strong> This packet is usually compressed but is optional.
+            </div>
+            
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>📦 Sample Hex Dump / Packet Payload</h2>
+          <div class="code-container">
+            <div class="code-header">
+              <span>Status: <strong>PRESENT</strong></span>
+              <button class="copy-btn" onclick="copyToClipboard(`00 00 00 02 27 38 24 61 00 00 01 F0`, this)">Copy Sample</button>
+            </div>
+            <pre class="code-block"><code>00 00 00 02 27 38 24 61 00 00 01 F0</code></pre>
+          </div>
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>🔗 Related Pages</h2>
+          <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+            <span style="color:var(--text-muted);">SWGPacketExamples</span>
+          </div>
+        </section>
+        
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

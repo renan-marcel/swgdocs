@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GetAuctionDetailsResponse | SWG Docs</title>
+  <meta name="description" content="Technical documentation and packet structure for GetAuctionDetailsResponse in Star Wars Galaxies.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="active">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>Trade, Bazaar & Economy</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../protocols/AbortTradeMessage.html" class="">AbortTradeMessage</a></li>
+<li><a href="../protocols/AcceptAuctionResponseMessage.html" class="">AcceptAuctionResponseMessage</a></li>
+<li><a href="../protocols/AddItemFailedMessage.html" class="">AddItemFailedMessage</a></li>
+<li><a href="../protocols/AddItemMessage.html" class="">AddItemMessage</a></li>
+<li><a href="../protocols/AuctionManagerClientListener (PacketTypeGroup).html" class="">AuctionManagerClientListener (PacketTypeGroup)</a></li>
+<li><a href="../protocols/AuctionQueryHeadersMessage.html" class="">AuctionQueryHeadersMessage</a></li>
+<li><a href="../protocols/AuctionQueryHeadersResponseMessage.html" class="">AuctionQueryHeadersResponseMessage</a></li>
+<li><a href="../protocols/BeginTradeMessage.html" class="">BeginTradeMessage</a></li>
+<li><a href="../protocols/BidAuctionMessage.html" class="">BidAuctionMessage</a></li>
+<li><a href="../protocols/BidAuctionResponseMessage.html" class="">BidAuctionResponseMessage</a></li>
+<li><a href="../protocols/CancelLiveAuctionMessage.html" class="">CancelLiveAuctionMessage</a></li>
+<li><a href="../protocols/CancelLiveAuctionResponseMessage.html" class="">CancelLiveAuctionResponseMessage</a></li>
+<li><a href="../protocols/ClientSecureTradeManager (PacketTypeGroup).html" class="">ClientSecureTradeManager (PacketTypeGroup)</a></li>
+<li><a href="../protocols/CommoditiesItemTypeListRequest.html" class="">CommoditiesItemTypeListRequest</a></li>
+<li><a href="../protocols/CommoditiesItemTypeListResponse.html" class="">CommoditiesItemTypeListResponse</a></li>
+<li><a href="../protocols/CreateAuctionMessage.html" class="">CreateAuctionMessage</a></li>
+<li><a href="../protocols/CreateAuctionResponseMessage.html" class="">CreateAuctionResponseMessage</a></li>
+<li><a href="../protocols/CreateImmediateAuctionMessage.html" class="">CreateImmediateAuctionMessage</a></li>
+<li><a href="../protocols/DenyTradeMessage.html" class="">DenyTradeMessage</a></li>
+<li><a href="../protocols/GetAuctionDetails.html" class="">GetAuctionDetails</a></li>
+<li><a href="../protocols/GetAuctionDetailsResponse.html" class="active">GetAuctionDetailsResponse</a></li>
+<li><a href="../protocols/RemoveItemMessage.html" class="">RemoveItemMessage</a></li>
+<li><a href="../protocols/RetrieveAuctionItemMessage.html" class="">RetrieveAuctionItemMessage</a></li>
+<li><a href="../protocols/RetrieveAuctionItemResponseMessage.html" class="">RetrieveAuctionItemResponseMessage</a></li>
+<li><a href="../protocols/TradeCompleteMessage.html" class="">TradeCompleteMessage</a></li>
+<li><a href="../protocols/VerifyTradeMessage.html" class="">VerifyTradeMessage</a></li>
+
+        </ul>
+        <h3>Section Links</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../protocols/index.html">← SWG Protocols Index</a></li>
+          <li><a href="../content/protocols/GetAuctionDetailsResponse.md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/GetAuctionDetailsResponse" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../protocols/index.html">SWG Protocols</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">GetAuctionDetailsResponse</span>
+    </div>
+    
+        
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>GetAuctionDetailsResponse</span>
+            <span class="opcode-pill" onclick="copyToClipboard('FE0E644B', this)" title="Click to copy opcode">FE0E644B 📋</span>
+          </h1>
+          <div class="article-meta">
+            <span class="badge badge-sc" title="Server to Client">S→C (Server)</span>
+            <span class="badge badge-100">100% Complete</span>
+            <span class="badge badge-sample-present">Sample: present</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>SWG Protocols</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Server Packet</strong></span>
+          </div>
+        </header>
+
+        
+        <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:1.5rem;">SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.</div>
+        
+        <section class="doc-section">
+          <h2>📐 Packet Structure (4 fields)</h2>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th style="width:140px;">Data Type</th>
+                  <th>Field Name</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr>
+              <td><span class="type-pill">SHORT</span></td>
+              <td style="font-weight:600;">OperandCode</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">OpCode</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">LONG</span></td>
+              <td style="font-weight:600;">Item ID</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Counter</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>🏷️ Variable Descriptions</h2>
+          <div class="var-grid">
+            
+            <div class="var-card">
+              <div class="var-name">Opperand_Count</div>
+              <div class="var-val">9</div>
+            </div>
+            
+            <div class="var-card">
+              <div class="var-name">Opcode</div>
+              <div class="var-val">FE0E644B</div>
+            </div>
+            
+          </div>
+        </section>
+        
+        
+        
+        <section class="doc-section">
+          <h2>📦 Sample Hex Dump / Packet Payload</h2>
+          <div class="code-container">
+            <div class="code-header">
+              <span>Status: <strong>PRESENT</strong></span>
+              <button class="copy-btn" onclick="copyToClipboard(`00 0D 04 FD 00 00 02 75 
+02 00 
+
+4B 64 0E FE 
+
+A1 46 15 EB 10 00 00 00 
+
+26 00 00 00 
+4D 00 79 00 20 00      
+62 00 65 00 73 00 74 00 20 00 63 00 6F 00 70 00        b.e.s.t...c.o.p.
+70 00 65 00 72 00 20 00 6F 00 6E 00 6C 00 79 00        p.e.r...o.n.l.y.
+20 00 6F 00 6E 00 20 00 69 00 6E 00 66 00 69 00        ..o.n...i.n.f.i.
+62 00 6E 00 74 00 79 00 20 00 65 00 75 00 72 00        b.n.t.y...e.u.r.
+6F 00 70 00 65 00                                      o.p.e.
+
+0D 00 00 00 09 00 63 6F 6E 64        ......cond
+69 74 69 6F 6E 07 00 00 00 31 00 30 00 30 00 2F        ition....1.0.0./
+00 31 00 30 00 30 00 06 00 76 6F 6C 75 6D 65 01        .1.0.0...volume.
+00 00 00 31 00 11 00 72 65 73 6F 75 72 63 65 5F        ...1...resource_
+63 6F 6E 74 65 6E 74 73 0C 00 00 00 35 00 36 00        contents....5.6.
+30 00 38 00 2F 00 31 00 30 00 30 00 30 00 30 00        0.8./.1.0.0.0.0.
+30 00 30 00 0D 00 72 65 73 6F 75 72 63 65 5F 6E        0.0...resource_n
+61 6D 65 09 00 00 00 51 00 75 00 61 00 64 00 61        ame....Q.u.a.d.a
+00 76 00 6F 00 6E 00 6F 00 0E 00 72 65 73 6F 75        .v.o.n.o...resou
+72 63 65 5F 63 6C 61 73 73 2C 00 00 00 40 00 72        rce_class,...@.r
+00 65 00 73 00 6F 00 75 00 72 00 63 00 65 00 2F        .e.s.o.u.r.c.e./
+00 72 00 65 00 73 00 6F 00 75 00 72 00 63 00 65        .r.e.s.o.u.r.c.e
+00 5F 00 6E 00 61 00 6D 00 65 00 73 00 3A 00 63        ._.n.a.m.e.s.:.c
+00 6F 00 70 00 70 00 65 00 72 00 5F 00 62 00 6F        .o.p.p.e.r._.b.o
+00 72 00 6F 00 63 00 61 00 72 00 62 00 69 00 74        .r.o.c.a.r.b.i.t
+00 69 00 63 00 0F 00 72 65 73 5F 63 6F 6C 64 5F        .i.c...res_cold_
+72 65 73 69 73 74 03 00 00 00 35 00 37 00 31 00        resist....5.7.1.
+10 00 72 65 73 5F 63 6F 6E 64 75 63 74 69 76 69        ..res_conductivi
+74 79 03 00 00 00 35 00 32 00 35 00 10 00 72 65        ty....5.2.5...re
+73 5F 64 65 63 61 79 5F 72 65 73 69 73 74 03 00        s_decay_resist..
+00 00 36 00 36 00 34 00 0F 00 72 65 73 5F 68 65        ..6.6.4...res_he
+61 74 5F 72 65 73 69 73 74 03 00 00 00 39 00 39        at_resist....9.9
+00 39 00 10 00 72 65 73 5F 6D 61 6C 6C 65 61 62        .9...res_malleab
+69 6C 69 74 79 03 00 00 00 37 00 32 00 36 00 0B        ility....7.2.6..
+00 72 65 73 5F 71 75 61 6C 69 74 79 03 04 B0           .res_quality...
+
+
+
+
+00 0D 04 4F 00 00 02 55 02 00 
+
+4B 64 0E FE                                Opccode GetAuctionDetailsResponse
+
+39 3D B1 2F 0F 00 00 00                    ID Item
+
+00 00 00 00 
+[UINT32] counter
+
+  [ASCII]    condition [UNICODE]  6.0.0./.6.0.0.
+  volume....1...
+  healing_combat_level_required....7.2.
+  tooltip.healing_combat_level_required....7.2..
+  skillmodmin N.o.n.e...
+  tooltip.skillmodmin....N.o.n.e...
+  cat_wpn_damage.wpn_damage_type....@.o.b.j._.a.t.t.r._.n.:.a.r.m.o.r._.e.f.f._.e.n.e.rgy
+  tooltip.wpn_damage_type..
+
+
+object/weapon/melee/polearm/shared_polearm_vibro_axe.iff`, this)">Copy Sample</button>
+            </div>
+            <pre class="code-block"><code>00 0D 04 FD 00 00 02 75 
+02 00 
+
+4B 64 0E FE 
+
+A1 46 15 EB 10 00 00 00 
+
+26 00 00 00 
+4D 00 79 00 20 00      
+62 00 65 00 73 00 74 00 20 00 63 00 6F 00 70 00        b.e.s.t...c.o.p.
+70 00 65 00 72 00 20 00 6F 00 6E 00 6C 00 79 00        p.e.r...o.n.l.y.
+20 00 6F 00 6E 00 20 00 69 00 6E 00 66 00 69 00        ..o.n...i.n.f.i.
+62 00 6E 00 74 00 79 00 20 00 65 00 75 00 72 00        b.n.t.y...e.u.r.
+6F 00 70 00 65 00                                      o.p.e.
+
+0D 00 00 00 09 00 63 6F 6E 64        ......cond
+69 74 69 6F 6E 07 00 00 00 31 00 30 00 30 00 2F        ition....1.0.0./
+00 31 00 30 00 30 00 06 00 76 6F 6C 75 6D 65 01        .1.0.0...volume.
+00 00 00 31 00 11 00 72 65 73 6F 75 72 63 65 5F        ...1...resource_
+63 6F 6E 74 65 6E 74 73 0C 00 00 00 35 00 36 00        contents....5.6.
+30 00 38 00 2F 00 31 00 30 00 30 00 30 00 30 00        0.8./.1.0.0.0.0.
+30 00 30 00 0D 00 72 65 73 6F 75 72 63 65 5F 6E        0.0...resource_n
+61 6D 65 09 00 00 00 51 00 75 00 61 00 64 00 61        ame....Q.u.a.d.a
+00 76 00 6F 00 6E 00 6F 00 0E 00 72 65 73 6F 75        .v.o.n.o...resou
+72 63 65 5F 63 6C 61 73 73 2C 00 00 00 40 00 72        rce_class,...@.r
+00 65 00 73 00 6F 00 75 00 72 00 63 00 65 00 2F        .e.s.o.u.r.c.e./
+00 72 00 65 00 73 00 6F 00 75 00 72 00 63 00 65        .r.e.s.o.u.r.c.e
+00 5F 00 6E 00 61 00 6D 00 65 00 73 00 3A 00 63        ._.n.a.m.e.s.:.c
+00 6F 00 70 00 70 00 65 00 72 00 5F 00 62 00 6F        .o.p.p.e.r._.b.o
+00 72 00 6F 00 63 00 61 00 72 00 62 00 69 00 74        .r.o.c.a.r.b.i.t
+00 69 00 63 00 0F 00 72 65 73 5F 63 6F 6C 64 5F        .i.c...res_cold_
+72 65 73 69 73 74 03 00 00 00 35 00 37 00 31 00        resist....5.7.1.
+10 00 72 65 73 5F 63 6F 6E 64 75 63 74 69 76 69        ..res_conductivi
+74 79 03 00 00 00 35 00 32 00 35 00 10 00 72 65        ty....5.2.5...re
+73 5F 64 65 63 61 79 5F 72 65 73 69 73 74 03 00        s_decay_resist..
+00 00 36 00 36 00 34 00 0F 00 72 65 73 5F 68 65        ..6.6.4...res_he
+61 74 5F 72 65 73 69 73 74 03 00 00 00 39 00 39        at_resist....9.9
+00 39 00 10 00 72 65 73 5F 6D 61 6C 6C 65 61 62        .9...res_malleab
+69 6C 69 74 79 03 00 00 00 37 00 32 00 36 00 0B        ility....7.2.6..
+00 72 65 73 5F 71 75 61 6C 69 74 79 03 04 B0           .res_quality...
+
+
+
+
+00 0D 04 4F 00 00 02 55 02 00 
+
+4B 64 0E FE                                Opccode GetAuctionDetailsResponse
+
+39 3D B1 2F 0F 00 00 00                    ID Item
+
+00 00 00 00 
+[UINT32] counter
+
+  [ASCII]    condition [UNICODE]  6.0.0./.6.0.0.
+  volume....1...
+  healing_combat_level_required....7.2.
+  tooltip.healing_combat_level_required....7.2..
+  skillmodmin N.o.n.e...
+  tooltip.skillmodmin....N.o.n.e...
+  cat_wpn_damage.wpn_damage_type....@.o.b.j._.a.t.t.r._.n.:.a.r.m.o.r._.e.f.f._.e.n.e.rgy
+  tooltip.wpn_damage_type..
+
+
+object/weapon/melee/polearm/shared_polearm_vibro_axe.iff</code></pre>
+          </div>
+        </section>
+        
+        
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GILD03 | SWG Docs</title>
+  <meta name="description" content="Technical documentation and packet structure for GILD03 in Star Wars Galaxies.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="active">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>Guild Object (GILD)</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../baselines/GILD03.html" class="active">GILD03</a></li>
+<li><a href="../baselines/GILD06.html" class="">GILD06</a></li>
+
+        </ul>
+        <h3>Section Links</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../baselines/index.html">← Protocol Baselines Index</a></li>
+          <li><a href="../content/baselines/GILD03.md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/GILD03" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../baselines/index.html">Protocol Baselines</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">GILD03</span>
+    </div>
+    
+        
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>GILD03</span>
+            
+          </h1>
+          <div class="article-meta">
+            
+            <span class="badge badge-100">100% Complete</span>
+            <span class="badge badge-sample-present">Sample: present</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Protocol Baselines</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Baseline</strong></span>
+          </div>
+        </header>
+
+        <div class="notice-box">⚠️ This article or section needs additional data . Please add a sample packet!</div>
+        <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:1.5rem;">SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.</div>
+        
+        <section class="doc-section">
+          <h2>📐 Packet Structure (10 fields)</h2>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th style="width:140px;">Data Type</th>
+                  <th>Field Name</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr>
+              <td><span class="type-pill">SHORT</span></td>
+              <td style="font-weight:600;">ObjOpperandCount</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">FLOAT</span></td>
+              <td style="font-weight:600;">??</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">ASTRING</span></td>
+              <td style="font-weight:600;">STF File</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">STF Spacer</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">ASTRING</span></td>
+              <td style="font-weight:600;">STF Name</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">USTRING</span></td>
+              <td style="font-weight:600;">CustomName</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Volume</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">GuildIDListSize</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">UpdateCounter</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">A_STRING</span></td>
+              <td style="font-weight:600;">GuildID:Name</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>🏷️ Variable Descriptions</h2>
+          <div class="var-grid">
+            
+            <div class="var-card">
+              <div class="var-name">Obj_OperandCount</div>
+              <div class="var-val">5</div>
+            </div>
+            
+          </div>
+        </section>
+        
+        
+        
+        <section class="doc-section">
+          <h2>📦 Sample Hex Dump / Packet Payload</h2>
+          <div class="code-container">
+            <div class="code-header">
+              <span>Status: <strong>PRESENT</strong></span>
+              <button class="copy-btn" onclick="copyToClipboard(`05 00 
+0C 5F A7 68 // Baseline Message
+1A 24 F4 00 00 00 00 00 
+44 4C 49 47 // DLIG
+03 // 3
+E4 0D 00 00 
+05 00 
+00 00 80 3F 
+0F 00                      // string count
+73 74 72 69 6E 67 5F 69 64 // string_id
+5F 74 61 62 6C 65          // _table
+00 00 00 00 // string spacer
+00 00 00 00 // string name not used
+00 00 00 00 // u-string not used
+00 00 2C 01 // volume not used??
+00 00 00 00 // ??
+00 00 
+09 00 
+31 30 32 30 30 31 3A 57 75 // 102001:Wu
+0A 00 
+31 30 32 30 30 38 3A 57 53 41  //102008:WSA
+0C 00 
+31 30 33 30 30 31 3A 4B 4F 54 4F // ..103001:KOTO
+52 0C 00 31 30 33 30 30 32 3A 66 69 67 68 74 0B // R..103002:fight.
+00 31 30 33 30 30 33 3A 57 48 41 50 0C 00 31 30 // .103003:WHAP..10
+34 30 30 31 3A 54 52 41 44 45 09 00 31 30 34 30 // 4001:TRADE..1040
+30 32 3A 5A 46 0C 00 31 30 34 30 30 33 3A 27 53 // 02:ZF..104003:'S
+79 64 69 0C 00 31 30 35 30 30 32 3A 57 4F 4F 4B // ydi..105002:WOOK
+65 0C 00 31 30 36 30 30 31 3A 44 53 52 45 4E 0C // e..106001:DSREN.
+00 31 30 37 30 30 31 3A 42 4C 44 57 53 0B 00 31 // .107001:BLDWS..1
+30 37 30 30 35 3A 52 41 47 45 0C 00 31 30 39 30 // 07005:RAGE..1090
+30 31 3A 55 4E 47 44 43 0C 00 31 31 30 30 30 31 // 01:UNGDC..110001
+3A 73 6E 61 66 75 09 00 31 31 30 30 30 32 3A 4E // :snafu..110002:N
+47 0C 00 31 31 31 30 30 31 3A 2D 57 53 41 2D 0C // G..111001:-WSA-.
+00 31 31 34 30 30 31 3A 46 65 69 6E 74 0A 00 31 // .114001:Feint..1
+31 36 30 30 33 3A 4C 6F 45 0B 00 31 31 38 30 30 // 16003:LoE..11800
+32 3A 4F 70 75 73 0C 00 31 31 38 30 30 34 3A 2D // 2:Opus..118004:-
+56 41 47 2D 09 00 31 32 30 30 30 31 3A 4A 41 09 // VAG-..120001:JA.
+00 31 32 32 30 30 31 3A 44 4D 0B 00 31 32 33 30 // .122001:DM..1230
+30 31 3A 57 6F 54 47 0C 00 31 32 34 30 30 31 3A // 01:WoTG..124001:
+2D 20 4B 20 2D 0B 00 31 32 35 30 30 31 3A 2D 53 // - K -..125001:-S
+53 2D 0B 00 31 32 35 30 30 32 3A 4B 4E 4F 42 0C // S-..125002:KNOB.
+00 31 32 36 30 30 31 3A 45 58 49 4C 45 0A 00 31 // .126001:EXILE..1
+32 36 30 30 34 3A 47 4D 54 0B 00 33 30 30 30 31 // 26004:GMT..30001
+3A 69 43 72 65 77 0A 00 33 30 30 30 32 3A 53 4F // :iCrew..30002:SO
+45 4C 09 00 33 31 30 30 32 3A 41 4F 49 0B 00 33 // EL..31002:AOI..3
+32 30 30 31 3A 52 2D 53 2D 4F 09 00 33 01 76 B6 // 2001:R-S-O..3.v.
+
+
+Packet : 30
+199.108.7.36:44463 -> 192.168.0.100:1533 (Server->Client)
+Zone Server: Fragmented: Enc: T: Comp: T 
+
+00 0D 00 0C 34 30 30 31 3A 4C 6F 56 09 00 33 34 // ....4001:LoV..34
+30 30 32 3A 55 47 43 0B 00 33 35 30 30 33 3A 44 // 002:UGC..35003:D
+43 6F 72 64 09 00 33 35 30 30 37 3A 48 48 48 0B // Cord..35007:HHH.
+00 33 37 30 30 34 3A 42 2D 49 63 65 09 00 33 37 // .37004:B-Ice..37
+30 30 35 3A 44 53 52 08 00 33 37 30 30 37 3A 55 // 005:DSR..37007:U
+4E 09 00 33 38 30 30 31 3A 4B 6F 47 0A 00 33 38 // N..38001:KoG..38
+30 30 32 3A 4C 44 6F 47 09 00 33 38 30 30 33 3A // 002:LDoG..38003:
+42 53 4F 0B 00 33 38 30 30 34 3A 43 52 41 46 54 // BSO..38004:CRAFT
+09 00 33 38 30 30 35 3A 42 41 4D 08 00 33 39 30 // ..38005:BAM..390
+30 31 3A 43 41 0A 00 33 39 30 30 32 3A 57 6F 61 // 01:CA..39002:Woa
+48 0A 00 33 39 30 30 34 3A 2D 52 46 2D 08 00 33 // H..39004:-RF-..3
+39 30 30 38 3A 44 53 0B 00 34 30 30 30 34 3A 4D // 9008:DS..40004:M
+41 46 49 41 0B 00 34 30 30 30 35 3A 41 6C 74 75 // AFIA..40005:Altu
+73 09 00 34 30 30 30 36 3A 54 49 45 0B 00 34 30 // s..40006:TIE..40
+30 31 30 3A 45 6C 69 74 65 09 00 34 31 30 30 33 // 010:Elite..41003
+3A 54 4F 45 08 00 34 31 30 30 34 3A 44 42 09 00 // :TOE..41004:DB..
+34 31 30 30 35 3A 46 42 49 0B 00 34 32 30 30 31 // 41005:FBI..42001
+3A 41 6C 76 69 73 0B 00 34 32 30 30 33 3A 53 57 // :Alvis..42003:SW
+4F 4F 50 08 00 34 32 30 30 34 3A 47 52 09 00 34 // OOP..42004:GR..4
+32 30 30 39 3A 46 6F 48 08 00 34 33 30 30 31 3A // 2009:FoH..43001:
+44 44 0B 00 34 33 30 30 32 3A 52 65 69 67 6E 08 // DD..43002:Reign.
+00 34 33 30 30 33 3A 50 48 09 00 34 33 30 30 34 // .43003:PH..43004
+3A 61 45 6D 09 00 34 33 30 30 35 3A 45 6F 52 0B // :aEm..43005:EoR.
+00 34 33 30 30 36 3A 42 53 6B 75 6C 09 00 34 33 // .43006:BSkul..43
+30 30 37 3A 44 4B 44 0A 00 34 33 30 30 39 3A 52 // 007:DKD..43009:R
+46 4E 4B 08 00 34 33 30 31 31 3A 45 41 0A 00 34 // FNK..43011:EA..4
+33 30 31 34 3A 2D 44 53 2D 09 00 34 34 30 30 31 // 3014:-DS-..44001
+3A 47 54 46 09 00 34 34 30 30 32 3A 54 4F 52 09 // :GTF..44002:TOR.
+00 34 34 30 30 33 3A 4A 41 47 08 00 34 34 30 30 // .44003:JAG..4400
+34 3A 46 58 0A 00 34 34 30 30 37 3A 44 55 4E 45 // 4:FX..44007:DUNE
+0A 00 34 34 30 31 31 3A 52 45 41 50 0B 01 B2 B9 // ..44011:REAP....`, this)">Copy Sample</button>
+            </div>
+            <pre class="code-block"><code>05 00 
+0C 5F A7 68 // Baseline Message
+1A 24 F4 00 00 00 00 00 
+44 4C 49 47 // DLIG
+03 // 3
+E4 0D 00 00 
+05 00 
+00 00 80 3F 
+0F 00                      // string count
+73 74 72 69 6E 67 5F 69 64 // string_id
+5F 74 61 62 6C 65          // _table
+00 00 00 00 // string spacer
+00 00 00 00 // string name not used
+00 00 00 00 // u-string not used
+00 00 2C 01 // volume not used??
+00 00 00 00 // ??
+00 00 
+09 00 
+31 30 32 30 30 31 3A 57 75 // 102001:Wu
+0A 00 
+31 30 32 30 30 38 3A 57 53 41  //102008:WSA
+0C 00 
+31 30 33 30 30 31 3A 4B 4F 54 4F // ..103001:KOTO
+52 0C 00 31 30 33 30 30 32 3A 66 69 67 68 74 0B // R..103002:fight.
+00 31 30 33 30 30 33 3A 57 48 41 50 0C 00 31 30 // .103003:WHAP..10
+34 30 30 31 3A 54 52 41 44 45 09 00 31 30 34 30 // 4001:TRADE..1040
+30 32 3A 5A 46 0C 00 31 30 34 30 30 33 3A 27 53 // 02:ZF..104003:&#x27;S
+79 64 69 0C 00 31 30 35 30 30 32 3A 57 4F 4F 4B // ydi..105002:WOOK
+65 0C 00 31 30 36 30 30 31 3A 44 53 52 45 4E 0C // e..106001:DSREN.
+00 31 30 37 30 30 31 3A 42 4C 44 57 53 0B 00 31 // .107001:BLDWS..1
+30 37 30 30 35 3A 52 41 47 45 0C 00 31 30 39 30 // 07005:RAGE..1090
+30 31 3A 55 4E 47 44 43 0C 00 31 31 30 30 30 31 // 01:UNGDC..110001
+3A 73 6E 61 66 75 09 00 31 31 30 30 30 32 3A 4E // :snafu..110002:N
+47 0C 00 31 31 31 30 30 31 3A 2D 57 53 41 2D 0C // G..111001:-WSA-.
+00 31 31 34 30 30 31 3A 46 65 69 6E 74 0A 00 31 // .114001:Feint..1
+31 36 30 30 33 3A 4C 6F 45 0B 00 31 31 38 30 30 // 16003:LoE..11800
+32 3A 4F 70 75 73 0C 00 31 31 38 30 30 34 3A 2D // 2:Opus..118004:-
+56 41 47 2D 09 00 31 32 30 30 30 31 3A 4A 41 09 // VAG-..120001:JA.
+00 31 32 32 30 30 31 3A 44 4D 0B 00 31 32 33 30 // .122001:DM..1230
+30 31 3A 57 6F 54 47 0C 00 31 32 34 30 30 31 3A // 01:WoTG..124001:
+2D 20 4B 20 2D 0B 00 31 32 35 30 30 31 3A 2D 53 // - K -..125001:-S
+53 2D 0B 00 31 32 35 30 30 32 3A 4B 4E 4F 42 0C // S-..125002:KNOB.
+00 31 32 36 30 30 31 3A 45 58 49 4C 45 0A 00 31 // .126001:EXILE..1
+32 36 30 30 34 3A 47 4D 54 0B 00 33 30 30 30 31 // 26004:GMT..30001
+3A 69 43 72 65 77 0A 00 33 30 30 30 32 3A 53 4F // :iCrew..30002:SO
+45 4C 09 00 33 31 30 30 32 3A 41 4F 49 0B 00 33 // EL..31002:AOI..3
+32 30 30 31 3A 52 2D 53 2D 4F 09 00 33 01 76 B6 // 2001:R-S-O..3.v.
+
+
+Packet : 30
+199.108.7.36:44463 -&gt; 192.168.0.100:1533 (Server-&gt;Client)
+Zone Server: Fragmented: Enc: T: Comp: T 
+
+00 0D 00 0C 34 30 30 31 3A 4C 6F 56 09 00 33 34 // ....4001:LoV..34
+30 30 32 3A 55 47 43 0B 00 33 35 30 30 33 3A 44 // 002:UGC..35003:D
+43 6F 72 64 09 00 33 35 30 30 37 3A 48 48 48 0B // Cord..35007:HHH.
+00 33 37 30 30 34 3A 42 2D 49 63 65 09 00 33 37 // .37004:B-Ice..37
+30 30 35 3A 44 53 52 08 00 33 37 30 30 37 3A 55 // 005:DSR..37007:U
+4E 09 00 33 38 30 30 31 3A 4B 6F 47 0A 00 33 38 // N..38001:KoG..38
+30 30 32 3A 4C 44 6F 47 09 00 33 38 30 30 33 3A // 002:LDoG..38003:
+42 53 4F 0B 00 33 38 30 30 34 3A 43 52 41 46 54 // BSO..38004:CRAFT
+09 00 33 38 30 30 35 3A 42 41 4D 08 00 33 39 30 // ..38005:BAM..390
+30 31 3A 43 41 0A 00 33 39 30 30 32 3A 57 6F 61 // 01:CA..39002:Woa
+48 0A 00 33 39 30 30 34 3A 2D 52 46 2D 08 00 33 // H..39004:-RF-..3
+39 30 30 38 3A 44 53 0B 00 34 30 30 30 34 3A 4D // 9008:DS..40004:M
+41 46 49 41 0B 00 34 30 30 30 35 3A 41 6C 74 75 // AFIA..40005:Altu
+73 09 00 34 30 30 30 36 3A 54 49 45 0B 00 34 30 // s..40006:TIE..40
+30 31 30 3A 45 6C 69 74 65 09 00 34 31 30 30 33 // 010:Elite..41003
+3A 54 4F 45 08 00 34 31 30 30 34 3A 44 42 09 00 // :TOE..41004:DB..
+34 31 30 30 35 3A 46 42 49 0B 00 34 32 30 30 31 // 41005:FBI..42001
+3A 41 6C 76 69 73 0B 00 34 32 30 30 33 3A 53 57 // :Alvis..42003:SW
+4F 4F 50 08 00 34 32 30 30 34 3A 47 52 09 00 34 // OOP..42004:GR..4
+32 30 30 39 3A 46 6F 48 08 00 34 33 30 30 31 3A // 2009:FoH..43001:
+44 44 0B 00 34 33 30 30 32 3A 52 65 69 67 6E 08 // DD..43002:Reign.
+00 34 33 30 30 33 3A 50 48 09 00 34 33 30 30 34 // .43003:PH..43004
+3A 61 45 6D 09 00 34 33 30 30 35 3A 45 6F 52 0B // :aEm..43005:EoR.
+00 34 33 30 30 36 3A 42 53 6B 75 6C 09 00 34 33 // .43006:BSkul..43
+30 30 37 3A 44 4B 44 0A 00 34 33 30 30 39 3A 52 // 007:DKD..43009:R
+46 4E 4B 08 00 34 33 30 31 31 3A 45 41 0A 00 34 // FNK..43011:EA..4
+33 30 31 34 3A 2D 44 53 2D 09 00 34 34 30 30 31 // 3014:-DS-..44001
+3A 47 54 46 09 00 34 34 30 30 32 3A 54 4F 52 09 // :GTF..44002:TOR.
+00 34 34 30 30 33 3A 4A 41 47 08 00 34 34 30 30 // .44003:JAG..4400
+34 3A 46 58 0A 00 34 34 30 30 37 3A 44 55 4E 45 // 4:FX..44007:DUNE
+0A 00 34 34 30 31 31 3A 52 45 41 50 0B 01 B2 B9 // ..44011:REAP....</code></pre>
+          </div>
+        </section>
+        
+        
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

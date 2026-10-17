@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MISO03 | SWG Docs</title>
+  <meta name="description" content="Technical documentation and packet structure for MISO03 in Star Wars Galaxies.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="active">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>Mission Object (MISO)</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../baselines/MISO03.html" class="active">MISO03</a></li>
+<li><a href="../baselines/MISO06.html" class="">MISO06</a></li>
+<li><a href="../baselines/MISO08.html" class="">MISO08</a></li>
+<li><a href="../baselines/MISO09.html" class="">MISO09</a></li>
+
+        </ul>
+        <h3>Section Links</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../baselines/index.html">← Protocol Baselines Index</a></li>
+          <li><a href="../content/baselines/MISO03.md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/MISO03" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../baselines/index.html">Protocol Baselines</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">MISO03</span>
+    </div>
+    
+        
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>MISO03</span>
+            
+          </h1>
+          <div class="article-meta">
+            
+            <span class="badge badge-75">75% Complete</span>
+            <span class="badge badge-sample-present">Sample: present</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Protocol Baselines</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Baseline</strong></span>
+          </div>
+        </header>
+
+        
+        <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:1.5rem;">SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.</div>
+        
+        <section class="doc-section">
+          <h2>📐 Packet Structure (41 fields)</h2>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th style="width:140px;">Data Type</th>
+                  <th>Field Name</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr>
+              <td><span class="type-pill">SHORT</span></td>
+              <td style="font-weight:600;">Object Opperand Count</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">FLOAT</span></td>
+              <td style="font-weight:600;">Complexity</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">ASTRING</span></td>
+              <td style="font-weight:600;">STF Name(Table)</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">STF Spacer</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">ASTRING</span></td>
+              <td style="font-weight:600;">STF Name(ID)</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">USTRING</span></td>
+              <td style="font-weight:600;">Custom Name</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Volume</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Generic Int(NotUsed)</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Difficulty Level</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">FLOAT</span></td>
+              <td style="font-weight:600;">Start Coord X</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">FLOAT</span></td>
+              <td style="font-weight:600;">Start Coord Z</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">FLOAT</span></td>
+              <td style="font-weight:600;">Start Coord Y</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">LONG</span></td>
+              <td style="font-weight:600;">Start Object ID</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Start Planet CRC</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">USTRING</span></td>
+              <td style="font-weight:600;">Creator Name</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Credits Reward</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">FLOAT</span></td>
+              <td style="font-weight:600;">Destination Coord X</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">FLOAT</span></td>
+              <td style="font-weight:600;">Destination Coord Z</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">FLOAT</span></td>
+              <td style="font-weight:600;">Destination Coord Y</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">LONG</span></td>
+              <td style="font-weight:600;">Destination Object ID</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Destination Planet CRC</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Target Object Iff CRC</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">ASTRING</span></td>
+              <td style="font-weight:600;">Mission Description STF</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">STF Spacer</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">ASTRING</span></td>
+              <td style="font-weight:600;">Mission Description</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">ASTRING</span></td>
+              <td style="font-weight:600;">Mission TitleSTF</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">STF Spacer</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">ASTRING</span></td>
+              <td style="font-weight:600;">Mission Title</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Repeat Counter</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Mission Type CRC</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">ASTRING</span></td>
+              <td style="font-weight:600;">Target Name</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">??</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">FLOAT</span></td>
+              <td style="font-weight:600;">Waypoint X Coord</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">FLOAT</span></td>
+              <td style="font-weight:600;">Waypoint Z Coord</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">FLOAT</span></td>
+              <td style="font-weight:600;">Waypoint Y Coord</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">LONG</span></td>
+              <td style="font-weight:600;">Waypoint Target ID</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Waypoint Planet Crc</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">USTRING</span></td>
+              <td style="font-weight:600;">Waypoint Name</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">LONG</span></td>
+              <td style="font-weight:600;">Waypoint Object ID</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">BYTE</span></td>
+              <td style="font-weight:600;">Color</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">BYTE</span></td>
+              <td style="font-weight:600;">Active Flag</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>🏷️ Variable Descriptions</h2>
+          <div class="var-grid">
+            
+            <div class="var-card">
+              <div class="var-name">ObjectOpperandCount</div>
+              <div class="var-val">5</div>
+            </div>
+            
+          </div>
+        </section>
+        
+        
+        
+        <section class="doc-section">
+          <h2>📦 Sample Hex Dump / Packet Payload</h2>
+          <div class="code-container">
+            <div class="code-header">
+              <span>Status: <strong>PRESENT</strong></span>
+              <button class="copy-btn" onclick="copyToClipboard(`05 00 
+0C 5F A7 68 
+6F 14 B8 30 42 00 00 00 
+4F 53 49 4D 03 17 01 00 00 11 00 
+00 00 80 3F // complexity
+16 00 
+6D 69 73 73 69 6F 6E 2F 6D 69 73 73 69 6F 6E 5F 6F 62 6A 65 63 74 
+00 00 00 00 
+0F 00 
+64 65 73 74 72 6F 79 5F 6D 69 73 73 69 6F 6E 
+00 00 00 00 
+00 00 00 00 
+00 00 00 00 
+01 00 00 00 // Volume
+63 C6 F0 44 // start x
+00 00 00 00 // start Y
+2E FB 16 45 // Start Z
+00 00 00 00 00 00 00 00 
+58 B5 D7 AF // Planet CRC
+03 00 00 00 
+41 00 67 00 69 00 
+38 00 00 00 
+FC 25 A6 44 // x
+00 00 00 00 // y
+FE AF 26 45 // Z
+00 00 00 00 00 00 00 00 
+58 B5 D7 AF 
+AB DB 91 E1 
+24 00 
+6D 69 73 73 69 6F 6E 2F 6D 69 73 73 69 6F 6E 5F 64 65 6C 69 76 65 72 5F 6E 65 75 74 72 61 6C 5F 65 61 73 79 
+00 00 00 00 
+03 00 
+6D 38 64 24 00 6D 69 73 73 69 6F 6E 2F 6D 69 73 73 69 6F 6E 5F 64 65 6C 69 76 65 72 5F 6E 65 75 74 72 61 6C 5F 65 61 73 79 
+00 00 00 00 
+03 00 
+6D 38 74 
+AC 06 00 00 
+C6 7E C2 E5 
+00 00 00 00 
+00 00 00 00 
+00 00 00 00 
+00 00 00 00 
+00 00 00 00 
+00 00 00 00 00 00 00 00 
+00 00 00 00 
+00 00 
+70 14 B8 30 42 00 00 00 
+01
+00`, this)">Copy Sample</button>
+            </div>
+            <pre class="code-block"><code>05 00 
+0C 5F A7 68 
+6F 14 B8 30 42 00 00 00 
+4F 53 49 4D 03 17 01 00 00 11 00 
+00 00 80 3F // complexity
+16 00 
+6D 69 73 73 69 6F 6E 2F 6D 69 73 73 69 6F 6E 5F 6F 62 6A 65 63 74 
+00 00 00 00 
+0F 00 
+64 65 73 74 72 6F 79 5F 6D 69 73 73 69 6F 6E 
+00 00 00 00 
+00 00 00 00 
+00 00 00 00 
+01 00 00 00 // Volume
+63 C6 F0 44 // start x
+00 00 00 00 // start Y
+2E FB 16 45 // Start Z
+00 00 00 00 00 00 00 00 
+58 B5 D7 AF // Planet CRC
+03 00 00 00 
+41 00 67 00 69 00 
+38 00 00 00 
+FC 25 A6 44 // x
+00 00 00 00 // y
+FE AF 26 45 // Z
+00 00 00 00 00 00 00 00 
+58 B5 D7 AF 
+AB DB 91 E1 
+24 00 
+6D 69 73 73 69 6F 6E 2F 6D 69 73 73 69 6F 6E 5F 64 65 6C 69 76 65 72 5F 6E 65 75 74 72 61 6C 5F 65 61 73 79 
+00 00 00 00 
+03 00 
+6D 38 64 24 00 6D 69 73 73 69 6F 6E 2F 6D 69 73 73 69 6F 6E 5F 64 65 6C 69 76 65 72 5F 6E 65 75 74 72 61 6C 5F 65 61 73 79 
+00 00 00 00 
+03 00 
+6D 38 74 
+AC 06 00 00 
+C6 7E C2 E5 
+00 00 00 00 
+00 00 00 00 
+00 00 00 00 
+00 00 00 00 
+00 00 00 00 
+00 00 00 00 00 00 00 00 
+00 00 00 00 
+00 00 
+70 14 B8 30 42 00 00 00 
+01
+00</code></pre>
+          </div>
+        </section>
+        
+        
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

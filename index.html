@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SWG Docs | Star Wars Galaxies Protocol Reference</title>
+  <meta name="description" content="Comprehensive, modern technical documentation for the Star Wars Galaxies network protocol, client commands, object controllers, baselines, deltas, and file formats.">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-root="">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="protocols/index.html" class="">Protocols</a></li>
+      <li><a href="commands/index.html" class="">Commands</a></li>
+      <li><a href="controllers/index.html" class="">Controllers</a></li>
+      <li><a href="baselines/index.html" class="">Baselines</a></li>
+      <li><a href="deltas/index.html" class="">Deltas</a></li>
+      <li><a href="guides/index.html" class="">Guides</a></li>
+      <li><a href="tre-subfiles/index.html" class="">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+
+  <section class="hero">
+    <h1>Star Wars Galaxies Protocol Documentation</h1>
+    <p>A complete, faithful, and beautifully organized reference archive of the SWG network protocol, opcodes, client commands, object controllers, and binary structures.</p>
+    
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">1,427</div>
+        <div class="stat-label">Documented Pages</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">889</div>
+        <div class="stat-label">Client Commands</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">252</div>
+        <div class="stat-label">Protocol Packets</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">177</div>
+        <div class="stat-label">Object Controllers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">153</div>
+        <div class="stat-label">Baselines & Deltas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">6,929</div>
+        <div class="stat-label">Struct Fields</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <h2 style="font-size:1.5rem; font-weight:700; margin-bottom:1.25rem;">Explore Documentation Sections</h2>
+    
+    <div class="section-grid">
+      <a href="protocols/index.html" class="section-card">
+        <div class="section-card-header">
+          <div class="section-card-title">🌐 SWG Protocols</div>
+          <div class="section-card-count">252 Packets</div>
+        </div>
+        <div class="section-card-desc">Core packet definitions for Chat, Trade, Auctions, Login, Scene Management, Player State, and Guilds.</div>
+        <div style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600;">Browse Protocols →</div>
+      </a>
+
+      <a href="commands/index.html" class="section-card">
+        <div class="section-card-header">
+          <div class="section-card-title">⚡ Client Commands</div>
+          <div class="section-card-count">889 Commands</div>
+        </div>
+        <div class="section-card-desc">Complete client command queue table: Combat abilities, Crafting, Postures, Structures, Vehicles, and Space flight.</div>
+        <div style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600;">Browse Commands →</div>
+      </a>
+
+      <a href="controllers/index.html" class="section-card">
+        <div class="section-card-header">
+          <div class="section-card-title">🎮 Object Controllers</div>
+          <div class="section-card-count">177 Messages</div>
+        </div>
+        <div class="section-card-desc">ObjectControllerMessage (0000000B) subsystem IDs handling animations, physics, crafting stations, and combat actions.</div>
+        <div style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600;">Browse Controllers →</div>
+      </a>
+
+      <a href="baselines/index.html" class="section-card">
+        <div class="section-card-header">
+          <div class="section-card-title">📦 Protocol Baselines</div>
+          <div class="section-card-count">77 Baselines</div>
+        </div>
+        <div class="section-card-desc">Complete object serialization states for CREO, PLAY, TANO, SHIP, WEAO, BUIO, and installations.</div>
+        <div style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600;">Browse Baselines →</div>
+      </a>
+
+      <a href="deltas/index.html" class="section-card">
+        <div class="section-card-header">
+          <div class="section-card-title">🔄 Protocol Deltas</div>
+          <div class="section-card-count">76 Deltas</div>
+        </div>
+        <div class="section-card-desc">Differential update packets modifying baseline variables, lists, and synchronization counters.</div>
+        <div style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600;">Browse Deltas →</div>
+      </a>
+
+      <a href="guides/index.html" class="section-card">
+        <div class="section-card-header">
+          <div class="section-card-title">📚 Packet Guides</div>
+          <div class="section-card-count">22 Guides</div>
+        </div>
+        <div class="section-card-desc">Architecture guides covering the SOE UDP transport protocol, CRC checksums, compression, encryption, and struct reversing.</div>
+        <div style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600;">Browse Guides →</div>
+      </a>
+
+      <a href="tre-subfiles/index.html" class="section-card">
+        <div class="section-card-header">
+          <div class="section-card-title">📁 TRE Sub-Files</div>
+          <div class="section-card-count">9 Specifications</div>
+        </div>
+        <div class="section-card-desc">Asset archive format (TRE), string tables (STF), quest definitions (QST), and terrain heightmaps (TRN).</div>
+        <div style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600;">Browse TRE Formats →</div>
+      </a>
+    </div>
+
+    <!-- Master Interactive Explorer Table -->
+    <div class="lookup-box">
+      <h3>🔎 Master Packet & Opcode Explorer</h3>
+      <p style="color:var(--text-secondary); font-size:0.9rem;">Search across all 1,427 packets, client commands, and object controllers in real time.</p>
+      
+      <div class="lookup-controls">
+        <input type="text" id="table-search-input" placeholder="Search by name, opcode (e.g. 9CA80F98, 00000116), or field...">
+        <select id="table-section-filter">
+          <option value="">All Sections</option>
+          <option value="protocols">Protocols (252)</option>
+          <option value="commands">Client Commands (889)</option>
+          <option value="controllers">Object Controllers (177)</option>
+          <option value="baselines">Baselines (77)</option>
+          <option value="deltas">Deltas (76)</option>
+          <option value="guides">Guides (22)</option>
+          <option value="tre-subfiles">TRE Files (9)</option>
+        </select>
+        <select id="table-direction-filter">
+          <option value="">All Directions</option>
+          <option value="S→C">Server → Client (S→C)</option>
+          <option value="C→S">Client → Server (C→S)</option>
+        </select>
+        <select id="table-completion-filter">
+          <option value="">All Completion %</option>
+          <option value="100%">100% Complete</option>
+          <option value="75%">75% Complete</option>
+          <option value="50%">50% Complete</option>
+          <option value="25%">25% Complete</option>
+          <option value="0%">0% Complete</option>
+        </select>
+        <select id="table-sample-filter">
+          <option value="">All Samples</option>
+          <option value="present">Real Sample Present</option>
+          <option value="placeholder">Placeholder</option>
+          <option value="absent">Absent</option>
+        </select>
+      </div>
+
+      <div class="table-wrap" style="margin-top:1.25rem;">
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Packet / Page Name</th>
+              <th style="width:130px;">Opcode / ID</th>
+              <th>Section</th>
+              <th style="width:90px;">Direction</th>
+              <th style="width:110px;">Completion</th>
+              <th style="width:110px;">Sample Status</th>
+            </tr>
+          </thead>
+          <tbody id="master-table-body">
+            <!-- Dynamically populated by app.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <div id="table-pagination"></div>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="data/all_packets.csv">Download CSV</a>
+        <a href="data/packets_summary.json">Download JSON</a>
+        <a href="index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ObjectMenuResponse (00000147) | SWG Docs</title>
+  <meta name="description" content="Technical documentation and packet structure for ObjectMenuResponse (00000147) in Star Wars Galaxies.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="active">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>Crafting & Command Queue (0x101 - 0x150)</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../controllers/CombatSpam (00000134).html" class="">CombatSpam (00000134)</a></li>
+<li><a href="../controllers/CommandQueueRemove (00000117).html" class="">CommandQueueRemove (00000117)</a></li>
+<li><a href="../controllers/CraftAcknowledge (0000010C).html" class="">CraftAcknowledge (0000010C)</a></li>
+<li><a href="../controllers/CraftEmptySlot (00000108).html" class="">CraftEmptySlot (00000108)</a></li>
+<li><a href="../controllers/CraftExperiment (00000106).html" class="">CraftExperiment (00000106)</a></li>
+<li><a href="../controllers/CraftExperimentationResponse (00000113).html" class="">CraftExperimentationResponse (00000113)</a></li>
+<li><a href="../controllers/CraftFillSlot (00000107).html" class="">CraftFillSlot (00000107)</a></li>
+<li><a href="../controllers/CraftIngredients (00000105).html" class="">CraftIngredients (00000105)</a></li>
+<li><a href="../controllers/CraftingSlotAcknowledge (0000010C).html" class="">CraftingSlotAcknowledge (0000010C)</a></li>
+<li><a href="../controllers/CraftingSlotResponse (0000010C).html" class="">CraftingSlotResponse (0000010C)</a></li>
+<li><a href="../controllers/CraftRequestSession (0000010E).html" class="">CraftRequestSession (0000010E)</a></li>
+<li><a href="../controllers/CraftRequestSession (0000010F).html" class="">CraftRequestSession (0000010F)</a></li>
+<li><a href="../controllers/DraftSchematics (00000102).html" class="">DraftSchematics (00000102)</a></li>
+<li><a href="../controllers/DraftSlots (00000103).html" class="">DraftSlots (00000103)</a></li>
+<li><a href="../controllers/Generic (00000109).html" class="">Generic (00000109)</a></li>
+<li><a href="../controllers/Generic (0000010A).html" class="">Generic (0000010A)</a></li>
+<li><a href="../controllers/Generic (0000010B).html" class="">Generic (0000010B)</a></li>
+<li><a href="../controllers/Generic (00000110).html" class="">Generic (00000110)</a></li>
+<li><a href="../controllers/Generic (00000111).html" class="">Generic (00000111)</a></li>
+<li><a href="../controllers/GenericIntResponse (0000010C).html" class="">GenericIntResponse (0000010C)</a></li>
+<li><a href="../controllers/GenericIntResponse (00000113).html" class="">GenericIntResponse (00000113)</a></li>
+<li><a href="../controllers/GenericResponse (0000010D).html" class="">GenericResponse (0000010D)</a></li>
+<li><a href="../controllers/MissionAbort (00000142).html" class="">MissionAbort (00000142)</a></li>
+<li><a href="../controllers/NetworkId (00000114).html" class="">NetworkId (00000114)</a></li>
+<li><a href="../controllers/NetworkId (0000011C).html" class="">NetworkId (0000011C)</a></li>
+<li><a href="../controllers/NetworkId (00000126).html" class="">NetworkId (00000126)</a></li>
+<li><a href="../controllers/NetworkId (00000142).html" class="">NetworkId (00000142)</a></li>
+<li><a href="../controllers/NetworkIdAndTransform (0000012D).html" class="">NetworkIdAndTransform (0000012D)</a></li>
+<li><a href="../controllers/NextCraftingStage(00000109).html" class="">NextCraftingStage(00000109)</a></li>
+<li><a href="../controllers/ObjectMenuRequest (00000146).html" class="">ObjectMenuRequest (00000146)</a></li>
+<li><a href="../controllers/index.html" style="color:var(--accent-cyan); font-weight:600;">View all 48 in Crafting & Command Queue (0x101 - 0x150) →</a></li>
+        </ul>
+        <h3>Section Links</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../controllers/index.html">← Object Controllers Index</a></li>
+          <li><a href="../content/controllers/ObjectMenuResponse (00000147).md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/ObjectMenuResponse_%2800000147%29" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../controllers/index.html">Object Controllers</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">ObjectMenuResponse (00000147)</span>
+    </div>
+    
+        
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>ObjectMenuResponse (00000147)</span>
+            <span class="opcode-pill" onclick="copyToClipboard('00000147', this)" title="Click to copy opcode">00000147 📋</span>
+          </h1>
+          <div class="article-meta">
+            <span class="badge badge-sc" title="Server to Client">S→C (Server)</span>
+            <span class="badge badge-100">100% Complete</span>
+            <span class="badge badge-sample-present">Sample: present</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Object Controllers</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Object Controller</strong></span>
+          </div>
+        </header>
+
+        
+        <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:1.5rem;">SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.</div>
+        
+        <section class="doc-section">
+          <h2>📐 Packet Structure (3 fields)</h2>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th style="width:140px;">Data Type</th>
+                  <th>Field Name</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr>
+              <td><span class="type-pill">LONG</span></td>
+              <td style="font-weight:600;">Item ID</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">LONG</span></td>
+              <td style="font-weight:600;">Receiver ID</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Options Count</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>🏷️ Variable Descriptions</h2>
+          <div class="var-grid">
+            
+            <div class="var-card">
+              <div class="var-name">controllerID</div>
+              <div class="var-val">00000147</div>
+            </div>
+            
+          </div>
+        </section>
+        
+        
+        
+        <section class="doc-section">
+          <h2>📦 Sample Hex Dump / Packet Payload</h2>
+          <div class="code-container">
+            <div class="code-header">
+              <span>Status: <strong>PRESENT</strong></span>
+              <button class="copy-btn" onclick="copyToClipboard(`05 00 
+46 5E CE 80                                    // ObjControllerMessage 
+0B 00 00 00 
+47 01 00 00                                    // ObjectMenuResponse 
+71 E2 DB D9 00 00 00 00                        // Character ID 
+00 00 00 00 
+6D 56 76 00 00 00 00 00                        // Bank Terminal ID 
+71 E2 DB D9 00 00 00 00                        // Character ID 
+
+05 00 00 00 // List Size 
+01 // radial option # 
+00 // radial parent id 
+15 // Radial Identifier (itemUseSelf) 
+03 // option type 
+00 00 00 00 // empty string 
+
+02 // radial option # 
+00 // radial parent id 
+07 // Radial Identifier (examine) 
+01 // option type 
+00 00 00 00 // empty string 
+
+03 // radial option # 
+01 // radial parent id 
+46 // Radial Identifier (serverMenu3) 
+03 // option type 
+11 00 00 00                                           // string count 
+40 00 73 00 75 00                                     // @.s.u. 
+69 00 3A 00 62 00 61 00 6E 00 6B 00 5F 00 63 00       // i.:.b.a.n.k._.c. 
+72 00 65 00 64 00 69 00 74 00 73 00                   // r.e.d.i.t.s 
+
+04 // radial option # 
+01 // radial parent id 
+47 // Radial Identifier (serverMenu4) 
+03 // option type 
+0F 00 00 00                                           // string count 
+40 00 73 00 75 00 69 00 3A 00 62 00                   // @.s.u.i.:.b. 
+61 00 6E 00 6B 00 5F 00 69 00 74 00 65 00 6D 00 73 00 // a.n.k._.i.t.e.m.s. 
+
+05 // radial option # 
+01 // radial parent id 
+48 // Radial Identifier (serverMenu5) 
+03 // option type 
+14 00 00 00                                           // string count 
+40 00 73 00 75 00                                     // @.s.u. 
+69 00 3A 00 62 00 61 00 6E 00 6B 00 5F 00 64 00       // i.:.b.a.n.k._.d. 
+65 00 70 00 6F 00 73 00 69 00 74 00 61 00 6C 00 6C 00 // e.p.o.s.i.t.a.l.l.`, this)">Copy Sample</button>
+            </div>
+            <pre class="code-block"><code>05 00 
+46 5E CE 80                                    // ObjControllerMessage 
+0B 00 00 00 
+47 01 00 00                                    // ObjectMenuResponse 
+71 E2 DB D9 00 00 00 00                        // Character ID 
+00 00 00 00 
+6D 56 76 00 00 00 00 00                        // Bank Terminal ID 
+71 E2 DB D9 00 00 00 00                        // Character ID 
+
+05 00 00 00 // List Size 
+01 // radial option # 
+00 // radial parent id 
+15 // Radial Identifier (itemUseSelf) 
+03 // option type 
+00 00 00 00 // empty string 
+
+02 // radial option # 
+00 // radial parent id 
+07 // Radial Identifier (examine) 
+01 // option type 
+00 00 00 00 // empty string 
+
+03 // radial option # 
+01 // radial parent id 
+46 // Radial Identifier (serverMenu3) 
+03 // option type 
+11 00 00 00                                           // string count 
+40 00 73 00 75 00                                     // @.s.u. 
+69 00 3A 00 62 00 61 00 6E 00 6B 00 5F 00 63 00       // i.:.b.a.n.k._.c. 
+72 00 65 00 64 00 69 00 74 00 73 00                   // r.e.d.i.t.s 
+
+04 // radial option # 
+01 // radial parent id 
+47 // Radial Identifier (serverMenu4) 
+03 // option type 
+0F 00 00 00                                           // string count 
+40 00 73 00 75 00 69 00 3A 00 62 00                   // @.s.u.i.:.b. 
+61 00 6E 00 6B 00 5F 00 69 00 74 00 65 00 6D 00 73 00 // a.n.k._.i.t.e.m.s. 
+
+05 // radial option # 
+01 // radial parent id 
+48 // Radial Identifier (serverMenu5) 
+03 // option type 
+14 00 00 00                                           // string count 
+40 00 73 00 75 00                                     // @.s.u. 
+69 00 3A 00 62 00 61 00 6E 00 6B 00 5F 00 64 00       // i.:.b.a.n.k._.d. 
+65 00 70 00 6F 00 73 00 69 00 74 00 61 00 6C 00 6C 00 // e.p.o.s.i.t.a.l.l.</code></pre>
+          </div>
+        </section>
+        
+        
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

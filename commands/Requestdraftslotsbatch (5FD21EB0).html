@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Requestdraftslotsbatch (5FD21EB0) | SWG Docs</title>
+  <meta name="description" content="Technical documentation and packet structure for Requestdraftslotsbatch (5FD21EB0) in Star Wars Galaxies.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="">Protocols</a></li>
+      <li><a href="../commands/index.html" class="active">Commands</a></li>
+      <li><a href="../controllers/index.html" class="">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>General Commands</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../commands/Activate (01E5156C).html" class="">Activate (01E5156C)</a></li>
+<li><a href="../commands/Activateclone (EA69C1BD).html" class="">Activateclone (EA69C1BD)</a></li>
+<li><a href="../commands/Activatequest (61B2EC70).html" class="">Activatequest (61B2EC70)</a></li>
+<li><a href="../commands/Addallowedplayer (F1B97054).html" class="">Addallowedplayer (F1B97054)</a></li>
+<li><a href="../commands/Addbannedplayer (5DE7ABE4).html" class="">Addbannedplayer (5DE7ABE4)</a></li>
+<li><a href="../commands/Addfriend (2A2357ED).html" class="">Addfriend (2A2357ED)</a></li>
+<li><a href="../commands/Addignore (929AD345).html" class="">Addignore (929AD345)</a></li>
+<li><a href="../commands/Addmaplocation (124249A4).html" class="">Addmaplocation (124249A4)</a></li>
+<li><a href="../commands/Adjustlotcount (0D617CF4).html" class="">Adjustlotcount (0D617CF4)</a></li>
+<li><a href="../commands/Aiignore (E6C2E97D).html" class="">Aiignore (E6C2E97D)</a></li>
+<li><a href="../commands/Aim (A0A107F8).html" class="">Aim (A0A107F8)</a></li>
+<li><a href="../commands/Alert (23DAB842).html" class="">Alert (23DAB842)</a></li>
+<li><a href="../commands/Animalcalm (22E1565B).html" class="">Animalcalm (22E1565B)</a></li>
+<li><a href="../commands/Animalscare (E001C174).html" class="">Animalscare (E001C174)</a></li>
+<li><a href="../commands/Anon (D40D5142).html" class="">Anon (D40D5142)</a></li>
+<li><a href="../commands/Applydisease (AF5E4D90).html" class="">Applydisease (AF5E4D90)</a></li>
+<li><a href="../commands/Applypoison (E08596DB).html" class="">Applypoison (E08596DB)</a></li>
+<li><a href="../commands/Applypowerup (AB559978).html" class="">Applypowerup (AB559978)</a></li>
+<li><a href="../commands/Areatrack (AA4E8A8C).html" class="">Areatrack (AA4E8A8C)</a></li>
+<li><a href="../commands/Assigndroid (6B5C8AE3).html" class="">Assigndroid (6B5C8AE3)</a></li>
+<li><a href="../commands/Assignplayerformation (A810CCBF).html" class="">Assignplayerformation (A810CCBF)</a></li>
+<li><a href="../commands/Assist (2555B593).html" class="">Assist (2555B593)</a></li>
+<li><a href="../commands/Auction (74C7588E).html" class="">Auction (74C7588E)</a></li>
+<li><a href="../commands/Auctionaccept (81E9BDD7).html" class="">Auctionaccept (81E9BDD7)</a></li>
+<li><a href="../commands/Auctionbid (F34D4523).html" class="">Auctionbid (F34D4523)</a></li>
+<li><a href="../commands/Auctioncancel (95778039).html" class="">Auctioncancel (95778039)</a></li>
+<li><a href="../commands/Auctioncreate (B71FFF08).html" class="">Auctioncreate (B71FFF08)</a></li>
+<li><a href="../commands/Auctionquery (06DE6A3A).html" class="">Auctionquery (06DE6A3A)</a></li>
+<li><a href="../commands/Auctionretrieve (7D09AE79).html" class="">Auctionretrieve (7D09AE79)</a></li>
+<li><a href="../commands/Auctionsay (188B3F25).html" class="">Auctionsay (188B3F25)</a></li>
+<li><a href="../commands/index.html" style="color:var(--accent-cyan); font-weight:600;">View all 520 in General Commands →</a></li>
+        </ul>
+        <h3>Section Links</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../commands/index.html">← Client Commands Index</a></li>
+          <li><a href="../content/commands/Requestdraftslotsbatch (5FD21EB0).md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/Requestdraftslotsbatch_%285FD21EB0%29" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../commands/index.html">Client Commands</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">Requestdraftslotsbatch (5FD21EB0)</span>
+    </div>
+    
+        
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>Requestdraftslotsbatch (5FD21EB0)</span>
+            <span class="opcode-pill" onclick="copyToClipboard('5FD21EB0', this)" title="Click to copy opcode">5FD21EB0 📋</span>
+          </h1>
+          <div class="article-meta">
+            <span class="badge badge-cs" title="Client to Server">C→S (Client)</span>
+            <span class="badge badge-0">0% Complete</span>
+            <span class="badge badge-sample-present">Sample: present</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Client Commands</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Command</strong></span>
+          </div>
+        </header>
+
+        
+        <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:1.5rem;">SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.</div>
+        
+        <section class="doc-section">
+          <h2>📐 Packet Structure (4 fields)</h2>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th style="width:140px;">Data Type</th>
+                  <th>Field Name</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr>
+              <td><span class="type-pill"></span></td>
+              <td style="font-weight:600;"></td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill"></span></td>
+              <td style="font-weight:600;"></td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill"></span></td>
+              <td style="font-weight:600;"></td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill"></span></td>
+              <td style="font-weight:600;"></td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>🏷️ Variable Descriptions</h2>
+          <div class="var-grid">
+            
+            <div class="var-card">
+              <div class="var-name">Opperand_Count</div>
+              <div class="var-val"></div>
+            </div>
+            
+            <div class="var-card">
+              <div class="var-name">Opcode</div>
+              <div class="var-val">5FD21EB0</div>
+            </div>
+            
+          </div>
+        </section>
+        
+        
+        
+        <section class="doc-section">
+          <h2>📦 Sample Hex Dump / Packet Payload</h2>
+          <div class="code-container">
+            <div class="code-header">
+              <span>Status: <strong>PRESENT</strong></span>
+              <button class="copy-btn" onclick="copyToClipboard(`----
+
+"5FD21EB0",32,0,711,"156091003 1134074851 199838439 1476982860 259069009 1598981907 300807190 1069929316 392115204 2027141215 398055134 1146643573 905735697 704731595 1055457404 3791804890 1160326018 1523850328 1312572911 2463571017 1984427100 4207775926 2040039400 860741232 2159355271 3916537064 2230591294 2035521394 2242212292 2013460872 2310443784 1432210094 2397108220 1376497242 2655811262 2559581783 2669484100 2579591341 2761254689 1801130412 2950111121 2180987107 3560972978 462312511 3789879595 1835965889 3871170290 3365239168 4003017517 3896859588 4022885847 3910415678 4032847892 2577717627 4045704532 3913461118 4095826605 159830753 4117771351 148356123 4184069787 629706557 4264931951 585034697 4278183100 658217892 "
+
+
+"5FD21EB0",3072,0,2542,"9893044 2392972237 10889861 2159077495 44448434 535781108 88494949 4015075964 129529707 290535729 135585967 3898572454 184970781 1238465847 190910104 1474100315 364441021 1225072510 374619402 3972590032 398453919 3530929574 431228564 2821630382 467509735 3869198408 471310986 1589686688 500347981 1594206055 555550582 2701903236 564166756 3417825661 565066157 1021795819 647086555 3814430946 682896708 470562535 781150507 3553460356 880281801 3027159611 949688514 3453547672 953524984 3315026775 985400715 2334567089 1055909001 3282898214 1067191702 3582684303 1082586996 793823772 1132177431 3191423416 1132764430 22253092 1282818768 3949127667 1366672887 3143804142 1372078821 3521019927 1447330888 2475613553 1487467805 2831222398 1496987112 1148408238 1555266675 509898585 1661731700 1079814589 1735043340 2728456245 1829237214 802218740 1837828294 1153745366 1839665152 2523542795 1855746937 2480839382 1870545359 3362448620 1886613270 4033195492 1909300215 1386033470 1972573942 2676258799 1987147108 1428283309 2003645176 1636072610 2032869828 630641415 2075413259 654948808 2171751117 4267700865 2176217637 3999289165 2213037324 3963517028 2217170279 2146070636 2285784767 1945332660 2312997833 2693939929 2323341427 1907770744 2465622354 3491854968 2501827090 2131344139 2521682862 4187745990 2547121698 3894406348 2553393427 669547985 2593927330 3324101217 2637612839 1618226824 2656191496 2763306455 2658454604 2865551343 2694110210 1510475992 2699052563 3476454267 2712384564 1558797723 2730389818 3446164562 2798366052 3145910562 2807655825 1462804210 2866234242 3892334760 2872462752 1358653611 2923027049 774838427 2964902025 1521463696 2970359249 3738839225 2982885782 1284100153 3038130074 1893496483 3041251505 3667127769 3082798557 1123821959 3143423446 994711332 3163173019 1103681844 3183906581 4279344191 3227251225 2945306481 3228407066 712700931 3232863340 3823189669 3240000517 1012700586 3252244546 2920246570 3317918217 602928 3339549439 3831353398 3345645646 841575444 3414790213 1268732599 3428807944 824024231 3514757543 742135816 3522255601 1617688011 3586974332 4137437365 3592349943 3411512497 3616286722 669375329 3620912714 1715999088 3681022216 548066307 3813929222 2357578862 3855327105 266141336 3875847089 2563418463 3907318912 1463629890 3930682673 3069478898 3933445499 2829356625 3990156385 3298508145 4001825179 3563188292 4049287817 3901194065 4054257502 2391455506 4076427758 1130624724 4107976021 1161826927 4114906118 3079892780 4131788412 2576362260 4165595111 4003504573 4283937289 2134995195 "`, this)">Copy Sample</button>
+            </div>
+            <pre class="code-block"><code>----
+
+&quot;5FD21EB0&quot;,32,0,711,&quot;156091003 1134074851 199838439 1476982860 259069009 1598981907 300807190 1069929316 392115204 2027141215 398055134 1146643573 905735697 704731595 1055457404 3791804890 1160326018 1523850328 1312572911 2463571017 1984427100 4207775926 2040039400 860741232 2159355271 3916537064 2230591294 2035521394 2242212292 2013460872 2310443784 1432210094 2397108220 1376497242 2655811262 2559581783 2669484100 2579591341 2761254689 1801130412 2950111121 2180987107 3560972978 462312511 3789879595 1835965889 3871170290 3365239168 4003017517 3896859588 4022885847 3910415678 4032847892 2577717627 4045704532 3913461118 4095826605 159830753 4117771351 148356123 4184069787 629706557 4264931951 585034697 4278183100 658217892 &quot;
+
+
+&quot;5FD21EB0&quot;,3072,0,2542,&quot;9893044 2392972237 10889861 2159077495 44448434 535781108 88494949 4015075964 129529707 290535729 135585967 3898572454 184970781 1238465847 190910104 1474100315 364441021 1225072510 374619402 3972590032 398453919 3530929574 431228564 2821630382 467509735 3869198408 471310986 1589686688 500347981 1594206055 555550582 2701903236 564166756 3417825661 565066157 1021795819 647086555 3814430946 682896708 470562535 781150507 3553460356 880281801 3027159611 949688514 3453547672 953524984 3315026775 985400715 2334567089 1055909001 3282898214 1067191702 3582684303 1082586996 793823772 1132177431 3191423416 1132764430 22253092 1282818768 3949127667 1366672887 3143804142 1372078821 3521019927 1447330888 2475613553 1487467805 2831222398 1496987112 1148408238 1555266675 509898585 1661731700 1079814589 1735043340 2728456245 1829237214 802218740 1837828294 1153745366 1839665152 2523542795 1855746937 2480839382 1870545359 3362448620 1886613270 4033195492 1909300215 1386033470 1972573942 2676258799 1987147108 1428283309 2003645176 1636072610 2032869828 630641415 2075413259 654948808 2171751117 4267700865 2176217637 3999289165 2213037324 3963517028 2217170279 2146070636 2285784767 1945332660 2312997833 2693939929 2323341427 1907770744 2465622354 3491854968 2501827090 2131344139 2521682862 4187745990 2547121698 3894406348 2553393427 669547985 2593927330 3324101217 2637612839 1618226824 2656191496 2763306455 2658454604 2865551343 2694110210 1510475992 2699052563 3476454267 2712384564 1558797723 2730389818 3446164562 2798366052 3145910562 2807655825 1462804210 2866234242 3892334760 2872462752 1358653611 2923027049 774838427 2964902025 1521463696 2970359249 3738839225 2982885782 1284100153 3038130074 1893496483 3041251505 3667127769 3082798557 1123821959 3143423446 994711332 3163173019 1103681844 3183906581 4279344191 3227251225 2945306481 3228407066 712700931 3232863340 3823189669 3240000517 1012700586 3252244546 2920246570 3317918217 602928 3339549439 3831353398 3345645646 841575444 3414790213 1268732599 3428807944 824024231 3514757543 742135816 3522255601 1617688011 3586974332 4137437365 3592349943 3411512497 3616286722 669375329 3620912714 1715999088 3681022216 548066307 3813929222 2357578862 3855327105 266141336 3875847089 2563418463 3907318912 1463629890 3930682673 3069478898 3933445499 2829356625 3990156385 3298508145 4001825179 3563188292 4049287817 3901194065 4054257502 2391455506 4076427758 1130624724 4107976021 1161826927 4114906118 3079892780 4131788412 2576362260 4165595111 4003504573 4283937289 2134995195 &quot;</code></pre>
+          </div>
+        </section>
+        
+        
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

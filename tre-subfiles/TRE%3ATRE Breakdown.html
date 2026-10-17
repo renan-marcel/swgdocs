@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRE:TRE Breakdown | SWG Docs</title>
+  <meta name="description" content="Technical documentation and packet structure for TRE:TRE Breakdown in Star Wars Galaxies.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="active">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>Asset & File Formats</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../tre-subfiles/TNR (FileFormat).html" class="">TNR (FileFormat)</a></li>
+<li><a href="../tre-subfiles/TOC (FileFormat).html" class="">TOC (FileFormat)</a></li>
+<li><a href="../tre-subfiles/TRE FileType.html" class="">TRE FileType</a></li>
+<li><a href="../tre-subfiles/TRE QSTFileType.html" class="">TRE QSTFileType</a></li>
+<li><a href="../tre-subfiles/TRE STFFileType.html" class="">TRE STFFileType</a></li>
+<li><a href="../tre-subfiles/TRE%3ATRE Breakdown.html" class="active">TRE:TRE Breakdown</a></li>
+<li><a href="../tre-subfiles/TreFile Template.html" class="">TreFile Template</a></li>
+<li><a href="../tre-subfiles/TreFiles History.html" class="">TreFiles History</a></li>
+<li><a href="../tre-subfiles/TRN (FileFormat).html" class="">TRN (FileFormat)</a></li>
+
+        </ul>
+        <h3>Section Links</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../tre-subfiles/index.html">← TRE Sub-Files Index</a></li>
+          <li><a href="../content/tre-subfiles/TRE%3ATRE Breakdown.md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/TRE%3ATRE_Breakdown" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../tre-subfiles/index.html">TRE Sub-Files</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">TRE:TRE Breakdown</span>
+    </div>
+    
+        
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>TRE:TRE Breakdown</span>
+            
+          </h1>
+          <div class="article-meta">
+            
+            <span class="badge badge-unknown">unknown Complete</span>
+            <span class="badge badge-sample-present">Sample: present</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>TRE Sub-Files</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Other</strong></span>
+          </div>
+        </header>
+
+        
+        
+        
+        <section class="doc-section">
+          <h2>📐 Packet Structure (2 fields)</h2>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th style="width:140px;">Data Type</th>
+                  <th>Field Name</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr>
+              <td><span class="type-pill">http</span></td>
+              <td style="font-weight:600;">//download.nvidia.com/developer/NVTextureSuite/Photoshop_Plugins_7.83.0629.1500.exe</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">http</span></td>
+              <td style="font-weight:600;">//msdn.microsoft.com/library/default.asp?url=/library/en-us/directx9_c/dx9_graphics_reference_dds_file.asp</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        
+        
+        
+        <section class="doc-section">
+          <h2>📦 Sample Hex Dump / Packet Payload</h2>
+          <div class="code-container">
+            <div class="code-header">
+              <span>Status: <strong>PRESENT</strong></span>
+              <button class="copy-btn" onclick="copyToClipboard(`rollout SWG_roll "Model importer" (
+fn readInvLong f = (
+  t1 = readbyte f #unsigned
+  t2 = readbyte f #unsigned
+  t3 = readbyte f #unsigned
+  t4 = readbyte f #unsigned
+  return (t4+t3*0x100+t2*0x10000+t1*0x1000000)
+)
+
+fn readFORM f = (
+  ofsForm = readInvLong f
+  hdr = readlong f
+  return hdr
+)
+
+fn readPoint3 f sc = (
+  datasize = readInvLong f
+  PT3Ary = #()
+  testbyte = readlong f
+  fseek f -4 #seek_cur
+  if (testbyte<65536)AND(testbyte>=0) then (
+   for i = 1 to (datasize/16) do (
+    idx = 1 + (readlong f)
+    vx = (readfloat f) * sc
+    vy = (readfloat f) * sc
+    vz = (readfloat f) * sc
+    PT3Ary[idx] = [vx,-vz,vy]   
+   )
+   for i = 1 to PT3Ary.count do
+    if PT3Ary[i] == undefined then PT3Ary[i] = [0,0,0]
+  ) else (
+   for i = 1 to (datasize/12) do (
+    vx = (readfloat f) * sc
+    vy = (readfloat f) * sc
+    vz = (readfloat f) * sc
+    append PT3Ary [vx,-vz,vy]   
+   )
+  )
+  return PT3Ary
+)
+
+fn readTCSD f = (
+  datasize = readInvLong f
+  PT2Ary = #()
+  for i = 1 to (datasize/8) do (
+   vx = readfloat f
+   vy = 1- (readfloat f)
+   append PT2Ary [vx,vy,0]   
+  )
+  return PT2Ary
+)
+
+fn readPIDX f = (
+  IndexAry = #()
+  datasize = readInvLong f
+  numIndex = readlong f
+  for i = 1 to numIndex do append IndexAry (1+(readlong f))
+  return IndexAry
+)
+
+fn readNIDX f = (
+  IndexAry = #()
+  datasize = readInvLong f
+  for i = 1 to (datasize/4) do append IndexAry (1+(readlong f))
+  return IndexAry
+)
+
+fn readOITL f = (
+  IdxAry = #()
+  Int3Ary = #()
+  datasize = readInvLong f
+  numdata = readlong f
+  for i = 1 to numdata do (
+   append IdxAry (1+(readshort f))
+   f1 = 1 + (readlong f)
+   f2 = 1 + (readlong f)
+   f3 = 1 + (readlong f)
+   append Int3Ary [f1,f2,f3]
+  )
+  return #(IdxAry,Int3Ary)
+)
+
+fn readITL f = (
+  Int3Ary = #()
+  datasize = readInvLong f
+  numdata = readlong f
+  for i = 1 to numdata do (
+   f1 = 1 + (readlong f)
+   f2 = 1 + (readlong f)
+   f3 = 1 + (readlong f)
+   append Int3Ary [f1,f2,f3]
+  )
+  return #(undefined,Int3Ary)
+)
+
+fn buildmesh VTary FCary NLary UVary PIDXary NIDXary = (
+  for i = 1 to PIDXary.count do PIDXary[i] = VTary[(PIDXary[i])]
+  for i = 1 to NIDXary.count do NIDXary[i] = NLary[(NIDXary[i])]
+  if FCary[1] == undefined then  msh = mesh vertices:PIDXary faces:FCary[2]
+  else msh = mesh vertices:PIDXary faces:FCary[2] materialIDs:FCary[1]
+  msh.numTVerts = UVary.count
+  buildTVFaces msh
+  for j = 1 to UVary.count do setTVert  msh j UVary[j]
+  for j = 1 to FCary[2].count do setTVFace msh j FCary[2][j]
+  for j = 1 to NIDXary.count do setNormal msh j NIDXary[j]
+  return msh
+)
+  ----------------------------------------------------------------------------
+fn readDATA f numData sc = (
+  datasize = readInvLong f
+  if datasize < 8 then (
+   fseek f datasize #seek_cur
+   return undefined
+  )
+  VTary = #()
+  NLary = #()
+  UVary = #()
+  sizeElement = datasize/numData
+  --format "V:% @[%]\n" sizeElement (ftell f)
+  for i = 1 to numData do (
+   vx = (readfloat f)*sc;    vy = (readfloat f)*sc;    vz = (readfloat f)*sc
+   nx = readfloat f;    ny = readfloat f;    nz = readfloat f
+   --
+   byteRead = 32
+   case sizeElement of (
+    36: ( readlong f ; byteRead = 36 )
+    52: ( readlong f ; byteRead = 36 )
+    56: ( fseek f 16 #seek_cur ; byteRead = 48 )
+    default: byteRead = 32
+   )
+   vu = readfloat f;    vv = 1-(readfloat f)
+   fseek f (sizeElement-byteRead) #seek_cur
+   --
+   append VTary [vx,-vz,vy]
+   append NLary [nx,-nz,ny]
+   append UVary [vu,vv,0]
+  )
+  return #(VTary,NLary,UVary)
+)
+fn readINDX f = (
+  FCary = #()
+  datasize = readInvLong f
+  numIndex = readlong f
+  sizeElement = datasize / numIndex
+  for i = 1 to (numIndex/3) do (
+   if sizeElement == 2 then (
+    f1 = 1 + (readshort f #unsigned)
+    f2 = 1 + (readshort f #unsigned)
+    f3 = 1 + (readshort f #unsigned)
+   ) else if sizeElement == 4 then (
+    f1 = 1 + (readlong f #unsigned)
+    f2 = 1 + (readlong f #unsigned)
+    f3 = 1 + (readlong f #unsigned)
+   ) else messagebox "error in face index"
+   append FCary [f1,f2,f3]
+  )
+  return FCary
+)
+fn buildmesh2 VTary FCary NLary UVary = (
+  msh = mesh vertices:VTary faces:FCary
+  msh.numTVerts = UVary.count
+  buildTVFaces msh
+  for j = 1 to UVary.count do setTVert  msh j UVary[j]
+  for j = 1 to FCary.count do setTVFace msh j FCary[j]
+  for j = 1 to NLary.count do setNormal msh j NLary[j]
+  return msh
+)
+
+--GUI--
+spinner fscale "Scale : " fieldwidth:60 range:[0.001, 1000, 1]
+button impMGN "Import   MGN / MSH" width:150 Height:25 align:#center
+label lbl1 ""
+label lbl2 "by Fatduck" align:#right
+
+on impMGN pressed do (
+  fname = getOpenFileName caption:"Select Star Wars Galaxies Model file" types:"MGN File (*.mgn)|*.mgn|MSH File (*.msh)|*.msh|All Files (*.*)|*.*|"
+  if fname != undefined then (
+   f = fopen fname "rb"
+   fseek f 0 #seek_end
+   ofsEOF = ftell f
+   fseek f 0 #seek_set
+   VTary = #()
+   UVary = #()
+   NLary = #()
+   FCary = #()
+   PIDXary = #()
+   NIDXary = #()
+   meshFlag = undefined
+   infoFlag = undefined
+   mshVert = 0
+   do (
+    header = readlong f
+    case header of (
+     0x58444E49:
+       (
+        FCary = readINDX f
+        msh = buildmesh2 VTary FCary NLary UVary
+       )
+     0x41544144:
+       (
+        rslt = readDATA f mshVert fscale.value
+        if rslt != undefined then (
+         VTary = rslt[1]
+         NLary = rslt[2]
+         UVary = rslt[3]
+        )
+        infoFlag = false
+       )
+     0x4D524F46:
+       (
+        flg = readFORM f
+        if flg == 0x474D4B53 then meshFlag = true --SKMG
+        else if flg == 0x20544C42 then meshFlag = false --BLT
+        if flg == 0x41585456 then infoFlag = true --VTXA
+       )   
+     0x4F464E49:
+       (
+        if infoFlag == true then (
+         fseek f 8 #seek_cur
+         mshVert = readlong f
+        ) else fseek f (readInvLong f) #seek_cur
+       ) 
+     0x4E534F50:
+       (
+        if meshFlag == true then VTary = readPoint3 f fscale.value
+        else readPoint3 f fscale.value
+       )
+     0x4D524F4E:
+       (
+        if meshFlag == true then NLary = readPoint3 f 1
+        else readPoint3 f 1
+       )
+     0x58444950: PIDXary = readPIDX f
+     0x5844494E: NIDXary = readNIDX f
+     0x44534354: UVary = readTCSD f
+     0x4C54494F:
+       (
+        FCary = readOITL f
+        msh = buildmesh VTary FCary NLary UVary PIDXary NIDXary
+       )
+     0x204C5449:
+       (
+        FCary = readITL f
+        msh = buildmesh VTary FCary NLary UVary PIDXary NIDXary
+       )
+     default:
+       (
+        datasize = readInvLong f
+        fseek f datasize #seek_cur
+       )
+    )--end case
+   ) while (ftell f) != ofsEOF
+   fclose f
+  )--end if fname
+)--end on impMGN
+
+)--end rollout SWG_roll
+
+if Fatduck_SWG != undefined then closeRolloutFloater Fatduck_SWG
+Fatduck_SWG = newRolloutFloater "Star Wars Galaxies" 200 175 10 70
+addRollout SWG_roll Fatduck_SWG`, this)">Copy Sample</button>
+            </div>
+            <pre class="code-block"><code>rollout SWG_roll &quot;Model importer&quot; (
+fn readInvLong f = (
+  t1 = readbyte f #unsigned
+  t2 = readbyte f #unsigned
+  t3 = readbyte f #unsigned
+  t4 = readbyte f #unsigned
+  return (t4+t3*0x100+t2*0x10000+t1*0x1000000)
+)
+
+fn readFORM f = (
+  ofsForm = readInvLong f
+  hdr = readlong f
+  return hdr
+)
+
+fn readPoint3 f sc = (
+  datasize = readInvLong f
+  PT3Ary = #()
+  testbyte = readlong f
+  fseek f -4 #seek_cur
+  if (testbyte&lt;65536)AND(testbyte&gt;=0) then (
+   for i = 1 to (datasize/16) do (
+    idx = 1 + (readlong f)
+    vx = (readfloat f) * sc
+    vy = (readfloat f) * sc
+    vz = (readfloat f) * sc
+    PT3Ary[idx] = [vx,-vz,vy]   
+   )
+   for i = 1 to PT3Ary.count do
+    if PT3Ary[i] == undefined then PT3Ary[i] = [0,0,0]
+  ) else (
+   for i = 1 to (datasize/12) do (
+    vx = (readfloat f) * sc
+    vy = (readfloat f) * sc
+    vz = (readfloat f) * sc
+    append PT3Ary [vx,-vz,vy]   
+   )
+  )
+  return PT3Ary
+)
+
+fn readTCSD f = (
+  datasize = readInvLong f
+  PT2Ary = #()
+  for i = 1 to (datasize/8) do (
+   vx = readfloat f
+   vy = 1- (readfloat f)
+   append PT2Ary [vx,vy,0]   
+  )
+  return PT2Ary
+)
+
+fn readPIDX f = (
+  IndexAry = #()
+  datasize = readInvLong f
+  numIndex = readlong f
+  for i = 1 to numIndex do append IndexAry (1+(readlong f))
+  return IndexAry
+)
+
+fn readNIDX f = (
+  IndexAry = #()
+  datasize = readInvLong f
+  for i = 1 to (datasize/4) do append IndexAry (1+(readlong f))
+  return IndexAry
+)
+
+fn readOITL f = (
+  IdxAry = #()
+  Int3Ary = #()
+  datasize = readInvLong f
+  numdata = readlong f
+  for i = 1 to numdata do (
+   append IdxAry (1+(readshort f))
+   f1 = 1 + (readlong f)
+   f2 = 1 + (readlong f)
+   f3 = 1 + (readlong f)
+   append Int3Ary [f1,f2,f3]
+  )
+  return #(IdxAry,Int3Ary)
+)
+
+fn readITL f = (
+  Int3Ary = #()
+  datasize = readInvLong f
+  numdata = readlong f
+  for i = 1 to numdata do (
+   f1 = 1 + (readlong f)
+   f2 = 1 + (readlong f)
+   f3 = 1 + (readlong f)
+   append Int3Ary [f1,f2,f3]
+  )
+  return #(undefined,Int3Ary)
+)
+
+fn buildmesh VTary FCary NLary UVary PIDXary NIDXary = (
+  for i = 1 to PIDXary.count do PIDXary[i] = VTary[(PIDXary[i])]
+  for i = 1 to NIDXary.count do NIDXary[i] = NLary[(NIDXary[i])]
+  if FCary[1] == undefined then  msh = mesh vertices:PIDXary faces:FCary[2]
+  else msh = mesh vertices:PIDXary faces:FCary[2] materialIDs:FCary[1]
+  msh.numTVerts = UVary.count
+  buildTVFaces msh
+  for j = 1 to UVary.count do setTVert  msh j UVary[j]
+  for j = 1 to FCary[2].count do setTVFace msh j FCary[2][j]
+  for j = 1 to NIDXary.count do setNormal msh j NIDXary[j]
+  return msh
+)
+  ----------------------------------------------------------------------------
+fn readDATA f numData sc = (
+  datasize = readInvLong f
+  if datasize &lt; 8 then (
+   fseek f datasize #seek_cur
+   return undefined
+  )
+  VTary = #()
+  NLary = #()
+  UVary = #()
+  sizeElement = datasize/numData
+  --format &quot;V:% @[%]\n&quot; sizeElement (ftell f)
+  for i = 1 to numData do (
+   vx = (readfloat f)*sc;    vy = (readfloat f)*sc;    vz = (readfloat f)*sc
+   nx = readfloat f;    ny = readfloat f;    nz = readfloat f
+   --
+   byteRead = 32
+   case sizeElement of (
+    36: ( readlong f ; byteRead = 36 )
+    52: ( readlong f ; byteRead = 36 )
+    56: ( fseek f 16 #seek_cur ; byteRead = 48 )
+    default: byteRead = 32
+   )
+   vu = readfloat f;    vv = 1-(readfloat f)
+   fseek f (sizeElement-byteRead) #seek_cur
+   --
+   append VTary [vx,-vz,vy]
+   append NLary [nx,-nz,ny]
+   append UVary [vu,vv,0]
+  )
+  return #(VTary,NLary,UVary)
+)
+fn readINDX f = (
+  FCary = #()
+  datasize = readInvLong f
+  numIndex = readlong f
+  sizeElement = datasize / numIndex
+  for i = 1 to (numIndex/3) do (
+   if sizeElement == 2 then (
+    f1 = 1 + (readshort f #unsigned)
+    f2 = 1 + (readshort f #unsigned)
+    f3 = 1 + (readshort f #unsigned)
+   ) else if sizeElement == 4 then (
+    f1 = 1 + (readlong f #unsigned)
+    f2 = 1 + (readlong f #unsigned)
+    f3 = 1 + (readlong f #unsigned)
+   ) else messagebox &quot;error in face index&quot;
+   append FCary [f1,f2,f3]
+  )
+  return FCary
+)
+fn buildmesh2 VTary FCary NLary UVary = (
+  msh = mesh vertices:VTary faces:FCary
+  msh.numTVerts = UVary.count
+  buildTVFaces msh
+  for j = 1 to UVary.count do setTVert  msh j UVary[j]
+  for j = 1 to FCary.count do setTVFace msh j FCary[j]
+  for j = 1 to NLary.count do setNormal msh j NLary[j]
+  return msh
+)
+
+--GUI--
+spinner fscale &quot;Scale : &quot; fieldwidth:60 range:[0.001, 1000, 1]
+button impMGN &quot;Import   MGN / MSH&quot; width:150 Height:25 align:#center
+label lbl1 &quot;&quot;
+label lbl2 &quot;by Fatduck&quot; align:#right
+
+on impMGN pressed do (
+  fname = getOpenFileName caption:&quot;Select Star Wars Galaxies Model file&quot; types:&quot;MGN File (*.mgn)|*.mgn|MSH File (*.msh)|*.msh|All Files (*.*)|*.*|&quot;
+  if fname != undefined then (
+   f = fopen fname &quot;rb&quot;
+   fseek f 0 #seek_end
+   ofsEOF = ftell f
+   fseek f 0 #seek_set
+   VTary = #()
+   UVary = #()
+   NLary = #()
+   FCary = #()
+   PIDXary = #()
+   NIDXary = #()
+   meshFlag = undefined
+   infoFlag = undefined
+   mshVert = 0
+   do (
+    header = readlong f
+    case header of (
+     0x58444E49:
+       (
+        FCary = readINDX f
+        msh = buildmesh2 VTary FCary NLary UVary
+       )
+     0x41544144:
+       (
+        rslt = readDATA f mshVert fscale.value
+        if rslt != undefined then (
+         VTary = rslt[1]
+         NLary = rslt[2]
+         UVary = rslt[3]
+        )
+        infoFlag = false
+       )
+     0x4D524F46:
+       (
+        flg = readFORM f
+        if flg == 0x474D4B53 then meshFlag = true --SKMG
+        else if flg == 0x20544C42 then meshFlag = false --BLT
+        if flg == 0x41585456 then infoFlag = true --VTXA
+       )   
+     0x4F464E49:
+       (
+        if infoFlag == true then (
+         fseek f 8 #seek_cur
+         mshVert = readlong f
+        ) else fseek f (readInvLong f) #seek_cur
+       ) 
+     0x4E534F50:
+       (
+        if meshFlag == true then VTary = readPoint3 f fscale.value
+        else readPoint3 f fscale.value
+       )
+     0x4D524F4E:
+       (
+        if meshFlag == true then NLary = readPoint3 f 1
+        else readPoint3 f 1
+       )
+     0x58444950: PIDXary = readPIDX f
+     0x5844494E: NIDXary = readNIDX f
+     0x44534354: UVary = readTCSD f
+     0x4C54494F:
+       (
+        FCary = readOITL f
+        msh = buildmesh VTary FCary NLary UVary PIDXary NIDXary
+       )
+     0x204C5449:
+       (
+        FCary = readITL f
+        msh = buildmesh VTary FCary NLary UVary PIDXary NIDXary
+       )
+     default:
+       (
+        datasize = readInvLong f
+        fseek f datasize #seek_cur
+       )
+    )--end case
+   ) while (ftell f) != ofsEOF
+   fclose f
+  )--end if fname
+)--end on impMGN
+
+)--end rollout SWG_roll
+
+if Fatduck_SWG != undefined then closeRolloutFloater Fatduck_SWG
+Fatduck_SWG = newRolloutFloater &quot;Star Wars Galaxies&quot; 200 175 10 70
+addRollout SWG_roll Fatduck_SWG</code></pre>
+          </div>
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>🔗 Related Pages</h2>
+          <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+            <a href="../tre-subfiles/TreFiles History.html" style="font-weight:600;">TreFiles History</a> • <a href="../tre-subfiles/TreFile Template.html" style="font-weight:600;">TreFile Template</a> • <span style="color:var(--text-muted);">TRE_DDSFileType</span> • <span style="color:var(--text-muted);">TRE_QSTFileType</span> • <span style="color:var(--text-muted);">TRE_STFFileType</span> • <a href="../tre-subfiles/TRN (FileFormat).html" style="font-weight:600;">TRN (FileFormat)</a>
+          </div>
+        </section>
+        
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

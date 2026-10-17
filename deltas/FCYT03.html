@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FCYT03 | SWG Docs</title>
+  <meta name="description" content="Technical documentation and packet structure for FCYT03 in Star Wars Galaxies.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="active">Deltas</a></li>
+      <li><a href="../guides/index.html" class="">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>Factory Crate (FCYT)</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../deltas/FCYT03.html" class="active">FCYT03</a></li>
+<li><a href="../deltas/FCYT06.html" class="">FCYT06</a></li>
+<li><a href="../deltas/FCYT08.html" class="">FCYT08</a></li>
+<li><a href="../deltas/FCYT09.html" class="">FCYT09</a></li>
+
+        </ul>
+        <h3>Section Links</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../deltas/index.html">← Protocol Deltas Index</a></li>
+          <li><a href="../content/deltas/FCYT03.md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/FCYT03" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../deltas/index.html">Protocol Deltas</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">FCYT03</span>
+    </div>
+    
+        
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>FCYT03</span>
+            
+          </h1>
+          <div class="article-meta">
+            
+            <span class="badge badge-25">25% Complete</span>
+            <span class="badge badge-sample-present">Sample: present</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Protocol Deltas</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Baseline</strong></span>
+          </div>
+        </header>
+
+        
+        <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:1.5rem;">SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.</div>
+        
+        <section class="doc-section">
+          <h2>📐 Packet Structure (17 fields)</h2>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th style="width:140px;">Data Type</th>
+                  <th>Field Name</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr>
+              <td><span class="type-pill">SHORT</span></td>
+              <td style="font-weight:600;">Object Operand Count</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">FLOAT</span></td>
+              <td style="font-weight:600;">complexity</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">A_STRING</span></td>
+              <td style="font-weight:600;">STF File</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">String spacer</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">A_STRING</span></td>
+              <td style="font-weight:600;">STF Name</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">U_STRING</span></td>
+              <td style="font-weight:600;">Custom Name</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">?volume?</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">SHORT</span></td>
+              <td style="font-weight:600;">?customization?</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">?compcustlistsize?</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">?compcustlistupdcount?</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">?opt bitmask?</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">??</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">??</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">content of crate</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">??</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">?condition?</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">BYTE</span></td>
+              <td style="font-weight:600;">?flag?</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        
+        
+        
+        <section class="doc-section">
+          <h2>📦 Sample Hex Dump / Packet Payload</h2>
+          <div class="code-container">
+            <div class="code-header">
+              <span>Status: <strong>PRESENT</strong></span>
+              <button class="copy-btn" onclick="copyToClipboard(`05 00 
+0C 5F A7 68              // BaselinesMessage
+62 BA 03 B5 10 00 00 00  //ID
+54 59 43 46 03           // TYCF 3
+C7 00 00 00 
+0B 00 00 00 
+80 42 
+09 00                      // String count
+66 61 63 74 6F 72 79 5F 6E // factory_n
+00 00 00 00 
+0B 00                            // String count
+61 72 6D 6F 72 5F 63 72 61 74 65 // armor_crate
+41 00 00 00                                      // U-String count
+50 00 65 00 72 00 73 00                          // P.e.r.s.
+6F 00 6E 00 61 00 6C 00 20 00 53 00 68 00 69 00  // o.n.a.l. .S.h.i.
+65 00 6C 00 64 00 20 00 47 00 65 00 6E 00 65 00  // e.l.d. .G.e.n.e.
+72 00 61 00 74 00 6F 00 72 00 20 00 49 00 6D 00  // r.a.t.o.r. .I.m.
+70 00 65 00 72 00 69 00 61 00 6C 00 20 00 54 00  // p.e.r.i.a.l. .T.
+65 00 73 00 74 00 20 00 50 00 72 00 6F 00 74 00  // e.s.t. .P.r.o.t.
+6F 00 74 00 79 00 70 00 65 00 20 00 5B 00 4A 00  // o.t.y.p.e. .[.J.
+65 00 64 00 69 00 20 00 46 00 65 00 6E 00 64 00  // e.d.i. .F.e.n.d.
+65 00 72 00 20 00 32 00 5D 00                    // e.r. .2.]
+01 00 00 00 
+00 00 00 00 
+00 00 00 00 
+00 00 00 21 
+00 00 01 00 
+00 00 00 00 
+00 00 64 00 
+00 00 01 39`, this)">Copy Sample</button>
+            </div>
+            <pre class="code-block"><code>05 00 
+0C 5F A7 68              // BaselinesMessage
+62 BA 03 B5 10 00 00 00  //ID
+54 59 43 46 03           // TYCF 3
+C7 00 00 00 
+0B 00 00 00 
+80 42 
+09 00                      // String count
+66 61 63 74 6F 72 79 5F 6E // factory_n
+00 00 00 00 
+0B 00                            // String count
+61 72 6D 6F 72 5F 63 72 61 74 65 // armor_crate
+41 00 00 00                                      // U-String count
+50 00 65 00 72 00 73 00                          // P.e.r.s.
+6F 00 6E 00 61 00 6C 00 20 00 53 00 68 00 69 00  // o.n.a.l. .S.h.i.
+65 00 6C 00 64 00 20 00 47 00 65 00 6E 00 65 00  // e.l.d. .G.e.n.e.
+72 00 61 00 74 00 6F 00 72 00 20 00 49 00 6D 00  // r.a.t.o.r. .I.m.
+70 00 65 00 72 00 69 00 61 00 6C 00 20 00 54 00  // p.e.r.i.a.l. .T.
+65 00 73 00 74 00 20 00 50 00 72 00 6F 00 74 00  // e.s.t. .P.r.o.t.
+6F 00 74 00 79 00 70 00 65 00 20 00 5B 00 4A 00  // o.t.y.p.e. .[.J.
+65 00 64 00 69 00 20 00 46 00 65 00 6E 00 64 00  // e.d.i. .F.e.n.d.
+65 00 72 00 20 00 32 00 5D 00                    // e.r. .2.]
+01 00 00 00 
+00 00 00 00 
+00 00 00 00 
+00 00 00 21 
+00 00 01 00 
+00 00 00 00 
+00 00 64 00 
+00 00 01 39</code></pre>
+          </div>
+        </section>
+        
+        
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

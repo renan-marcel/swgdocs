@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CombatAction (000000CC) | SWG Docs</title>
+  <meta name="description" content="Technical documentation and packet structure for CombatAction (000000CC) in Star Wars Galaxies.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="active">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>Effects & Audio (0xA1 - 0x100)</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../controllers/Animation (000000F2).html" class="">Animation (000000F2)</a></li>
+<li><a href="../controllers/CombatAction (000000CC).html" class="active">CombatAction (000000CC)</a></li>
+<li><a href="../controllers/CombatDamage (000000CD).html" class="">CombatDamage (000000CD)</a></li>
+<li><a href="../controllers/DataTransformWithParent (000000F1).html" class="">DataTransformWithParent (000000F1)</a></li>
+<li><a href="../controllers/GenericResponse (000000EE).html" class="">GenericResponse (000000EE)</a></li>
+<li><a href="../controllers/HarvesterResourceData (000000EA).html" class="">HarvesterResourceData (000000EA)</a></li>
+<li><a href="../controllers/MissionCreateRequest (000000FF).html" class="">MissionCreateRequest (000000FF)</a></li>
+<li><a href="../controllers/MissionDetailsRequest (000000F7).html" class="">MissionDetailsRequest (000000F7)</a></li>
+<li><a href="../controllers/MissionDetailsResponse (000000F8).html" class="">MissionDetailsResponse (000000F8)</a></li>
+<li><a href="../controllers/MissionGenericRequest (000000F9).html" class="">MissionGenericRequest (000000F9)</a></li>
+<li><a href="../controllers/MissionGenericRequest (000000FB).html" class="">MissionGenericRequest (000000FB)</a></li>
+<li><a href="../controllers/MissionGenericResponse (000000FA).html" class="">MissionGenericResponse (000000FA)</a></li>
+<li><a href="../controllers/MissionGenericResponse (000000FC).html" class="">MissionGenericResponse (000000FC)</a></li>
+<li><a href="../controllers/MissionGenericResponse (00000100).html" class="">MissionGenericResponse (00000100)</a></li>
+<li><a href="../controllers/MissionListRequest (000000F5).html" class="">MissionListRequest (000000F5)</a></li>
+<li><a href="../controllers/MissionListResponse (000000F6).html" class="">MissionListResponse (000000F6)</a></li>
+<li><a href="../controllers/NetworkId (000000E5).html" class="">NetworkId (000000E5)</a></li>
+<li><a href="../controllers/NetworkId (000000E6).html" class="">NetworkId (000000E6)</a></li>
+<li><a href="../controllers/NetworkId (000000E7).html" class="">NetworkId (000000E7)</a></li>
+<li><a href="../controllers/NetworkId (000000E8).html" class="">NetworkId (000000E8)</a></li>
+<li><a href="../controllers/NetworkId (000000E9).html" class="">NetworkId (000000E9)</a></li>
+<li><a href="../controllers/NetworkIdPair (000000EB).html" class="">NetworkIdPair (000000EB)</a></li>
+<li><a href="../controllers/NetworkIdPair (000000EC).html" class="">NetworkIdPair (000000EC)</a></li>
+<li><a href="../controllers/NpcConversationMessage (000000DF).html" class="">NpcConversationMessage (000000DF)</a></li>
+<li><a href="../controllers/NPCConversationOptions (000000E0).html" class="">NPCConversationOptions (000000E0)</a></li>
+<li><a href="../controllers/OpponentInfo (000000E3).html" class="">OpponentInfo (000000E3)</a></li>
+<li><a href="../controllers/ResourceEmptyHopper (000000ED).html" class="">ResourceEmptyHopper (000000ED)</a></li>
+<li><a href="../controllers/SpatialChat (000000F3).html" class="">SpatialChat (000000F3)</a></li>
+<li><a href="../controllers/SpatialChat (000000F4).html" class="">SpatialChat (000000F4)</a></li>
+<li><a href="../controllers/StartNpcConversation (000000DD).html" class="">StartNpcConversation (000000DD)</a></li>
+<li><a href="../controllers/index.html" style="color:var(--accent-cyan); font-weight:600;">View all 32 in Effects & Audio (0xA1 - 0x100) →</a></li>
+        </ul>
+        <h3>Section Links</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../controllers/index.html">← Object Controllers Index</a></li>
+          <li><a href="../content/controllers/CombatAction (000000CC).md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/CombatAction_%28000000CC%29" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../controllers/index.html">Object Controllers</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">CombatAction (000000CC)</span>
+    </div>
+    
+        
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>CombatAction (000000CC)</span>
+            <span class="opcode-pill" onclick="copyToClipboard('000000CC', this)" title="Click to copy opcode">000000CC 📋</span>
+          </h1>
+          <div class="article-meta">
+            
+            <span class="badge badge-100">100% Complete</span>
+            <span class="badge badge-sample-present">Sample: present</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Object Controllers</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Object Controller</strong></span>
+          </div>
+        </header>
+
+        
+        <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:1.5rem;">SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.</div>
+        
+        <section class="doc-section">
+          <h2>📐 Packet Structure (214 fields)</h2>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th style="width:140px;">Data Type</th>
+                  <th>Field Name</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr>
+              <td><span class="type-pill">fire_single</span></td>
+              <td style="font-weight:600;">0xA198F47D</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_burst</span></td>
+              <td style="font-weight:600;">0xC5ACFDD8</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_suppression</span></td>
+              <td style="font-weight:600;">0x9DC309E9</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">ranged_coup_de_grace</span></td>
+              <td style="font-weight:600;">0x18E40286</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">unarmed_coup_de_grace</span></td>
+              <td style="font-weight:600;">0x96008CB9</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">melee_coup_de_grace</span></td>
+              <td style="font-weight:600;">0xAA69DF3</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_acrobatic</span></td>
+              <td style="font-weight:600;">0xBF7F2AA</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">tumble_facing</span></td>
+              <td style="font-weight:600;">0x1E904B4F</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">tumble</span></td>
+              <td style="font-weight:600;">0x9D2BC971</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">warcry</span></td>
+              <td style="font-weight:600;">0x2C71E1EA</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_throw_1_arc_particle_level_1_light</span></td>
+              <td style="font-weight:600;">0xA32D4F4F</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_throw_1_arc_particle_level_1_medium</span></td>
+              <td style="font-weight:600;">0xD38F8A6</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_throw_1_particle_level_1_light</span></td>
+              <td style="font-weight:600;">0xA12F155B</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_throw_1_particle_level_1_medium</span></td>
+              <td style="font-weight:600;">0xA197EFA3</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_mind_blast_1_arc_particle_level_1_light</span></td>
+              <td style="font-weight:600;">0x2F6BDDB3</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_mind_blast_1_arc_particle_level_1_medium</span></td>
+              <td style="font-weight:600;">0x60D20A88</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_mind_blast_1_particle_level_1_light</span></td>
+              <td style="font-weight:600;">0x3F37228A</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_mind_blast_1_particle_level_1_medium</span></td>
+              <td style="font-weight:600;">0xFF5FAD81</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_knockdown_1_particle_level_1</span></td>
+              <td style="font-weight:600;">0xCE4B23A1</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_knockdown_1_arc_particle_level_1</span></td>
+              <td style="font-weight:600;">0x542EE645</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_intimidate</span></td>
+              <td style="font-weight:600;">0x73C5BE9D</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_intimidate_chain</span></td>
+              <td style="font-weight:600;">0xA982DE84</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_weaken_1_arc_particle_level_1_light</span></td>
+              <td style="font-weight:600;">0xD9B51B63</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_weaken_1_arc_particle_level_1_medium</span></td>
+              <td style="font-weight:600;">0x896F4F5F</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_weaken_1_particle_level_1_light</span></td>
+              <td style="font-weight:600;">0x60BBC63C</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_weaken_1_particle_level_1_medium</span></td>
+              <td style="font-weight:600;">0x33C099C2</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_healing_1</span></td>
+              <td style="font-weight:600;">0xBF050580</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_drain_1</span></td>
+              <td style="font-weight:600;">0xE6D39F0C</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_transfer_1</span></td>
+              <td style="font-weight:600;">0xFA3497F6</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">mind_trick_1</span></td>
+              <td style="font-weight:600;">0x895A4380</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_particle_level_1_light</span></td>
+              <td style="font-weight:600;">0xF14F310A</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_particle_level_1_medium</span></td>
+              <td style="font-weight:600;">0x1171D9FB</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_particle_level_2_light</span></td>
+              <td style="font-weight:600;">0xC2F7C8DB</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_particle_level_2_medium</span></td>
+              <td style="font-weight:600;">0x4F143B17</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_particle_level_3_light</span></td>
+              <td style="font-weight:600;">0xD39F9F94</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_particle_level_3_medium</span></td>
+              <td style="font-weight:600;">0x85C89A4C</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_particle_level_4_light</span></td>
+              <td style="font-weight:600;">0x139AFA7C</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_particle_level_4_medium</span></td>
+              <td style="font-weight:600;">0x44C33ECA</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_particle_level_5_light</span></td>
+              <td style="font-weight:600;">0x2F2AD33</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_particle_level_5_medium</span></td>
+              <td style="font-weight:600;">0x8E1F9F91</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_arc_particle_level_1_light</span></td>
+              <td style="font-weight:600;">0x73D92090</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_arc_particle_level_1_medium</span></td>
+              <td style="font-weight:600;">0x591ED8E0</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_arc_particle_level_2_light</span></td>
+              <td style="font-weight:600;">0x4061D941</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_arc_particle_level_2_medium</span></td>
+              <td style="font-weight:600;">0x77B3A0C</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_arc_particle_level_3_light</span></td>
+              <td style="font-weight:600;">0x51098E0E</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_arc_particle_level_3_medium</span></td>
+              <td style="font-weight:600;">0xCDA79B57</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_arc_particle_level_4_light</span></td>
+              <td style="font-weight:600;">0x910CEBE6</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_arc_particle_level_4_medium</span></td>
+              <td style="font-weight:600;">0xCAC3FD1</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_arc_particle_level_5_light</span></td>
+              <td style="font-weight:600;">0x8064BCA9</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_lightning_1_arc_particle_level_5_medium</span></td>
+              <td style="font-weight:600;">0xC6709E8A</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_choke_1_arc_particle_level_1_light</span></td>
+              <td style="font-weight:600;">0x18B5E779</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_choke_1_arc_particle_level_1_medium</span></td>
+              <td style="font-weight:600;">0x2FA3D4C0</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_choke_1_particle_level_1_light</span></td>
+              <td style="font-weight:600;">0x45CD3B94</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_choke_1_particle_level_1_medium</span></td>
+              <td style="font-weight:600;">0x855EC8E8</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_channel_2_particles_light</span></td>
+              <td style="font-weight:600;">0x43869982</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_channel_2_particles_medium</span></td>
+              <td style="font-weight:600;">0x47CE141C</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_channel_1_particle_light</span></td>
+              <td style="font-weight:600;">0xBAA5A7B5</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_channel_1_particle_medium</span></td>
+              <td style="font-weight:600;">0xD20A42E8</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_blast_2_particles_light</span></td>
+              <td style="font-weight:600;">0x85BCDAC5</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_blast_2_particles_medium</span></td>
+              <td style="font-weight:600;">0x3528EF75</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_blast_1_particle_light</span></td>
+              <td style="font-weight:600;">0xE0D07B0D</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_blast_1_particle_medium</span></td>
+              <td style="font-weight:600;">0x143001AF</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_absorb_2_particles_light</span></td>
+              <td style="font-weight:600;">0x129732F9</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_absorb_2_particles_medium</span></td>
+              <td style="font-weight:600;">0xC149FA7C</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_absorb_1_particle_light</span></td>
+              <td style="font-weight:600;">0xD9DEB6D</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">force_absorb_1_particle_medium</span></td>
+              <td style="font-weight:600;">0x831BE993</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">point_and_laugh</span></td>
+              <td style="font-weight:600;">0x952A74B9</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">intimidate</span></td>
+              <td style="font-weight:600;">0x5027C538</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">rescue</span></td>
+              <td style="font-weight:600;">0xEE6E222F</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_defender_posture_change_up</span></td>
+              <td style="font-weight:600;">0x4CCDBF4E</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_defender_posture_change_down</span></td>
+              <td style="font-weight:600;">0xAEBEC072</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_area_light</span></td>
+              <td style="font-weight:600;">0x20A82F7F</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_area_medium</span></td>
+              <td style="font-weight:600;">0x9DD64F12</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_area_no_trails_light</span></td>
+              <td style="font-weight:600;">0x74B8822B</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_area_no_trails_medium</span></td>
+              <td style="font-weight:600;">0x465FCCD4</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_5_single_medium</span></td>
+              <td style="font-weight:600;">0xD1126A8A</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_5_single_light</span></td>
+              <td style="font-weight:600;">0xFFBB704B</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_5_single_medium_face</span></td>
+              <td style="font-weight:600;">0xBB5B427</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_5_single_light_face</span></td>
+              <td style="font-weight:600;">0x199B6040</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_7_single_medium</span></td>
+              <td style="font-weight:600;">0x82CDB434</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_7_single_light</span></td>
+              <td style="font-weight:600;">0x7D269FC4</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_7_single_medium_face</span></td>
+              <td style="font-weight:600;">0xA7AAB14F</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_7_single_light_face</span></td>
+              <td style="font-weight:600;">0xAB8B5754</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_9_single_medium</span></td>
+              <td style="font-weight:600;">0xE2F7EF01</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_9_single_light</span></td>
+              <td style="font-weight:600;">0x2AD05266</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_9_single_medium_face</span></td>
+              <td style="font-weight:600;">0x54E96B53</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_9_single_light_face</span></td>
+              <td style="font-weight:600;">0xB5F8D238</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_5_special_single_light</span></td>
+              <td style="font-weight:600;">0xCC61B17C</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_5_special_single_medium</span></td>
+              <td style="font-weight:600;">0x441CC581</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_5_special_single_light_face</span></td>
+              <td style="font-weight:600;">0xB1ED3658</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_5_special_single_medium_face</span></td>
+              <td style="font-weight:600;">0xC32BDB1B</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_3_single_light</span></td>
+              <td style="font-weight:600;">0xCE0081DF</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_3_single_medium</span></td>
+              <td style="font-weight:600;">0x936EC84D</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_3_single_light_face</span></td>
+              <td style="font-weight:600;">0xCFAA397C</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_3_single_medium_face</span></td>
+              <td style="font-weight:600;">0xFF95BB9F</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_3_special_single_light</span></td>
+              <td style="font-weight:600;">0x8EEA3C5C</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_3_special_single_medium</span></td>
+              <td style="font-weight:600;">0xA4E86D94</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_3_special_single_light_face</span></td>
+              <td style="font-weight:600;">0xC9BF89A5</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_3_special_single_medium_face</span></td>
+              <td style="font-weight:600;">0x1928FC1C</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_1_single_light</span></td>
+              <td style="font-weight:600;">0x4C9D6E50</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_1_single_medium</span></td>
+              <td style="font-weight:600;">0xC0B116F3</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_1_single_light_face</span></td>
+              <td style="font-weight:600;">0x7DBA0E68</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_1_single_medium_face</span></td>
+              <td style="font-weight:600;">0x538ABEF7</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_1_special_single_light</span></td>
+              <td style="font-weight:600;">0xDD98F8BF</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_1_special_single_medium</span></td>
+              <td style="font-weight:600;">0x4BBF598</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_1_special_single_light_face</span></td>
+              <td style="font-weight:600;">0x8C7A5C0D</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_1_special_single_medium_face</span></td>
+              <td style="font-weight:600;">0xAFD61E1E</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">test_swoosh</span></td>
+              <td style="font-weight:600;">0x12CCB50E</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">test_homing</span></td>
+              <td style="font-weight:600;">0x25355503</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">test_heavy_weapon</span></td>
+              <td style="font-weight:600;">0x263ADB53</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">test_heavy_weapon_particle_system</span></td>
+              <td style="font-weight:600;">0x76598837</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">test_sword_ricochet</span></td>
+              <td style="font-weight:600;">0xE30B91AA</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">test_sword_throw</span></td>
+              <td style="font-weight:600;">0x7DAE60BF</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">test_flamethrower_arc</span></td>
+              <td style="font-weight:600;">0x737DB3A3</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">test_lightning_1</span></td>
+              <td style="font-weight:600;">0xDB614110</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">test_lightning_2</span></td>
+              <td style="font-weight:600;">0x247021D</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">test_lightning_passive_actors</span></td>
+              <td style="font-weight:600;">0xE0FD567</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_flame_thrower_cone_1_light</span></td>
+              <td style="font-weight:600;">0xF338D78F</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_flame_thrower_cone_1_medium</span></td>
+              <td style="font-weight:600;">0x94F86763</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_flame_thrower_cone_2_light</span></td>
+              <td style="font-weight:600;">0xC0802E5E</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_flame_thrower_cone_2_medium</span></td>
+              <td style="font-weight:600;">0xCA9D858F</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_flame_thrower_single_1_light</span></td>
+              <td style="font-weight:600;">0xA4AE26EC</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_flame_thrower_single_1_medium</span></td>
+              <td style="font-weight:600;">0xDA4F1733</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_flame_thrower_single_2_light</span></td>
+              <td style="font-weight:600;">0x9716DF3D</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_flame_thrower_single_2_medium</span></td>
+              <td style="font-weight:600;">0x842AF5DF</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_lightning_rifle_single_1_light</span></td>
+              <td style="font-weight:600;">0xFA1A12B7</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_lightning_rifle_single_1_medium</span></td>
+              <td style="font-weight:600;">0xBC717F54</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_lightning_rifle_single_2_light</span></td>
+              <td style="font-weight:600;">0xC9A2EB66</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_lightning_rifle_single_2_medium</span></td>
+              <td style="font-weight:600;">0xE2149DB8</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_acid_rifle_single_1_light</span></td>
+              <td style="font-weight:600;">0x24BA04B1</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_acid_rifle_single_1_medium</span></td>
+              <td style="font-weight:600;">0xEE25958</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_acid_rifle_single_2_light</span></td>
+              <td style="font-weight:600;">0x1702FD60</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_acid_rifle_single_2_medium</span></td>
+              <td style="font-weight:600;">0x5087BBB4</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">test_flamethrower</span></td>
+              <td style="font-weight:600;">0x71DEA592</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">saberthrow_posture_change</span></td>
+              <td style="font-weight:600;">0x298A023F</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">saberthrow_light</span></td>
+              <td style="font-weight:600;">0x3737DE16</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">saberthrow_medium</span></td>
+              <td style="font-weight:600;">0x5F7BC6D</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_heavy_rocket_launcher_light</span></td>
+              <td style="font-weight:600;">0xB3743368</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_heavy_rocket_launcher_medium</span></td>
+              <td style="font-weight:600;">0xE8CEC55C</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_heavy_particle_beam_light</span></td>
+              <td style="font-weight:600;">0xF61155B7</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_heavy_particle_beam_medium</span></td>
+              <td style="font-weight:600;">0xBC7D7413</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_heavy_lightning_beam_light</span></td>
+              <td style="font-weight:600;">0x28C12D20</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_heavy_lightning_beam_medium</span></td>
+              <td style="font-weight:600;">0x27C8FE50</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_heavy_acid_beam_light</span></td>
+              <td style="font-weight:600;">0xFCB2CA1A</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">fire_heavy_acid_beam_medium</span></td>
+              <td style="font-weight:600;">0x61A7354C</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">change_posture</span></td>
+              <td style="font-weight:600;">0x450229AB</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">posture_scramble</span></td>
+              <td style="font-weight:600;">0xA620916D</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">dodge</span></td>
+              <td style="font-weight:600;">0x4FF30E4</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">go_incapacitated</span></td>
+              <td style="font-weight:600;">0x82021A0D</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">get_hit_light</span></td>
+              <td style="font-weight:600;">0xC1496B10</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">get_hit_medium</span></td>
+              <td style="font-weight:600;">0xB74C44C2</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_left_light_0</span></td>
+              <td style="font-weight:600;">0x28664799</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_center_light_0</span></td>
+              <td style="font-weight:600;">0x917B54F5</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_right_light_0</span></td>
+              <td style="font-weight:600;">0xEC73E23C</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_left_light_0</span></td>
+              <td style="font-weight:600;">0xCC03407</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_center_light_0</span></td>
+              <td style="font-weight:600;">0xD0FFC443</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_right_light_0</span></td>
+              <td style="font-weight:600;">0x78CCD756</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_left_light_0</span></td>
+              <td style="font-weight:600;">0xFBCA414B</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_center_light_0</span></td>
+              <td style="font-weight:600;">0xEB876830</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_right_light_0</span></td>
+              <td style="font-weight:600;">0x6BD05722</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_left_medium_0</span></td>
+              <td style="font-weight:600;">0xFB582775</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_center_medium_0</span></td>
+              <td style="font-weight:600;">0x8BC93FF</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_right_medium_0</span></td>
+              <td style="font-weight:600;">0x9EA1D836</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_left_medium_0</span></td>
+              <td style="font-weight:600;">0x6FE7121F</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_center_medium_0</span></td>
+              <td style="font-weight:600;">0xC43DAFC8</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_right_medium_0</span></td>
+              <td style="font-weight:600;">0xDF254880</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_left_medium_0</span></td>
+              <td style="font-weight:600;">0x7CFB926B</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_center_medium_0</span></td>
+              <td style="font-weight:600;">0xFA3D2089</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_right_medium_0</span></td>
+              <td style="font-weight:600;">0xE45DE4F3</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_left_light_1</span></td>
+              <td style="font-weight:600;">0x9F7B869D</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_center_light_1</span></td>
+              <td style="font-weight:600;">0x266695F1</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_right_light_1</span></td>
+              <td style="font-weight:600;">0x5B6E2338</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_left_light_1</span></td>
+              <td style="font-weight:600;">0xBBDDF503</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_center_light_1</span></td>
+              <td style="font-weight:600;">0x67E20547</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_right_light_1</span></td>
+              <td style="font-weight:600;">0xCFD11652</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_left_light_1</span></td>
+              <td style="font-weight:600;">0x4CD7804F</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_center_light_1</span></td>
+              <td style="font-weight:600;">0x5C9AA934</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_right_light_1</span></td>
+              <td style="font-weight:600;">0xDCCD9626</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_left_medium_1</span></td>
+              <td style="font-weight:600;">0x4C45E671</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_center_medium_1</span></td>
+              <td style="font-weight:600;">0xBFA152FB</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_right_medium_1</span></td>
+              <td style="font-weight:600;">0x29BC1932</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_left_medium_1</span></td>
+              <td style="font-weight:600;">0xD8FAD31B</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_center_medium_1</span></td>
+              <td style="font-weight:600;">0x73206ECC</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_right_medium_1</span></td>
+              <td style="font-weight:600;">0x68388984</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_left_medium_1</span></td>
+              <td style="font-weight:600;">0xCBE6536F</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_center_medium_1</span></td>
+              <td style="font-weight:600;">0x4D20E18D</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_right_medium_1</span></td>
+              <td style="font-weight:600;">0x534025F7</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_left_light_2</span></td>
+              <td style="font-weight:600;">0x465DC590</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_center_light_2</span></td>
+              <td style="font-weight:600;">0xFF40D6FC</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_right_light_2</span></td>
+              <td style="font-weight:600;">0x82486035</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_left_light_2</span></td>
+              <td style="font-weight:600;">0x62FBB60E</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_center_light_2</span></td>
+              <td style="font-weight:600;">0xBEC4464A</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_right_light_2</span></td>
+              <td style="font-weight:600;">0x16F7555F</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_left_light_2</span></td>
+              <td style="font-weight:600;">0x95F1C342</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_center_light_2</span></td>
+              <td style="font-weight:600;">0x85BCEA39</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_right_light_2</span></td>
+              <td style="font-weight:600;">0x5EBD52B</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_left_medium_2</span></td>
+              <td style="font-weight:600;">0x9563A57C</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_center_medium_2</span></td>
+              <td style="font-weight:600;">0x668711F6</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_right_medium_2</span></td>
+              <td style="font-weight:600;">0xF09A5A3F</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_left_medium_2</span></td>
+              <td style="font-weight:600;">0x1DC9016</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_center_medium_2</span></td>
+              <td style="font-weight:600;">0xAA062DC1</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_right_medium_2</span></td>
+              <td style="font-weight:600;">0xB11ECA89</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_left_medium_2</span></td>
+              <td style="font-weight:600;">0x12C01062</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_center_medium_2</span></td>
+              <td style="font-weight:600;">0x9406A280</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_right_medium_2</span></td>
+              <td style="font-weight:600;">0x8A6666FA</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_left_light_3</span></td>
+              <td style="font-weight:600;">0xF1400494</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_center_light_3</span></td>
+              <td style="font-weight:600;">0x485D17F8</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_high_right_light_3</span></td>
+              <td style="font-weight:600;">0x3555A131</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_left_light_3</span></td>
+              <td style="font-weight:600;">0xD5E6770A</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_center_light_3</span></td>
+              <td style="font-weight:600;">0x9D9874E</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_mid_right_light_3</span></td>
+              <td style="font-weight:600;">0xA1EA945B</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_left_light_3</span></td>
+              <td style="font-weight:600;">0x22EC0246</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_center_light_3</span></td>
+              <td style="font-weight:600;">0x32A12B3D</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">attack_low_right_light_3</span></td>
+              <td style="font-weight:600;">0xB2F6142F</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        
+        
+        
+        <section class="doc-section">
+          <h2>📦 Sample Hex Dump / Packet Payload</h2>
+          <div class="code-container">
+            <div class="code-header">
+              <span>Status: <strong>PRESENT</strong></span>
+              <button class="copy-btn" onclick="copyToClipboard(`05 00 			   'Opperand Count
+46 5E CE 80 		   'ObjController
+1B 00 00 00 		   'Sub-Op
+CC 00 00 00 		   'CommandOp
+19 00 00 00 00 00 00 00   'Reciepeint ID
+00 00 00 00 		   'Spacing
+08 E3 38 40 		   'Animation CRC
+19 00 00 00 00 00 00 00   'Character ID
+3A 00 00 00 00 00 00 00   'Character ID + Weapon ID Offset (58)
+00 			   'Posture
+FF FF 			   'Red Tail
+01 00 			   'Num of Defenders
+7C 1B 06 00 00 00 00 00   'Defender ID
+00                        'posture of defender
+01 00 
+C2 AD`, this)">Copy Sample</button>
+            </div>
+            <pre class="code-block"><code>05 00 			   &#x27;Opperand Count
+46 5E CE 80 		   &#x27;ObjController
+1B 00 00 00 		   &#x27;Sub-Op
+CC 00 00 00 		   &#x27;CommandOp
+19 00 00 00 00 00 00 00   &#x27;Reciepeint ID
+00 00 00 00 		   &#x27;Spacing
+08 E3 38 40 		   &#x27;Animation CRC
+19 00 00 00 00 00 00 00   &#x27;Character ID
+3A 00 00 00 00 00 00 00   &#x27;Character ID + Weapon ID Offset (58)
+00 			   &#x27;Posture
+FF FF 			   &#x27;Red Tail
+01 00 			   &#x27;Num of Defenders
+7C 1B 06 00 00 00 00 00   &#x27;Defender ID
+00                        &#x27;posture of defender
+01 00 
+C2 AD</code></pre>
+          </div>
+        </section>
+        
+        
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

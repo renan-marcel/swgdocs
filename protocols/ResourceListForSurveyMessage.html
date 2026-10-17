@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ResourceListForSurveyMessage | SWG Docs</title>
+  <meta name="description" content="Technical documentation and packet structure for ResourceListForSurveyMessage in Star Wars Galaxies.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="active">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>General & System Packets</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../protocols/AcceptTransactionMessage.html" class="">AcceptTransactionMessage</a></li>
+<li><a href="../protocols/AiDebugString.html" class="">AiDebugString</a></li>
+<li><a href="../protocols/AppendCommentResponseMessage.html" class="">AppendCommentResponseMessage</a></li>
+<li><a href="../protocols/BeginVerificationMessage.html" class="">BeginVerificationMessage</a></li>
+<li><a href="../protocols/CancelTicketResponseMessage.html" class="">CancelTicketResponseMessage</a></li>
+<li><a href="../protocols/ClientIdMsg.html" class="">ClientIdMsg</a></li>
+<li><a href="../protocols/ClientInactivityMessage.html" class="">ClientInactivityMessage</a></li>
+<li><a href="../protocols/ClientMfdStatusUpdateMessage.html" class="">ClientMfdStatusUpdateMessage</a></li>
+<li><a href="../protocols/ClientOpenContainerMessage.html" class="">ClientOpenContainerMessage</a></li>
+<li><a href="../protocols/ClientRandomNameRequest.html" class="">ClientRandomNameRequest</a></li>
+<li><a href="../protocols/ClientRandomNameResponse.html" class="">ClientRandomNameResponse</a></li>
+<li><a href="../protocols/ClosedContainerMessage.html" class="">ClosedContainerMessage</a></li>
+<li><a href="../protocols/CloseHolocronMessage.html" class="">CloseHolocronMessage</a></li>
+<li><a href="../protocols/ConsentRequestMessage.html" class="">ConsentRequestMessage</a></li>
+<li><a href="../protocols/CreateClientPathMessage.html" class="">CreateClientPathMessage</a></li>
+<li><a href="../protocols/CreateMissileMessage.html" class="">CreateMissileMessage</a></li>
+<li><a href="../protocols/CreateNebulaLightningMessage.html" class="">CreateNebulaLightningMessage</a></li>
+<li><a href="../protocols/CreateProjectileMessage.html" class="">CreateProjectileMessage</a></li>
+<li><a href="../protocols/CreateTicketResponseMessage.html" class="">CreateTicketResponseMessage</a></li>
+<li><a href="../protocols/CuiControlsMenuBindEntry%3A%3AMessages%3A%3AUPDATE BINDING.html" class="">CuiControlsMenuBindEntry::Messages::UPDATE BINDING</a></li>
+<li><a href="../protocols/CuiIoWin%3A%3AMessages%3A%3ACONTROL KEY DOWN.html" class="">CuiIoWin::Messages::CONTROL KEY DOWN</a></li>
+<li><a href="../protocols/CuiIoWin%3A%3AMessages%3A%3ACONTROL KEY UP.html" class="">CuiIoWin::Messages::CONTROL KEY UP</a></li>
+<li><a href="../protocols/CuiIoWin%3A%3AMessages%3A%3APOINTER INPUT TOGGLED.html" class="">CuiIoWin::Messages::POINTER INPUT TOGGLED</a></li>
+<li><a href="../protocols/CuiLoadingManager%3A%3AFullscreenBackButtonEnabled.html" class="">CuiLoadingManager::FullscreenBackButtonEnabled</a></li>
+<li><a href="../protocols/CuiLoadingManager%3A%3AFullscreenLoadingDisabled.html" class="">CuiLoadingManager::FullscreenLoadingDisabled</a></li>
+<li><a href="../protocols/CuiLoadingManager%3A%3AFullscreenLoadingEnabled.html" class="">CuiLoadingManager::FullscreenLoadingEnabled</a></li>
+<li><a href="../protocols/DestroyClientPathMessage.html" class="">DestroyClientPathMessage</a></li>
+<li><a href="../protocols/DestroyShipComponentMessage.html" class="">DestroyShipComponentMessage</a></li>
+<li><a href="../protocols/DestroyShipMessage.html" class="">DestroyShipMessage</a></li>
+<li><a href="../protocols/EditAppearanceMessage.html" class="">EditAppearanceMessage</a></li>
+<li><a href="../protocols/index.html" style="color:var(--accent-cyan); font-weight:600;">View all 102 in General & System Packets →</a></li>
+        </ul>
+        <h3>Section Links</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../protocols/index.html">← SWG Protocols Index</a></li>
+          <li><a href="../content/protocols/ResourceListForSurveyMessage.md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/ResourceListForSurveyMessage" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../protocols/index.html">SWG Protocols</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">ResourceListForSurveyMessage</span>
+    </div>
+    
+        
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>ResourceListForSurveyMessage</span>
+            <span class="opcode-pill" onclick="copyToClipboard('8A64B1D5', this)" title="Click to copy opcode">8A64B1D5 📋</span>
+          </h1>
+          <div class="article-meta">
+            <span class="badge badge-sc" title="Server to Client">S→C (Server)</span>
+            <span class="badge badge-100">100% Complete</span>
+            <span class="badge badge-sample-present">Sample: present</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>SWG Protocols</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Server Packet</strong></span>
+          </div>
+        </header>
+
+        
+        <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:1.5rem;">SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.</div>
+        
+        <section class="doc-section">
+          <h2>📐 Packet Structure (3 fields)</h2>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th style="width:140px;">Data Type</th>
+                  <th>Field Name</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr>
+              <td><span class="type-pill">SHORT</span></td>
+              <td style="font-weight:600;">Priority</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Opcode</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Number of Resources</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>🏷️ Variable Descriptions</h2>
+          <div class="var-grid">
+            
+            <div class="var-card">
+              <div class="var-name">Opperand_Count</div>
+              <div class="var-val">4</div>
+            </div>
+            
+            <div class="var-card">
+              <div class="var-name">Opcode</div>
+              <div class="var-val">8A64B1D5</div>
+            </div>
+            
+          </div>
+        </section>
+        
+        
+        
+        <section class="doc-section">
+          <h2>📦 Sample Hex Dump / Packet Payload</h2>
+          <div class="code-container">
+            <div class="code-header">
+              <span>Status: <strong>PRESENT</strong></span>
+              <button class="copy-btn" onclick="copyToClipboard(`04 00
+D5 B1 64 8A
+02 00 00 00
+
+06 00 4F 63 6F 61 74 65 # String: "Ocoate"
+FC 82 1D C8 1A 00 00 00 # Resource ID
+11 00 72 61 64 69 6F 61 63 74 69 76 65 5F 74 79 70 65 35 # String: "radioactive_type5"
+
+08 00 54 6F 68 6F 69 68 61 64 # String: "Tohoihad"
+14 99 0B B3 1A 00 00 00 # Resource ID
+0D 00 73 74 65 65 6C 5F 72 68 6F 64 69 75 6D # String: "steel_rhodium"
+
+07 00 6D 69 6E 65 72 61 6C # String: "mineral"
+
+55 C8 F2 A8 1A 00 00 00 
+
+
+
+Opcode[2321854933]
+04 00 D5 B1 64 8A 01 00 00 00 08 00 58 6F 75 6A
+6A 65 67 65 14 36 0A B3 1A 00 00 00 25 00 65 6E
+65 72 67 79 5F 72 65 6E 65 77 61 62 6C 65 5F 75
+6E 6C 69 6D 69 74 65 64 5F 77 69 6E 64 5F 6E 61
+62 6F 6F 1F 00 65 6E 65 72 67 79 5F 72 65 6E 65
+77 61 62 6C 65 5F 75 6E 6C 69 6D 69 74 65 64 5F
+77 69 6E 64 81 2A C7 BC 1A 00 00 00
+
+....d.......Xoujjege.6......%.energy_renewable_
+unlimited_wind_naboo..energy_renewable_unlimite
+d_wind.*......
+
+Opcode[2321854933]
+04 00 D5 B1 64 8A 11 00 00 00 06 00 4F 63 6F 61
+74 65 FC 82 1D C8 1A 00 00 00 11 00 72 61 64 69
+6F 61 63 74 69 76 65 5F 74 79 70 65 35 08 00 54
+6F 68 6F 69 68 61 64 14 99 0B B3 1A 00 00 00 0D
+00 73 74 65 65 6C 5F 72 68 6F 64 69 75 6D 0A 00
+47 68 65 61 6C 6C 6F 61 74 65 80 32 5D BD 1A 00
+00 00 0D 00 73 74 65 65 6C 5F 6B 69 69 72 69 75
+6D 06 00 45 69 68 69 65 74 F1 1E 5D BD 1A 00 00
+00 10 00 73 74 65 65 6C 5F 71 75 61 64 72 61 6E
+69 75 6D 0C 00 43 61 72 62 69 72 6F 65 70 65 69
+63 EA EB B7 A4 1A 00 00 00 0C 00 69 72 6F 6E 5F
+70 6C 75 6D 62 75 6D 04 00 44 61 73 65 1A 4B 0A
+B3 1A 00 00 00 0C 00 69 72 6F 6E 5F 70 6C 75 6D
+62 75 6D 10 00 51 75 61 64 64 69 6E 69 65 72 6F
+78 65 69 75 6D F4 6A 0A B3 1A 00 00 00 0C 00 69
+72 6F 6E 5F 70 6C 75 6D 62 75 6D 08 00 4E 6F 65
+68 69 77 61 6D BA 59 0B D0 1A 00 00 00 0D 00 69
+72 6F 6E 5F 62 72 6F 6E 7A 69 75 6D 0F 00 4F 6D
+6E 69 72 61 6F 76 61 76 61 75 69 64 65 51 CA 5A
+BD 1A 00 00 00 0C 00 69 72 6F 6E 5F 64 6F 6F 6E
+69 75 6D 07 00 43 6F 76 65 69 61 6E 6E 12 0B D0
+1A 00 00 00 0C 00 69 72 6F 6E 5F 6B 61 6D 6D 72
+69 73 07 00 54 65 74 6F 68 65 64 8D BB 0B D0 1A
+00 00 00 11 00 61 6C 75 6D 69 6E 75 6D 5F 74 69
+74 61 6E 69 75 6D 0A 00 4F 6D 6E 69 77 61 68 61
+6C 61 5B 0E 14 C8 1A 00 00 00 11 00 61 6C 75 6D
+69 6E 75 6D 5F 63 68 72 6F 6D 69 75 6D 06 00 53
+6F 65 6B 68 61 A7 73 58 BD 1A 00 00 00 10 00 63
+6F 70 70 65 72 5F 62 65 79 72 6C 6C 69 75 73 07
+00 57 6F 74 69 69 61 6D 92 E8 1E C8 1A 00 00 00
+10 00 63 6F 70 70 65 72 5F 70 6C 61 74 69 6E 69
+74 65 0A 00 45 75 72 6F 67 61 69 69 74 65 C9 23
+08 B3 1A 00 00 00 14 00 6F 72 65 5F 63 61 72 62
+6F 6E 61 74 65 5F 76 61 72 69 75 6D 07 00 56 6F
+6C 65 73 69 73 20 B8 5B BD 1A 00 00 00 18 00 6F
+72 65 5F 73 69 6C 69 63 6C 61 73 74 69 63 5F 63
+6F 72 74 6F 73 69 73 0B 00 54 72 69 6C 61 74 69
+68 61 69 63 23 57 5A BD 1A 00 00 00 19 00 63 72
+79 73 74 61 6C 6C 69 6E 65 5F 67 72 65 65 6E 5F
+64 69 61 6D 6F 6E 64 07 00 6D 69 6E 65 72 61 6C
+55 C8 F2 A8 1A 00 00 00
+
+....d.......Ocoate..........radioactive_type5..
+Tohoihad..........steel_rhodium..Ghealloate.2].
+......steel_kiirium..Eihiet..].......steel_quad
+ranium..Carbiroepeic..........iron_plumbum..Das
+e.K........iron_plumbum..Quaddinieroxeium.j....
+....iron_plumbum..Noehiwam.Y........iron_bronzi
+um..OmniraovavauideQ.Z.......iron_doonium..Cove
+iann.........iron_kammris..Tetohed..........alu
+minum_titanium..Omniwahala[.........aluminum_ch
+romium..Soekha.sX.......copper_beyrllius..Wotii
+am..........copper_platinite..Eurogaiite.#.....
+...ore_carbonate_varium..Volesis..[.......ore_s
+iliclastic_cortosis..Trilatihaic#WZ.......cryst
+alline_green_diamond..mineralU.......
+
+Opcode[2321854933]
+04 00 D5 B1 64 8A 05 00 00 00 09 00 44 69 67 6F
+6F 6D 65 6F 77 D6 90 41 3D 23 00 00 00 1F 00 70
+65 74 72 6F 63 68 65 6D 5F 69 6E 65 72 74 5F 6C
+75 62 72 69 63 61 74 69 6E 67 5F 6F 69 6C 06 00
+49 64 69 69 61 6D 51 F9 AF 23 23 00 00 00 17 00
+70 65 74 72 6F 63 68 65 6D 5F 69 6E 65 72 74 5F
+70 6F 6C 79 6D 65 72 0B 00 45 72 61 74 79 77 77
+65 69 6E 65 FD 75 D8 32 23 00 00 00 17 00 70 65
+74 72 6F 63 68 65 6D 5F 69 6E 65 72 74 5F 70 6F
+6C 79 6D 65 72 0D 00 43 61 72 62 61 67 65 67 72
+65 69 64 65 4D A1 5B 3A 23 00 00 00 17 00 70 65
+74 72 6F 63 68 65 6D 5F 69 6E 65 72 74 5F 70 6F
+6C 79 6D 65 72 08 00 49 6B 72 65 63 61 62 65 BA
+94 3D 3D 23 00 00 00 10 00 66 69 62 65 72 70 6C
+61 73 74 5F 6E 61 62 6F 6F 08 00 63 68 65 6D 69
+63 61 6C 90 B5 C2 4F 23 00 00 00 
+
+....d.......Digoomeow..A=#.....petrochem_inert_
+lubricating_oil..IdiiamQ..##.....petrochem_iner
+t_polymer..Eratywweine.u.2#.....petrochem_inert
+_polymer..CarbagegreideM.[:#.....petrochem_iner
+t_polymer..Ikrecabe..==#.....fiberplast_naboo..
+chemical...O#...
+
+Opcode[2321854933]
+04 00 D5 B1 64 8A 13 00 00 00 0B 00 4F 6D 6E 69
+66 6F 62 65 69 73 6D 49 84 49 6E 1F 00 00 00 11
+00 72 61 64 69 6F 61 63 74 69 76 65 5F 74 79 70
+65 33 0B 00 44 75 72 69 70 6F 64 61 68 69 63 79
+44 49 6E 1F 00 00 00 0D 00 73 74 65 65 6C 5F 72
+68 6F 64 69 75 6D 06 00 46 69 6B 61 67 61 30 13
+4C 6E 1F 00 00 00 10 00 73 74 65 65 6C 5F 71 75
+61 64 72 61 6E 69 75 6D 0A 00 47 6F 62 61 69 67
+65 69 73 6D FC E2 7D 5E 1F 00 00 00 0E 00 73 74
+65 65 6C 5F 64 75 72 61 6C 6C 6F 79 0F 00 44 69
+74 72 69 66 6F 64 77 69 65 66 69 6E 65 4F 7B EA
+64 1F 00 00 00 0D 00 69 72 6F 6E 5F 62 72 6F 6E
+7A 69 75 6D 0C 00 44 69 68 6F 69 73 69 66 6F 72
+69 73 88 61 49 6E 1F 00 00 00 0A 00 69 72 6F 6E
+5F 63 6F 6C 61 74 08 00 4B 69 6D 6F 64 61 74 65
+35 A1 48 6E 1F 00 00 00 11 00 61 6C 75 6D 69 6E
+75 6D 5F 63 68 72 6F 6D 69 75 6D 05 00 53 61 75
+70 65 01 B8 7D 5E 1F 00 00 00 12 00 61 6C 75 6D
+69 6E 75 6D 5F 6C 69 6E 6B 73 74 65 65 6C 04 00
+4F 6C 69 65 76 AF 4A 55 1F 00 00 00 0B 00 63 6F
+70 70 65 72 5F 64 65 73 68 11 00 44 75 72 74 65
+74 72 61 74 69 67 65 66 65 69 61 6E 89 F6 E9 64
+1F 00 00 00 0B 00 63 6F 70 70 65 72 5F 64 65 73
+68 08 00 4F 67 69 64 69 69 74 65 E6 66 4D 6E 1F
+00 00 00 0F 00 63 6F 70 70 65 72 5F 74 68 61 6C
+6C 69 75 6D 0A 00 54 72 69 6C 61 64 65 69 6E 65
+62 14 42 52 1F 00 00 00 0D 00 63 6F 70 70 65 72
+5F 63 6F 64 6F 61 6E 0B 00 4F 6C 6C 69 63 69 76
+6F 69 69 63 9C 39 7E 5E 1F 00 00 00 10 00 63 6F
+70 70 65 72 5F 70 6F 6C 79 73 74 65 65 6C 05 00
+4E 61 70 65 61 FD E2 7D 5E 1F 00 00 00 15 00 6F
+72 65 5F 69 6E 74 72 75 73 69 76 65 5F 6F 72 69
+64 69 75 6D 07 00 58 6F 63 61 69 64 65 3A 5D 1C
+7B 1F 00 00 00 16 00 6F 72 65 5F 63 61 72 62 6F
+6E 61 74 65 5F 61 6C 61 6E 74 69 75 6D 05 00 47
+6C 65 6A 61 29 07 1B 7B 1F 00 00 00 17 00 6F 72
+65 5F 73 69 6C 69 63 6C 61 73 74 69 63 5F 74 65
+72 74 69 61 6E 05 00 45 73 6F 6F 78 5A 47 7D 5E
+1F 00 00 00 10 00 61 72 6D 6F 70 68 6F 75 73 5F
+72 65 67 76 69 73 05 00 45 78 65 6D 69 9E 5B EA
+64 1F 00 00 00 0E 00 61 72 6D 6F 70 68 6F 75 73
+5F 72 79 6C 6C 09 00 49 6C 65 63 61 72 72 69 73
+E1 6A 4C 6E 1F 00 00 00 19 00 63 72 79 73 74 61
+6C 6C 69 6E 65 5F 6B 65 72 6F 6C 5F 66 69 72 65
+67 65 6D 07 00 6D 69 6E 65 72 61 6C 96 56 63 7B
+1F 00 00 00
+
+....d.......OmnifobeismI.In......radioactive_ty
+pe3..DuripodahicyDIn......steel_rhodium..Fikaga
+0.Ln......steel_quadranium..Gobaigeism..}^.....
+.steel_duralloy..DitrifodwiefineO{.d......iron_
+bronzium..Dihoisiforis.aIn......iron_colat..Kim
+odate5.Hn......aluminum_chromium..Saupe..}^....
+..aluminum_linksteel..Oliev.JU......copper_desh
+..Durtetratigefeian...d......copper_desh..Ogidi
+ite.fMn......copper_thallium..Triladeineb.BR...
+...copper_codoan..Ollicivoiic.9~^......copper_p
+olysteel..Napea..}^......ore_intrusive_oridium.
+.Xocaide:].{......ore_carbonate_alantium..Gleja
+)..{......ore_siliclastic_tertian..EsooxZG}^...
+...armophous_regvis..Exemi.[.d......armophous_r
+yll..Ilecarris.jLn......crystalline_kerol_fireg
+em..mineral.Vc{....`, this)">Copy Sample</button>
+            </div>
+            <pre class="code-block"><code>04 00
+D5 B1 64 8A
+02 00 00 00
+
+06 00 4F 63 6F 61 74 65 # String: &quot;Ocoate&quot;
+FC 82 1D C8 1A 00 00 00 # Resource ID
+11 00 72 61 64 69 6F 61 63 74 69 76 65 5F 74 79 70 65 35 # String: &quot;radioactive_type5&quot;
+
+08 00 54 6F 68 6F 69 68 61 64 # String: &quot;Tohoihad&quot;
+14 99 0B B3 1A 00 00 00 # Resource ID
+0D 00 73 74 65 65 6C 5F 72 68 6F 64 69 75 6D # String: &quot;steel_rhodium&quot;
+
+07 00 6D 69 6E 65 72 61 6C # String: &quot;mineral&quot;
+
+55 C8 F2 A8 1A 00 00 00 
+
+
+
+Opcode[2321854933]
+04 00 D5 B1 64 8A 01 00 00 00 08 00 58 6F 75 6A
+6A 65 67 65 14 36 0A B3 1A 00 00 00 25 00 65 6E
+65 72 67 79 5F 72 65 6E 65 77 61 62 6C 65 5F 75
+6E 6C 69 6D 69 74 65 64 5F 77 69 6E 64 5F 6E 61
+62 6F 6F 1F 00 65 6E 65 72 67 79 5F 72 65 6E 65
+77 61 62 6C 65 5F 75 6E 6C 69 6D 69 74 65 64 5F
+77 69 6E 64 81 2A C7 BC 1A 00 00 00
+
+....d.......Xoujjege.6......%.energy_renewable_
+unlimited_wind_naboo..energy_renewable_unlimite
+d_wind.*......
+
+Opcode[2321854933]
+04 00 D5 B1 64 8A 11 00 00 00 06 00 4F 63 6F 61
+74 65 FC 82 1D C8 1A 00 00 00 11 00 72 61 64 69
+6F 61 63 74 69 76 65 5F 74 79 70 65 35 08 00 54
+6F 68 6F 69 68 61 64 14 99 0B B3 1A 00 00 00 0D
+00 73 74 65 65 6C 5F 72 68 6F 64 69 75 6D 0A 00
+47 68 65 61 6C 6C 6F 61 74 65 80 32 5D BD 1A 00
+00 00 0D 00 73 74 65 65 6C 5F 6B 69 69 72 69 75
+6D 06 00 45 69 68 69 65 74 F1 1E 5D BD 1A 00 00
+00 10 00 73 74 65 65 6C 5F 71 75 61 64 72 61 6E
+69 75 6D 0C 00 43 61 72 62 69 72 6F 65 70 65 69
+63 EA EB B7 A4 1A 00 00 00 0C 00 69 72 6F 6E 5F
+70 6C 75 6D 62 75 6D 04 00 44 61 73 65 1A 4B 0A
+B3 1A 00 00 00 0C 00 69 72 6F 6E 5F 70 6C 75 6D
+62 75 6D 10 00 51 75 61 64 64 69 6E 69 65 72 6F
+78 65 69 75 6D F4 6A 0A B3 1A 00 00 00 0C 00 69
+72 6F 6E 5F 70 6C 75 6D 62 75 6D 08 00 4E 6F 65
+68 69 77 61 6D BA 59 0B D0 1A 00 00 00 0D 00 69
+72 6F 6E 5F 62 72 6F 6E 7A 69 75 6D 0F 00 4F 6D
+6E 69 72 61 6F 76 61 76 61 75 69 64 65 51 CA 5A
+BD 1A 00 00 00 0C 00 69 72 6F 6E 5F 64 6F 6F 6E
+69 75 6D 07 00 43 6F 76 65 69 61 6E 6E 12 0B D0
+1A 00 00 00 0C 00 69 72 6F 6E 5F 6B 61 6D 6D 72
+69 73 07 00 54 65 74 6F 68 65 64 8D BB 0B D0 1A
+00 00 00 11 00 61 6C 75 6D 69 6E 75 6D 5F 74 69
+74 61 6E 69 75 6D 0A 00 4F 6D 6E 69 77 61 68 61
+6C 61 5B 0E 14 C8 1A 00 00 00 11 00 61 6C 75 6D
+69 6E 75 6D 5F 63 68 72 6F 6D 69 75 6D 06 00 53
+6F 65 6B 68 61 A7 73 58 BD 1A 00 00 00 10 00 63
+6F 70 70 65 72 5F 62 65 79 72 6C 6C 69 75 73 07
+00 57 6F 74 69 69 61 6D 92 E8 1E C8 1A 00 00 00
+10 00 63 6F 70 70 65 72 5F 70 6C 61 74 69 6E 69
+74 65 0A 00 45 75 72 6F 67 61 69 69 74 65 C9 23
+08 B3 1A 00 00 00 14 00 6F 72 65 5F 63 61 72 62
+6F 6E 61 74 65 5F 76 61 72 69 75 6D 07 00 56 6F
+6C 65 73 69 73 20 B8 5B BD 1A 00 00 00 18 00 6F
+72 65 5F 73 69 6C 69 63 6C 61 73 74 69 63 5F 63
+6F 72 74 6F 73 69 73 0B 00 54 72 69 6C 61 74 69
+68 61 69 63 23 57 5A BD 1A 00 00 00 19 00 63 72
+79 73 74 61 6C 6C 69 6E 65 5F 67 72 65 65 6E 5F
+64 69 61 6D 6F 6E 64 07 00 6D 69 6E 65 72 61 6C
+55 C8 F2 A8 1A 00 00 00
+
+....d.......Ocoate..........radioactive_type5..
+Tohoihad..........steel_rhodium..Ghealloate.2].
+......steel_kiirium..Eihiet..].......steel_quad
+ranium..Carbiroepeic..........iron_plumbum..Das
+e.K........iron_plumbum..Quaddinieroxeium.j....
+....iron_plumbum..Noehiwam.Y........iron_bronzi
+um..OmniraovavauideQ.Z.......iron_doonium..Cove
+iann.........iron_kammris..Tetohed..........alu
+minum_titanium..Omniwahala[.........aluminum_ch
+romium..Soekha.sX.......copper_beyrllius..Wotii
+am..........copper_platinite..Eurogaiite.#.....
+...ore_carbonate_varium..Volesis..[.......ore_s
+iliclastic_cortosis..Trilatihaic#WZ.......cryst
+alline_green_diamond..mineralU.......
+
+Opcode[2321854933]
+04 00 D5 B1 64 8A 05 00 00 00 09 00 44 69 67 6F
+6F 6D 65 6F 77 D6 90 41 3D 23 00 00 00 1F 00 70
+65 74 72 6F 63 68 65 6D 5F 69 6E 65 72 74 5F 6C
+75 62 72 69 63 61 74 69 6E 67 5F 6F 69 6C 06 00
+49 64 69 69 61 6D 51 F9 AF 23 23 00 00 00 17 00
+70 65 74 72 6F 63 68 65 6D 5F 69 6E 65 72 74 5F
+70 6F 6C 79 6D 65 72 0B 00 45 72 61 74 79 77 77
+65 69 6E 65 FD 75 D8 32 23 00 00 00 17 00 70 65
+74 72 6F 63 68 65 6D 5F 69 6E 65 72 74 5F 70 6F
+6C 79 6D 65 72 0D 00 43 61 72 62 61 67 65 67 72
+65 69 64 65 4D A1 5B 3A 23 00 00 00 17 00 70 65
+74 72 6F 63 68 65 6D 5F 69 6E 65 72 74 5F 70 6F
+6C 79 6D 65 72 08 00 49 6B 72 65 63 61 62 65 BA
+94 3D 3D 23 00 00 00 10 00 66 69 62 65 72 70 6C
+61 73 74 5F 6E 61 62 6F 6F 08 00 63 68 65 6D 69
+63 61 6C 90 B5 C2 4F 23 00 00 00 
+
+....d.......Digoomeow..A=#.....petrochem_inert_
+lubricating_oil..IdiiamQ..##.....petrochem_iner
+t_polymer..Eratywweine.u.2#.....petrochem_inert
+_polymer..CarbagegreideM.[:#.....petrochem_iner
+t_polymer..Ikrecabe..==#.....fiberplast_naboo..
+chemical...O#...
+
+Opcode[2321854933]
+04 00 D5 B1 64 8A 13 00 00 00 0B 00 4F 6D 6E 69
+66 6F 62 65 69 73 6D 49 84 49 6E 1F 00 00 00 11
+00 72 61 64 69 6F 61 63 74 69 76 65 5F 74 79 70
+65 33 0B 00 44 75 72 69 70 6F 64 61 68 69 63 79
+44 49 6E 1F 00 00 00 0D 00 73 74 65 65 6C 5F 72
+68 6F 64 69 75 6D 06 00 46 69 6B 61 67 61 30 13
+4C 6E 1F 00 00 00 10 00 73 74 65 65 6C 5F 71 75
+61 64 72 61 6E 69 75 6D 0A 00 47 6F 62 61 69 67
+65 69 73 6D FC E2 7D 5E 1F 00 00 00 0E 00 73 74
+65 65 6C 5F 64 75 72 61 6C 6C 6F 79 0F 00 44 69
+74 72 69 66 6F 64 77 69 65 66 69 6E 65 4F 7B EA
+64 1F 00 00 00 0D 00 69 72 6F 6E 5F 62 72 6F 6E
+7A 69 75 6D 0C 00 44 69 68 6F 69 73 69 66 6F 72
+69 73 88 61 49 6E 1F 00 00 00 0A 00 69 72 6F 6E
+5F 63 6F 6C 61 74 08 00 4B 69 6D 6F 64 61 74 65
+35 A1 48 6E 1F 00 00 00 11 00 61 6C 75 6D 69 6E
+75 6D 5F 63 68 72 6F 6D 69 75 6D 05 00 53 61 75
+70 65 01 B8 7D 5E 1F 00 00 00 12 00 61 6C 75 6D
+69 6E 75 6D 5F 6C 69 6E 6B 73 74 65 65 6C 04 00
+4F 6C 69 65 76 AF 4A 55 1F 00 00 00 0B 00 63 6F
+70 70 65 72 5F 64 65 73 68 11 00 44 75 72 74 65
+74 72 61 74 69 67 65 66 65 69 61 6E 89 F6 E9 64
+1F 00 00 00 0B 00 63 6F 70 70 65 72 5F 64 65 73
+68 08 00 4F 67 69 64 69 69 74 65 E6 66 4D 6E 1F
+00 00 00 0F 00 63 6F 70 70 65 72 5F 74 68 61 6C
+6C 69 75 6D 0A 00 54 72 69 6C 61 64 65 69 6E 65
+62 14 42 52 1F 00 00 00 0D 00 63 6F 70 70 65 72
+5F 63 6F 64 6F 61 6E 0B 00 4F 6C 6C 69 63 69 76
+6F 69 69 63 9C 39 7E 5E 1F 00 00 00 10 00 63 6F
+70 70 65 72 5F 70 6F 6C 79 73 74 65 65 6C 05 00
+4E 61 70 65 61 FD E2 7D 5E 1F 00 00 00 15 00 6F
+72 65 5F 69 6E 74 72 75 73 69 76 65 5F 6F 72 69
+64 69 75 6D 07 00 58 6F 63 61 69 64 65 3A 5D 1C
+7B 1F 00 00 00 16 00 6F 72 65 5F 63 61 72 62 6F
+6E 61 74 65 5F 61 6C 61 6E 74 69 75 6D 05 00 47
+6C 65 6A 61 29 07 1B 7B 1F 00 00 00 17 00 6F 72
+65 5F 73 69 6C 69 63 6C 61 73 74 69 63 5F 74 65
+72 74 69 61 6E 05 00 45 73 6F 6F 78 5A 47 7D 5E
+1F 00 00 00 10 00 61 72 6D 6F 70 68 6F 75 73 5F
+72 65 67 76 69 73 05 00 45 78 65 6D 69 9E 5B EA
+64 1F 00 00 00 0E 00 61 72 6D 6F 70 68 6F 75 73
+5F 72 79 6C 6C 09 00 49 6C 65 63 61 72 72 69 73
+E1 6A 4C 6E 1F 00 00 00 19 00 63 72 79 73 74 61
+6C 6C 69 6E 65 5F 6B 65 72 6F 6C 5F 66 69 72 65
+67 65 6D 07 00 6D 69 6E 65 72 61 6C 96 56 63 7B
+1F 00 00 00
+
+....d.......OmnifobeismI.In......radioactive_ty
+pe3..DuripodahicyDIn......steel_rhodium..Fikaga
+0.Ln......steel_quadranium..Gobaigeism..}^.....
+.steel_duralloy..DitrifodwiefineO{.d......iron_
+bronzium..Dihoisiforis.aIn......iron_colat..Kim
+odate5.Hn......aluminum_chromium..Saupe..}^....
+..aluminum_linksteel..Oliev.JU......copper_desh
+..Durtetratigefeian...d......copper_desh..Ogidi
+ite.fMn......copper_thallium..Triladeineb.BR...
+...copper_codoan..Ollicivoiic.9~^......copper_p
+olysteel..Napea..}^......ore_intrusive_oridium.
+.Xocaide:].{......ore_carbonate_alantium..Gleja
+)..{......ore_siliclastic_tertian..EsooxZG}^...
+...armophous_regvis..Exemi.[.d......armophous_r
+yll..Ilecarris.jLn......crystalline_kerol_fireg
+em..mineral.Vc{....</code></pre>
+          </div>
+        </section>
+        
+        
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

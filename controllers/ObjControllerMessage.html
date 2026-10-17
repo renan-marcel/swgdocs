@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ObjControllerMessage | SWG Docs</title>
+  <meta name="description" content="Technical documentation and packet structure for ObjControllerMessage in Star Wars Galaxies.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="active">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>Advanced Subsystem Triggers (0x151+)</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../controllers/AboutToHyperspace (000003FE).html" class="">AboutToHyperspace (000003FE)</a></li>
+<li><a href="../controllers/AskGroupMemberToLaunchIntoSpace (00000438).html" class="">AskGroupMemberToLaunchIntoSpace (00000438)</a></li>
+<li><a href="../controllers/BiographyUpdate (000001DB).html" class="">BiographyUpdate (000001DB)</a></li>
+<li><a href="../controllers/Buffs (00000229).html" class="">Buffs (00000229)</a></li>
+<li><a href="../controllers/ChangeRoleIconChoice (0000044D).html" class="">ChangeRoleIconChoice (0000044D)</a></li>
+<li><a href="../controllers/CommandQueueAdd (00000167).html" class="">CommandQueueAdd (00000167)</a></li>
+<li><a href="../controllers/CommandTimer (00000448).html" class="">CommandTimer (00000448)</a></li>
+<li><a href="../controllers/CraftCustomization (0000015A).html" class="">CraftCustomization (0000015A)</a></li>
+<li><a href="../controllers/CraftingSessionEnded (000001C2).html" class="">CraftingSessionEnded (000001C2)</a></li>
+<li><a href="../controllers/DraftSlotsQueryResponse (000001BF).html" class="">DraftSlotsQueryResponse (000001BF)</a></li>
+<li><a href="../controllers/DroidCommandProgrammingMessage (00000435).html" class="">DroidCommandProgrammingMessage (00000435)</a></li>
+<li><a href="../controllers/EntertainerFlourishType (00000166).html" class="">EntertainerFlourishType (00000166)</a></li>
+<li><a href="../controllers/ForceActivateQuest (000004BE).html" class="">ForceActivateQuest (000004BE)</a></li>
+<li><a href="../controllers/GenericIntResponse (000001BE).html" class="">GenericIntResponse (000001BE)</a></li>
+<li><a href="../controllers/GroupMemberInvitationToLaunchIntoSpaceResponse (00000439).html" class="">GroupMemberInvitationToLaunchIntoSpaceResponse (00000439)</a></li>
+<li><a href="../controllers/HyperspaceOrientShipToPointAndLockPlayerInput (0000042D).html" class="">HyperspaceOrientShipToPointAndLockPlayerInput (0000042D)</a></li>
+<li><a href="../controllers/ImageDesignChangeMessage (00000238).html" class="">ImageDesignChangeMessage (00000238)</a></li>
+<li><a href="../controllers/ImageDesignEndMessage (00000239).html" class="">ImageDesignEndMessage (00000239)</a></li>
+<li><a href="../controllers/ImageDesignStartMessage (0000022A).html" class="">ImageDesignStartMessage (0000022A)</a></li>
+<li><a href="../controllers/ImageDesignStartMessage (0000022B).html" class="">ImageDesignStartMessage (0000022B)</a></li>
+<li><a href="../controllers/ImageDesignStartMessage (0000022C).html" class="">ImageDesignStartMessage (0000022C)</a></li>
+<li><a href="../controllers/ImageDesignStartMessage (0000023A).html" class="">ImageDesignStartMessage (0000023A)</a></li>
+<li><a href="../controllers/IncubatorCancel (0000025E).html" class="">IncubatorCancel (0000025E)</a></li>
+<li><a href="../controllers/IncubatorCancel (0000025F).html" class="">IncubatorCancel (0000025F)</a></li>
+<li><a href="../controllers/IncubatorCommit (0000025E).html" class="">IncubatorCommit (0000025E)</a></li>
+<li><a href="../controllers/IncubatorStart (0000025D).html" class="">IncubatorStart (0000025D)</a></li>
+<li><a href="../controllers/InviteOtherGroupMembersToLaunchIntoSpace (00000437).html" class="">InviteOtherGroupMembersToLaunchIntoSpace (00000437)</a></li>
+<li><a href="../controllers/JTLShipLocationList (0000041D).html" class="">JTLShipLocationList (0000041D)</a></li>
+<li><a href="../controllers/NetworkId (00000153).html" class="">NetworkId (00000153)</a></li>
+<li><a href="../controllers/NextCraftingStageResult (000001BE).html" class="">NextCraftingStageResult (000001BE)</a></li>
+<li><a href="../controllers/index.html" style="color:var(--accent-cyan); font-weight:600;">View all 95 in Advanced Subsystem Triggers (0x151+) →</a></li>
+        </ul>
+        <h3>Section Links</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../controllers/index.html">← Object Controllers Index</a></li>
+          <li><a href="../content/controllers/ObjControllerMessage.md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/ObjControllerMessage" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../controllers/index.html">Object Controllers</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">ObjControllerMessage</span>
+    </div>
+    
+        
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>ObjControllerMessage</span>
+            <span class="opcode-pill" onclick="copyToClipboard('80CE5E46', this)" title="Click to copy opcode">80CE5E46 📋</span>
+          </h1>
+          <div class="article-meta">
+            <span class="badge badge-cs" title="Client to Server">C→S (Client)</span>
+            <span class="badge badge-50">50% Complete</span>
+            <span class="badge badge-sample-absent">Sample: absent</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Object Controllers</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Client/Server Packet</strong></span>
+          </div>
+        </header>
+
+        
+        <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:1.5rem;">SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.</div>
+        
+        <section class="doc-section">
+          <h2>📐 Packet Structure (7 fields)</h2>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th style="width:140px;">Data Type</th>
+                  <th>Field Name</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr>
+              <td><span class="type-pill">SHORT</span></td>
+              <td style="font-weight:600;">priority routing</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Opcode</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Flag Bitmask</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">Header</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">LONG</span></td>
+              <td style="font-weight:600;">ObjectID</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">TickCount</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">?</span></td>
+              <td style="font-weight:600;">Data</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>🏷️ Variable Descriptions</h2>
+          <div class="var-grid">
+            
+            <div class="var-card">
+              <div class="var-name">Operand_Count</div>
+              <div class="var-val">5</div>
+            </div>
+            
+            <div class="var-card">
+              <div class="var-name">Opcode</div>
+              <div class="var-val">80CE5E46</div>
+            </div>
+            
+          </div>
+        </section>
+        
+        
+        
+        
+        <section class="doc-section">
+          <h2>🔗 Related Pages</h2>
+          <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+            <a href="../controllers/DataTransform (00000071).html" style="font-weight:600;">DataTransform (00000071)</a> • <a href="../controllers/CombatAction (000000CC).html" style="font-weight:600;">CombatAction (000000CC)</a> • <a href="../controllers/CombatDamage (000000CD).html" style="font-weight:600;">CombatDamage (000000CD)</a> • <a href="../controllers/StartNpcConversation (000000DD).html" style="font-weight:600;">StartNpcConversation (000000DD)</a> • <a href="../controllers/StopNpcConversation (000000DE).html" style="font-weight:600;">StopNpcConversation (000000DE)</a> • <a href="../controllers/NpcConversationMessage (000000DF).html" style="font-weight:600;">NpcConversationMessage (000000DF)</a> • <a href="../controllers/NPCConversationOptions (000000E0).html" style="font-weight:600;">NPCConversationOptions (000000E0)</a> • <span style="color:var(--text-muted);">SetupSwgSharedNetworkMessages (000000E1)</span> • <a href="../controllers/OpponentInfo (000000E3).html" style="font-weight:600;">OpponentInfo (000000E3)</a> • <a href="../controllers/NetworkId (000000E5).html" style="font-weight:600;">NetworkId (000000E5)</a> • <a href="../controllers/NetworkId (000000E6).html" style="font-weight:600;">NetworkId (000000E6)</a> • <a href="../controllers/NetworkId (000000E7).html" style="font-weight:600;">NetworkId (000000E7)</a> • <a href="../controllers/NetworkId (000000E8).html" style="font-weight:600;">NetworkId (000000E8)</a> • <a href="../controllers/NetworkId (000000E9).html" style="font-weight:600;">NetworkId (000000E9)</a> • <a href="../controllers/HarvesterResourceData (000000EA).html" style="font-weight:600;">HarvesterResourceData (000000EA)</a> • <a href="../controllers/NetworkIdPair (000000EB).html" style="font-weight:600;">NetworkIdPair (000000EB)</a> • <a href="../controllers/NetworkIdPair (000000EC).html" style="font-weight:600;">NetworkIdPair (000000EC)</a> • <a href="../controllers/ResourceEmptyHopper (000000ED).html" style="font-weight:600;">ResourceEmptyHopper (000000ED)</a> • <a href="../controllers/GenericResponse (000000EE).html" style="font-weight:600;">GenericResponse (000000EE)</a> • <a href="../controllers/DataTransformWithParent (000000F1).html" style="font-weight:600;">DataTransformWithParent (000000F1)</a> • <a href="../controllers/Animation (000000F2).html" style="font-weight:600;">Animation (000000F2)</a> • <a href="../controllers/SpatialChat (000000F3).html" style="font-weight:600;">SpatialChat (000000F3)</a> • <a href="../controllers/SpatialChat (000000F4).html" style="font-weight:600;">SpatialChat (000000F4)</a> • <a href="../controllers/MissionListRequest (000000F5).html" style="font-weight:600;">MissionListRequest (000000F5)</a> • <a href="../controllers/MissionListResponse (000000F6).html" style="font-weight:600;">MissionListResponse (000000F6)</a> • <a href="../controllers/MissionDetailsRequest (000000F7).html" style="font-weight:600;">MissionDetailsRequest (000000F7)</a> • <a href="../controllers/MissionDetailsResponse (000000F8).html" style="font-weight:600;">MissionDetailsResponse (000000F8)</a> • <a href="../controllers/MissionGenericRequest (000000F9).html" style="font-weight:600;">MissionGenericRequest (000000F9)</a> • <a href="../controllers/MissionGenericRequest (000000FB).html" style="font-weight:600;">MissionGenericRequest (000000FB)</a> • <a href="../controllers/MissionGenericResponse (000000FA).html" style="font-weight:600;">MissionGenericResponse (000000FA)</a> • <a href="../controllers/MissionGenericResponse (000000FC).html" style="font-weight:600;">MissionGenericResponse (000000FC)</a> • <a href="../controllers/MissionCreateRequest (000000FF).html" style="font-weight:600;">MissionCreateRequest (000000FF)</a> • <a href="../controllers/MissionGenericResponse (00000100).html" style="font-weight:600;">MissionGenericResponse (00000100)</a> • <a href="../controllers/DraftSchematics (00000102).html" style="font-weight:600;">DraftSchematics (00000102)</a> • <a href="../controllers/DraftSlots (00000103).html" style="font-weight:600;">DraftSlots (00000103)</a> • <a href="../controllers/CraftIngredients (00000105).html" style="font-weight:600;">CraftIngredients (00000105)</a> • <a href="../controllers/CraftExperiment (00000106).html" style="font-weight:600;">CraftExperiment (00000106)</a> • <a href="../controllers/CraftFillSlot (00000107).html" style="font-weight:600;">CraftFillSlot (00000107)</a> • <a href="../controllers/CraftEmptySlot (00000108).html" style="font-weight:600;">CraftEmptySlot (00000108)</a> • <span style="color:var(--text-muted);">nextCraftingStage (00000109)</span> • <span style="color:var(--text-muted);">nextCraftingStage(00000109)</span> • <a href="../controllers/Generic (0000010A).html" style="font-weight:600;">Generic (0000010A)</a> • <a href="../controllers/Generic (0000010B).html" style="font-weight:600;">Generic (0000010B)</a> • <a href="../controllers/CraftAcknowledge (0000010C).html" style="font-weight:600;">CraftAcknowledge (0000010C)</a> • <a href="../controllers/GenericResponse (0000010D).html" style="font-weight:600;">GenericResponse (0000010D)</a> • <span style="color:var(--text-muted);">CraftSelectSchematic (0000010E)</span> • <a href="../controllers/CraftRequestSession (0000010F).html" style="font-weight:600;">CraftRequestSession (0000010F)</a> • <a href="../controllers/Generic (00000110).html" style="font-weight:600;">Generic (00000110)</a> • <a href="../controllers/Generic (00000111).html" style="font-weight:600;">Generic (00000111)</a> • <a href="../controllers/CraftExperimentationResponse (00000113).html" style="font-weight:600;">CraftExperimentationResponse (00000113)</a> • <a href="../controllers/NetworkId (00000114).html" style="font-weight:600;">NetworkId (00000114)</a> • <a href="../controllers/SecureTrade (00000115).html" style="font-weight:600;">SecureTrade (00000115)</a> • <a href="../commands/CommandQueueEnqueue (00000116).html" style="font-weight:600;">CommandQueueEnqueue (00000116)</a> • <a href="../controllers/CommandQueueRemove (00000117).html" style="font-weight:600;">CommandQueueRemove (00000117)</a> • <a href="../controllers/NetworkId (0000011C).html" style="font-weight:600;">NetworkId (0000011C)</a> • <a href="../controllers/TargetObject (00000126).html" style="font-weight:600;">TargetObject (00000126)</a> • <a href="../controllers/NetworkId (00000127).html" style="font-weight:600;">NetworkId (00000127)</a> • <a href="../controllers/NetworkIdAndTransform (0000012D).html" style="font-weight:600;">NetworkIdAndTransform (0000012D)</a> • <a href="../controllers/PlayerEmote (0000012E).html" style="font-weight:600;">PlayerEmote (0000012E)</a> • <a href="../controllers/Posture (00000131).html" style="font-weight:600;">Posture (00000131)</a> • <a href="../controllers/CombatSpam (00000134).html" style="font-weight:600;">CombatSpam (00000134)</a> • <a href="../controllers/String (00000139).html" style="font-weight:600;">String (00000139)</a> • <a href="../controllers/String (0000013A).html" style="font-weight:600;">String (0000013A)</a> • <a href="../controllers/SitOnObject (0000013B).html" style="font-weight:600;">SitOnObject (0000013B)</a> • <a href="../controllers/TeleportAck (0000013F).html" style="font-weight:600;">TeleportAck (0000013F)</a> • <a href="../controllers/WeaponRanges (00000140).html" style="font-weight:600;">WeaponRanges (00000140)</a> • <span style="color:var(--text-muted);">missionAbort (00000142)</span> • <a href="../controllers/ObjectMenuRequest (00000146).html" style="font-weight:600;">ObjectMenuRequest (00000146)</a> • <a href="../controllers/ObjectMenuResponse (00000147).html" style="font-weight:600;">ObjectMenuResponse (00000147)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (00000149).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (00000149)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (0000014A).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (0000014A)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (0000014B).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (0000014B)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (0000014C).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (0000014C)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (0000014D).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (0000014D)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (0000014E).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (0000014E)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (0000014F).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (0000014F)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (00000150).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (00000150)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (00000151).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (00000151)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (00000152).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (00000152)</a> • <a href="../controllers/NetworkId (00000153).html" style="font-weight:600;">NetworkId (00000153)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (00000154).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (00000154)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (00000155).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (00000155)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (00000156).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (00000156)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (00000157).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (00000157)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (00000158).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (00000158)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (00000159).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (00000159)</a> • <a href="../controllers/CraftCustomization (0000015A).html" style="font-weight:600;">CraftCustomization (0000015A)</a> • <a href="../controllers/SpatialChatInternal (00000161).html" style="font-weight:600;">SpatialChatInternal (00000161)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (00000165).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (00000165)</a> • <a href="../controllers/EntertainerFlourishType (00000166).html" style="font-weight:600;">EntertainerFlourishType (00000166)</a> • <span style="color:var(--text-muted);">commandQueueAdd (00000167)</span> • <a href="../controllers/ShowFlyText (000001BD).html" style="font-weight:600;">ShowFlyText (000001BD)</a> • <span style="color:var(--text-muted);">nextCraftingStageResult (000001BE)</span> • <a href="../controllers/DraftSlotsQueryResponse (000001BF).html" style="font-weight:600;">DraftSlotsQueryResponse (000001BF)</a> • <a href="../controllers/CraftingSessionEnded (000001C2).html" style="font-weight:600;">CraftingSessionEnded (000001C2)</a> • <a href="../controllers/BiographyUpdate (000001DB).html" style="font-weight:600;">BiographyUpdate (000001DB)</a> • <a href="../controllers/PlayersNearYou (000001E7).html" style="font-weight:600;">PlayersNearYou (000001E7)</a> • <a href="../controllers/StartingLocationList (000001FC).html" style="font-weight:600;">StartingLocationList (000001FC)</a> • <span style="color:var(--text-muted);">startingLocationSelectionResult (000001FD)</span> • <a href="../controllers/SetupSwgSharedNetworkMessages (00000205).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (00000205)</a> • <a href="../controllers/ResourceWeights (00000207).html" style="font-weight:600;">ResourceWeights (00000207)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (0000021C).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (0000021C)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (0000021D).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (0000021D)</a> • <a href="../controllers/Buffs (00000229).html" style="font-weight:600;">Buffs (00000229)</a> • <a href="../controllers/SetupSharedNetworkMessages (0000022A).html" style="font-weight:600;">SetupSharedNetworkMessages (0000022A)</a> • <a href="../controllers/RemovePlayerBuffMessage (0000022A).html" style="font-weight:600;">RemovePlayerBuffMessage (0000022A)</a> • <span style="color:var(--text-muted);">objectMenuDirty (0000022B)</span> • <span style="color:var(--text-muted);">SetupSharedNetworkMessages (0000022C)</span> • <a href="../controllers/ImageDesignChangeMessage (00000238).html" style="font-weight:600;">ImageDesignChangeMessage (00000238)</a> • <a href="../controllers/ImageDesignEndMessage (00000239).html" style="font-weight:600;">ImageDesignEndMessage (00000239)</a> • <a href="../controllers/ImageDesignStartMessage (0000023A).html" style="font-weight:600;">ImageDesignStartMessage (0000023A)</a> • <span style="color:var(--text-muted);">incubatorStart (0000025D)</span> • <span style="color:var(--text-muted);">incubatorCommit (0000025E)</span> • <span style="color:var(--text-muted);">incubatorCancel (0000025F)</span> • <a href="../controllers/SetupSwgSharedNetworkMessages (000003E8).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (000003E8)</a> • <a href="../controllers/SetupSharedNetworkMessages (000003F5).html" style="font-weight:600;">SetupSharedNetworkMessages (000003F5)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (000003F6).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (000003F6)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (000003F7).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (000003F7)</a> • <a href="../controllers/SetupSharedNetworkMessages (000003F8).html" style="font-weight:600;">SetupSharedNetworkMessages (000003F8)</a> • <a href="../controllers/SetupSharedNetworkMessages (000003F9).html" style="font-weight:600;">SetupSharedNetworkMessages (000003F9)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (000003FA).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (000003FA)</a> • <a href="../controllers/UpdateShipOnCollision (000003FD).html" style="font-weight:600;">UpdateShipOnCollision (000003FD)</a> • <span style="color:var(--text-muted);">aboutToHyperspace (000003FE)</span> • <a href="../controllers/SetupSwgSharedNetworkMessages (000003FF).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (000003FF)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (00000400).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (00000400)</a> • <span style="color:var(--text-muted);">uiPlayEffect (00000401)</span> • <a href="../controllers/SetupSwgSharedNetworkMessages (00000412).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (00000412)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (00000413).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (00000413)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (0000041C).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (0000041C)</a> • <a href="../controllers/JTLShipLocationList (0000041D).html" style="font-weight:600;">JTLShipLocationList (0000041D)</a> • <span style="color:var(--text-muted);">hyperspaceOrientShipToPointAndLockPlayerInput (0000042D)</span> • <a href="../controllers/SetupSwgSharedNetworkMessages (0000042E).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (0000042E)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (0000042F).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (0000042F)</a> • <a href="../controllers/ShipHit (00000433).html" style="font-weight:600;">ShipHit (00000433)</a> • <a href="../controllers/DroidCommandProgrammingMessage (00000435).html" style="font-weight:600;">DroidCommandProgrammingMessage (00000435)</a> • <a href="../controllers/SetupSwgSharedNetworkMessages (00000436).html" style="font-weight:600;">SetupSwgSharedNetworkMessages (00000436)</a> • <span style="color:var(--text-muted);">inviteOtherGroupMembersToLaunchIntoSpace (00000437)</span> • <span style="color:var(--text-muted);">askGroupMemberToLaunchIntoSpace (00000438)</span> • <span style="color:var(--text-muted);">groupMemberInvitationToLaunchIntoSpaceResponse (00000439)</span> • <span style="color:var(--text-muted);">SetupSwgSharedNetworkMessages (0000043C)</span> • <span style="color:var(--text-muted);">SetupSwgSharedNetworkMessages (0000043D)</span> • <span style="color:var(--text-muted);">SetupSwgSharedNetworkMessages (0000043E)</span> • <span style="color:var(--text-muted);">SetupSwgSharedNetworkMessages (0000043F)</span> • <span style="color:var(--text-muted);">QuestTaskCounterMessage (00000440)</span> • <a href="../controllers/QuestTaskTimerMessage (00000441).html" style="font-weight:600;">QuestTaskTimerMessage (00000441)</a> • <span style="color:var(--text-muted);">questTaskTimerData (00000444)</span> • <a href="../controllers/CommandTimer (00000448).html" style="font-weight:600;">CommandTimer (00000448)</a> • <span style="color:var(--text-muted);">changeRoleIconChoice (0000044D)</span> • <span style="color:var(--text-muted);">showCombatText (0000045A)</span> • <span style="color:var(--text-muted);">setCurrentWorkingSkill (0000045B)</span> • <span style="color:var(--text-muted);">setProfessionTemplate (0000045C)</span> • <span style="color:var(--text-muted);">RequestActivateQuest(000004B7)</span> • <a href="../controllers/RequestActivateQuest (000004B7).html" style="font-weight:600;">RequestActivateQuest (000004B7)</a> • <span style="color:var(--text-muted);">RequestCompleteQuest(000004B8)</span> • <a href="../controllers/RequestCompleteQuest (000004B8).html" style="font-weight:600;">RequestCompleteQuest (000004B8)</a> • <span style="color:var(--text-muted);">showLootBox(000004BC)</span> • <span style="color:var(--text-muted);">showLootBox (000004BC)</span> • <a href="../protocols/Unknown (000004BB).html" style="font-weight:600;">Unknown (000004BB)</a> • <span style="color:var(--text-muted);">forceActivateQuest (000004BE)</span> • <a href="../controllers/Unknown (000004BF).html" style="font-weight:600;">Unknown (000004BF)</a> • <a href="../controllers/Unknown (000004C5).html" style="font-weight:600;">Unknown (000004C5)</a>
+          </div>
+        </section>
+        
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

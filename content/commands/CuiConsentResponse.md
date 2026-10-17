@@ -1,0 +1,57 @@
+---
+title: CuiConsentResponse
+url: https://wiki.swganh.org/index.php/CuiConsentResponse
+page_type: Command
+opcode: 782C4D16
+revision_id: 44396
+last_modified: 2008-08-26T12:14:08Z
+completion: 0%
+direction: C→S
+sample_status: present
+categories: ['Packets', 'Client Packets', '0% Complete', 'CommandQueueEnqueue', 'Client Commands']
+templates: ['Template:PageHeader', 'Template:ClientPacket', 'Template:0%', 'Template:CommandQueueEnqueue', 'Template:ClientCommands']
+---
+
+# CuiConsentResponse
+
+## Notices
+_none_
+
+## Description
+SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.
+
+## Struct
+| Type | Name |
+| --- | --- |
+|  |  |
+|  |  |
+|  |  |
+|  |  |
+
+## Variable Descriptions
+- Opperand_Count	     =
+- Opcode		     = 782C4D16
+
+## Notes
+_none_
+
+## Tags
+- **C→S** - This packet originates on the client.
+- **0%** - This packet has not been reversed.
+- **CQE** - This Command is part of the CommandQueueEnqueue .
+- **Command** - This is a client command.
+
+## Sample Packet
+```
+----
+"782C4D16",288,0,0,""
+```
+
+## Related Pages
+_none_
+
+## Other Sections
+_none_
+
+## Categories
+Packets | Client Packets | 0% Complete | CommandQueueEnqueue | Client Commands

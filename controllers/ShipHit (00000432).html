@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShipHit (00000432) | SWG Docs</title>
+  <meta name="description" content="Technical documentation and packet structure for ShipHit (00000432) in Star Wars Galaxies.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="active">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>Advanced Subsystem Triggers (0x151+)</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../controllers/AboutToHyperspace (000003FE).html" class="">AboutToHyperspace (000003FE)</a></li>
+<li><a href="../controllers/AskGroupMemberToLaunchIntoSpace (00000438).html" class="">AskGroupMemberToLaunchIntoSpace (00000438)</a></li>
+<li><a href="../controllers/BiographyUpdate (000001DB).html" class="">BiographyUpdate (000001DB)</a></li>
+<li><a href="../controllers/Buffs (00000229).html" class="">Buffs (00000229)</a></li>
+<li><a href="../controllers/ChangeRoleIconChoice (0000044D).html" class="">ChangeRoleIconChoice (0000044D)</a></li>
+<li><a href="../controllers/CommandQueueAdd (00000167).html" class="">CommandQueueAdd (00000167)</a></li>
+<li><a href="../controllers/CommandTimer (00000448).html" class="">CommandTimer (00000448)</a></li>
+<li><a href="../controllers/CraftCustomization (0000015A).html" class="">CraftCustomization (0000015A)</a></li>
+<li><a href="../controllers/CraftingSessionEnded (000001C2).html" class="">CraftingSessionEnded (000001C2)</a></li>
+<li><a href="../controllers/DraftSlotsQueryResponse (000001BF).html" class="">DraftSlotsQueryResponse (000001BF)</a></li>
+<li><a href="../controllers/DroidCommandProgrammingMessage (00000435).html" class="">DroidCommandProgrammingMessage (00000435)</a></li>
+<li><a href="../controllers/EntertainerFlourishType (00000166).html" class="">EntertainerFlourishType (00000166)</a></li>
+<li><a href="../controllers/ForceActivateQuest (000004BE).html" class="">ForceActivateQuest (000004BE)</a></li>
+<li><a href="../controllers/GenericIntResponse (000001BE).html" class="">GenericIntResponse (000001BE)</a></li>
+<li><a href="../controllers/GroupMemberInvitationToLaunchIntoSpaceResponse (00000439).html" class="">GroupMemberInvitationToLaunchIntoSpaceResponse (00000439)</a></li>
+<li><a href="../controllers/HyperspaceOrientShipToPointAndLockPlayerInput (0000042D).html" class="">HyperspaceOrientShipToPointAndLockPlayerInput (0000042D)</a></li>
+<li><a href="../controllers/ImageDesignChangeMessage (00000238).html" class="">ImageDesignChangeMessage (00000238)</a></li>
+<li><a href="../controllers/ImageDesignEndMessage (00000239).html" class="">ImageDesignEndMessage (00000239)</a></li>
+<li><a href="../controllers/ImageDesignStartMessage (0000022A).html" class="">ImageDesignStartMessage (0000022A)</a></li>
+<li><a href="../controllers/ImageDesignStartMessage (0000022B).html" class="">ImageDesignStartMessage (0000022B)</a></li>
+<li><a href="../controllers/ImageDesignStartMessage (0000022C).html" class="">ImageDesignStartMessage (0000022C)</a></li>
+<li><a href="../controllers/ImageDesignStartMessage (0000023A).html" class="">ImageDesignStartMessage (0000023A)</a></li>
+<li><a href="../controllers/IncubatorCancel (0000025E).html" class="">IncubatorCancel (0000025E)</a></li>
+<li><a href="../controllers/IncubatorCancel (0000025F).html" class="">IncubatorCancel (0000025F)</a></li>
+<li><a href="../controllers/IncubatorCommit (0000025E).html" class="">IncubatorCommit (0000025E)</a></li>
+<li><a href="../controllers/IncubatorStart (0000025D).html" class="">IncubatorStart (0000025D)</a></li>
+<li><a href="../controllers/InviteOtherGroupMembersToLaunchIntoSpace (00000437).html" class="">InviteOtherGroupMembersToLaunchIntoSpace (00000437)</a></li>
+<li><a href="../controllers/JTLShipLocationList (0000041D).html" class="">JTLShipLocationList (0000041D)</a></li>
+<li><a href="../controllers/NetworkId (00000153).html" class="">NetworkId (00000153)</a></li>
+<li><a href="../controllers/NextCraftingStageResult (000001BE).html" class="">NextCraftingStageResult (000001BE)</a></li>
+<li><a href="../controllers/index.html" style="color:var(--accent-cyan); font-weight:600;">View all 95 in Advanced Subsystem Triggers (0x151+) →</a></li>
+        </ul>
+        <h3>Section Links</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../controllers/index.html">← Object Controllers Index</a></li>
+          <li><a href="../content/controllers/ShipHit (00000432).md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/ShipHit_%2800000432%29" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../controllers/index.html">Object Controllers</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">ShipHit (00000432)</span>
+    </div>
+    
+        
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>ShipHit (00000432)</span>
+            <span class="opcode-pill" onclick="copyToClipboard('00000432', this)" title="Click to copy opcode">00000432 📋</span>
+          </h1>
+          <div class="article-meta">
+            
+            <span class="badge badge-25">25% Complete</span>
+            <span class="badge badge-sample-absent">Sample: absent</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Object Controllers</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Object Controller</strong></span>
+          </div>
+        </header>
+
+        <div class="notice-box">⚠️ This article or section needs additional data . Please add a sample packet!</div>
+        <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:1.5rem;">SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.</div>
+        
+        <section class="doc-section">
+          <h2>📐 Packet Structure (6 fields)</h2>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th style="width:140px;">Data Type</th>
+                  <th>Field Name</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">??</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">??</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">??</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">??</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">??</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill">INT</span></td>
+              <td style="font-weight:600;">??</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>🏷️ Variable Descriptions</h2>
+          <div class="var-grid">
+            
+            <div class="var-card">
+              <div class="var-name">controllerID</div>
+              <div class="var-val">00000432</div>
+            </div>
+            
+          </div>
+        </section>
+        
+        
+        
+        
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

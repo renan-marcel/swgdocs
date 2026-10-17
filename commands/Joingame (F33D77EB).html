@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joingame (F33D77EB) | SWG Docs</title>
+  <meta name="description" content="Technical documentation and packet structure for Joingame (F33D77EB) in Star Wars Galaxies.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="">Protocols</a></li>
+      <li><a href="../commands/index.html" class="active">Commands</a></li>
+      <li><a href="../controllers/index.html" class="">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <aside class="sidebar">
+        <h3>General Commands</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../commands/Activate (01E5156C).html" class="">Activate (01E5156C)</a></li>
+<li><a href="../commands/Activateclone (EA69C1BD).html" class="">Activateclone (EA69C1BD)</a></li>
+<li><a href="../commands/Activatequest (61B2EC70).html" class="">Activatequest (61B2EC70)</a></li>
+<li><a href="../commands/Addallowedplayer (F1B97054).html" class="">Addallowedplayer (F1B97054)</a></li>
+<li><a href="../commands/Addbannedplayer (5DE7ABE4).html" class="">Addbannedplayer (5DE7ABE4)</a></li>
+<li><a href="../commands/Addfriend (2A2357ED).html" class="">Addfriend (2A2357ED)</a></li>
+<li><a href="../commands/Addignore (929AD345).html" class="">Addignore (929AD345)</a></li>
+<li><a href="../commands/Addmaplocation (124249A4).html" class="">Addmaplocation (124249A4)</a></li>
+<li><a href="../commands/Adjustlotcount (0D617CF4).html" class="">Adjustlotcount (0D617CF4)</a></li>
+<li><a href="../commands/Aiignore (E6C2E97D).html" class="">Aiignore (E6C2E97D)</a></li>
+<li><a href="../commands/Aim (A0A107F8).html" class="">Aim (A0A107F8)</a></li>
+<li><a href="../commands/Alert (23DAB842).html" class="">Alert (23DAB842)</a></li>
+<li><a href="../commands/Animalcalm (22E1565B).html" class="">Animalcalm (22E1565B)</a></li>
+<li><a href="../commands/Animalscare (E001C174).html" class="">Animalscare (E001C174)</a></li>
+<li><a href="../commands/Anon (D40D5142).html" class="">Anon (D40D5142)</a></li>
+<li><a href="../commands/Applydisease (AF5E4D90).html" class="">Applydisease (AF5E4D90)</a></li>
+<li><a href="../commands/Applypoison (E08596DB).html" class="">Applypoison (E08596DB)</a></li>
+<li><a href="../commands/Applypowerup (AB559978).html" class="">Applypowerup (AB559978)</a></li>
+<li><a href="../commands/Areatrack (AA4E8A8C).html" class="">Areatrack (AA4E8A8C)</a></li>
+<li><a href="../commands/Assigndroid (6B5C8AE3).html" class="">Assigndroid (6B5C8AE3)</a></li>
+<li><a href="../commands/Assignplayerformation (A810CCBF).html" class="">Assignplayerformation (A810CCBF)</a></li>
+<li><a href="../commands/Assist (2555B593).html" class="">Assist (2555B593)</a></li>
+<li><a href="../commands/Auction (74C7588E).html" class="">Auction (74C7588E)</a></li>
+<li><a href="../commands/Auctionaccept (81E9BDD7).html" class="">Auctionaccept (81E9BDD7)</a></li>
+<li><a href="../commands/Auctionbid (F34D4523).html" class="">Auctionbid (F34D4523)</a></li>
+<li><a href="../commands/Auctioncancel (95778039).html" class="">Auctioncancel (95778039)</a></li>
+<li><a href="../commands/Auctioncreate (B71FFF08).html" class="">Auctioncreate (B71FFF08)</a></li>
+<li><a href="../commands/Auctionquery (06DE6A3A).html" class="">Auctionquery (06DE6A3A)</a></li>
+<li><a href="../commands/Auctionretrieve (7D09AE79).html" class="">Auctionretrieve (7D09AE79)</a></li>
+<li><a href="../commands/Auctionsay (188B3F25).html" class="">Auctionsay (188B3F25)</a></li>
+<li><a href="../commands/index.html" style="color:var(--accent-cyan); font-weight:600;">View all 520 in General Commands →</a></li>
+        </ul>
+        <h3>Section Links</h3>
+        <ul class="sidebar-nav">
+          <li><a href="../commands/index.html">← Client Commands Index</a></li>
+          <li><a href="../content/commands/Joingame (F33D77EB).md" target="_blank">📄 View Raw Markdown</a></li>
+          <li><a href="https://wiki.swganh.org/index.php/Joingame_%28F33D77EB%29" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <a href="../commands/index.html">Client Commands</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">Joingame (F33D77EB)</span>
+    </div>
+    
+        
+        <header class="article-header">
+          <h1 class="article-title">
+            <span>Joingame (F33D77EB)</span>
+            <span class="opcode-pill" onclick="copyToClipboard('F33D77EB', this)" title="Click to copy opcode">F33D77EB 📋</span>
+          </h1>
+          <div class="article-meta">
+            <span class="badge badge-cs" title="Client to Server">C→S (Client)</span>
+            <span class="badge badge-0">0% Complete</span>
+            <span class="badge badge-sample-placeholder">Sample: placeholder</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Client Commands</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Command</strong></span>
+          </div>
+        </header>
+
+        
+        <div style="font-size:0.95rem; color:var(--text-secondary); margin-bottom:1.5rem;">SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.</div>
+        
+        <section class="doc-section">
+          <h2>📐 Packet Structure (4 fields)</h2>
+          <div class="table-wrap">
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th style="width:140px;">Data Type</th>
+                  <th>Field Name</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr>
+              <td><span class="type-pill"></span></td>
+              <td style="font-weight:600;"></td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill"></span></td>
+              <td style="font-weight:600;"></td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill"></span></td>
+              <td style="font-weight:600;"></td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+            <tr>
+              <td><span class="type-pill"></span></td>
+              <td style="font-weight:600;"></td>
+              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </section>
+        
+        
+        <section class="doc-section">
+          <h2>🏷️ Variable Descriptions</h2>
+          <div class="var-grid">
+            
+            <div class="var-card">
+              <div class="var-name">Opperand_Count</div>
+              <div class="var-val">X</div>
+            </div>
+            
+            <div class="var-card">
+              <div class="var-name">Opcode</div>
+              <div class="var-val">F33D77EB</div>
+            </div>
+            
+          </div>
+        </section>
+        
+        
+        
+        <section class="doc-section">
+          <h2>📦 Sample Hex Dump / Packet Payload</h2>
+          <div class="code-container">
+            <div class="code-header">
+              <span>Status: <strong>PLACEHOLDER</strong></span>
+              <button class="copy-btn" onclick="copyToClipboard(`----`, this)">Copy Sample</button>
+            </div>
+            <pre class="code-block"><code>----</code></pre>
+          </div>
+        </section>
+        
+        
+      </main>
+    </div>
+  </div>
+
+  
+  <footer>
+    <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; align-items:center;">
+      <div>
+        <strong>SWG Protocol Documentation</strong> — Complete, faithful archive of wiki.swganh.org
+      </div>
+      <div style="display:flex; gap:1.25rem;">
+        <a href="../data/all_packets.csv">Download CSV</a>
+        <a href="../data/packets_summary.json">Download JSON</a>
+        <a href="../index.html">Master Index</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
