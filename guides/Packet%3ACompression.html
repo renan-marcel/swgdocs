@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Packet:Compression | SWG Docs</title>
-  <meta name="description" content="Technical documentation and packet structure for Packet:Compression in Star Wars Galaxies.">
+  <meta name="description" content="Historical wiki draft of SWG Packet Compression.">
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body data-root="../">
@@ -36,81 +36,81 @@
     </div>
   </header>
 
-  
+
   <div class="container">
     <div class="layout-with-sidebar">
       <aside class="sidebar">
-        <h3>Protocol Guides</h3>
+        <h3>Historical Reference</h3><ul class='sidebar-nav'><li><a href='../guides/Packet%3AIntro.html' >Packet:Intro</a></li><li><a href='../guides/Packet%3AHexBinary.html' >Packet:HexBinary</a></li><li><a href='../guides/Packet%3ASOEProtocol.html' >Packet:SOEProtocol</a></li><li><a href='../guides/Packet%3ASWGPacket.html' >Packet:SWGPacket</a></li><li><a href='../guides/Packet%3ACRC.html' >Packet:CRC</a></li><li><a href='../guides/Packet%3ACompression.html' class='active'>Packet:Compression</a></li><li><a href='../guides/Packet%3AEncryption.html' >Packet:Encryption</a></li><li><a href='../guides/Packet%3APacketFooter.html' >Packet:PacketFooter</a></li><li><a href='../guides/Packet%3APacket Guides.html' >Packet:Packet Guides</a></li><li><a href='../guides/Packet%3APacketTemplates.html' >Packet:PacketTemplates</a></li></ul>
+        
+        <h3>Guides Overview</h3>
         <ul class="sidebar-nav">
-          <li><a href="../guides/Binary & Hex.html" class="">Binary &amp; Hex</a></li>
-<li><a href="../guides/Packet Guide.html" class="">Packet Guide</a></li>
-<li><a href="../guides/Packet Guides.html" class="">Packet Guides</a></li>
-<li><a href="../guides/Packet Template.html" class="">Packet Template</a></li>
-<li><a href="../guides/Packet%3ACompression.html" class="active">Packet:Compression</a></li>
-<li><a href="../guides/Packet%3ACRC.html" class="">Packet:CRC</a></li>
-<li><a href="../guides/Packet%3AEncryption.html" class="">Packet:Encryption</a></li>
-<li><a href="../guides/Packet%3AHexBinary.html" class="">Packet:HexBinary</a></li>
-<li><a href="../guides/Packet%3AIntro.html" class="">Packet:Intro</a></li>
-<li><a href="../guides/Packet%3APacket Guides.html" class="">Packet:Packet Guides</a></li>
-<li><a href="../guides/Packet%3APacketFooter.html" class="">Packet:PacketFooter</a></li>
-<li><a href="../guides/Packet%3APacketTemplates.html" class="">Packet:PacketTemplates</a></li>
-<li><a href="../guides/Packet%3ASOEProtocol.html" class="">Packet:SOEProtocol</a></li>
-<li><a href="../guides/Packet%3ASWGPacket.html" class="">Packet:SWGPacket</a></li>
-<li><a href="../guides/Reversing Structs.html" class="">Reversing Structs</a></li>
-<li><a href="../guides/SOE Protocol Breakdown.html" class="">SOE Protocol Breakdown</a></li>
-<li><a href="../guides/SWG Packet Compression.html" class="">SWG Packet Compression</a></li>
-<li><a href="../guides/SWG Packet CRC.html" class="">SWG Packet CRC</a></li>
-<li><a href="../guides/SWG Packet Encryption.html" class="">SWG Packet Encryption</a></li>
-<li><a href="../guides/SWG Packet Footer.html" class="">SWG Packet Footer</a></li>
-<li><a href="../guides/SWG Packet Introduction.html" class="">SWG Packet Introduction</a></li>
-<li><a href="../guides/SWG Packets.html" class="">SWG Packets</a></li>
-
-        </ul>
-        <h3>Section Links</h3>
-        <ul class="sidebar-nav">
-          <li><a href="../guides/index.html">← Packet Guides Index</a></li>
+          <li><a href="../guides/index.html">← All Packet Guides</a></li>
           <li><a href="../content/guides/Packet%3ACompression.md" target="_blank">📄 View Raw Markdown</a></li>
           <li><a href="https://wiki.swganh.org/index.php/Packet%3ACompression" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
         </ul>
       </aside>
 
       <main class="main-content">
-        
-    <div class="breadcrumb">
-      <a href="../index.html">Home</a>
-      <span class="sep">/</span>
-      <a href="../guides/index.html">Packet Guides</a>
-      <span class="sep">/</span>
-      <span style="color:var(--text-primary); font-weight:600;">Packet:Compression</span>
-    </div>
-    
-        
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">/</span>
+          <a href="../guides/index.html">Packet Guides</a>
+          <span class="sep">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Packet:Compression</span>
+        </div>
+
         <header class="article-header">
           <h1 class="article-title">
             <span>Packet:Compression</span>
-            
           </h1>
           <div class="article-meta">
-            
-            <span class="badge badge-unknown">unknown Complete</span>
-            <span class="badge badge-sample-absent">Sample: absent</span>
-            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Packet Guides</strong></span>
-            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Other</strong></span>
+            <span class="badge badge-100">Historical</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Category: <strong>Historical Reference</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Wiki Rev: <strong>#1669</strong></span>
           </div>
+          <p style="color:var(--text-secondary); margin-top:0.75rem; font-size:1rem;">Historical wiki draft of SWG Packet Compression.</p>
         </header>
 
-        
-        
-        
-        <section class="doc-section">
-          <h2>📐 Packet Structure</h2>
-          <div style="color:var(--text-muted); font-style:italic;">No structure table recorded for this packet.</div>
-        </section>
-        
-        
-        
-        
-        
+        <article class="guide-body">
+          <p>The compression algorithm used on SWG packets is a standard ZLIB algorithm.
+</p><p>Please refer to ZLIB documentation on how the algorithm functions, for the sake of  simplicity, we use the 
+ZLIB's Compress/Decompress functions on the data at a standard level of compression.
+</p><p>The data that is compressed is between the SOE Opcode and the footer. So far no stand-alone SWG Packets have 
+been recorded that are compressed.
+</p><p>If data is compressed, the first byte of the footer (which is a compression byteflag) is 1. If it is not compressed, it is a 0.
+</p><p>Compression will occur BEFORE encryption, and BEFORE a CRC value is appended.
+</p><p>Compression is applied on all network status updates (both client and server), and on packets that are generally &gt; 100 bytes.
+The largest any packet can be uncompressed is 496 bytes, which includes the footer. If it is larger it must be fragmented first.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20261017165634
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.005 seconds
+Real time usage: 0.005 seconds
+Preprocessor visited node count: 1/1000000
+Preprocessor generated node count: 4/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 1/40
+Expensive parser function count: 0/100
+-->
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+<!-- Saved in parser cache with key swganh_wiki:pcache:idhash:1551-0!*!*!*!*!*!* and timestamp 20261017165634 and revision id 1669
+ -->
+
+        </article>
+
+        <footer style="margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border-color); font-size:0.85rem; color:var(--text-muted);">
+          <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <div>Source: <a href="https://wiki.swganh.org/index.php/Packet%3ACompression" target="_blank" rel="noopener">https://wiki.swganh.org/index.php/Packet%3ACompression</a></div>
+            <div>Wiki Revision ID: 1669 | Verified against live wiki</div>
+          </div>
+        </footer>
       </main>
     </div>
   </div>

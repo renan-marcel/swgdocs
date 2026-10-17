@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Packet:Intro | SWG Docs</title>
-  <meta name="description" content="Technical documentation and packet structure for Packet:Intro in Star Wars Galaxies.">
+  <meta name="description" content="Historical wiki draft of SWG Packet Introduction.">
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body data-root="../">
@@ -36,81 +36,100 @@
     </div>
   </header>
 
-  
+
   <div class="container">
     <div class="layout-with-sidebar">
       <aside class="sidebar">
-        <h3>Protocol Guides</h3>
+        <h3>Historical Reference</h3><ul class='sidebar-nav'><li><a href='../guides/Packet%3AIntro.html' class='active'>Packet:Intro</a></li><li><a href='../guides/Packet%3AHexBinary.html' >Packet:HexBinary</a></li><li><a href='../guides/Packet%3ASOEProtocol.html' >Packet:SOEProtocol</a></li><li><a href='../guides/Packet%3ASWGPacket.html' >Packet:SWGPacket</a></li><li><a href='../guides/Packet%3ACRC.html' >Packet:CRC</a></li><li><a href='../guides/Packet%3ACompression.html' >Packet:Compression</a></li><li><a href='../guides/Packet%3AEncryption.html' >Packet:Encryption</a></li><li><a href='../guides/Packet%3APacketFooter.html' >Packet:PacketFooter</a></li><li><a href='../guides/Packet%3APacket Guides.html' >Packet:Packet Guides</a></li><li><a href='../guides/Packet%3APacketTemplates.html' >Packet:PacketTemplates</a></li></ul>
+        <h3>On This Page</h3><ul class='sidebar-nav'><li><a href='#introduction-to-packets' style='padding-left:1.25rem; font-size:0.8rem;'>Introduction to Packets</a></li></ul>
+        <h3>Guides Overview</h3>
         <ul class="sidebar-nav">
-          <li><a href="../guides/Binary & Hex.html" class="">Binary &amp; Hex</a></li>
-<li><a href="../guides/Packet Guide.html" class="">Packet Guide</a></li>
-<li><a href="../guides/Packet Guides.html" class="">Packet Guides</a></li>
-<li><a href="../guides/Packet Template.html" class="">Packet Template</a></li>
-<li><a href="../guides/Packet%3ACompression.html" class="">Packet:Compression</a></li>
-<li><a href="../guides/Packet%3ACRC.html" class="">Packet:CRC</a></li>
-<li><a href="../guides/Packet%3AEncryption.html" class="">Packet:Encryption</a></li>
-<li><a href="../guides/Packet%3AHexBinary.html" class="">Packet:HexBinary</a></li>
-<li><a href="../guides/Packet%3AIntro.html" class="active">Packet:Intro</a></li>
-<li><a href="../guides/Packet%3APacket Guides.html" class="">Packet:Packet Guides</a></li>
-<li><a href="../guides/Packet%3APacketFooter.html" class="">Packet:PacketFooter</a></li>
-<li><a href="../guides/Packet%3APacketTemplates.html" class="">Packet:PacketTemplates</a></li>
-<li><a href="../guides/Packet%3ASOEProtocol.html" class="">Packet:SOEProtocol</a></li>
-<li><a href="../guides/Packet%3ASWGPacket.html" class="">Packet:SWGPacket</a></li>
-<li><a href="../guides/Reversing Structs.html" class="">Reversing Structs</a></li>
-<li><a href="../guides/SOE Protocol Breakdown.html" class="">SOE Protocol Breakdown</a></li>
-<li><a href="../guides/SWG Packet Compression.html" class="">SWG Packet Compression</a></li>
-<li><a href="../guides/SWG Packet CRC.html" class="">SWG Packet CRC</a></li>
-<li><a href="../guides/SWG Packet Encryption.html" class="">SWG Packet Encryption</a></li>
-<li><a href="../guides/SWG Packet Footer.html" class="">SWG Packet Footer</a></li>
-<li><a href="../guides/SWG Packet Introduction.html" class="">SWG Packet Introduction</a></li>
-<li><a href="../guides/SWG Packets.html" class="">SWG Packets</a></li>
-
-        </ul>
-        <h3>Section Links</h3>
-        <ul class="sidebar-nav">
-          <li><a href="../guides/index.html">← Packet Guides Index</a></li>
+          <li><a href="../guides/index.html">← All Packet Guides</a></li>
           <li><a href="../content/guides/Packet%3AIntro.md" target="_blank">📄 View Raw Markdown</a></li>
           <li><a href="https://wiki.swganh.org/index.php/Packet%3AIntro" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
         </ul>
       </aside>
 
       <main class="main-content">
-        
-    <div class="breadcrumb">
-      <a href="../index.html">Home</a>
-      <span class="sep">/</span>
-      <a href="../guides/index.html">Packet Guides</a>
-      <span class="sep">/</span>
-      <span style="color:var(--text-primary); font-weight:600;">Packet:Intro</span>
-    </div>
-    
-        
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">/</span>
+          <a href="../guides/index.html">Packet Guides</a>
+          <span class="sep">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Packet:Intro</span>
+        </div>
+
         <header class="article-header">
           <h1 class="article-title">
             <span>Packet:Intro</span>
-            
           </h1>
           <div class="article-meta">
-            
-            <span class="badge badge-unknown">unknown Complete</span>
-            <span class="badge badge-sample-absent">Sample: absent</span>
-            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Packet Guides</strong></span>
-            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Other</strong></span>
+            <span class="badge badge-100">Historical</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Category: <strong>Historical Reference</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Wiki Rev: <strong>#1722</strong></span>
           </div>
+          <p style="color:var(--text-secondary); margin-top:0.75rem; font-size:1rem;">Historical wiki draft of SWG Packet Introduction.</p>
         </header>
 
-        
-        
-        
-        <section class="doc-section">
-          <h2>📐 Packet Structure</h2>
-          <div style="color:var(--text-muted); font-style:italic;">No structure table recorded for this packet.</div>
-        </section>
-        
-        
-        
-        
-        
+        <article class="guide-body">
+          <h3 id="introduction-to-packets"><span class="mw-headline" id="Introduction_to_Packets">Introduction to Packets</span></h3>
+<p>Packets are a form of data communication over networks. In online games, packets are sent between the client(game) 
+and a server to communicate various technical aspects of the game such as health,location,item data, player messages, etc. 
+</p><p><br/>
+They are usually just a chain of 0's and 1's that can be interpreted. Because binary is difficult to read, packets are usually
+displayed in hexadecimal, which is a base 16 number system that makes them smaller and easier to read.
+</p><p>Instead of "01011100", you would read "5C". The rest of the packet documentation assumes you understand binary and 
+hexadecimal number systems.
+</p><p><br/>
+SWG uses an outer protocol that is unique to only SOE games. From now on this will be refered to as the "SOE Protocol". 
+It's purpose is to enhance the UDP packet system they use for the game. 
+Google "UDP vs TCP" to learn more about the two network protocols.
+</p><p>There are a few various ways SOE protocol can be used along with SWG packets.
+</p><p>(SOE Protocol)(*Footer) - This form is just a standalone packet that is part of the SOE protocol, 
+no SWG data is attached to it.
+</p><p>(SOE Protocol)(SWG Packet)(Footer) - This form is an SWG packet wrapped around the SOE protocol.
+</p><p>(SOE Protocol)((SOE Protocol)(SWG Packet))(Footer) - Multiple SOE protocol pieces are put together.
+</p><p>(SWG Packet)(Footer) - This is a stand-alone SWG packet, its only common for data that does not need to be 
+verified by the server or client and can potentially be lost without causing problems. 
+</p><p>((SWG Packet)(SWG Packet))(Footer) - 2 SWG packets can be combined within the same set of data. 
+</p><p>(SOE Protocol)((SWG Packet)(SWG Packet))(Footer) - Same as above but wrapped around the SOE protocol. 
+</p><p>Packets can even get as complicated as this:
+(SOE Protocol)((SOE Protocol)(SOE Protocol(((SWG Packet)(SWG Packet)))(SOE Protocol)(SWG Packet))(Footer)
+</p>
+<ul><li>Notice: Every packet regardless of its formation has a footer. There are a few exceptions in the SOE Protocol. </li></ul>
+<p>See SOE Protocol for more information on it.
+</p><p>Within the footer of a packet is a CRC32 checksum which is used to check the validity of a packet transmitted. 
+SWG also has its packets encrypted, and some are also compressed. Please read the corresponding articles for more information.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20261017165638
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.011 seconds
+Real time usage: 0.011 seconds
+Preprocessor visited node count: 2/1000000
+Preprocessor generated node count: 8/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+<!-- Saved in parser cache with key swganh_wiki:pcache:idhash:1546-0!*!*!*!*!*!* and timestamp 20261017165638 and revision id 1722
+ -->
+
+        </article>
+
+        <footer style="margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border-color); font-size:0.85rem; color:var(--text-muted);">
+          <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <div>Source: <a href="https://wiki.swganh.org/index.php/Packet%3AIntro" target="_blank" rel="noopener">https://wiki.swganh.org/index.php/Packet%3AIntro</a></div>
+            <div>Wiki Revision ID: 1722 | Verified against live wiki</div>
+          </div>
+        </footer>
       </main>
     </div>
   </div>

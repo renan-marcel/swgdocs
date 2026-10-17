@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Packet:PacketTemplates | SWG Docs</title>
-  <meta name="description" content="Technical documentation and packet structure for Packet:PacketTemplates in Star Wars Galaxies.">
+  <meta name="description" content="Historical wiki draft of Packet Template.">
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body data-root="../">
@@ -36,88 +36,145 @@
     </div>
   </header>
 
-  
+
   <div class="container">
     <div class="layout-with-sidebar">
       <aside class="sidebar">
-        <h3>Protocol Guides</h3>
+        <h3>Historical Reference</h3><ul class='sidebar-nav'><li><a href='../guides/Packet%3AIntro.html' >Packet:Intro</a></li><li><a href='../guides/Packet%3AHexBinary.html' >Packet:HexBinary</a></li><li><a href='../guides/Packet%3ASOEProtocol.html' >Packet:SOEProtocol</a></li><li><a href='../guides/Packet%3ASWGPacket.html' >Packet:SWGPacket</a></li><li><a href='../guides/Packet%3ACRC.html' >Packet:CRC</a></li><li><a href='../guides/Packet%3ACompression.html' >Packet:Compression</a></li><li><a href='../guides/Packet%3AEncryption.html' >Packet:Encryption</a></li><li><a href='../guides/Packet%3APacketFooter.html' >Packet:PacketFooter</a></li><li><a href='../guides/Packet%3APacket Guides.html' >Packet:Packet Guides</a></li><li><a href='../guides/Packet%3APacketTemplates.html' class='active'>Packet:PacketTemplates</a></li></ul>
+        <h3>On This Page</h3><ul class='sidebar-nav'><li><a href='#available-templates' style='padding-left:1.25rem; font-size:0.8rem;'>Available Templates</a></li></ul>
+        <h3>Guides Overview</h3>
         <ul class="sidebar-nav">
-          <li><a href="../guides/Binary & Hex.html" class="">Binary &amp; Hex</a></li>
-<li><a href="../guides/Packet Guide.html" class="">Packet Guide</a></li>
-<li><a href="../guides/Packet Guides.html" class="">Packet Guides</a></li>
-<li><a href="../guides/Packet Template.html" class="">Packet Template</a></li>
-<li><a href="../guides/Packet%3ACompression.html" class="">Packet:Compression</a></li>
-<li><a href="../guides/Packet%3ACRC.html" class="">Packet:CRC</a></li>
-<li><a href="../guides/Packet%3AEncryption.html" class="">Packet:Encryption</a></li>
-<li><a href="../guides/Packet%3AHexBinary.html" class="">Packet:HexBinary</a></li>
-<li><a href="../guides/Packet%3AIntro.html" class="">Packet:Intro</a></li>
-<li><a href="../guides/Packet%3APacket Guides.html" class="">Packet:Packet Guides</a></li>
-<li><a href="../guides/Packet%3APacketFooter.html" class="">Packet:PacketFooter</a></li>
-<li><a href="../guides/Packet%3APacketTemplates.html" class="active">Packet:PacketTemplates</a></li>
-<li><a href="../guides/Packet%3ASOEProtocol.html" class="">Packet:SOEProtocol</a></li>
-<li><a href="../guides/Packet%3ASWGPacket.html" class="">Packet:SWGPacket</a></li>
-<li><a href="../guides/Reversing Structs.html" class="">Reversing Structs</a></li>
-<li><a href="../guides/SOE Protocol Breakdown.html" class="">SOE Protocol Breakdown</a></li>
-<li><a href="../guides/SWG Packet Compression.html" class="">SWG Packet Compression</a></li>
-<li><a href="../guides/SWG Packet CRC.html" class="">SWG Packet CRC</a></li>
-<li><a href="../guides/SWG Packet Encryption.html" class="">SWG Packet Encryption</a></li>
-<li><a href="../guides/SWG Packet Footer.html" class="">SWG Packet Footer</a></li>
-<li><a href="../guides/SWG Packet Introduction.html" class="">SWG Packet Introduction</a></li>
-<li><a href="../guides/SWG Packets.html" class="">SWG Packets</a></li>
-
-        </ul>
-        <h3>Section Links</h3>
-        <ul class="sidebar-nav">
-          <li><a href="../guides/index.html">← Packet Guides Index</a></li>
+          <li><a href="../guides/index.html">← All Packet Guides</a></li>
           <li><a href="../content/guides/Packet%3APacketTemplates.md" target="_blank">📄 View Raw Markdown</a></li>
           <li><a href="https://wiki.swganh.org/index.php/Packet%3APacketTemplates" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
         </ul>
       </aside>
 
       <main class="main-content">
-        
-    <div class="breadcrumb">
-      <a href="../index.html">Home</a>
-      <span class="sep">/</span>
-      <a href="../guides/index.html">Packet Guides</a>
-      <span class="sep">/</span>
-      <span style="color:var(--text-primary); font-weight:600;">Packet:PacketTemplates</span>
-    </div>
-    
-        
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">/</span>
+          <a href="../guides/index.html">Packet Guides</a>
+          <span class="sep">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Packet:PacketTemplates</span>
+        </div>
+
         <header class="article-header">
           <h1 class="article-title">
             <span>Packet:PacketTemplates</span>
-            
           </h1>
           <div class="article-meta">
-            
-            <span class="badge badge-unknown">unknown Complete</span>
-            <span class="badge badge-sample-absent">Sample: absent</span>
-            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Packet Guides</strong></span>
-            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Other</strong></span>
+            <span class="badge badge-100">Historical</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Category: <strong>Historical Reference</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Wiki Rev: <strong>#1690</strong></span>
           </div>
+          <p style="color:var(--text-secondary); margin-top:0.75rem; font-size:1rem;">Historical wiki draft of Packet Template.</p>
         </header>
 
-        
-        
-        
-        <section class="doc-section">
-          <h2>📐 Packet Structure</h2>
-          <div style="color:var(--text-muted); font-style:italic;">No structure table recorded for this packet.</div>
-        </section>
-        
-        
-        
-        
-        
-        <section class="doc-section">
-          <h2>🔗 Related Pages</h2>
-          <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
-            <span style="color:var(--text-muted);">Template:GameSystemsCrafting</span>
+        <article class="guide-body">
+          <h3 id="available-templates"><span class="mw-headline" id="Available_Templates">Available Templates</span></h3>
+<hr/>
+<div class="table-wrap"><table class="doc-table" style="background:none">
+<tr>
+<th style="width:300px">Code
+</th>
+<th>Result
+</th></tr>
+<tr>
+<td>{{<a href="https://wiki.swganh.org/index.php/Template%3AGameSystemsCrafting" rel="noopener" target="_blank" title="Template:GameSystemsCrafting">GameSystemsCrafting</a>}}</td>
+<td><div style="float: left; border: solid #C0C8FF 1px; margin: 1px;">
+<div class="table-wrap"><table cellspacing="0" class="doc-table" style="width: 238px; background: #F0F8FF;">
+<tr>
+<td style="width: 45px; height: 45px; background: #C0C8FF; text-align: center; font-size: 13.5pt"> <b>  Crafting  </b>
+</td>
+<td style="font-size: 8pt; padding: 4pt; line-height: 1.25em;">  This opcode is used in Crafting.
+</td></tr></table></div>
+</div>
+</td></tr>
+<tr>
+<td>{{<a href="https://wiki.swganh.org/index.php/Template%3AGameSystemsCrafting" rel="noopener" target="_blank" title="Template:GameSystemsCrafting">GameSystemsSurveying</a>}}</td>
+<td><div style="float: left; border: solid #C0C8FF 1px; margin: 1px;">
+<div class="table-wrap"><table cellspacing="0" class="doc-table" style="width: 238px; background: #F0F8FF;">
+<tr>
+<td style="width: 45px; height: 45px; background: #C0C8FF; text-align: center; font-size: 13.5pt"> <b>  Survey  </b>
+</td>
+<td style="font-size: 8pt; padding: 4pt; line-height: 1.25em;">  This opcode is used in Surveying.
+</td></tr></table></div>
+</div>
+</td></tr>
+<tr>
+<td>{{<a href="https://wiki.swganh.org/index.php/Template%3AGameSystemsCrafting" rel="noopener" target="_blank" title="Template:GameSystemsCrafting">GameSystemsHealing</a>}}</td>
+<td><span class="new" style="color:var(--text-muted); text-decoration:none;" title="Template:GameSystemsHealing (page does not exist)">Template:GameSystemsHealing</span>
+</td></tr>
+<tr>
+<td>{{<a href="https://wiki.swganh.org/index.php/Template%3AGameSystemsCrafting" rel="noopener" target="_blank" title="Template:GameSystemsCrafting">GameSystemsWaypoints</a>}}</td>
+<td><div style="float: left; border: solid #C0C8FF 1px; margin: 1px;">
+<div class="table-wrap"><table cellspacing="0" class="doc-table" style="width: 238px; background: #F0F8FF;">
+<tr>
+<td style="width: 45px; height: 45px; background: #C0C8FF; text-align: center; font-size: 13.5pt"> <b>  CRAFT  </b>
+</td>
+<td style="font-size: 8pt; padding: 4pt; line-height: 1.25em;">  This opcode is used in Crafting.
+</td></tr></table></div>
+</div>
+</td></tr>
+<tr>
+<td>{{<a href="https://wiki.swganh.org/index.php/Template%3AGameSystemsCrafting" rel="noopener" target="_blank" title="Template:GameSystemsCrafting">GameSystemsEmail</a>}}</td>
+<td><span class="new" style="color:var(--text-muted); text-decoration:none;" title="Template:GameSystemsEmail (page does not exist)">Template:GameSystemsEmail</span>
+</td></tr>
+<tr>
+<td>{{<a href="https://wiki.swganh.org/index.php/Template%3AGameSystemsCrafting" rel="noopener" target="_blank" title="Template:GameSystemsCrafting">GameSystemsTrade</a>}}</td>
+<td><span class="new" style="color:var(--text-muted); text-decoration:none;" title="Template:GameSystemsTrade (page does not exist)">Template:GameSystemsTrade</span>
+</td></tr>
+<tr>
+<td>{{<a href="https://wiki.swganh.org/index.php/Template%3AGameSystemsCrafting" rel="noopener" target="_blank" title="Template:GameSystemsCrafting">GameSystemsPlanetMap</a>}}</td>
+<td><span class="new" style="color:var(--text-muted); text-decoration:none;" title="Template:GameSystemsPlanetMap (page does not exist)">Template:GameSystemsPlanetMap</span>
+</td></tr>
+<tr>
+<td>{{<a href="https://wiki.swganh.org/index.php/Template%3AGameSystemsCrafting" rel="noopener" target="_blank" title="Template:GameSystemsCrafting">GameSystemsMissions</a>}}</td>
+<td><span class="new" style="color:var(--text-muted); text-decoration:none;" title="Template:GameSystemsMissions (page does not exist)">Template:GameSystemsMissions</span>
+</td></tr>
+<tr>
+<td>{{<a href="https://wiki.swganh.org/index.php/Template%3AGameSystemsCrafting" rel="noopener" target="_blank" title="Template:GameSystemsCrafting">GameSystemsCombat</a>}}</td>
+<td><span class="new" style="color:var(--text-muted); text-decoration:none;" title="Template:GameSystemsCombat (page does not exist)">Template:GameSystemsCombat</span>
+</td></tr></table></div>
+<!-- 
+NewPP limit report
+Cached time: 20261017165642
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.046 seconds
+Real time usage: 0.058 seconds
+Preprocessor visited node count: 26/1000000
+Preprocessor generated node count: 164/1000000
+Post‐expand include size: 1242/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   15.345      1 - -total
+ 12.65%    1.941      1 - Template:GameSystemsCrafting
+ 11.48%    1.762      1 - Template:GameSystemsSurveying
+ 11.42%    1.753      1 - Template:GameSystemsWaypoints
+  4.72%    0.724      1 - Template:GameSystemsPlanetMap
+  4.67%    0.716      1 - Template:GameSystemsCombat
+  4.65%    0.714      1 - Template:GameSystemsTrade
+  4.62%    0.709      1 - Template:GameSystemsHealing
+  4.54%    0.697      1 - Template:GameSystemsEmail
+  4.49%    0.689      1 - Template:GameSystemsMissions
+-->
+<!-- Saved in parser cache with key swganh_wiki:pcache:idhash:1557-0!*!0!*!*!*!* and timestamp 20261017165642 and revision id 1690
+ -->
+
+        </article>
+
+        <footer style="margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border-color); font-size:0.85rem; color:var(--text-muted);">
+          <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <div>Source: <a href="https://wiki.swganh.org/index.php/Packet%3APacketTemplates" target="_blank" rel="noopener">https://wiki.swganh.org/index.php/Packet%3APacketTemplates</a></div>
+            <div>Wiki Revision ID: 1690 | Verified against live wiki</div>
           </div>
-        </section>
-        
+        </footer>
       </main>
     </div>
   </div>

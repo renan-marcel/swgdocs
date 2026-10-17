@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Packet:HexBinary | SWG Docs</title>
-  <meta name="description" content="Technical documentation and packet structure for Packet:HexBinary in Star Wars Galaxies.">
+  <meta name="description" content="Historical wiki draft of Binary &amp; Hex tutorial.">
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body data-root="../">
@@ -36,81 +36,164 @@
     </div>
   </header>
 
-  
+
   <div class="container">
     <div class="layout-with-sidebar">
       <aside class="sidebar">
-        <h3>Protocol Guides</h3>
+        <h3>Historical Reference</h3><ul class='sidebar-nav'><li><a href='../guides/Packet%3AIntro.html' >Packet:Intro</a></li><li><a href='../guides/Packet%3AHexBinary.html' class='active'>Packet:HexBinary</a></li><li><a href='../guides/Packet%3ASOEProtocol.html' >Packet:SOEProtocol</a></li><li><a href='../guides/Packet%3ASWGPacket.html' >Packet:SWGPacket</a></li><li><a href='../guides/Packet%3ACRC.html' >Packet:CRC</a></li><li><a href='../guides/Packet%3ACompression.html' >Packet:Compression</a></li><li><a href='../guides/Packet%3AEncryption.html' >Packet:Encryption</a></li><li><a href='../guides/Packet%3APacketFooter.html' >Packet:PacketFooter</a></li><li><a href='../guides/Packet%3APacket Guides.html' >Packet:Packet Guides</a></li><li><a href='../guides/Packet%3APacketTemplates.html' >Packet:PacketTemplates</a></li></ul>
+        
+        <h3>Guides Overview</h3>
         <ul class="sidebar-nav">
-          <li><a href="../guides/Binary & Hex.html" class="">Binary &amp; Hex</a></li>
-<li><a href="../guides/Packet Guide.html" class="">Packet Guide</a></li>
-<li><a href="../guides/Packet Guides.html" class="">Packet Guides</a></li>
-<li><a href="../guides/Packet Template.html" class="">Packet Template</a></li>
-<li><a href="../guides/Packet%3ACompression.html" class="">Packet:Compression</a></li>
-<li><a href="../guides/Packet%3ACRC.html" class="">Packet:CRC</a></li>
-<li><a href="../guides/Packet%3AEncryption.html" class="">Packet:Encryption</a></li>
-<li><a href="../guides/Packet%3AHexBinary.html" class="active">Packet:HexBinary</a></li>
-<li><a href="../guides/Packet%3AIntro.html" class="">Packet:Intro</a></li>
-<li><a href="../guides/Packet%3APacket Guides.html" class="">Packet:Packet Guides</a></li>
-<li><a href="../guides/Packet%3APacketFooter.html" class="">Packet:PacketFooter</a></li>
-<li><a href="../guides/Packet%3APacketTemplates.html" class="">Packet:PacketTemplates</a></li>
-<li><a href="../guides/Packet%3ASOEProtocol.html" class="">Packet:SOEProtocol</a></li>
-<li><a href="../guides/Packet%3ASWGPacket.html" class="">Packet:SWGPacket</a></li>
-<li><a href="../guides/Reversing Structs.html" class="">Reversing Structs</a></li>
-<li><a href="../guides/SOE Protocol Breakdown.html" class="">SOE Protocol Breakdown</a></li>
-<li><a href="../guides/SWG Packet Compression.html" class="">SWG Packet Compression</a></li>
-<li><a href="../guides/SWG Packet CRC.html" class="">SWG Packet CRC</a></li>
-<li><a href="../guides/SWG Packet Encryption.html" class="">SWG Packet Encryption</a></li>
-<li><a href="../guides/SWG Packet Footer.html" class="">SWG Packet Footer</a></li>
-<li><a href="../guides/SWG Packet Introduction.html" class="">SWG Packet Introduction</a></li>
-<li><a href="../guides/SWG Packets.html" class="">SWG Packets</a></li>
-
-        </ul>
-        <h3>Section Links</h3>
-        <ul class="sidebar-nav">
-          <li><a href="../guides/index.html">← Packet Guides Index</a></li>
+          <li><a href="../guides/index.html">← All Packet Guides</a></li>
           <li><a href="../content/guides/Packet%3AHexBinary.md" target="_blank">📄 View Raw Markdown</a></li>
           <li><a href="https://wiki.swganh.org/index.php/Packet%3AHexBinary" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
         </ul>
       </aside>
 
       <main class="main-content">
-        
-    <div class="breadcrumb">
-      <a href="../index.html">Home</a>
-      <span class="sep">/</span>
-      <a href="../guides/index.html">Packet Guides</a>
-      <span class="sep">/</span>
-      <span style="color:var(--text-primary); font-weight:600;">Packet:HexBinary</span>
-    </div>
-    
-        
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">/</span>
+          <a href="../guides/index.html">Packet Guides</a>
+          <span class="sep">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Packet:HexBinary</span>
+        </div>
+
         <header class="article-header">
           <h1 class="article-title">
             <span>Packet:HexBinary</span>
-            
           </h1>
           <div class="article-meta">
-            
-            <span class="badge badge-unknown">unknown Complete</span>
-            <span class="badge badge-sample-absent">Sample: absent</span>
-            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Packet Guides</strong></span>
-            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Other</strong></span>
+            <span class="badge badge-100">Historical</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Category: <strong>Historical Reference</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Wiki Rev: <strong>#1663</strong></span>
           </div>
+          <p style="color:var(--text-secondary); margin-top:0.75rem; font-size:1rem;">Historical wiki draft of Binary &amp; Hex tutorial.</p>
         </header>
 
-        
-        
-        
-        <section class="doc-section">
-          <h2>📐 Packet Structure</h2>
-          <div style="color:var(--text-muted); font-style:italic;">No structure table recorded for this packet.</div>
-        </section>
-        
-        
-        
-        
-        
+        <article class="guide-body">
+          <p>This page is a summary of basic binary and hexadecimal number systems to help
+understand packet analysis. These skills are essential tools to be a successful
+analyzer.
+</p><p><br/>
+BINARY NUMBERS:
+</p><p>Binary numbers are a base 2 number system that consist of 0's and 1's, which usually represent voltage, or no voltage on a computer system.
+</p><p>0 0 0 0 0 0 0 0 0    
+</p><p>Each number is commonly called a "bit". 8 bits is equal to a single byte, which is the most common form of data. 
+All data is made up of bytes.
+</p><p>To calculate an integer number in decimal (base 10, what we commonly use), we add each 1 bit as a representation of the power of 2. 
+The following powers are used as 2 ^ N, where N is the place holder.
+</p><p>_  _  _  _  _  _  _  _
+7  6  5  4  3  2  1  0
+</p><p>so 0 0 0 0 1 1 0 1 is equal to 2^0 + 2^2 + 2^3 = 13
+</p><p>to more easily add it up, think of:
+</p>
+<div class="code-container"><div class="code-header"><span>Specification / Code</span><button class="copy-btn" onclick="copyToClipboard(`_  _  _  _  _ _ _ _
+`, this)">Copy</button></div><pre class="code-block"><code>_  _  _  _  _ _ _ _
+</code></pre></div>
+<p>128 64 32 16 8 4 2 1 
+</p><p>and just add the numbers when the bit is 1
+</p><p>so..
+</p><p>0 1 0 1 0 1 1 1 is.. 64 + 16 + 4 + 2 + 1 = 87
+</p><p><br/>
+</p><p>HEXADECIMAL NUMBERS:
+</p><p>Because binary numbers can get VERY long, hexadecimal, a base 16 number system is used. Because 16 is a power of 2, 
+it works out nicely. Intead of 0-9 like decimal uses, hexadecimal uses 0-F, which is just 0-9 with the 
+additon of A B C D E F as digits. Most data viewed on computers is in hexadecimal. 
+To convert from binary to hexadecimal and vice versa, use the following method:
+</p><p>Each digit represents 1/2 of a byte. so 2 hexacedimal numbers is equal to 1 byte. So devide your "bits" into two groups.
+Lets use the example from above.
+</p><p>0 1 0 1     0 1 1 1
+</p><p>Now, add them up seperatly:
+</p>
+<div class="code-container"><div class="code-header"><span>Specification / Code</span><button class="copy-btn" onclick="copyToClipboard(`5             7
+`, this)">Copy</button></div><pre class="code-block"><code>5             7
+</code></pre></div>
+<p>and there you go, your hexadecimal representation is 0x57. 0x is a common prefix to writing the numbers to let readers 
+know it is base 16.0x57 is not equal to 57, rather it is equal to 87. So where do the letters come in? 
+Well lets do another example:
+</p><p>1 1 0 0 1 0 1 1  = 128 + 64 + 8 + 2 + 1 = 203
+</p><p>1 1 0 0   1 0 1 1  BINARY
+</p>
+<div class="code-container"><div class="code-header"><span>Specification / Code</span><button class="copy-btn" onclick="copyToClipboard(`12        11      DECIMAL
+C         B       HEX
+`, this)">Copy</button></div><pre class="code-block"><code>12        11      DECIMAL
+C         B       HEX
+</code></pre></div>
+<p>so 203 is equal to 0xCB in hexadecimal.
+</p><p>TIP: You can use windows calculator to do these convesions quickly. Just change the mode to scientific.
+</p><p>For simplicity of this article, signed (positive and negative) are not covered, as well as floating point numbers. 
+You can google the following examples for further research.
+</p><p>Signed numbers : "Two's complement"
+Floats : "IEEE Floating Point"
+</p><p>TIP: Also, if these guides do not suffice or are confusing, use google for better explainations, 
+Wikipedia has A LOT more information on all of the subjects in this document.
+</p><p><br/>
+</p><p>DATA TYPES:
+</p><p>C++ uses the following data types: These are the sizes in bytes they take to store, and these units are commonly 
+used throughout the rest of our documentation. These apply for both signed and unsigned (positive and negative)
+</p><p>CHAR		1 Byte		(8 bit integer)
+SHORT		2 Bytes		(16 bit integer)
+INT		4 Bytes		(32 bit integer)
+LONG		8 Bytes		(64 bit integer)
+FLOAT		4 BYtes		(32 bit floating point)
+</p><p>NOTE: LONG is commonly represented as "long long" while "long" by itself is interpreted as a 32 bit (4 byte) 
+int on GCC and other ANSI standard compilers. For the sake of shortness however, 
+we will refer "LONG" as a 64 bit (8 byte) integers.
+</p><p>TIP: For information on maximum numerical storage capacity of each data type as signed or unsigned, use google,
+it is readily available on the internet.
+</p><p><br/>
+</p><p>HOST BYTE vs NET BYTE ORDERS:
+</p><p>This is also known as Big Endian vs Little Endian, and they are just a standard for reading multiple byte integers.
+</p><p>HOST BYTE ORDER or BIG ENDIAN is a format that has the higher value byte to the right, and lower value byte to the left. 
+to Represent the number 1 as a SHORT or INT is as follows:
+</p><p>0x0100		(SHORT)
+0x01000000	(INT)
+</p><p>if this is confusing to understand, think of the 1000's, 100's, 10's, and 1's place in our decimal number system. We go:
+</p><p>1000's   100's    10's     1's
+</p><p>Higher value to the left, lower value to the right.
+Now just apply this same method to hexadecimal. However, host byte has this reversed.
+</p><p><br/>
+NET BYTE ORDER or LITTLE ENDIAN is the exact opposite. It's larger value is to the left, and lower value to the right, 
+exactly like our decimal number system above. The number 1 as a SHORT or INT is as follows:
+</p><p>0x0001		(SHORT)
+0x00000001	(INT)
+</p><p>Windows commonly uses HOST BYTE, Unix/Linux use NET BYTE. Most of our packets deal with HOST BYTE for INTs and SHORTs. 
+However some of the protocol uses NET BYTE. It will be specified which order is used in the packet breakdown documentations. 
+</p><p><br/>
+This is just a summary of the common information that is assumed to be understood throughout the rest of our documentation. 
+If you have any specific questions, as someone, or use you're best friend Google (or his friend Wikipedia). 
+</p><p>www.Google.com
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20261017165636
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.009 seconds
+Real time usage: 0.010 seconds
+Preprocessor visited node count: 1/1000000
+Preprocessor generated node count: 4/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 1/40
+Expensive parser function count: 0/100
+-->
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+<!-- Saved in parser cache with key swganh_wiki:pcache:idhash:1547-0!*!*!*!*!*!* and timestamp 20261017165636 and revision id 1663
+ -->
+
+        </article>
+
+        <footer style="margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border-color); font-size:0.85rem; color:var(--text-muted);">
+          <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <div>Source: <a href="https://wiki.swganh.org/index.php/Packet%3AHexBinary" target="_blank" rel="noopener">https://wiki.swganh.org/index.php/Packet%3AHexBinary</a></div>
+            <div>Wiki Revision ID: 1663 | Verified against live wiki</div>
+          </div>
+        </footer>
       </main>
     </div>
   </div>

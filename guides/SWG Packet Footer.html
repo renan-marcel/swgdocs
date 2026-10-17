@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SWG Packet Footer | SWG Docs</title>
-  <meta name="description" content="Technical documentation and packet structure for SWG Packet Footer in Star Wars Galaxies.">
+  <meta name="description" content="Trailing packet footer format, 2-byte CRC checksum, and encryption status flags.">
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body data-root="../">
@@ -36,81 +36,89 @@
     </div>
   </header>
 
-  
+
   <div class="container">
     <div class="layout-with-sidebar">
       <aside class="sidebar">
-        <h3>Protocol Guides</h3>
+        <h3>Security & Transport</h3><ul class='sidebar-nav'><li><a href='../guides/SWG Packet CRC.html' >SWG Packet CRC</a></li><li><a href='../guides/SWG Packet Compression.html' >SWG Packet Compression</a></li><li><a href='../guides/SWG Packet Encryption.html' >SWG Packet Encryption</a></li><li><a href='../guides/SWG Packet Footer.html' class='active'>SWG Packet Footer</a></li></ul>
+        
+        <h3>Guides Overview</h3>
         <ul class="sidebar-nav">
-          <li><a href="../guides/Binary & Hex.html" class="">Binary &amp; Hex</a></li>
-<li><a href="../guides/Packet Guide.html" class="">Packet Guide</a></li>
-<li><a href="../guides/Packet Guides.html" class="">Packet Guides</a></li>
-<li><a href="../guides/Packet Template.html" class="">Packet Template</a></li>
-<li><a href="../guides/Packet%3ACompression.html" class="">Packet:Compression</a></li>
-<li><a href="../guides/Packet%3ACRC.html" class="">Packet:CRC</a></li>
-<li><a href="../guides/Packet%3AEncryption.html" class="">Packet:Encryption</a></li>
-<li><a href="../guides/Packet%3AHexBinary.html" class="">Packet:HexBinary</a></li>
-<li><a href="../guides/Packet%3AIntro.html" class="">Packet:Intro</a></li>
-<li><a href="../guides/Packet%3APacket Guides.html" class="">Packet:Packet Guides</a></li>
-<li><a href="../guides/Packet%3APacketFooter.html" class="">Packet:PacketFooter</a></li>
-<li><a href="../guides/Packet%3APacketTemplates.html" class="">Packet:PacketTemplates</a></li>
-<li><a href="../guides/Packet%3ASOEProtocol.html" class="">Packet:SOEProtocol</a></li>
-<li><a href="../guides/Packet%3ASWGPacket.html" class="">Packet:SWGPacket</a></li>
-<li><a href="../guides/Reversing Structs.html" class="">Reversing Structs</a></li>
-<li><a href="../guides/SOE Protocol Breakdown.html" class="">SOE Protocol Breakdown</a></li>
-<li><a href="../guides/SWG Packet Compression.html" class="">SWG Packet Compression</a></li>
-<li><a href="../guides/SWG Packet CRC.html" class="">SWG Packet CRC</a></li>
-<li><a href="../guides/SWG Packet Encryption.html" class="">SWG Packet Encryption</a></li>
-<li><a href="../guides/SWG Packet Footer.html" class="active">SWG Packet Footer</a></li>
-<li><a href="../guides/SWG Packet Introduction.html" class="">SWG Packet Introduction</a></li>
-<li><a href="../guides/SWG Packets.html" class="">SWG Packets</a></li>
-
-        </ul>
-        <h3>Section Links</h3>
-        <ul class="sidebar-nav">
-          <li><a href="../guides/index.html">← Packet Guides Index</a></li>
+          <li><a href="../guides/index.html">← All Packet Guides</a></li>
           <li><a href="../content/guides/SWG Packet Footer.md" target="_blank">📄 View Raw Markdown</a></li>
           <li><a href="https://wiki.swganh.org/index.php/SWG_Packet_Footer" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
         </ul>
       </aside>
 
       <main class="main-content">
-        
-    <div class="breadcrumb">
-      <a href="../index.html">Home</a>
-      <span class="sep">/</span>
-      <a href="../guides/index.html">Packet Guides</a>
-      <span class="sep">/</span>
-      <span style="color:var(--text-primary); font-weight:600;">SWG Packet Footer</span>
-    </div>
-    
-        
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">/</span>
+          <a href="../guides/index.html">Packet Guides</a>
+          <span class="sep">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">SWG Packet Footer</span>
+        </div>
+
         <header class="article-header">
           <h1 class="article-title">
             <span>SWG Packet Footer</span>
-            
           </h1>
           <div class="article-meta">
-            
-            <span class="badge badge-unknown">unknown Complete</span>
-            <span class="badge badge-sample-absent">Sample: absent</span>
-            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Packet Guides</strong></span>
-            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Other</strong></span>
+            <span class="badge badge-100">Specification</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Category: <strong>Security & Transport</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Wiki Rev: <strong>#2307</strong></span>
           </div>
+          <p style="color:var(--text-secondary); margin-top:0.75rem; font-size:1rem;">Trailing packet footer format, 2-byte CRC checksum, and encryption status flags.</p>
         </header>
 
-        
-        
-        
-        <section class="doc-section">
-          <h2>📐 Packet Structure</h2>
-          <div style="color:var(--text-muted); font-style:italic;">No structure table recorded for this packet.</div>
-        </section>
-        
-        
-        
-        
-        
+        <article class="guide-body">
+          <h1 id="packet-footers"><span class="mw-headline" id="Packet_Footers">Packet Footers</span></h1>
+<p>Every packet in SWG, regardless wether it is just SOE Protocol, just an SWG Packet, or a combination of the both, has a footer.
+</p><p>The footer's format is as follows:
+</p>
+<div class="code-container"><div class="code-header"><span>Specification / Code</span><button class="copy-btn" onclick="copyToClipboard(`
+[Compression Flag: 1 byte][CRC value:2 bytes]
+total of 3 bytes
+[CompFlag][CRC1][CRC2]
+`, this)">Copy</button></div><pre class="code-block"><code>
+[Compression Flag: 1 byte][CRC value:2 bytes]
+total of 3 bytes
+[CompFlag][CRC1][CRC2]
+</code></pre></div>
+<p>The checksum algorithm used is a seeded CRC32 checksum of all the data in a packet EXCEPT the crc value located in the footer
+(so that includes the compression flag). The CRC is calculated after the compression and then encryption are both applied.
+</p><p><br/>
+The compression used is a default level ZLIB compression applied on the data BETWEEN the SOE opcode(part of the SOE Protocol) and the footer. So far no record has been made of a compressed packet that is NOT inside the SOE Protocol. If the packet is compressed, the Compression Flag (CompFlag) is a 1. Uncompressed packets have a Compression Flag (CompFlag) of 0.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20261017165725
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.012 seconds
+Real time usage: 0.032 seconds
+Preprocessor visited node count: 5/1000000
+Preprocessor generated node count: 28/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+<!-- Saved in parser cache with key swganh_wiki:pcache:idhash:1824-0!*!*!*!*!*!* and timestamp 20261017165725 and revision id 2307
+ -->
+
+        </article>
+
+        <footer style="margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border-color); font-size:0.85rem; color:var(--text-muted);">
+          <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <div>Source: <a href="https://wiki.swganh.org/index.php/SWG_Packet_Footer" target="_blank" rel="noopener">https://wiki.swganh.org/index.php/SWG_Packet_Footer</a></div>
+            <div>Wiki Revision ID: 2307 | Verified against live wiki</div>
+          </div>
+        </footer>
       </main>
     </div>
   </div>

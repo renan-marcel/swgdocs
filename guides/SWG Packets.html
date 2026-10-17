@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SWG Packets | SWG Docs</title>
-  <meta name="description" content="Technical documentation and packet structure for SWG Packets in Star Wars Galaxies.">
+  <meta name="description" content="Structure and layout of SWG game payloads encapsulated inside SOE Channel 0.">
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body data-root="../">
@@ -36,109 +36,190 @@
     </div>
   </header>
 
-  
+
   <div class="container">
     <div class="layout-with-sidebar">
       <aside class="sidebar">
-        <h3>Protocol Guides</h3>
+        <h3>Network Architecture</h3><ul class='sidebar-nav'><li><a href='../guides/SWG Packet Introduction.html' >SWG Packet Introduction</a></li><li><a href='../guides/SOE Protocol Breakdown.html' >SOE Protocol Breakdown</a></li><li><a href='../guides/SWGPacketExamples.html' >SWGPacketExamples</a></li><li><a href='../guides/SWG Packets.html' class='active'>SWG Packets</a></li></ul>
+        <h3>On This Page</h3><ul class='sidebar-nav'><li><a href='#multiple-swg-packets' style='font-weight:600;'>MULTIPLE SWG PACKETS</a></li><li><a href='#common-swg-data-types' style='font-weight:600;'>COMMON SWG DATA TYPES</a></li><li><a href='#ascii-strings' style='font-weight:600;'>ASCII STRINGS</a></li><li><a href='#unicode-strings' style='font-weight:600;'>UNICODE STRINGS</a></li></ul>
+        <h3>Guides Overview</h3>
         <ul class="sidebar-nav">
-          <li><a href="../guides/Binary & Hex.html" class="">Binary &amp; Hex</a></li>
-<li><a href="../guides/Packet Guide.html" class="">Packet Guide</a></li>
-<li><a href="../guides/Packet Guides.html" class="">Packet Guides</a></li>
-<li><a href="../guides/Packet Template.html" class="">Packet Template</a></li>
-<li><a href="../guides/Packet%3ACompression.html" class="">Packet:Compression</a></li>
-<li><a href="../guides/Packet%3ACRC.html" class="">Packet:CRC</a></li>
-<li><a href="../guides/Packet%3AEncryption.html" class="">Packet:Encryption</a></li>
-<li><a href="../guides/Packet%3AHexBinary.html" class="">Packet:HexBinary</a></li>
-<li><a href="../guides/Packet%3AIntro.html" class="">Packet:Intro</a></li>
-<li><a href="../guides/Packet%3APacket Guides.html" class="">Packet:Packet Guides</a></li>
-<li><a href="../guides/Packet%3APacketFooter.html" class="">Packet:PacketFooter</a></li>
-<li><a href="../guides/Packet%3APacketTemplates.html" class="">Packet:PacketTemplates</a></li>
-<li><a href="../guides/Packet%3ASOEProtocol.html" class="">Packet:SOEProtocol</a></li>
-<li><a href="../guides/Packet%3ASWGPacket.html" class="">Packet:SWGPacket</a></li>
-<li><a href="../guides/Reversing Structs.html" class="">Reversing Structs</a></li>
-<li><a href="../guides/SOE Protocol Breakdown.html" class="">SOE Protocol Breakdown</a></li>
-<li><a href="../guides/SWG Packet Compression.html" class="">SWG Packet Compression</a></li>
-<li><a href="../guides/SWG Packet CRC.html" class="">SWG Packet CRC</a></li>
-<li><a href="../guides/SWG Packet Encryption.html" class="">SWG Packet Encryption</a></li>
-<li><a href="../guides/SWG Packet Footer.html" class="">SWG Packet Footer</a></li>
-<li><a href="../guides/SWG Packet Introduction.html" class="">SWG Packet Introduction</a></li>
-<li><a href="../guides/SWG Packets.html" class="active">SWG Packets</a></li>
-
-        </ul>
-        <h3>Section Links</h3>
-        <ul class="sidebar-nav">
-          <li><a href="../guides/index.html">← Packet Guides Index</a></li>
+          <li><a href="../guides/index.html">← All Packet Guides</a></li>
           <li><a href="../content/guides/SWG Packets.md" target="_blank">📄 View Raw Markdown</a></li>
           <li><a href="https://wiki.swganh.org/index.php/SWG_Packets" target="_blank" rel="noopener">🌐 Original SWGANH Wiki</a></li>
         </ul>
       </aside>
 
       <main class="main-content">
-        
-    <div class="breadcrumb">
-      <a href="../index.html">Home</a>
-      <span class="sep">/</span>
-      <a href="../guides/index.html">Packet Guides</a>
-      <span class="sep">/</span>
-      <span style="color:var(--text-primary); font-weight:600;">SWG Packets</span>
-    </div>
-    
-        
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="sep">/</span>
+          <a href="../guides/index.html">Packet Guides</a>
+          <span class="sep">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">SWG Packets</span>
+        </div>
+
         <header class="article-header">
           <h1 class="article-title">
             <span>SWG Packets</span>
-            
           </h1>
           <div class="article-meta">
-            
-            <span class="badge badge-unknown">unknown Complete</span>
-            <span class="badge badge-sample-present">Sample: present</span>
-            <span style="color:var(--text-muted); font-size:0.8rem;">Section: <strong>Packet Guides</strong></span>
-            <span style="color:var(--text-muted); font-size:0.8rem;">Type: <strong>Other</strong></span>
+            <span class="badge badge-100">Specification</span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Category: <strong>Network Architecture</strong></span>
+            <span style="color:var(--text-muted); font-size:0.8rem;">Wiki Rev: <strong>#2523</strong></span>
           </div>
+          <p style="color:var(--text-secondary); margin-top:0.75rem; font-size:1rem;">Structure and layout of SWG game payloads encapsulated inside SOE Channel 0.</p>
         </header>
 
-        
-        
-        
-        <section class="doc-section">
-          <h2>📐 Packet Structure</h2>
-          <div style="color:var(--text-muted); font-style:italic;">No structure table recorded for this packet.</div>
-        </section>
-        
-        
-        
-        <section class="doc-section">
-          <h2>📝 Notes & Warnings</h2>
-          
-            <div class="alert-box">
-              <strong>NOTE:</strong> There are a few other ways an "operand" can be counted. Lists that have a counter preceding them is also a common "operand". So seeing something like this:
-            </div>
-            
-        </section>
-        
-        
-        <section class="doc-section">
-          <h2>📦 Sample Hex Dump / Packet Payload</h2>
-          <div class="code-container">
-            <div class="code-header">
-              <span>Status: <strong>PRESENT</strong></span>
-              <button class="copy-btn" onclick="copyToClipboard(`04 00 00 00 (HB)INT - a counter for some list
+        <article class="guide-body">
+          <p><br/>
+SWG Packets are the actual packets of data that are within the SOE Protocol. They follow a general trend, and then have 
+their own specific breakdowns as to what data is where.
+</p><p>All SWG Packets consist of an opperand count, and an opcode. An opcode is a number to help identify what type of data the packet contains, and the opperand count is to know how many variables are within the packet. The format is as follows:
+</p>
+<div class="code-container"><div class="code-header"><span>Specification / Code</span><button class="copy-btn" onclick="copyToClipboard(`
+[Opperand Count:Host Byte SHORT]
+[Opcode:INT]
+[DATA...]
+`, this)">Copy</button></div><pre class="code-block"><code>
+[Opperand Count:Host Byte SHORT]
+[Opcode:INT]
+[DATA...]
+</code></pre></div>
+<p>Opcodes appear as very large integer, and there is no pattern between them, so we recognize them as just an INT data type that is 4 bytes in size.
+</p>
+<h2 id="multiple-swg-packets"><span class="mw-headline" id="MULTIPLE_SWG_PACKETS">MULTIPLE SWG PACKETS</span></h2>
+<p>There is a special case within an SWG Packet which allows multiple SWG Packets to be combined into one. This can be identified 
+when there is an opperand count of 0x0019 (in a packet, you would see 00 19 versues 02 00 or some other host byte number that is a count).
+</p><p>The format then follows the same as the Multiple SOE Protocols Opcode.
+</p>
+<div class="code-container"><div class="code-header"><span>Specification / Code</span><button class="copy-btn" onclick="copyToClipboard(`
+[special opperand count of 00 19]
+
+[Size1:Byte]
+[Data1..]
+
+[Size2:Byte]
+[Data2..]
+
+[Repeat..]
+`, this)">Copy</button></div><pre class="code-block"><code>
+[special opperand count of 00 19]
+
+[Size1:Byte]
+[Data1..]
+
+[Size2:Byte]
+[Data2..]
+
+[Repeat..]
+</code></pre></div>
+<p>Again, if the packet must exceed 255, the same format is used as the SOE Multiple Protocols opcode. The first byte is FF for 255, the next byte is how many bytes to add to that value (so 01) and the byte after that is the actual number to add.
+</p>
+<div class="code-container"><div class="code-header"><span>Specification / Code</span><button class="copy-btn" onclick="copyToClipboard(`
+so 256 would appear as FF 01 01 or FF + 01 or 255 + 1.
+265 would appear as FF 01 0A or FF + 0A or 255 + 10.
+`, this)">Copy</button></div><pre class="code-block"><code>
+so 256 would appear as FF 01 01 or FF + 01 or 255 + 1.
+265 would appear as FF 01 0A or FF + 0A or 255 + 10.
+</code></pre></div>
+<p>Because no packet can exceed 496 bytes (because that is the set buffer), at most 1 byte will be added to 255, so FF 01 __ is the general format for every byte 255 and above.
+</p><p>NOTE: As stated in the SOE Protocol documentation, we have not seen a case for a size of 255. 
+There are a few ways that this MAY be done, but we believe FF 01 00 is the correct method, where FF + 00 or 255 + 0 is computed.
+</p>
+<h2 id="common-swg-data-types"><span class="mw-headline" id="COMMON_SWG_DATA_TYPES">COMMON SWG DATA TYPES</span></h2>
+<p>The following data types are what commonly appear in SWG packets, and each count as 1 operand. 
+Note: (HB) is short for (Host Byte) (NB) is short for (Net Byte). This is assumed throughout the rest of the packet documentation.
+</p>
+<div class="code-container"><div class="code-header"><span>Specification / Code</span><button class="copy-btn" onclick="copyToClipboard(`
+BYTE			(a 1 byte integer number)
+(HB)SHORT		(a 2 byte integer number)
+(HB)INT			(a 4 byte integer number)
+(HB)LONG	       (an 8 byte integer number)
+(NB)FLOAT		(a 4 byte floating point number)
+A_STRING		(an ASCII string)
+U_STRING		(a UNICODE string)
+`, this)">Copy</button></div><pre class="code-block"><code>
+BYTE			(a 1 byte integer number)
+(HB)SHORT		(a 2 byte integer number)
+(HB)INT			(a 4 byte integer number)
+(HB)LONG	       (an 8 byte integer number)
+(NB)FLOAT		(a 4 byte floating point number)
+A_STRING		(an ASCII string)
+U_STRING		(a UNICODE string)
+</code></pre></div>
+<p><b>Note</b>: <font color="orange"><i>There are a few other ways an "operand" can be counted. Lists that have a counter preceding them is also a common "operand". So seeing something like this:</i></font>
+</p>
+<div class="code-container"><div class="code-header"><span>Specification / Code</span><button class="copy-btn" onclick="copyToClipboard(`
+04 00 00 00 (HB)INT - a counter for some list
 DATA1..
 DATA2..
 DATA3..
-DATA4..`, this)">Copy Sample</button>
-            </div>
-            <pre class="code-block"><code>04 00 00 00 (HB)INT - a counter for some list
+DATA4..
+`, this)">Copy</button></div><pre class="code-block"><code>
+04 00 00 00 (HB)INT - a counter for some list
 DATA1..
 DATA2..
 DATA3..
-DATA4..</code></pre>
+DATA4..
+</code></pre></div>
+<p>that would all count as a single operand. 
+</p><p>Operand counting really helps when reversing a packet as you know how many data pieces to break it into. There is no real use to them beyond that. Also operands will be marked in the packet breakdowns if needed. They are more a reversing tool for the packet analyzer than necessary in the server.
+</p>
+<h2 id="ascii-strings"><span class="mw-headline" id="ASCII_STRINGS">ASCII STRINGS</span></h2>
+<p>A_STRING data types have the following format. Instead of being null terminated, the string size 
+preceeds the data as a (HB)SHORT. So the string "ABC" in binary would be: 
+</p>
+<div class="code-container"><div class="code-header"><span>Specification / Code</span><button class="copy-btn" onclick='copyToClipboard(`
+"ABC"
+03 00 65 66 67
+`, this)'>Copy</button></div><pre class="code-block"><code>
+"ABC"
+03 00 65 66 67
+</code></pre></div>
+<p>where 03 00 is the integer number 3, and each byte is a character of the string.
+</p>
+<h2 id="unicode-strings"><span class="mw-headline" id="UNICODE_STRINGS">UNICODE STRINGS</span></h2>
+<p>U_STRING follow the same format as A_STRING, however, there are 2 bytes to each character, instead of 1 like in Ascii. Each unicode character is represented as a (HB)SHORT so "ABC" as a U_STRING would be:
+</p>
+<div class="code-container"><div class="code-header"><span>Specification / Code</span><button class="copy-btn" onclick='copyToClipboard(`
+"ABC"
+03 00 65 00 66 00 67 00
+`, this)'>Copy</button></div><pre class="code-block"><code>
+"ABC"
+03 00 65 00 66 00 67 00
+</code></pre></div>
+<p>where 03 00 is the size, and each following (HB)SHORT is a character of the string.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20261017155643
+Cache expiry: 86400
+Dynamic content: false
+CPU time usage: 0.014 seconds
+Real time usage: 0.016 seconds
+Preprocessor visited node count: 73/1000000
+Preprocessor generated node count: 162/1000000
+Post‐expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Highest expansion depth: 2/40
+Expensive parser function count: 0/100
+-->
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    0.000      1 - -total
+-->
+<!-- Saved in parser cache with key swganh_wiki:pcache:idhash:1827-0!*!*!!*!*!* and timestamp 20261017155643 and revision id 2523
+ -->
+
+        </article>
+
+        <footer style="margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border-color); font-size:0.85rem; color:var(--text-muted);">
+          <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <div>Source: <a href="https://wiki.swganh.org/index.php/SWG_Packets" target="_blank" rel="noopener">https://wiki.swganh.org/index.php/SWG_Packets</a></div>
+            <div>Wiki Revision ID: 2523 | Verified against live wiki</div>
           </div>
-        </section>
-        
-        
+        </footer>
       </main>
     </div>
   </div>
