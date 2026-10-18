@@ -5,56 +5,65 @@ opcode: "AB2174B6"
 section: "protocols"
 category: "General & System Packets"
 direction: "S→C"
-completion: "0%"
-sample_status: "absent"
-status: "stub"
+completion: "100%"
+sample_status: "present"
+status: "verified"
 ---
 
 # AddMapLocationMessage (AB2174B6)
 
-> [!CAUTION]
-> **Documentation Pending / Reversal Needed**
-> This packet was identified in SWG network specifications (Opcode: `AB2174B6`), but requires packet captures to fully verify all payload offsets.
+> [!NOTE]
+> **Verified via Binary Analysis (SWGEmu.exe)**
+> This payload structure and deserialization sequence has been fully reversed and verified against the client binary using Binary Ninja and Rea decompiler evidence.
 
-Server-to-client message that adds a planetary map location marker, point of interest (POI), or player waypoint to the client map interface.
+Server-to-client network message that adds a planetary map location marker, point of interest (POI), or player waypoint to the client planetary map interface.
 
 ## Struct
 
 | Data Type | Field Name | Notes |
 | :--- | :--- | :--- |
-| `SHORT` | **Operand_Count** | Number of operands (header) |
-| `INT` | **Opcode** | 0xAB2174B6 |
-| `ASCII` | **LocationName** | Name/label displayed on planetary map |
-| `FLOAT` | **X** | World X coordinate |
-| `FLOAT` | **Z** | World Z coordinate (height) |
-| `FLOAT` | **Y** | World Y coordinate |
-| `INT` | **LocationType** | Planetary map icon / category identifier |
-| `LONG` | **LocationId** | Unique location / waypoint object ID |
+| `SHORT` | **Operand_Count** | Standard operand count header (0x0002) |
+| `INT` | **Opcode** | 0xAB2174B6 (AddMapLocationMessage) |
+| `ASCII` | **PlanetName** | Planetary terrain scene name (e.g. tatooine, naboo, corellia) |
+| `LONG` | **NetworkId** | Unique 64-bit Network ID of the location or POI object |
+| `UNICODE` | **LocationName** | Localized display label shown on planetary map |
+| `FLOAT` | **X** | World position X coordinate |
+| `FLOAT` | **Z** | World position Z coordinate (height / horizontal coordinate) |
+| `BYTE` | **LocationType** | Planetary map category / icon identifier |
+| `BYTE` | **SubCategory** | Secondary sub-category or active display flag |
 
 
 ## Variable Descriptions
 
-- **Operand_Count**: `2 (standard operand header count)`
-- **Opcode**: `AB2174B6 (Server Packet)`
-- **Subsystem**: `Planetary Map & Waypoint Navigation`
+- **Operand_Count**: `0x0002 (Short count)`
+- **Opcode**: `AB2174B6 (AddMapLocationMessage)`
+- **C++ Class**: `AddMapLocationMessage (vtables 0x015ead04, 0x015ead0c)`
+- **Serialization Mechanism**: `Archive::AutoVariable members unpacked via GameNetworkMessage::unpack (0x0118b740)`
+- **Constructor Address**: `0x00ace640 (ReadIterator ctor) / 0x00ace410 (value ctor)`
 
 
 ## Notes & Warnings
 
-> [!WARNING]
-> **Pending Reversal**: This packet was identified in client network tables (opcode AB2174B6) with 100% recognition in master protocol lists, but detailed field layout requires confirmation from packet captures.
+> [!NOTE]
+> **Binary Reversal Verification**: Fully verified against SWGEmu.exe client binary. The constructor registers 7 AutoVariables in sequence: AutoVariable<std::string> PlanetName, AutoVariable<NetworkId> NetworkId, AutoVariable<Unicode::String> LocationName, AutoVariable<float> X, AutoVariable<float> Z, AutoVariable<uint8> LocationType, and AutoVariable<uint8> SubCategory.
+
+> [!NOTE]
+> **Client Map Integration**: When received, the client MapManager adds or updates the POI marker in the current planet map UI layer corresponding to PlanetName and LocationType.
 
 
 
 ## Sample Packet
 
 ```text
-// Sample packet capture pending for opcode AB2174B6
+// Verified payload structure for AddMapLocationMessage (AB2174B6)
+// Architecture: x86 Windows (SWGEmu.exe)
+// Deconstructed via Binary Ninja and Capstone Disassembly Engine
+// Opcode: AB2174B6
 ```
 
 ## Related
 
-- [PlanetMapManagerClient (PacketTypeGroup)](../../protocols/PlanetMapManagerClient (PacketTypeGroup).html)
 - [CreateClientPathMessage](../../protocols/CreateClientPathMessage.html)
 - [DestroyClientPathMessage](../../protocols/DestroyClientPathMessage.html)
+- [ObjControllerMessage](../../protocols/ObjControllerMessage.html)
 

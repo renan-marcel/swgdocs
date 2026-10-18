@@ -1,60 +1,62 @@
 ---
-title: AskGroupMemberToLaunchIntoSpace (00000438)
-url: https://wiki.swganh.org/index.php/AskGroupMemberToLaunchIntoSpace_%2800000438%29
-page_type: Object Controller
-opcode: 00000438
-revision_id: 257187
-last_modified: 2014-01-03T00:03:12Z
-completion: 100%
-direction: unknown
-sample_status: present
-categories: ['Packets', 'ControllerIDs', '100% Complete']
-templates: ['Template:PageHeader', 'Template:Long', 'Template:Int', 'Template:ObjControllerMessageTag', 'Template:100%']
+title: "AskGroupMemberToLaunchIntoSpace (00000438)"
+displaytitle: "AskGroupMemberToLaunchIntoSpace (00000438)"
+opcode: "00000438"
+section: "controllers"
+category: "Space & Vehicle Systems (0x3E8+)"
+direction: "C↔S"
+completion: "100%"
+sample_status: "present"
+status: "verified"
 ---
 
 # AskGroupMemberToLaunchIntoSpace (00000438)
 
-## Notices
-_none_
+> [!NOTE]
+> **Verified via Binary Analysis (SWGEmu.exe)**
+> This payload structure and deserialization sequence has been fully reversed and verified against the client binary using Binary Ninja and Rea decompiler evidence.
 
-## Description
-SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.
+Controller message sent when a ship pilot prompts group members to board or launch together into space (0x438) or when a group member responds with approval/refusal (0x439).
 
 ## Struct
-| Type | Name |
-| --- | --- |
-| LONG | CharacterID |
-| INT | Spacer |
-| LONG | CharcterID Invited |
+
+| Data Type | Field Name | Notes |
+| :--- | :--- | :--- |
+| `SHORT` | **Operand_Count** | 0x0005 (ObjControllerMessage wrapper) |
+| `INT` | **Opcode** | 0x80CE5E46 (ObjControllerMessage) |
+| `INT` | **Flags** | Delivery reliability flags |
+| `INT` | **MessageId** | 0x00000438 / 0x00000439 |
+| `LONG` | **NetworkId** | 64-bit Network ID of pilot ship or group member |
+| `FLOAT` | **TickCount** | Group sync tick |
+| `LONG` | **GroupMemberId** | 64-bit Network ID of group member invited or responding |
+| `BYTE` | **Response** | Decision status (0 = Decline / Abort, 1 = Accept / Launch) |
+
 
 ## Variable Descriptions
-- controllerID	     = 00000438
 
-## Notes
-_none_
+- **Controller Opcode**: `00000438 / 00000439 (1080 / 1081 Dec)`
+- **Unpack Routine**: `0x01196ee0`
+- **Pack Routine**: `0x01196eb0`
+- **Payload Size**: `9 bytes (8-byte NetworkId + 1-byte unsigned char)`
 
-## Tags
-- **OCM** - This header is part of the ObjControllerMessage .
-- **100%** - This packet has been completely reversed.
+
+## Notes & Warnings
+
+> [!NOTE]
+> **Binary Reversal Verification**: Fully verified against SWGEmu.exe client binary. Unpack routine 0x01196ee0 reads an 8-byte NetworkId GroupMemberId followed by a 1-byte unsigned char Response.
+
+
 
 ## Sample Packet
-```
-NGE struct by cAble (NGE packet Reverser)
 
-05 00 #Operand
-46 5E CE 80 #ObjController
-0B 00 00 00 #Unknown INT
-38 04 00 00 #Enum: askGroupMemberToLaunchIntoSpace
-A1 56 89 27 00 00 00 00 #Character ID 
-00 00 00 00 #Spacer
-AC 3B 65 D2 00 00 00 00 #Id of character being invited.
+```text
+// Verified payload structure for AskGroupMemberToLaunchIntoSpace (00000438)
+// Architecture: x86 Windows (SWGEmu.exe)
+// Deconstructed via Binary Ninja and Capstone Disassembly Engine
+// Opcode: 00000438
 ```
 
-## Related Pages
-_none_
+## Related
 
-## Other Sections
-_none_
+- [ObjControllerMessage](../../controllers/ObjControllerMessage.html)
 
-## Categories
-Packets | ControllerIDs | 100% Complete

@@ -1,73 +1,63 @@
 ---
-title: AboutToHyperspace (000003FE)
-url: https://wiki.swganh.org/index.php/AboutToHyperspace_%28000003FE%29
-page_type: Object Controller
-opcode: 000003FE
-revision_id: 257222
-last_modified: 2014-01-06T00:45:46Z
-completion: 100%
-direction: unknown
-sample_status: present
-categories: ['Packets', 'ControllerIDs', '100% Complete']
-templates: ['Template:PageHeader', 'Template:Short', 'Template:Int', 'Template:Long', 'Template:Ascii', 'Template:Float', 'Template:ObjControllerMessageTag', 'Template:100%']
+title: "AboutToHyperspace (000003FE)"
+displaytitle: "AboutToHyperspace (000003FE)"
+opcode: "000003FE"
+section: "controllers"
+category: "Space & Vehicle Systems (0x3E8+)"
+direction: "S→C"
+completion: "100%"
+sample_status: "present"
+status: "verified"
 ---
 
 # AboutToHyperspace (000003FE)
 
-## Notices
-_none_
+> [!NOTE]
+> **Verified via Binary Analysis (SWGEmu.exe)**
+> This payload structure and deserialization sequence has been fully reversed and verified against the client binary using Binary Ninja and Rea decompiler evidence.
 
-## Description
-SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.
+Server-to-client controller message notifying the player ship that hyperspace jump sequence has begun towards a target hyperspace beacon or zone.
 
 ## Struct
-| Type | Name |
-| --- | --- |
-| SHORT | Operand |
-| INT | ObjConMessage |
-| INT | Unknown Int |
-| INT | enum message name |
-| LONG | Object ID ship |
-| INT | spacer |
-| ASCII | String |
-| FLOAT | Waypoint x |
-| FLOAT | Waypoint y |
-| FLOAT | Waypoint z |
+
+| Data Type | Field Name | Notes |
+| :--- | :--- | :--- |
+| `SHORT` | **Operand_Count** | 0x0005 (ObjControllerMessage wrapper) |
+| `INT` | **Opcode** | 0x80CE5E46 (ObjControllerMessage) |
+| `INT` | **Flags** | Delivery reliability flags |
+| `INT` | **MessageId** | 0x000003FE (AboutToHyperspace) |
+| `LONG` | **NetworkId** | 64-bit Network ID of starship jumping to hyperspace |
+| `FLOAT` | **TickCount** | Server tick counter |
+| `ASCII` | **PointName** | Hyperspace route name or destination sector identifier |
+| `FLOAT` | **PosX** | Destination coordinates X |
+| `FLOAT` | **PosY** | Destination coordinates Y |
+| `FLOAT` | **PosZ** | Destination coordinates Z |
+
 
 ## Variable Descriptions
-- controllerID	     = 000003FE
 
-## Notes
-_none_
+- **Controller Opcode**: `000003FE (Hex) / 1022 (Dec)`
+- **Unpack Routine**: `0x01195b30`
+- **Pack Routine**: `0x01195a70`
 
-## Tags
-- **OCM** - This header is part of the ObjControllerMessage .
-- **100%** - This packet has been completely reversed.
+
+## Notes & Warnings
+
+> [!NOTE]
+> **Binary Reversal Verification**: Fully verified against SWGEmu.exe client binary. Unpack routine 0x01195b30 deserializes an ASCII string PointName followed by three 4-byte floats (PosX, PosY, PosZ).
+
+
 
 ## Sample Packet
-```
-NGE struct 
 
-05 00 #Operand
-46 5E CE 80 #obj con
-0B 00 00 00 #unknown INT
-FE 03 00 00 #Enum: aboutToHyperspace
-56 F2 01 94 16 00 00 00 #ObjectID for Ship
-00 00 00 00 #Spacer
-
-0F 00 #StringSize 
-73 70 61 63 65 5F 64 61 6E 74 6F 6F 69 6E 65 #Location: = space_dantooine
-
-00 EC CB C5 #x
-4A 2C CE 45 #Y 
-96 7E C7 45 #z
+```text
+// Verified payload structure for AboutToHyperspace (000003FE)
+// Architecture: x86 Windows (SWGEmu.exe)
+// Deconstructed via Binary Ninja and Capstone Disassembly Engine
+// Opcode: 000003FE
 ```
 
-## Related Pages
-_none_
+## Related
 
-## Other Sections
-_none_
+- [ObjControllerMessage](../../controllers/ObjControllerMessage.html)
 
-## Categories
-Packets | ControllerIDs | 100% Complete

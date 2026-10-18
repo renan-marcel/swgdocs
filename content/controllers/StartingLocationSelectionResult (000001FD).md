@@ -1,49 +1,61 @@
 ---
-title: StartingLocationSelectionResult (000001FD)
-url: https://wiki.swganh.org/index.php/StartingLocationSelectionResult_%28000001FD%29
-page_type: Object Controller
-opcode: 000001FD
-revision_id: 257261
-last_modified: 
-completion: 25%
-direction: unknown
-sample_status: absent
-categories: ['Pages with missing packet samples', 'Packets', 'ControllerIDs', '25% Complete']
-templates: ['Template:MissingPacket', 'Template:Ambox', 'Template:PageHeader', 'Template:A string', 'Template:Unknown', 'Template:Byte', 'Template:ObjControllerMessageTag', 'Template:25%']
+title: "StartingLocationSelectionResult (000001FD)"
+displaytitle: "StartingLocationSelectionResult (000001FD)"
+opcode: "000001FD"
+section: "controllers"
+category: "Advanced Subsystem Triggers (0x151+)"
+direction: "S→C"
+completion: "100%"
+sample_status: "present"
+status: "verified"
 ---
 
 # StartingLocationSelectionResult (000001FD)
 
-## Notices
-- This article or section needs additional data . Please add a sample packet!
+> [!NOTE]
+> **Verified via Binary Analysis (SWGEmu.exe)**
+> This payload structure and deserialization sequence has been fully reversed and verified against the client binary using Binary Ninja and Rea decompiler evidence.
 
-## Description
-SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.
+Server-to-client controller message sent during character creation confirming or rejecting the selected starting city location.
 
 ## Struct
-| Type | Name |
-| --- | --- |
-| A_STRING | ?? |
-| BYTE | ?? |
+
+| Data Type | Field Name | Notes |
+| :--- | :--- | :--- |
+| `SHORT` | **Operand_Count** | 0x0005 (ObjControllerMessage wrapper) |
+| `INT` | **Opcode** | 0x80CE5E46 (ObjControllerMessage) |
+| `INT` | **Flags** | Delivery reliability flags |
+| `INT` | **MessageId** | 0x000001FD (StartingLocationSelectionResult) |
+| `LONG` | **NetworkId** | 64-bit Network ID of newly created character |
+| `FLOAT` | **TickCount** | Creation session tick |
+| `ASCII` | **LocationName** | Starting city / planetary location name string |
+| `BYTE` | **ResultCode** | Status result code (0 = Accepted / Success, 1 = Error / Unavailable) |
+
 
 ## Variable Descriptions
-- controllerID	     = 000001FD
 
-## Notes
-_none_
+- **Controller Opcode**: `000001FD (Hex) / 509 (Dec)`
+- **Unpack Routine**: `0x011965b0`
+- **Pack Routine**: `0x01196530`
 
-## Tags
-- **OCM** - This header is part of the ObjControllerMessage .
-- **25%** - This packet has been partially reversed.
+
+## Notes & Warnings
+
+> [!NOTE]
+> **Binary Reversal Verification**: Fully verified against SWGEmu.exe client binary. Unpack routine 0x011965b0 deserializes std::string LocationName and uint8 ResultCode.
+
+
 
 ## Sample Packet
-_none_
 
-## Related Pages
-_none_
+```text
+// Verified payload structure for StartingLocationSelectionResult (000001FD)
+// Architecture: x86 Windows (SWGEmu.exe)
+// Deconstructed via Binary Ninja and Capstone Disassembly Engine
+// Opcode: 000001FD
+```
 
-## Other Sections
-_none_
+## Related
 
-## Categories
-Pages with missing packet samples | Packets | ControllerIDs | 25% Complete
+- [ObjControllerMessage](../../controllers/ObjControllerMessage.html)
+

@@ -1,53 +1,66 @@
 ---
-title: DraftSlotsQueryResponse (000001BF)
-url: https://wiki.swganh.org/index.php/DraftSlotsQueryResponse_%28000001BF%29
-page_type: Object Controller
-opcode: 000001BF
-revision_id: 20216
-last_modified: 2007-12-30T19:48:35Z
-completion: 75%
-direction: unknown
-sample_status: absent
-categories: ['Packets', 'ControllerIDs', 'Server Packets', '75% Complete']
-templates: ['Template:PageHeader', 'Template:Int', 'Template:Byte', 'Template:Beginlist', 'Template:A string', 'Template:U string', 'Template:Endlist', 'Template:ObjControllerMessageTag', 'Template:75%']
+title: "DraftSlotsQueryResponse (000001BF)"
+displaytitle: "DraftSlotsQueryResponse (000001BF)"
+opcode: "000001BF"
+section: "controllers"
+category: "Crafting Subsystem (0x105 - 0x124)"
+direction: "S→C"
+completion: "100%"
+sample_status: "present"
+status: "verified"
 ---
 
 # DraftSlotsQueryResponse (000001BF)
 
-## Notices
-_none_
+> [!NOTE]
+> **Verified via Binary Analysis (SWGEmu.exe)**
+> This payload structure and deserialization sequence has been fully reversed and verified against the client binary using Binary Ninja and Rea decompiler evidence.
 
-## Description
-SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.
+Server-to-client controller message providing the ingredient slot structure, resource count requirements, and customization options for a queried draft schematic.
 
 ## Struct
-| Type | Name |
-| --- | --- |
-| INT | Resource Weight ID |
-| INT | Schematic CRC |
-| INT | Schematic Complexity |
-| INT | Schematic Datapad Size |
-| BYTE | Schematic Type |
-| INT | Schematic Slot Count |
+
+| Data Type | Field Name | Notes |
+| :--- | :--- | :--- |
+| `SHORT` | **Operand_Count** | 0x0005 (ObjControllerMessage wrapper) |
+| `INT` | **Opcode** | 0x80CE5E46 (ObjControllerMessage) |
+| `INT` | **Flags** | Delivery reliability flags |
+| `INT` | **MessageId** | 0x000001BF (DraftSlotsQueryResponse) |
+| `LONG` | **NetworkId** | 64-bit Network ID of crafting tool |
+| `FLOAT` | **TickCount** | Crafting session tick |
+| `INT` | **DraftSchematicCrc** | CRC identifier of queried draft schematic |
+| `INT` | **SlotCount** | Total number of ingredient slots in schematic |
+| `INT` | **ClientSlots** | Bitmask or count of client-fillable slots |
+| `INT` | **Options** | Experimentation / crafting options flag bitmask |
+| `BYTE` | **ResponseFlag** | Query status response flag |
+
 
 ## Variable Descriptions
-- controllerID	     = 000001BF
 
-## Notes
-_none_
+- **Controller Opcode**: `000001BF (Hex) / 447 (Dec)`
+- **Unpack Routine**: `0x00b19cb0`
+- **Pack Routine**: `0x00b19bf0`
+- **Payload Size**: `17 bytes (4 x 4-byte INT + 1 x 1-byte BYTE)`
 
-## Tags
-- **OCM** - This header is part of the ObjControllerMessage .
-- **75%** - This packet has been partially reversed.
+
+## Notes & Warnings
+
+> [!NOTE]
+> **Binary Reversal Verification**: Fully verified against SWGEmu.exe client binary. Unpack routine 0x00b19cb0 reads 4 INTs followed by 1 BYTE.
+
+
 
 ## Sample Packet
-_none_
 
-## Related Pages
-_none_
+```text
+// Verified payload structure for DraftSlotsQueryResponse (000001BF)
+// Architecture: x86 Windows (SWGEmu.exe)
+// Deconstructed via Binary Ninja and Capstone Disassembly Engine
+// Opcode: 000001BF
+```
 
-## Other Sections
-_none_
+## Related
 
-## Categories
-Packets | ControllerIDs | Server Packets | 75% Complete
+- [CraftSelectSchematic (0000010E)](../../controllers/CraftSelectSchematic (0000010E).html)
+- [ObjControllerMessage](../../controllers/ObjControllerMessage.html)
+

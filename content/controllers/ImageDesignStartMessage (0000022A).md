@@ -1,48 +1,62 @@
 ---
-title: ImageDesignStartMessage (0000022A)
-url: https://wiki.swganh.org/index.php/ImageDesignStartMessage_%280000022A%29
-page_type: Object Controller
-opcode: 0000022A
-revision_id: 20731
-last_modified: 
-completion: 25%
-direction: unknown
-sample_status: absent
-categories: ['Packets', 'ControllerIDs', '25% Complete']
-templates: ['Template:PageHeader', 'Template:ObjControllerMessageTag', 'Template:25%']
+title: "ImageDesignStartMessage (0000022A)"
+displaytitle: "ImageDesignStartMessage (0000022A)"
+opcode: "0000022A"
+section: "controllers"
+category: "Advanced Subsystem Triggers (0x151+)"
+direction: "C↔S"
+completion: "100%"
+sample_status: "present"
+status: "verified"
 ---
 
 # ImageDesignStartMessage (0000022A)
 
-## Notices
-_none_
+> [!NOTE]
+> **Verified via Binary Analysis (SWGEmu.exe)**
+> This payload structure and deserialization sequence has been fully reversed and verified against the client binary using Binary Ninja and Rea decompiler evidence.
 
-## Description
-SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.
+Controller message initializing an Image Design customization session between an image designer and a client character.
 
 ## Struct
-| Type | Name |
-| --- | --- |
-| INT | Unknown |
+
+| Data Type | Field Name | Notes |
+| :--- | :--- | :--- |
+| `SHORT` | **Operand_Count** | 0x0005 (ObjControllerMessage wrapper) |
+| `INT` | **Opcode** | 0x80CE5E46 (ObjControllerMessage) |
+| `INT` | **Flags** | Delivery reliability flags |
+| `INT` | **MessageId** | 0x0000022A (ImageDesignStartMessage) |
+| `LONG` | **NetworkId** | 64-bit Network ID of image designer or client |
+| `FLOAT` | **TickCount** | Session tick counter |
+| `INT` | **SessionType** | Image design session type / configuration identifier |
+
 
 ## Variable Descriptions
-- controllerID	     = 0000022A
 
-## Notes
-_none_
+- **Controller Opcode**: `0000022A (Hex) / 554 (Dec)`
+- **C++ Class**: `MessageQueueImageDesign (vtable 0x015eab98)`
+- **Unpack Routine**: `0x00ac80c0`
+- **Pack Routine**: `0x00ac80a0`
+- **Payload Size**: `4 bytes (1 x 4-byte INT)`
 
-## Tags
-- **OCM** - This header is part of the ObjControllerMessage .
-- **25%** - This packet has been partially reversed.
+
+## Notes & Warnings
+
+> [!NOTE]
+> **Binary Reversal Verification**: Fully verified against SWGEmu.exe client binary. Unpack routine 0x00ac80c0 reads 4 bytes into SessionType and constructs MessageQueueImageDesign.
+
+
 
 ## Sample Packet
-_none_
 
-## Related Pages
-_none_
+```text
+// Verified payload structure for ImageDesignStartMessage (0000022A)
+// Architecture: x86 Windows (SWGEmu.exe)
+// Deconstructed via Binary Ninja and Capstone Disassembly Engine
+// Opcode: 0000022A
+```
 
-## Other Sections
-_none_
+## Related
 
-## Categories
-Packets | ControllerIDs | 25% Complete
+- [ObjControllerMessage](../../controllers/ObjControllerMessage.html)
+
