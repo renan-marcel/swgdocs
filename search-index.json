@@ -17998,5 +17998,17 @@
     "ss": "present",
     "u": "protocols/AddMapLocationMessage (AB2174B6).html",
     "k": "Operand_Count Opcode PlanetName NetworkId LocationName X Z LocationType SubCategory Operand_Count Opcode C++ Class Serialization Mechanism Constructor Address"
+  },
+  {
+    "t": "Packet Inspector & Decoder Tool",
+    "s": "tools",
+    "st": "Interactive Tools",
+    "sc": "Protocol Utilities",
+    "o": "TOOL_INSPECTOR",
+    "d": "Dual",
+    "c": "100%",
+    "ss": "present",
+    "u": "tools/inspector.html",
+    "k": "inspector decoder dissector tool hex packet parser soe crc controller analyze dissect Wireshark"
   }
 ]

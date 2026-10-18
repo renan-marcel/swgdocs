@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Packet Inspector & Decoder | SWG Docs</title>
+  <meta name="description" content="Interactive client-side Star Wars Galaxies packet inspector, SOE protocol decoder, and hex dump dissector.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/inspector.css">
+</head>
+<body data-root="../">
+
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+      <li><a href="inspector.html" class="active" style="color:var(--accent-cyan); font-weight:700;">🛠️ Inspector</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  <div class="container" style="flex:1; padding-top:1.5rem; padding-bottom:3rem;">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">Interactive Packet Inspector & Decoder</span>
+    </div>
+
+    <header class="article-header" style="margin-bottom:1.5rem;">
+      <h1 class="article-title" style="display:flex; align-items:center; gap:0.75rem;">
+        <span>🛠️ Packet Inspector & Protocol Dissector</span>
+        <span class="badge badge-100" style="font-size:0.8rem;">Live Tool</span>
+      </h1>
+      <p style="color:var(--text-secondary); margin-top:0.5rem; font-size:0.95rem;">
+        Paste raw hex bytes from packet captures, Wireshark traces, or emulator logs to automatically decode SOE protocol headers, SWG application opcodes, and ObjectController payloads in real time.
+      </p>
+    </header>
+
+    <div class="inspector-container">
+      <!-- Input Card -->
+      <div class="inspector-input-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+          <label for="packet-hex-input" style="font-weight:600; font-size:0.95rem;">
+            📥 Raw Packet Hex Bytes:
+          </label>
+          <span style="font-size:0.8rem; color:var(--text-muted);">
+            Accepts spaced hex, continuous hex, Wireshark hex dump, or C arrays
+          </span>
+        </div>
+
+        <textarea id="packet-hex-input" class="inspector-textarea" placeholder="Paste hex bytes here (e.g. 02 00 ab 21 74 b6 ...)"></textarea>
+
+        <div class="preset-bar">
+          <span style="font-size:0.85rem; font-weight:600; color:var(--text-muted); margin-right:0.25rem;">Presets:</span>
+          <button class="preset-btn" onclick="loadPreset('AddMapLocationMessage')">AddMapLocationMessage</button>
+          <button class="preset-btn" onclick="loadPreset('ObjectMenuSelectMessage')">ObjectMenuSelectMessage</button>
+          <button class="preset-btn" onclick="loadPreset('QuestTaskCounterMessage')">QuestTaskCounter</button>
+          <button class="preset-btn" onclick="loadPreset('QuestTaskTimerMessage')">QuestTaskTimer</button>
+          <button class="preset-btn" onclick="loadPreset('CraftSelectSchematic')">CraftSelectSchematic</button>
+          <button class="preset-btn" onclick="loadPreset('CraftRequestSession')">CraftRequestSession</button>
+          <button class="preset-btn" onclick="loadPreset('ShipHit')">ShipHit</button>
+          <button class="preset-btn" onclick="loadPreset('UpdateShipOnCollision')">ShipCollision</button>
+          <button class="preset-btn" onclick="loadPreset('Buffs')">Buffs</button>
+          <button class="preset-btn" onclick="loadPreset('SOE_Data_Channel')">SOE + SWG Wrapped</button>
+        </div>
+
+        <div class="action-bar">
+          <div style="display:flex; gap:0.75rem;">
+            <button class="action-btn-primary" onclick="runDecode()">
+              <span>⚡ Decode & Dissect</span>
+            </button>
+            <button class="action-btn-secondary" onclick="document.getElementById('packet-hex-input').value=''; runDecode();">
+              Clear
+            </button>
+          </div>
+          <button class="action-btn-secondary" onclick="copyDecodedJSON()" title="Copy decoded structure as JSON">
+            📋 Copy JSON Dissection
+          </button>
+        </div>
+      </div>
+
+      <!-- Status Banner -->
+      <div id="decode-status" style="display:none; margin-top:0.5rem;"></div>
+
+      <!-- Results Grid -->
+      <div class="inspector-results-grid">
+        <!-- Dissection Table Panel -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <span class="panel-title">
+              <span>📋 Protocol Dissection</span>
+            </span>
+            <span style="font-size:0.8rem; color:var(--text-muted);">Hover row to highlight bytes</span>
+          </div>
+          <div id="dissection-table-container" class="dissection-table-wrap">
+            <div style="padding:2rem; text-align:center; color:var(--text-muted);">
+              Paste packet bytes and click <strong>Decode & Dissect</strong> to view fields.
+            </div>
+          </div>
+        </div>
+
+        <!-- Hex Viewer Panel -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <span class="panel-title">
+              <span>🔍 Synchronized Hex Dump</span>
+            </span>
+            <span style="font-size:0.8rem; color:var(--text-muted);">16 bytes per row + ASCII</span>
+          </div>
+          <div id="hex-dump-container" class="hex-dump-wrap">
+            <div style="padding:2rem; text-align:center; color:var(--text-muted);">
+              Hex view will appear here upon decoding.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Protocol Reference Help -->
+      <section class="doc-section" style="margin-top:2rem;">
+        <h2>💡 Protocol Decoding Reference</h2>
+        <div class="var-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+          <div class="var-card">
+            <div class="var-name">SOE Protocol Wrapper</div>
+            <div class="var-val" style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
+              Packets starting with <code>0x0009</code> (Reliable Data) contain a 2-byte sequence number followed by the inner SWG payload and terminate with a 2-byte CRC16 checksum.
+            </div>
+          </div>
+          <div class="var-card">
+            <div class="var-name">SWG Operand Count</div>
+            <div class="var-val" style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
+              Standard SWG messages begin with a 2-byte little-endian operand count: <code>0x0002</code> for standard packets, and <code>0x0005</code> for <code>ObjControllerMessage</code> wrappers.
+            </div>
+          </div>
+          <div class="var-card">
+            <div class="var-name">Object Controller Messages</div>
+            <div class="var-val" style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
+              Opcode <code>0x80CE5E46</code> wraps game actions. It encapsulates Flags (4B), MessageId (4B), Target NetworkId (8B), TickCount (4B), and specific payload data.
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>Star Wars Galaxies network protocol documentation generated from SWGANH Wiki & binary analysis.</p>
+      <p style="font-size:0.8rem; color:var(--text-muted);">SWG Docs • Documentation Archive & Protocol Reference</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/search.js"></script>
+  <script src="../assets/js/inspector.js"></script>
+</body>
+</html>
