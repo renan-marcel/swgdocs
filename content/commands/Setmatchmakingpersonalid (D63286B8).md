@@ -17,9 +17,6 @@ templates: ['Template:PageHeader', 'Template:U string', 'Template:ClientPacket',
 ## Notices
 _none_
 
-## Description
-SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.
-
 ## Struct
 | Type | Name |
 | --- | --- |

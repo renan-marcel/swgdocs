@@ -17,9 +17,6 @@ templates: ['Template:MissingPacket', 'Template:Ambox', 'Template:PageHeader', '
 ## Notices
 - This article or section needs additional data . Please add a sample packet!
 
-## Description
-SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.
-
 ## Struct
 _none_
 

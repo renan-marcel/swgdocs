@@ -17,9 +17,6 @@ templates: ['Template:PageCleanup', 'Template:Ambox', 'Template:PageHeader', 'Te
 ## Notices
 - This article or section needs proper wiki formatting .
 
-## Description
-SWGANH Wiki is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.
-
 ## Struct
 _none_
 
