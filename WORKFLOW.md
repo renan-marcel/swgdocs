@@ -83,6 +83,9 @@ Ao analisar novos pacotes utilizando Rea + Binary Ninja no `SWGEmu.exe`:
    - Adicionar o pacote em `swgdocs/data/reversal_history.json` ou usar `record_packet`.
    - Executar `python scripts/update_history.py`.
 
+6. **Atualização do Backlog de Pendentes (0%):**
+   - Executar `python scripts/generate_pending_page.py` para sincronizar `swgdocs/pending/index.html`, `data/pending_items.json` e `data/pending_items.csv` (o pacote recém-decodificado sairá automaticamente da lista de pendências).
+
 ---
 
 ## 🛡️ 4. Checklist Pré-Commit
@@ -90,7 +93,8 @@ Ao analisar novos pacotes utilizando Rea + Binary Ninja no `SWGEmu.exe`:
 Antes de publicar qualquer alteração no branch `main` (GitHub Pages):
 
 - [ ] `python scripts/update_history.py` executado sem erros.
-- [ ] `history/index.html` reflete o número total de pacotes e a numeração cronológica correta.
-- [ ] Opcode copiável e link clicável funcionando no histórico.
+- [ ] `python scripts/generate_pending_page.py` executado sem erros.
+- [ ] `history/index.html` e `pending/index.html` refletem a numeração correta.
+- [ ] Opcode copiável e link clicável funcionando no histórico e na página de pendentes.
 - [ ] Nenhum texto residual de disclaimer legado presente.
 - [ ] `git status` validado e arquivos comitados com mensagem descritiva.

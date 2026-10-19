@@ -18,19 +18,24 @@ This repository is ready to be hosted directly on **GitHub Pages** with zero con
 | [**Guides**](guides/) | **22** | Technical guides on SOE transport, CRC, compression, encryption, and reversing |
 | [**TRE Sub-Files**](tre-subfiles/) | **9** | Client asset file specifications (`TRE`, `STF`, `QST`, `TRN`, `TOC`) |
 | [**Reversal History**](history/) | **28** | Chronological ledger of all decoded/reversed packets with unpack VAs and schemas |
+| [**Pending Backlog (0%)**](pending/) | **895** | Master catalog of all unmapped packets, commands, and controllers at 0% completion |
 | [**Interactive Inspector**](tools/inspector.html) | **Tool** | Real-time packet inspector, decoder, and payload generator for opcodes and controllers |
 
 ---
 
 ## 🛠️ Reverse Engineering Workflow & Automation
 
-For detailed reverse engineering guidelines, binary evidence extraction procedures (`SWGEmu.exe`), and instructions for the **automated history update task**, please consult:
+For detailed reverse engineering guidelines, binary evidence extraction procedures (`SWGEmu.exe`), and instructions for the **automated history and backlog tasks**, please consult:
 
 👉 [**WORKFLOW.md**](WORKFLOW.md)
 
-To automatically rebuild and update the Reversal History page at any time:
+To automatically rebuild and update the Reversal History and Pending Backlog pages at any time:
 ```bash
+# Update reversal history
 python scripts/update_history.py
+
+# Update pending 0% catalog
+python scripts/generate_pending_page.py
 ```
 
 - **Instant Search & Opcode Finder**: Search by 8-digit hex opcode (e.g. `9CA80F98`, `00000116`), packet name, or field across all 1,427 documents.

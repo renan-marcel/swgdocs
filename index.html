@@ -27,6 +27,7 @@
       <li><a href="tre-subfiles/index.html" class="">TRE</a></li>
       <li><a href="tools/inspector.html" class="" style="color:var(--accent-cyan); font-weight:700;">🛠️ Inspector</a></li>
       <li><a href="history/index.html" class="" style="color:#f59e0b; font-weight:700;">📜 History</a></li>
+      <li><a href="pending/index.html" class="" style="color:#ef4444; font-weight:700;">⏳ Pendentes (0%)</a></li>
     </ul>
     <div class="nav-actions">
       <div class="search-bar-wrap">
@@ -140,12 +141,31 @@
 
       <a href="tools/inspector.html" class="section-card" style="border: 1px solid rgba(56, 189, 248, 0.4); background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));">
         <div class="section-card-header">
-          <div class="section-card-title">🛠️ Packet Inspector & Decoder</div>
+          <div class="section-card-title">🛠️ Packet Inspector</div>
           <div class="section-card-count" style="background:rgba(34, 197, 94, 0.2); color:#4ade80;">Interactive Tool</div>
         </div>
-        <div class="section-card-desc">Real-time client-side packet dissector. Paste raw hex captures to automatically decode SOE protocol headers, opcodes, and ObjectController payloads with synchronized byte highlighting.</div>
-        <div style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600;">Launch Inspector Tool →</div>
+        <div class="section-card-desc">Dissecador em tempo real. Cole capturas hexadecimais para decodificar cabeçalhos SOE, opcodes e controladores com destaque sincronizado.</div>
+        <div style="font-size:0.85rem; color:var(--accent-cyan); font-weight:600;">Abrir Inspetor →</div>
       </a>
+
+      <a href="history/index.html" class="section-card" style="border: 1px solid rgba(245, 158, 11, 0.4); background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));">
+        <div class="section-card-header">
+          <div class="section-card-title">📜 Reversal History</div>
+          <div class="section-card-count" style="background:rgba(245, 158, 11, 0.2); color:#fbbf24;">28 Decodificados</div>
+        </div>
+        <div class="section-card-desc">Ordem cronológica de engenharia reversa de todos os pacotes decodificados, endereços virtuais (VAs) e AutoVariables recuperadas do binário.</div>
+        <div style="font-size:0.85rem; color:#fbbf24; font-weight:600;">Ver Histórico Cronológico →</div>
+      </a>
+
+      <a href="pending/index.html" class="section-card" style="border: 1px solid rgba(239, 68, 68, 0.4); background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));">
+        <div class="section-card-header">
+          <div class="section-card-title">⏳ Itens Pendentes (0%)</div>
+          <div class="section-card-count" style="background:rgba(239, 68, 68, 0.2); color:#ef4444;">895 Pendentes</div>
+        </div>
+        <div class="section-card-desc">Catálogo de todos os 895 pacotes, comandos e controladores com 0% de completude aguardando mapeamento e engenharia reversa.</div>
+        <div style="font-size:0.85rem; color:#ef4444; font-weight:600;">Explorar Backlog 0% →</div>
+      </a>
+    </div>
     </div>
 
     <!-- Master Interactive Explorer Table -->
