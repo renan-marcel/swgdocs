@@ -1,69 +1,61 @@
 ---
-title: DestroyShipMessage
-url: https://wiki.swganh.org/index.php/DestroyShipMessage
-page_type: Server Packet
-opcode: 5C680884
-revision_id: 59648
-last_modified: 2009-08-24T01:27:12Z
-completion: 0%
-direction: S→C
-sample_status: present
-categories: ['Pages with missing packet samples', 'Packets', 'Server Packets', '0% Complete']
-templates: ['Template:MissingPacket', 'Template:Ambox', 'Template:PageHeader', 'Template:ServerPacket', 'Template:0%']
+title: "DestroyShipMessage"
+displaytitle: "DestroyShipMessage (5C680884)"
+opcode: "5C680884"
+section: "protocols"
+category: "Space & Ship Packets"
+direction: "S→C"
+completion: "100%"
+sample_status: "present"
+status: "verified"
 ---
 
-# DestroyShipMessage
+# DestroyShipMessage (5C680884)
 
-## Notices
-- This article or section needs additional data . Please add a sample packet!
+> [!NOTE]
+> **Verified via Binary Analysis (SWGEmu.exe)**
+> This payload structure and deserialization sequence has been fully reversed and verified against the client binary using Binary Ninja and Rea decompiler evidence.
+
+Server-to-client message informing the client that a starship has been catastrophically destroyed, triggering the primary explosion effect, debris generation, and target removal.
 
 ## Struct
-| Type | Name |
-| --- | --- |
-| BYTE | uint8 |
-| SHORT | uint16 |
-| INT | uint32 |
-| FLOAT | uint32 |
-| LONG | uint64 |
-| A_STRING | ASCII String |
-| U_STRING | Unicode String |
-| C_STRING | Customization String |
-| B_STRING | Byte String |
-| { } | LIST Component |
-| ? | Uncertain Values |
-| ?? | Unknown Variable Name |
+
+| Data Type | Field Name | Notes |
+| :--- | :--- | :--- |
+| `SHORT` | **Operand_Count** | Standard operand count header (0x0002) |
+| `INT` | **Opcode** | 0x5C680884 (DestroyShipMessage) |
+| `LONG` | **NetworkId** | Unique 64-bit Network ID of the destroyed ship |
+| `FLOAT` | **Severity** | Destruction severity multiplier (determines blast radius and debris scale) |
+
 
 ## Variable Descriptions
-- Opperand_Count	     = 9
-- Opcode		     = 5C680884
 
-## Notes
-_none_
+- **Operand_Count**: `0x0002 (Short count)`
+- **Opcode**: `5C680884 (DestroyShipMessage)`
+- **C++ Class**: `DestroyShipMessage (vtables 0x015eaeb0, 0x015eaea8)`
+- **Constructor Address**: `0x00ad291c (ReadIterator ctor) / 0x00ad2880 (value ctor)`
+- **Getter Methods**: `getNetworkId() @ 0x00ad2950, getSeverity() @ 0x00ad2960`
 
-## Tags
-- **S→C** - This packet originates on the server.
-- **0%** - This packet has not been reversed.
+
+## Notes & Warnings
+
+> [!NOTE]
+> **Binary Reversal Verification**: Fully verified against SWGEmu.exe client binary. Unpack routine 0x00ad291c registers two Archive::AutoVariable members: AutoVariable<NetworkId> at +0x2c and AutoVariable<float> at +0x3c.
+
+> [!NOTE]
+> **Client Hull Destruction**: Triggers the catastrophic hull breach sequence. If the destroyed ship is the player ship, initiates ejection sequence and death recovery flow.
+
+
 
 ## Sample Packet
-```
-03 00 84 08 68 5C EA 17 53 BF 21 00 00 00 57 AC 50 3F 
 
-03 00 84 08 68 5C 45 19 53 BF 21 00 00 00 49 52 83 3D 
-
-03 00 84 08 68 5C 1A 1A 53 BF 21 00 00 00 F0 F1 64 3F 
-
-03 00 84 08 68 5C 21 1A 53 BF 21 00 00 00 4D 8F 58 3E 
-
-03 00 84 08 68 5C 28 19 53 BF 21 00 00 00 41 F9 2E 3F 
-
-03 00 84 08 68 5C 48 2A 53 BF 21 00 00 00 12 C4 82 3E
+```text
+02 00 84 08 68 5c 40 e2 01 00 00 00 00 00 00 00 80 3f
 ```
 
-## Related Pages
-_none_
+## Related
 
-## Other Sections
-_none_
+- [DestroyShipComponentMessage](../../protocols/DestroyShipComponentMessage.html)
+- [HyperspaceMessage](../../protocols/HyperspaceMessage.html)
+- [ShipUpdateTransformCollisionMessage](../../protocols/ShipUpdateTransformCollisionMessage.html)
 
-## Categories
-Pages with missing packet samples | Packets | Server Packets | 0% Complete

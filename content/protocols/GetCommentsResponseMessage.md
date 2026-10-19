@@ -1,59 +1,62 @@
 ---
-title: GetCommentsResponseMessage
-url: https://wiki.swganh.org/index.php/GetCommentsResponseMessage
-page_type: Server Packet
-opcode: EADB08CA
-revision_id: 21446
-last_modified: 2008-01-09T02:20:22Z
-completion: 0%
-direction: S→C
-sample_status: placeholder
-categories: ['Pages with missing packet samples', 'Packets', 'Server Packets', '0% Complete']
-templates: ['Template:MissingPacket', 'Template:Ambox', 'Template:PageHeader', 'Template:ServerPacket', 'Template:0%']
+title: "GetCommentsResponseMessage"
+displaytitle: "GetCommentsResponseMessage (EADB08CA)"
+opcode: "EADB08CA"
+section: "protocols"
+category: "General & System Packets"
+direction: "S→C"
+completion: "100%"
+sample_status: "present"
+status: "verified"
 ---
 
-# GetCommentsResponseMessage
+# GetCommentsResponseMessage (EADB08CA)
 
-## Notices
-- This article or section needs additional data . Please add a sample packet!
+> [!NOTE]
+> **Verified via Binary Analysis (SWGEmu.exe)**
+> This payload structure and deserialization sequence has been fully reversed and verified against the client binary using Binary Ninja and Rea decompiler evidence.
+
+Server-to-client customer service response returning the conversation thread and comment history of an existing CSR ticket.
 
 ## Struct
-| Type | Name |
-| --- | --- |
-| BYTE | uint8 |
-| SHORT | uint16 |
-| INT | uint32 |
-| FLOAT | uint32 |
-| LONG | uint64 |
-| A_STRING | ASCII String |
-| U_STRING | Unicode String |
-| C_STRING | Customization String |
-| B_STRING | Byte String |
-| { } | LIST Component |
-| ? | Uncertain Values |
-| ?? | Unknown Variable Name |
+
+| Data Type | Field Name | Notes |
+| :--- | :--- | :--- |
+| `SHORT` | **Operand_Count** | Standard operand count header (0x0002) |
+| `INT` | **Opcode** | 0xEADB08CA (GetCommentsResponseMessage) |
+| `INT` | **TicketId** | Target CSR ticket identifier number |
+| `INT` | **CommentCount** | Number of comment entries in the array |
+| `INT` | **CommentId** | CustomerServiceComment field: unique comment ID |
+| `INT` | **Timestamp** | CustomerServiceComment field: UNIX timestamp of comment |
+| `BYTE` | **FromPlayer** | CustomerServiceComment field: boolean flag (1 if from player, 0 if from CSR staff) |
+| `UNICODE` | **AuthorName** | CustomerServiceComment field: display name of comment author |
+| `UNICODE` | **CommentText** | CustomerServiceComment field: full comment text content |
+
 
 ## Variable Descriptions
-- Opperand_Count	     = X
-- Opcode		     = EADB08CA
 
-## Notes
-_none_
+- **Operand_Count**: `0x0002 (Short count)`
+- **Opcode**: `EADB08CA (GetCommentsResponseMessage)`
+- **C++ Class**: `GetCommentsResponseMessage (vtables 0x015ebba4, 0x015ebb9c)`
+- **Constructor Address**: `0x00af8dd4 (ReadIterator ctor)`
+- **AutoArray Element Struct**: `CustomerServiceComment (36 bytes: CommentId, Timestamp, FromPlayer, AuthorName, CommentText)`
 
-## Tags
-- **S→C** - This packet originates on the server.
-- **0%** - This packet has not been reversed.
+
+## Notes & Warnings
+
+> [!NOTE]
+> **Binary Reversal Verification**: Fully verified against SWGEmu.exe client binary. Constructor registers AutoVariable<unsigned int> TicketId (+0x2c) and AutoArray<CustomerServiceComment> (+0x40). CustomerServiceComment serialization at 0x00b1cbc0 writes CommentId (4 bytes), Timestamp (4 bytes), FromPlayer (1 byte), AuthorName (Unicode::String), and CommentText (Unicode::String).
+
+
 
 ## Sample Packet
+
+```text
+02 00 ca 08 db ea 2a 00 00 00 01 00 00 00 01 00 00 00 37 45 92 41 00 03 00 00 00 43 00 53 00 52 00 09 00 00 00 57 00 65 00 20 00 61 00 72 00 65 00 20 00 6f 00 6e 00
 ```
-Insert Sample Packet Here...
-```
 
-## Related Pages
-_none_
+## Related
 
-## Other Sections
-_none_
+- [CreateTicketResponseMessage](../../protocols/CreateTicketResponseMessage.html)
+- [AppendCommentResponseMessage](../../protocols/AppendCommentResponseMessage.html)
 
-## Categories
-Pages with missing packet samples | Packets | Server Packets | 0% Complete

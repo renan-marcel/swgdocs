@@ -15966,10 +15966,10 @@
     "sc": "General & System Packets",
     "o": "550A407A",
     "d": "S→C",
-    "c": "0%",
-    "ss": "placeholder",
+    "c": "100%",
+    "ss": "present",
     "u": "protocols/CreateTicketResponseMessage.html",
-    "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
+    "k": "Operand_Count Opcode TicketId ResultCode Operand_Count Opcode C++ Class Constructor Address AutoVariables"
   },
   {
     "t": "Cui::ControlKey (PacketTypeGroup)",
@@ -16146,10 +16146,10 @@
     "sc": "General & System Packets",
     "o": "3871D784",
     "d": "S→C",
-    "c": "0%",
-    "ss": "placeholder",
+    "c": "100%",
+    "ss": "present",
     "u": "protocols/DestroyShipComponentMessage.html",
-    "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
+    "k": "Operand_Count Opcode NetworkId ComponentIndex Severity Operand_Count Opcode C++ Class Constructor Address Getter Methods"
   },
   {
     "t": "DestroyShipMessage",
@@ -16158,10 +16158,10 @@
     "sc": "General & System Packets",
     "o": "5C680884",
     "d": "S→C",
-    "c": "0%",
+    "c": "100%",
     "ss": "present",
     "u": "protocols/DestroyShipMessage.html",
-    "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
+    "k": "Operand_Count Opcode NetworkId Severity Operand_Count Opcode C++ Class Constructor Address Getter Methods"
   },
   {
     "t": "DogfightTauntPlayerMessage",
@@ -16446,10 +16446,10 @@
     "sc": "General & System Packets",
     "o": "EADB08CA",
     "d": "S→C",
-    "c": "0%",
-    "ss": "placeholder",
+    "c": "100%",
+    "ss": "present",
     "u": "protocols/GetCommentsResponseMessage.html",
-    "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
+    "k": "Operand_Count Opcode TicketId CommentCount CommentId Timestamp FromPlayer AuthorName CommentText Operand_Count Opcode C++ Class Constructor Address AutoArray Element Struct"
   },
   {
     "t": "GetMapLocationsMessage",
@@ -16566,10 +16566,10 @@
     "sc": "General & System Packets",
     "o": "CBF88482",
     "d": "S→C",
-    "c": "0%",
-    "ss": "placeholder",
+    "c": "100%",
+    "ss": "present",
     "u": "protocols/HyperspaceMessage.html",
-    "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
+    "k": "Operand_Count Opcode NetworkId Operand_Count Opcode C++ Class Constructor Address Getter Methods"
   },
   {
     "t": "IsFlattenedTheaterMessage",
@@ -17190,10 +17190,10 @@
     "sc": "Scene & Object Management",
     "o": "4F5E09B6",
     "d": "S→C",
-    "c": "0%",
+    "c": "100%",
     "ss": "present",
     "u": "protocols/PlayClientEffectObjectTransformMessage.html",
-    "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
+    "k": "Operand_Count Opcode EffectName NetworkId Transform Operand_Count Opcode C++ Class Constructor Address Serialization Members"
   },
   {
     "t": "PlayClientEventLocMessage",
@@ -17202,10 +17202,10 @@
     "sc": "General & System Packets",
     "o": "0A4E222C",
     "d": "S→C",
-    "c": "0%",
-    "ss": "placeholder",
+    "c": "100%",
+    "ss": "present",
     "u": "protocols/PlayClientEventLocMessage.html",
-    "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
+    "k": "Operand_Count Opcode EventName SceneName X Y Z CellId Operand_Count Opcode C++ Class Constructor Address Getter Methods"
   },
   {
     "t": "PlayClientEventObjectMessage",
@@ -17214,10 +17214,10 @@
     "sc": "General & System Packets",
     "o": "AF83C3F2",
     "d": "S→C",
-    "c": "0%",
-    "ss": "placeholder",
+    "c": "100%",
+    "ss": "present",
     "u": "protocols/PlayClientEventObjectMessage.html",
-    "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
+    "k": "Operand_Count Opcode EventName HardpointName TargetId Operand_Count Opcode C++ Class Constructor Address Getter Methods"
   },
   {
     "t": "PlayMusicMessage",
@@ -17526,10 +17526,10 @@
     "sc": "Scene & Object Management",
     "o": "763648D0",
     "d": "S→C",
-    "c": "0%",
+    "c": "100%",
     "ss": "present",
     "u": "protocols/ShipUpdateTransformCollisionMessage.html",
-    "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
+    "k": "Operand_Count Opcode ShipId Transform Velocity SyncStamp Operand_Count Opcode C++ Class Constructor Address AutoVariables"
   },
   {
     "t": "ShipUpdateTransformMessage",
@@ -17622,10 +17622,10 @@
     "sc": "General & System Packets",
     "o": "5F3342F6",
     "d": "S→C",
-    "c": "0%",
+    "c": "100%",
     "ss": "present",
     "u": "protocols/SuiUpdatePageMessage.html",
-    "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
+    "k": "Operand_Count Opcode PageId UpdateType PropertyPath PropertyValue Operand_Count Opcode C++ Class Constructor Address Serialization Mechanism"
   },
   {
     "t": "Survey (PacketTypeGroup)",
@@ -17766,10 +17766,10 @@
     "sc": "General & System Packets",
     "o": "1228CD01",
     "d": "S→C",
-    "c": "0%",
+    "c": "100%",
     "ss": "present",
     "u": "protocols/UpdateMissileMessage.html",
-    "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
+    "k": "Operand_Count Opcode NetworkId WeaponIndex TargetComponent Status Operand_Count Opcode C++ Class Constructor Address AutoVariables"
   },
   {
     "t": "UpdatePostureMessage",
@@ -18010,5 +18010,137 @@
     "ss": "present",
     "u": "tools/inspector.html",
     "k": "inspector decoder dissector tool hex packet parser soe crc controller analyze dissect Wireshark"
+  },
+  {
+    "t": "DestroyShipComponentMessage",
+    "s": "protocols",
+    "st": "SWG Protocols",
+    "sc": "Space & Ship Packets",
+    "o": "3871D784",
+    "d": "S→C",
+    "c": "100%",
+    "ss": "present",
+    "u": "protocols/DestroyShipComponentMessage (3871D784).html",
+    "k": "Operand_Count Opcode NetworkId ComponentIndex Severity Operand_Count Opcode C++ Class Constructor Address Getter Methods"
+  },
+  {
+    "t": "DestroyShipMessage",
+    "s": "protocols",
+    "st": "SWG Protocols",
+    "sc": "Space & Ship Packets",
+    "o": "5C680884",
+    "d": "S→C",
+    "c": "100%",
+    "ss": "present",
+    "u": "protocols/DestroyShipMessage (5C680884).html",
+    "k": "Operand_Count Opcode NetworkId Severity Operand_Count Opcode C++ Class Constructor Address Getter Methods"
+  },
+  {
+    "t": "HyperspaceMessage",
+    "s": "protocols",
+    "st": "SWG Protocols",
+    "sc": "Space & Ship Packets",
+    "o": "CBF88482",
+    "d": "S→C",
+    "c": "100%",
+    "ss": "present",
+    "u": "protocols/HyperspaceMessage (CBF88482).html",
+    "k": "Operand_Count Opcode NetworkId Operand_Count Opcode C++ Class Constructor Address Getter Methods"
+  },
+  {
+    "t": "PlayClientEffectObjectTransformMessage",
+    "s": "protocols",
+    "st": "SWG Protocols",
+    "sc": "General & System Packets",
+    "o": "4F5E09B6",
+    "d": "S→C",
+    "c": "100%",
+    "ss": "present",
+    "u": "protocols/PlayClientEffectObjectTransformMessage (4F5E09B6).html",
+    "k": "Operand_Count Opcode EffectName NetworkId Transform Operand_Count Opcode C++ Class Constructor Address Serialization Members"
+  },
+  {
+    "t": "PlayClientEventLocMessage",
+    "s": "protocols",
+    "st": "SWG Protocols",
+    "sc": "General & System Packets",
+    "o": "0A4E222C",
+    "d": "S→C",
+    "c": "100%",
+    "ss": "present",
+    "u": "protocols/PlayClientEventLocMessage (0A4E222C).html",
+    "k": "Operand_Count Opcode EventName SceneName X Y Z CellId Operand_Count Opcode C++ Class Constructor Address Getter Methods"
+  },
+  {
+    "t": "PlayClientEventObjectMessage",
+    "s": "protocols",
+    "st": "SWG Protocols",
+    "sc": "General & System Packets",
+    "o": "AF83C3F2",
+    "d": "S→C",
+    "c": "100%",
+    "ss": "present",
+    "u": "protocols/PlayClientEventObjectMessage (AF83C3F2).html",
+    "k": "Operand_Count Opcode EventName HardpointName TargetId Operand_Count Opcode C++ Class Constructor Address Getter Methods"
+  },
+  {
+    "t": "ShipUpdateTransformCollisionMessage",
+    "s": "protocols",
+    "st": "SWG Protocols",
+    "sc": "Space & Ship Packets",
+    "o": "763648D0",
+    "d": "S→C",
+    "c": "100%",
+    "ss": "present",
+    "u": "protocols/ShipUpdateTransformCollisionMessage (763648D0).html",
+    "k": "Operand_Count Opcode ShipId Transform Velocity SyncStamp Operand_Count Opcode C++ Class Constructor Address AutoVariables"
+  },
+  {
+    "t": "UpdateMissileMessage",
+    "s": "protocols",
+    "st": "SWG Protocols",
+    "sc": "Space & Ship Packets",
+    "o": "1228CD01",
+    "d": "S→C",
+    "c": "100%",
+    "ss": "present",
+    "u": "protocols/UpdateMissileMessage (1228CD01).html",
+    "k": "Operand_Count Opcode NetworkId WeaponIndex TargetComponent Status Operand_Count Opcode C++ Class Constructor Address AutoVariables"
+  },
+  {
+    "t": "CreateTicketResponseMessage",
+    "s": "protocols",
+    "st": "SWG Protocols",
+    "sc": "General & System Packets",
+    "o": "550A407A",
+    "d": "S→C",
+    "c": "100%",
+    "ss": "present",
+    "u": "protocols/CreateTicketResponseMessage (550A407A).html",
+    "k": "Operand_Count Opcode TicketId ResultCode Operand_Count Opcode C++ Class Constructor Address AutoVariables"
+  },
+  {
+    "t": "GetCommentsResponseMessage",
+    "s": "protocols",
+    "st": "SWG Protocols",
+    "sc": "General & System Packets",
+    "o": "EADB08CA",
+    "d": "S→C",
+    "c": "100%",
+    "ss": "present",
+    "u": "protocols/GetCommentsResponseMessage (EADB08CA).html",
+    "k": "Operand_Count Opcode TicketId CommentCount CommentId Timestamp FromPlayer AuthorName CommentText Operand_Count Opcode C++ Class Constructor Address AutoArray Element Struct"
+  },
+  {
+    "t": "SuiUpdatePageMessage",
+    "s": "protocols",
+    "st": "SWG Protocols",
+    "sc": "Scripted User Interface (SUI)",
+    "o": "5F3342F6",
+    "d": "S→C",
+    "c": "100%",
+    "ss": "present",
+    "u": "protocols/SuiUpdatePageMessage (5F3342F6).html",
+    "k": "Operand_Count Opcode PageId UpdateType PropertyPath PropertyValue Operand_Count Opcode C++ Class Constructor Address Serialization Mechanism"
   }
 ]

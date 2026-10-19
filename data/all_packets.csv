@@ -618,18 +618,6 @@ CreateProjectileMessage,B88AF9A5,S→C,25%,10,SHORT,??,
 CreateProjectileMessage,B88AF9A5,S→C,25%,11,SHORT,??,
 CreateProjectileMessage,B88AF9A5,S→C,25%,12,SHORT,??,
 CreateProjectileMessage,B88AF9A5,S→C,25%,13,INT,??,
-CreateTicketResponseMessage,550A407A,S→C,0%,1,BYTE,uint8,
-CreateTicketResponseMessage,550A407A,S→C,0%,2,SHORT,uint16,
-CreateTicketResponseMessage,550A407A,S→C,0%,3,INT,uint32,
-CreateTicketResponseMessage,550A407A,S→C,0%,4,FLOAT,uint32,
-CreateTicketResponseMessage,550A407A,S→C,0%,5,LONG,uint64,
-CreateTicketResponseMessage,550A407A,S→C,0%,6,A_STRING,ASCII String,
-CreateTicketResponseMessage,550A407A,S→C,0%,7,U_STRING,Unicode String,
-CreateTicketResponseMessage,550A407A,S→C,0%,8,C_STRING,Customization String,
-CreateTicketResponseMessage,550A407A,S→C,0%,9,B_STRING,Byte String,
-CreateTicketResponseMessage,550A407A,S→C,0%,10,{ },LIST Component,
-CreateTicketResponseMessage,550A407A,S→C,0%,11,?,Uncertain Values,
-CreateTicketResponseMessage,550A407A,S→C,0%,12,??,Unknown Variable Name,
 CuiControlsMenuBindEntry::Messages::UPDATE BINDING,32CD924B,C→S,0%,1,BYTE,uint8,
 CuiControlsMenuBindEntry::Messages::UPDATE BINDING,32CD924B,C→S,0%,2,SHORT,uint16,
 CuiControlsMenuBindEntry::Messages::UPDATE BINDING,32CD924B,C→S,0%,3,INT,uint32,
@@ -747,30 +735,6 @@ DenyTradeMessage,6EC28670,S→C,100%,1,SHORT,Op Count,
 DenyTradeMessage,6EC28670,S→C,100%,2,INT,Opcode,
 DestroyClientPathMessage,A75E85EB,S→C,100%,1,SHORT,Operand_Count,
 DestroyClientPathMessage,A75E85EB,S→C,100%,2,INT,Opcode,
-DestroyShipComponentMessage,3871D784,S→C,0%,1,BYTE,uint8,
-DestroyShipComponentMessage,3871D784,S→C,0%,2,SHORT,uint16,
-DestroyShipComponentMessage,3871D784,S→C,0%,3,INT,uint32,
-DestroyShipComponentMessage,3871D784,S→C,0%,4,FLOAT,uint32,
-DestroyShipComponentMessage,3871D784,S→C,0%,5,LONG,uint64,
-DestroyShipComponentMessage,3871D784,S→C,0%,6,A_STRING,ASCII String,
-DestroyShipComponentMessage,3871D784,S→C,0%,7,U_STRING,Unicode String,
-DestroyShipComponentMessage,3871D784,S→C,0%,8,C_STRING,Customization String,
-DestroyShipComponentMessage,3871D784,S→C,0%,9,B_STRING,Byte String,
-DestroyShipComponentMessage,3871D784,S→C,0%,10,{ },LIST Component,
-DestroyShipComponentMessage,3871D784,S→C,0%,11,?,Uncertain Values,
-DestroyShipComponentMessage,3871D784,S→C,0%,12,??,Unknown Variable Name,
-DestroyShipMessage,5C680884,S→C,0%,1,BYTE,uint8,
-DestroyShipMessage,5C680884,S→C,0%,2,SHORT,uint16,
-DestroyShipMessage,5C680884,S→C,0%,3,INT,uint32,
-DestroyShipMessage,5C680884,S→C,0%,4,FLOAT,uint32,
-DestroyShipMessage,5C680884,S→C,0%,5,LONG,uint64,
-DestroyShipMessage,5C680884,S→C,0%,6,A_STRING,ASCII String,
-DestroyShipMessage,5C680884,S→C,0%,7,U_STRING,Unicode String,
-DestroyShipMessage,5C680884,S→C,0%,8,C_STRING,Customization String,
-DestroyShipMessage,5C680884,S→C,0%,9,B_STRING,Byte String,
-DestroyShipMessage,5C680884,S→C,0%,10,{ },LIST Component,
-DestroyShipMessage,5C680884,S→C,0%,11,?,Uncertain Values,
-DestroyShipMessage,5C680884,S→C,0%,12,??,Unknown Variable Name,
 DogfightTauntPlayerMessage,CA2A548B,S→C,25%,1,LONG,??,
 DogfightTauntPlayerMessage,CA2A548B,S→C,25%,2,INT,??,
 EditAppearanceMessage,023320D5,S→C,25%,1,SHORT,Operand_Count,
@@ -870,18 +834,6 @@ GetAuctionDetailsResponse,FE0E644B,S→C,100%,1,SHORT,OperandCode,
 GetAuctionDetailsResponse,FE0E644B,S→C,100%,2,INT,OpCode,
 GetAuctionDetailsResponse,FE0E644B,S→C,100%,3,LONG,Item ID,
 GetAuctionDetailsResponse,FE0E644B,S→C,100%,4,INT,Counter,
-GetCommentsResponseMessage,EADB08CA,S→C,0%,1,BYTE,uint8,
-GetCommentsResponseMessage,EADB08CA,S→C,0%,2,SHORT,uint16,
-GetCommentsResponseMessage,EADB08CA,S→C,0%,3,INT,uint32,
-GetCommentsResponseMessage,EADB08CA,S→C,0%,4,FLOAT,uint32,
-GetCommentsResponseMessage,EADB08CA,S→C,0%,5,LONG,uint64,
-GetCommentsResponseMessage,EADB08CA,S→C,0%,6,A_STRING,ASCII String,
-GetCommentsResponseMessage,EADB08CA,S→C,0%,7,U_STRING,Unicode String,
-GetCommentsResponseMessage,EADB08CA,S→C,0%,8,C_STRING,Customization String,
-GetCommentsResponseMessage,EADB08CA,S→C,0%,9,B_STRING,Byte String,
-GetCommentsResponseMessage,EADB08CA,S→C,0%,10,{ },LIST Component,
-GetCommentsResponseMessage,EADB08CA,S→C,0%,11,?,Uncertain Values,
-GetCommentsResponseMessage,EADB08CA,S→C,0%,12,??,Unknown Variable Name,
 GetMapLocationsMessage,1A7AB839,C→S,100%,1,SHORT,Opperand_Count,
 GetMapLocationsMessage,1A7AB839,C→S,100%,2,INT,Opcode,
 GetMapLocationsMessage,1A7AB839,C→S,100%,3,A_STRING,Planet_String,
@@ -940,18 +892,6 @@ GuildResponseMessage,32263F20,S→C,75%,2,INT,Opcode,
 GuildResponseMessage,32263F20,S→C,75%,3,LONG,Guild ID,
 GuildResponseMessage,32263F20,S→C,75%,4,A_STRING,GuildName,
 GuildResponseMessage,32263F20,S→C,75%,5,SHORT,??,
-HyperspaceMessage,CBF88482,S→C,0%,1,BYTE,uint8,
-HyperspaceMessage,CBF88482,S→C,0%,2,SHORT,uint16,
-HyperspaceMessage,CBF88482,S→C,0%,3,INT,uint32,
-HyperspaceMessage,CBF88482,S→C,0%,4,FLOAT,uint32,
-HyperspaceMessage,CBF88482,S→C,0%,5,LONG,uint64,
-HyperspaceMessage,CBF88482,S→C,0%,6,A_STRING,ASCII String,
-HyperspaceMessage,CBF88482,S→C,0%,7,U_STRING,Unicode String,
-HyperspaceMessage,CBF88482,S→C,0%,8,C_STRING,Customization String,
-HyperspaceMessage,CBF88482,S→C,0%,9,B_STRING,Byte String,
-HyperspaceMessage,CBF88482,S→C,0%,10,{ },LIST Component,
-HyperspaceMessage,CBF88482,S→C,0%,11,?,Uncertain Values,
-HyperspaceMessage,CBF88482,S→C,0%,12,??,Unknown Variable Name,
 IsFlattenedTheaterMessage,4EB0B06A,S→C,25%,1,SHORT,Operand_Count,
 IsFlattenedTheaterMessage,4EB0B06A,S→C,25%,2,INT,Opcode,
 IsFlattenedTheaterMessage,4EB0B06A,S→C,25%,3,LONG,??,
@@ -1154,42 +1094,6 @@ PlayClientEffectObjectMessage,8855434A,S→C,100%,2,INT,Opcode,
 PlayClientEffectObjectMessage,8855434A,S→C,100%,3,A_STRING,File,
 PlayClientEffectObjectMessage,8855434A,S→C,100%,4,A_STRING,AuxString,
 PlayClientEffectObjectMessage,8855434A,S→C,100%,5,LONG,Object ID,
-PlayClientEffectObjectTransformMessage,4F5E09B6,S→C,0%,1,BYTE,uint8,
-PlayClientEffectObjectTransformMessage,4F5E09B6,S→C,0%,2,SHORT,uint16,
-PlayClientEffectObjectTransformMessage,4F5E09B6,S→C,0%,3,INT,uint32,
-PlayClientEffectObjectTransformMessage,4F5E09B6,S→C,0%,4,FLOAT,uint32,
-PlayClientEffectObjectTransformMessage,4F5E09B6,S→C,0%,5,LONG,uint64,
-PlayClientEffectObjectTransformMessage,4F5E09B6,S→C,0%,6,A_STRING,ASCII String,
-PlayClientEffectObjectTransformMessage,4F5E09B6,S→C,0%,7,U_STRING,Unicode String,
-PlayClientEffectObjectTransformMessage,4F5E09B6,S→C,0%,8,C_STRING,Customization String,
-PlayClientEffectObjectTransformMessage,4F5E09B6,S→C,0%,9,B_STRING,Byte String,
-PlayClientEffectObjectTransformMessage,4F5E09B6,S→C,0%,10,{ },LIST Component,
-PlayClientEffectObjectTransformMessage,4F5E09B6,S→C,0%,11,?,Uncertain Values,
-PlayClientEffectObjectTransformMessage,4F5E09B6,S→C,0%,12,??,Unknown Variable Name,
-PlayClientEventLocMessage,0A4E222C,S→C,0%,1,BYTE,uint8,
-PlayClientEventLocMessage,0A4E222C,S→C,0%,2,SHORT,uint16,
-PlayClientEventLocMessage,0A4E222C,S→C,0%,3,INT,uint32,
-PlayClientEventLocMessage,0A4E222C,S→C,0%,4,FLOAT,uint32,
-PlayClientEventLocMessage,0A4E222C,S→C,0%,5,LONG,uint64,
-PlayClientEventLocMessage,0A4E222C,S→C,0%,6,A_STRING,ASCII String,
-PlayClientEventLocMessage,0A4E222C,S→C,0%,7,U_STRING,Unicode String,
-PlayClientEventLocMessage,0A4E222C,S→C,0%,8,C_STRING,Customization String,
-PlayClientEventLocMessage,0A4E222C,S→C,0%,9,B_STRING,Byte String,
-PlayClientEventLocMessage,0A4E222C,S→C,0%,10,{ },LIST Component,
-PlayClientEventLocMessage,0A4E222C,S→C,0%,11,?,Uncertain Values,
-PlayClientEventLocMessage,0A4E222C,S→C,0%,12,??,Unknown Variable Name,
-PlayClientEventObjectMessage,AF83C3F2,S→C,0%,1,BYTE,uint8,
-PlayClientEventObjectMessage,AF83C3F2,S→C,0%,2,SHORT,uint16,
-PlayClientEventObjectMessage,AF83C3F2,S→C,0%,3,INT,uint32,
-PlayClientEventObjectMessage,AF83C3F2,S→C,0%,4,FLOAT,uint32,
-PlayClientEventObjectMessage,AF83C3F2,S→C,0%,5,LONG,uint64,
-PlayClientEventObjectMessage,AF83C3F2,S→C,0%,6,A_STRING,ASCII String,
-PlayClientEventObjectMessage,AF83C3F2,S→C,0%,7,U_STRING,Unicode String,
-PlayClientEventObjectMessage,AF83C3F2,S→C,0%,8,C_STRING,Customization String,
-PlayClientEventObjectMessage,AF83C3F2,S→C,0%,9,B_STRING,Byte String,
-PlayClientEventObjectMessage,AF83C3F2,S→C,0%,10,{ },LIST Component,
-PlayClientEventObjectMessage,AF83C3F2,S→C,0%,11,?,Uncertain Values,
-PlayClientEventObjectMessage,AF83C3F2,S→C,0%,12,??,Unknown Variable Name,
 PlayMusicMessage,04270D8A,S→C,100%,1,SHORT,Operand_Count,
 PlayMusicMessage,04270D8A,S→C,100%,2,INT,Opcode,
 PlayMusicMessage,04270D8A,S→C,100%,3,A_STRING,SoundFile String,
@@ -1376,18 +1280,6 @@ ServerWeatherMessage,486356EA,S→C,100%,3,INT,Weather_ID,
 ServerWeatherMessage,486356EA,S→C,100%,4,FLOAT,CloudVector_X-Coordinate,
 ServerWeatherMessage,486356EA,S→C,100%,5,FLOAT,CloudVector_Z-Coordinate,
 ServerWeatherMessage,486356EA,S→C,100%,6,FLOAT,CloudVector_Y-Coordinate,
-ShipUpdateTransformCollisionMessage,763648D0,S→C,0%,1,BYTE,uint8,
-ShipUpdateTransformCollisionMessage,763648D0,S→C,0%,2,SHORT,uint16,
-ShipUpdateTransformCollisionMessage,763648D0,S→C,0%,3,INT,uint32,
-ShipUpdateTransformCollisionMessage,763648D0,S→C,0%,4,FLOAT,uint32,
-ShipUpdateTransformCollisionMessage,763648D0,S→C,0%,5,LONG,uint64,
-ShipUpdateTransformCollisionMessage,763648D0,S→C,0%,6,A_STRING,ASCII String,
-ShipUpdateTransformCollisionMessage,763648D0,S→C,0%,7,U_STRING,Unicode String,
-ShipUpdateTransformCollisionMessage,763648D0,S→C,0%,8,C_STRING,Customization String,
-ShipUpdateTransformCollisionMessage,763648D0,S→C,0%,9,B_STRING,Byte String,
-ShipUpdateTransformCollisionMessage,763648D0,S→C,0%,10,{ },LIST Component,
-ShipUpdateTransformCollisionMessage,763648D0,S→C,0%,11,?,Uncertain Values,
-ShipUpdateTransformCollisionMessage,763648D0,S→C,0%,12,??,Unknown Variable Name,
 ShipUpdateTransformMessage,76026FB9,S→C,100%,1,SHORT,priority routing,
 ShipUpdateTransformMessage,76026FB9,S→C,100%,2,INT,Opcode,
 ShipUpdateTransformMessage,76026FB9,S→C,100%,3,LONG,ObjectID,
@@ -1430,18 +1322,6 @@ SuiEventNotification,092D3564,C→S,100%,7,U_STRING,Submitted Data string 1...n,
 SuiForceClosePage,990B5DE0,S→C,100%,1,SHORT,op Count,
 SuiForceClosePage,990B5DE0,S→C,100%,2,INT,Op Code,
 SuiForceClosePage,990B5DE0,S→C,100%,3,INT,Window ID,
-SuiUpdatePageMessage,5F3342F6,S→C,0%,1,BYTE,uint8,
-SuiUpdatePageMessage,5F3342F6,S→C,0%,2,SHORT,uint16,
-SuiUpdatePageMessage,5F3342F6,S→C,0%,3,INT,uint32,
-SuiUpdatePageMessage,5F3342F6,S→C,0%,4,FLOAT,uint32,
-SuiUpdatePageMessage,5F3342F6,S→C,0%,5,LONG,uint64,
-SuiUpdatePageMessage,5F3342F6,S→C,0%,6,A_STRING,ASCII String,
-SuiUpdatePageMessage,5F3342F6,S→C,0%,7,U_STRING,Unicode String,
-SuiUpdatePageMessage,5F3342F6,S→C,0%,8,C_STRING,Customization String,
-SuiUpdatePageMessage,5F3342F6,S→C,0%,9,B_STRING,Byte String,
-SuiUpdatePageMessage,5F3342F6,S→C,0%,10,{ },LIST Component,
-SuiUpdatePageMessage,5F3342F6,S→C,0%,11,?,Uncertain Values,
-SuiUpdatePageMessage,5F3342F6,S→C,0%,12,??,Unknown Variable Name,
 SurveyMessage,877F79AC,S→C,100%,1,SHORT,Op Count,
 SurveyMessage,877F79AC,S→C,100%,2,INT,Opcode,
 SurveyMessage,877F79AC,S→C,100%,3,INT,Points,
@@ -1465,18 +1345,6 @@ UpdateContainmentMessage,56CBDE9E,S→C,100%,2,INT,Opcode,
 UpdateContainmentMessage,56CBDE9E,S→C,100%,3,LONG,ObjectID,
 UpdateContainmentMessage,56CBDE9E,S→C,100%,4,LONG,Parent Id,
 UpdateContainmentMessage,56CBDE9E,S→C,100%,5,INT,Arrangement Id,
-UpdateMissileMessage,1228CD01,S→C,0%,1,BYTE,uint8,
-UpdateMissileMessage,1228CD01,S→C,0%,2,SHORT,uint16,
-UpdateMissileMessage,1228CD01,S→C,0%,3,INT,uint32,
-UpdateMissileMessage,1228CD01,S→C,0%,4,FLOAT,uint32,
-UpdateMissileMessage,1228CD01,S→C,0%,5,LONG,uint64,
-UpdateMissileMessage,1228CD01,S→C,0%,6,A_STRING,ASCII String,
-UpdateMissileMessage,1228CD01,S→C,0%,7,U_STRING,Unicode String,
-UpdateMissileMessage,1228CD01,S→C,0%,8,C_STRING,Customization String,
-UpdateMissileMessage,1228CD01,S→C,0%,9,B_STRING,Byte String,
-UpdateMissileMessage,1228CD01,S→C,0%,10,{ },LIST Component,
-UpdateMissileMessage,1228CD01,S→C,0%,11,?,Uncertain Values,
-UpdateMissileMessage,1228CD01,S→C,0%,12,??,Unknown Variable Name,
 UpdatePostureMessage,0BDE6B41,S→C,100%,1,SHORT,Operand_Count,
 UpdatePostureMessage,0BDE6B41,S→C,100%,2,INT,Opcode,
 UpdatePostureMessage,0BDE6B41,S→C,100%,3,BYTE,PostureID,
@@ -6928,3 +6796,77 @@ DeltasMessage,12862153,S→C,100%,4,INT,Object_TYPE,
 DeltasMessage,12862153,S→C,100%,5,BYTE,TYPE_#,
 DeltasMessage,12862153,S→C,100%,6,INT,Object_Data_Size,
 DeltasMessage,12862153,S→C,100%,7,?,Data,
+DestroyShipComponentMessage,3871D784,S→C,100%,1,SHORT,Operand_Count,Standard operand count header (0x0002)
+DestroyShipComponentMessage,3871D784,S→C,100%,2,INT,Opcode,0x3871D784 (DestroyShipComponentMessage)
+DestroyShipComponentMessage,3871D784,S→C,100%,3,LONG,NetworkId,Unique 64-bit Network ID of the affected ship object
+DestroyShipComponentMessage,3871D784,S→C,100%,4,INT,ComponentIndex,Ship component slot index destroyed (0-indexed chassis slot)
+DestroyShipComponentMessage,3871D784,S→C,100%,5,FLOAT,Severity,Destruction / explosion severity multiplier
+DestroyShipMessage,5C680884,S→C,100%,1,SHORT,Operand_Count,Standard operand count header (0x0002)
+DestroyShipMessage,5C680884,S→C,100%,2,INT,Opcode,0x5C680884 (DestroyShipMessage)
+DestroyShipMessage,5C680884,S→C,100%,3,LONG,NetworkId,Unique 64-bit Network ID of the destroyed ship
+DestroyShipMessage,5C680884,S→C,100%,4,FLOAT,Severity,Destruction severity multiplier (determines blast radius and debris scale)
+HyperspaceMessage,CBF88482,S→C,100%,1,SHORT,Operand_Count,Standard operand count header (0x0002)
+HyperspaceMessage,CBF88482,S→C,100%,2,INT,Opcode,0xCBF88482 (HyperspaceMessage)
+HyperspaceMessage,CBF88482,S→C,100%,3,LONG,NetworkId,Unique 64-bit Network ID of the ship jumping to hyperspace
+PlayClientEffectObjectTransformMessage,4F5E09B6,S→C,100%,1,SHORT,Operand_Count,Standard operand count header (0x0002)
+PlayClientEffectObjectTransformMessage,4F5E09B6,S→C,100%,2,INT,Opcode,0x4F5E09B6 (PlayClientEffectObjectTransformMessage)
+PlayClientEffectObjectTransformMessage,4F5E09B6,S→C,100%,3,ASCII,EffectName,Asset path to the client effect file (.cef)
+PlayClientEffectObjectTransformMessage,4F5E09B6,S→C,100%,4,LONG,NetworkId,64-bit Network ID of target object anchor
+PlayClientEffectObjectTransformMessage,4F5E09B6,S→C,100%,5,FLOAT[12],Transform,Relative transform matrix (3x3 rotation matrix + 3D position vector)
+PlayClientEventLocMessage,0A4E222C,S→C,100%,1,SHORT,Operand_Count,Standard operand count header (0x0002)
+PlayClientEventLocMessage,0A4E222C,S→C,100%,2,INT,Opcode,0x0A4E222C (PlayClientEventLocMessage)
+PlayClientEventLocMessage,0A4E222C,S→C,100%,3,ASCII,EventName,Asset path or event string identifier
+PlayClientEventLocMessage,0A4E222C,S→C,100%,4,ASCII,SceneName,"Planetary terrain scene name (e.g. tatooine, naboo, corellia)"
+PlayClientEventLocMessage,0A4E222C,S→C,100%,5,FLOAT,X,World coordinate X
+PlayClientEventLocMessage,0A4E222C,S→C,100%,6,FLOAT,Y,World coordinate Y (altitude)
+PlayClientEventLocMessage,0A4E222C,S→C,100%,7,FLOAT,Z,World coordinate Z
+PlayClientEventLocMessage,0A4E222C,S→C,100%,8,LONG,CellId,64-bit interior cell object ID (0 for terrain surface)
+PlayClientEventObjectMessage,AF83C3F2,S→C,100%,1,SHORT,Operand_Count,Standard operand count header (0x0002)
+PlayClientEventObjectMessage,AF83C3F2,S→C,100%,2,INT,Opcode,0xAF83C3F2 (PlayClientEventObjectMessage)
+PlayClientEventObjectMessage,AF83C3F2,S→C,100%,3,ASCII,EventName,Asset path or event string identifier
+PlayClientEventObjectMessage,AF83C3F2,S→C,100%,4,ASCII,HardpointName,"Hardpoint attachment point name on target mesh (e.g. muzzle, head, chest)"
+PlayClientEventObjectMessage,AF83C3F2,S→C,100%,5,LONG,TargetId,64-bit Network ID of target object
+ShipUpdateTransformCollisionMessage,763648D0,S→C,100%,1,SHORT,Operand_Count,Standard operand count header (0x0002)
+ShipUpdateTransformCollisionMessage,763648D0,S→C,100%,2,INT,Opcode,0x763648D0 (ShipUpdateTransformCollisionMessage)
+ShipUpdateTransformCollisionMessage,763648D0,S→C,100%,3,LONG,ShipId,64-bit Network ID of the colliding starship
+ShipUpdateTransformCollisionMessage,763648D0,S→C,100%,4,FLOAT[12],Transform,Position & orientation matrix (3x3 rotation + translation vector)
+ShipUpdateTransformCollisionMessage,763648D0,S→C,100%,5,FLOAT[3],Velocity,"Linear velocity vector (Vx, Vy, Vz)"
+ShipUpdateTransformCollisionMessage,763648D0,S→C,100%,6,INT,SyncStamp,Movement sequence / synchronization timestamp
+UpdateMissileMessage,1228CD01,S→C,100%,1,SHORT,Operand_Count,Standard operand count header (0x0002)
+UpdateMissileMessage,1228CD01,S→C,100%,2,INT,Opcode,0x1228CD01 (UpdateMissileMessage)
+UpdateMissileMessage,1228CD01,S→C,100%,3,LONG,NetworkId,64-bit Network ID of missile projectile object
+UpdateMissileMessage,1228CD01,S→C,100%,4,INT,WeaponIndex,Launcher weapon slot index on attacking ship
+UpdateMissileMessage,1228CD01,S→C,100%,5,INT,TargetComponent,Target subsystem index being locked/homed onto
+UpdateMissileMessage,1228CD01,S→C,100%,6,INT,Status,"Missile state flag (tracking, lost lock, detonated)"
+CreateTicketResponseMessage,550A407A,S→C,100%,1,SHORT,Operand_Count,Standard operand count header (0x0002)
+CreateTicketResponseMessage,550A407A,S→C,100%,2,INT,Opcode,0x550A407A (CreateTicketResponseMessage)
+CreateTicketResponseMessage,550A407A,S→C,100%,3,INT,TicketId,Assigned Customer Service ticket identifier number
+CreateTicketResponseMessage,550A407A,S→C,100%,4,INT,ResultCode,"Result status code (0 = success, non-zero = error code)"
+GetCommentsResponseMessage,EADB08CA,S→C,100%,1,SHORT,Operand_Count,Standard operand count header (0x0002)
+GetCommentsResponseMessage,EADB08CA,S→C,100%,2,INT,Opcode,0xEADB08CA (GetCommentsResponseMessage)
+GetCommentsResponseMessage,EADB08CA,S→C,100%,3,INT,TicketId,Target CSR ticket identifier number
+GetCommentsResponseMessage,EADB08CA,S→C,100%,4,INT,CommentCount,Number of comment entries in the array
+GetCommentsResponseMessage,EADB08CA,S→C,100%,5,INT,CommentId,CustomerServiceComment field: unique comment ID
+GetCommentsResponseMessage,EADB08CA,S→C,100%,6,INT,Timestamp,CustomerServiceComment field: UNIX timestamp of comment
+GetCommentsResponseMessage,EADB08CA,S→C,100%,7,BYTE,FromPlayer,"CustomerServiceComment field: boolean flag (1 if from player, 0 if from CSR staff)"
+GetCommentsResponseMessage,EADB08CA,S→C,100%,8,UNICODE,AuthorName,CustomerServiceComment field: display name of comment author
+GetCommentsResponseMessage,EADB08CA,S→C,100%,9,UNICODE,CommentText,CustomerServiceComment field: full comment text content
+SuiUpdatePageMessage,5F3342F6,S→C,100%,1,SHORT,Operand_Count,Standard operand count header (0x0002)
+SuiUpdatePageMessage,5F3342F6,S→C,100%,2,INT,Opcode,0x5F3342F6 (SuiUpdatePageMessage)
+SuiUpdatePageMessage,5F3342F6,S→C,100%,3,INT,PageId,Active SUI dialog window identifier
+SuiUpdatePageMessage,5F3342F6,S→C,100%,4,INT,UpdateType,SUI page update modifier type
+SuiUpdatePageMessage,5F3342F6,S→C,100%,5,ASCII,PropertyPath,UI widget path or property key being updated
+SuiUpdatePageMessage,5F3342F6,S→C,100%,6,UNICODE,PropertyValue,New localized string value or property data
+AddMapLocationMessage,AB2174B6,S→C,100%,1,SHORT,Operand_Count,Standard operand count header (0x0002)
+AddMapLocationMessage,AB2174B6,S→C,100%,2,INT,Opcode,0xAB2174B6 (AddMapLocationMessage)
+AddMapLocationMessage,AB2174B6,S→C,100%,3,ASCII,PlanetName,"Planetary terrain scene name (e.g. tatooine, naboo, corellia)"
+AddMapLocationMessage,AB2174B6,S→C,100%,4,LONG,NetworkId,Unique 64-bit Network ID of the location or POI object
+AddMapLocationMessage,AB2174B6,S→C,100%,5,UNICODE,LocationName,Localized display label shown on planetary map
+AddMapLocationMessage,AB2174B6,S→C,100%,6,FLOAT,X,World position X coordinate
+AddMapLocationMessage,AB2174B6,S→C,100%,7,FLOAT,Z,World position Z coordinate (height / horizontal coordinate)
+AddMapLocationMessage,AB2174B6,S→C,100%,8,BYTE,LocationType,Planetary map category / icon identifier
+AddMapLocationMessage,AB2174B6,S→C,100%,9,BYTE,SubCategory,Secondary sub-category or active display flag
+ObjectMenuSelectMessage::MESSAGE_TYPE,7CA18726,C→S,100%,1,SHORT,Operand_Count,Standard operand count header (0x0002)
+ObjectMenuSelectMessage::MESSAGE_TYPE,7CA18726,C→S,100%,2,INT,Opcode,0x7CA18726 (ObjectMenuSelectMessage)
+ObjectMenuSelectMessage::MESSAGE_TYPE,7CA18726,C→S,100%,3,LONG,TargetObjectId,64-bit Network ID of target object being interacted with
+ObjectMenuSelectMessage::MESSAGE_TYPE,7CA18726,C→S,100%,4,BYTE,SelectedMenuItem,Radial menu option index / action identifier selected by user

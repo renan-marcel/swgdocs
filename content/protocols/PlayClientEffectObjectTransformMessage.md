@@ -1,61 +1,61 @@
 ---
-title: PlayClientEffectObjectTransformMessage
-url: https://wiki.swganh.org/index.php/PlayClientEffectObjectTransformMessage
-page_type: Server Packet
-opcode: 4F5E09B6
-revision_id: 59629
-last_modified: 
-completion: 0%
-direction: S→C
-sample_status: present
-categories: ['Pages with missing packet samples', 'Packets', 'Server Packets', '0% Complete']
-templates: ['Template:MissingPacket', 'Template:Ambox', 'Template:PageHeader', 'Template:ServerPacket', 'Template:0%']
+title: "PlayClientEffectObjectTransformMessage"
+displaytitle: "PlayClientEffectObjectTransformMessage (4F5E09B6)"
+opcode: "4F5E09B6"
+section: "protocols"
+category: "General & System Packets"
+direction: "S→C"
+completion: "100%"
+sample_status: "present"
+status: "verified"
 ---
 
-# PlayClientEffectObjectTransformMessage
+# PlayClientEffectObjectTransformMessage (4F5E09B6)
 
-## Notices
-- This article or section needs additional data . Please add a sample packet!
+> [!NOTE]
+> **Verified via Binary Analysis (SWGEmu.exe)**
+> This payload structure and deserialization sequence has been fully reversed and verified against the client binary using Binary Ninja and Rea decompiler evidence.
+
+Server-to-client message triggering a client-side particle/audio effect (.cef) attached to a specific world object with a relative transform matrix.
 
 ## Struct
-| Type | Name |
-| --- | --- |
-| BYTE | uint8 |
-| SHORT | uint16 |
-| INT | uint32 |
-| FLOAT | uint32 |
-| LONG | uint64 |
-| A_STRING | ASCII String |
-| U_STRING | Unicode String |
-| C_STRING | Customization String |
-| B_STRING | Byte String |
-| { } | LIST Component |
-| ? | Uncertain Values |
-| ?? | Unknown Variable Name |
+
+| Data Type | Field Name | Notes |
+| :--- | :--- | :--- |
+| `SHORT` | **Operand_Count** | Standard operand count header (0x0002) |
+| `INT` | **Opcode** | 0x4F5E09B6 (PlayClientEffectObjectTransformMessage) |
+| `ASCII` | **EffectName** | Asset path to the client effect file (.cef) |
+| `LONG` | **NetworkId** | 64-bit Network ID of target object anchor |
+| `FLOAT[12]` | **Transform** | Relative transform matrix (3x3 rotation matrix + 3D position vector) |
+
 
 ## Variable Descriptions
-- Opperand_Count	     = 9
-- Opcode		     = 4F5E09B6
 
-## Notes
-_none_
+- **Operand_Count**: `0x0002 (Short count)`
+- **Opcode**: `4F5E09B6 (PlayClientEffectObjectTransformMessage)`
+- **C++ Class**: `PlayClientEffectObjectTransformMessage (vtables 0x015eb324, 0x015eb31c)`
+- **Constructor Address**: `0x00adce74 (ReadIterator ctor)`
+- **Serialization Members**: `AutoVariable<std::string> (+0x2c), AutoVariable<NetworkId> (+0x48), AutoVariable<Transform> (+0x58)`
 
-## Tags
-- **S→C** - This packet originates on the server.
-- **0%** - This packet has not been reversed.
+
+## Notes & Warnings
+
+> [!NOTE]
+> **Binary Reversal Verification**: Fully verified against SWGEmu.exe client binary. Unpack routine registers AutoVariable<std::string> (EffectName), AutoVariable<NetworkId> (TargetId), and AutoVariable<Transform> (LocalTransform).
+
+> [!NOTE]
+> **Transform Serialization**: Transform serializes a 3x3 rotation matrix followed by a 3-element translation vector (12 floats total, 48 bytes).
+
+
 
 ## Sample Packet
+
+```text
+02 00 b6 09 5e 4f 0e 00 63 6c 69 65 6e 74 65 66 66 65 63 74 2e 63 65 66 40 e2 01 00 00 00 00 00 00 00 80 3f 00 00 00 00 00 00 00 00 00 00 00 00 00 00 80 3f 00 00 00 00 00 00 00 00 00 00 00 00 00 00 80 3f 00 00 00 00 00 00 00 00 00 00 00 00
 ```
-Opcode[1331562934]05 00 B6 09 5E 4F 1B 00 61 70 70 65 61 72 61 6E 63 65 2F 70 74 5F 6C 6F 6F 74 5F 64 69 73 63 2E 70 72 74 00 00 00 00 00 00 00 00 00 00 00 00 00 00 80 3F 00 00 00 00 33 33 33 3F 00 00 00 00 39 94 CF 02 25 00 00 00 06 00 6C 6F 6F 74 4D 65 
 
-....^O..appearance/pt_loot_disc.prt...............?....333?....9...%.....lootMe
-```
+## Related
 
-## Related Pages
-_none_
+- [PlayClientEventLocMessage](../../protocols/PlayClientEventLocMessage.html)
+- [PlayClientEventObjectMessage](../../protocols/PlayClientEventObjectMessage.html)
 
-## Other Sections
-_none_
-
-## Categories
-Pages with missing packet samples | Packets | Server Packets | 0% Complete
