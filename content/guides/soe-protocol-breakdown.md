@@ -12,16 +12,7 @@ date_audited: 2026-10-17
 # SOE Protocol Breakdown
 
 <div style="border:0; margin: 0.2em 0px 0px;">
-<div style="background:#f9f9f9; padding:0px; border:1px solid #aaaaaa; margin-bottom:5px;">
-<div style="line-height:120%; padding:0.4em; background-color:#eeeeee; border-bottom:1px solid #aaaaaa;">
-<p><span style="color:#005288; font-size:200%;"><b>Guides - SOE Protocol Breakdown</b></span>
-</p>
-</div>
-<div style="background:#ffffff; padding:0.2em 0.4em 0.2em 0.4em;">
-<p><b>SWGANH Wiki</b> is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.
-</p>
-</div>
-</div>
+
 <p>SOE's Protocol is a systematic way to enhance the UDP protocol to make it more reliable, and also save bandwidth by merging and grouping packets. It can be combined in various ways, or not be used at all.
 </p><p>The format of the SOE Protocol varies depending on what type of operation it is. SOE Protocol can function as a stand alone packet, or as a Header to SWG Packets. What is true about all of the SOE Protocol is that the beginning contains 2 bytes known as the SOE Opcode. Majority also contain a footer. Assume all packets have footers unless otherwise mentioned. The table of opcodes are as follows:
 </p><p><b>Note</b> <font color="orange"><i>An SOE Opcode is stored as an unsigned short (uint16), and is in net byte order.</i></font>

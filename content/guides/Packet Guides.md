@@ -10,16 +10,7 @@ date_audited: 2026-10-17
 # Packet Guides
 
 <div style="border:0; margin: 0.2em 0px 0px;">
-<div style="background:#f9f9f9; padding:0px; border:1px solid #aaaaaa; margin-bottom:5px;">
-<div style="line-height:120%; padding:0.4em; background-color:#eeeeee; border-bottom:1px solid #aaaaaa;">
-<p><span style="color:#005288; font-size:200%;"><b>Guides - Packet Guides</b></span>
-</p>
-</div>
-<div style="background:#ffffff; padding:0.2em 0.4em 0.2em 0.4em;">
-<p><b>SWGANH Wiki</b> is a repository of Star Wars Galaxies Developer information. This site is only meant to be used by SWGANH Developer team.
-</p>
-</div>
-</div>
+
 <h1 id="generic-tutorials"><span class="mw-headline" id="Generic_Tutorials">Generic Tutorials</span></h1>
 <p><a href="../guides/Binary &amp; Hex.html" title="Binary &amp; Hex">Binary &amp; Hex</a>
 </p><p><br/>
