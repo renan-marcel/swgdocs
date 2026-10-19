@@ -6,15 +6,16 @@ section: "controllers"
 category: "Effects & Audio (0xA1 - 0x100)"
 direction: "C↔S"
 completion: "0%"
+discovery_source: "Decomp do Binary Ninja"
 sample_status: "absent"
 status: "stub"
 ---
 
 # SetupSwgSharedNetworkMessages (000000E1)
 
-> [!CAUTION]
-> **Documentation Pending / Reversal Needed**
-> This packet was identified in SWG network specifications (Opcode: `000000E1`), but requires packet captures to fully verify all payload offsets.
+> [!NOTE]
+> **Origem da Descoberta: Decomp do Binary Ninja**
+> Este opcode/identificador foi descoberto a partir da desmontagem e descompilação estática do executável cliente SWGEmu.exe via Binary Ninja, aguardando mapeamento completo de membros e serialização.
 
 Shared network object controller message 0x000000E1 handling shared network synchronization in the SWG client/server object controller pipeline.
 

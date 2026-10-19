@@ -6,15 +6,16 @@ section: "controllers"
 category: "Advanced Subsystem Triggers (0x151+)"
 direction: "C↔S"
 completion: "0%"
+discovery_source: "Decomp do Binary Ninja"
 sample_status: "absent"
 status: "stub"
 ---
 
 # SetupSwgSharedNetworkMessages (0000043D)
 
-> [!CAUTION]
-> **Documentation Pending / Reversal Needed**
-> This packet was identified in SWG network specifications (Opcode: `0000043D`), but requires packet captures to fully verify all payload offsets.
+> [!NOTE]
+> **Origem da Descoberta: Decomp do Binary Ninja**
+> Este opcode/identificador foi descoberto a partir da desmontagem e descompilação estática do executável cliente SWGEmu.exe via Binary Ninja, aguardando mapeamento completo de membros e serialização.
 
 Jump to Lightspeed / Space flight controller message for ship component and flight state updates.
 

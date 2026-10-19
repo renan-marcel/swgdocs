@@ -6,6 +6,7 @@ opcode: FFFFFFFF
 revision_id: 2202
 last_modified: 2006-12-20T07:48:22Z
 completion: 0%
+discovery_source: "Wiki SWGANH"
 direction: S→C
 sample_status: placeholder
 categories: ['Notice', 'Packets', 'Server Packets', '0% Complete']
@@ -13,6 +14,10 @@ templates: ['Template:PacketGuide', 'Template:ServerPacket', 'Template:0%']
 ---
 
 # CuiLoadingManager::FullscreenBackButtonEnabled
+
+> [!NOTE]
+> **Origem da Descoberta: Wiki SWGANH**
+> Esta entrada foi catalogada originalmente na Wiki do SWGANH (completude de 0%). A estrutura do pacote e seus campos permanecem pendentes de reversão e validação binária.
 
 ## Notices
 _none_

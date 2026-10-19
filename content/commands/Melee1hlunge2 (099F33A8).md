@@ -6,6 +6,7 @@ opcode: 099F33A8
 revision_id: 44922
 last_modified: 2008-09-05T01:58:17Z
 completion: 0%
+discovery_source: "Wiki SWGANH"
 direction: C→S
 sample_status: placeholder
 categories: ['Packets', 'Client Packets', '0% Complete', 'CommandQueueEnqueue', 'Client Commands', 'Game Documentation', 'Combat Melee (Command)']
@@ -13,6 +14,10 @@ templates: ['Template:PageHeader', 'Template:ClientPacket', 'Template:0%', 'Temp
 ---
 
 # Melee1hlunge2 (099F33A8)
+
+> [!NOTE]
+> **Origem da Descoberta: Wiki SWGANH**
+> Esta entrada foi catalogada originalmente na Wiki do SWGANH (completude de 0%). A estrutura do pacote e seus campos permanecem pendentes de reversão e validação binária.
 
 ## Notices
 _none_

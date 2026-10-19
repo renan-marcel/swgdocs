@@ -6,6 +6,7 @@ opcode: B8DC88A2
 revision_id: 47299
 last_modified: 2008-10-02T14:44:18Z
 completion: 0%
+discovery_source: "Wiki SWGANH"
 direction: C→S
 sample_status: placeholder
 categories: ['Packets', 'Client Packets', '0% Complete', 'CommandQueueEnqueue', 'Client Commands']
@@ -13,6 +14,10 @@ templates: ['Template:PageHeader', 'Template:ClientPacket', 'Template:0%', 'Temp
 ---
 
 # Creatureareapoison (B8DC88A2)
+
+> [!NOTE]
+> **Origem da Descoberta: Wiki SWGANH**
+> Esta entrada foi catalogada originalmente na Wiki do SWGANH (completude de 0%). A estrutura do pacote e seus campos permanecem pendentes de reversão e validação binária.
 
 ## Notices
 _none_

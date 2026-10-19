@@ -6,15 +6,16 @@ section: "controllers"
 category: "Advanced Subsystem Triggers (0x151+)"
 direction: "C↔S"
 completion: "0%"
+discovery_source: "Decomp do Binary Ninja"
 sample_status: "absent"
 status: "stub"
 ---
 
 # SetupSharedNetworkMessages (0000022C)
 
-> [!CAUTION]
-> **Documentation Pending / Reversal Needed**
-> This packet was identified in SWG network specifications (Opcode: `0000022C`), but requires packet captures to fully verify all payload offsets.
+> [!NOTE]
+> **Origem da Descoberta: Decomp do Binary Ninja**
+> Este opcode/identificador foi descoberto a partir da desmontagem e descompilação estática do executável cliente SWGEmu.exe via Binary Ninja, aguardando mapeamento completo de membros e serialização.
 
 Shared network controller message 0x0000022C for advanced subsystem triggers and image design / player interaction synchronization.
 

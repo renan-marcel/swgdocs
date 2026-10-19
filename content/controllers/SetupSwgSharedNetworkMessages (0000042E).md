@@ -6,6 +6,7 @@ opcode: 0000042E
 revision_id: 21781
 last_modified: 2008-01-13T08:08:03Z
 completion: 0%
+discovery_source: "Decomp do Binary Ninja"
 direction: unknown
 sample_status: absent
 categories: ['Pages with missing packet samples', 'Packets', 'ControllerIDs', '0% Complete']
@@ -13,6 +14,10 @@ templates: ['Template:MissingPacket', 'Template:Ambox', 'Template:PageHeader', '
 ---
 
 # SetupSwgSharedNetworkMessages (0000042E)
+
+> [!NOTE]
+> **Origem da Descoberta: Decomp do Binary Ninja**
+> Este opcode/identificador foi descoberto a partir da desmontagem e descompilação estática do executável cliente SWGEmu.exe via Binary Ninja, aguardando mapeamento completo de membros e serialização.
 
 ## Notices
 - This article or section needs additional data . Please add a sample packet!

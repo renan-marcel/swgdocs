@@ -6,6 +6,7 @@ opcode: A5D6DCAF
 revision_id: 9521
 last_modified: 2007-06-10T01:53:29Z
 completion: 0%
+discovery_source: "Wiki SWGANH"
 direction: C→S
 sample_status: present
 categories: ['Packets', 'Client Packets', '0% Complete', 'CommandQueueEnqueue', 'Client Commands']
@@ -13,6 +14,10 @@ templates: ['Template:PageHeader', 'Template:ClientPacket', 'Template:0%', 'Temp
 ---
 
 # Deploytrap (A5D6DCAF)
+
+> [!NOTE]
+> **Origem da Descoberta: Wiki SWGANH**
+> Esta entrada foi catalogada originalmente na Wiki do SWGANH (completude de 0%). A estrutura do pacote e seus campos permanecem pendentes de reversão e validação binária.
 
 ## Notices
 _none_

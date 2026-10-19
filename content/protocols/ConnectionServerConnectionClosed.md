@@ -6,6 +6,7 @@ opcode: 3B882F0E
 revision_id: 19878
 last_modified: 2007-12-28T00:19:11Z
 completion: 0%
+discovery_source: "Wiki SWGANH"
 direction: S→C
 sample_status: placeholder
 categories: ['Packets', 'Server Packets', '0% Complete']
@@ -13,6 +14,10 @@ templates: ['Template:PageHeader', 'Template:ServerPacket', 'Template:0%']
 ---
 
 # ConnectionServerConnectionClosed
+
+> [!NOTE]
+> **Origem da Descoberta: Wiki SWGANH**
+> Esta entrada foi catalogada originalmente na Wiki do SWGANH (completude de 0%). A estrutura do pacote e seus campos permanecem pendentes de reversão e validação binária.
 
 ## Notices
 _none_

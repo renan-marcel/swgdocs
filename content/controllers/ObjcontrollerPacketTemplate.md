@@ -6,6 +6,7 @@ opcode: FFFFFFFF
 revision_id: 2067
 last_modified: 
 completion: 0%
+discovery_source: "Wiki SWGANH"
 direction: C→S
 sample_status: absent
 categories: ['Notice', 'Packets', 'Server Packets', 'Client Packets', 'ControllerIDs', '100% Complete', '75% Complete', '50% Complete', '25% Complete', '0% Complete']
@@ -13,6 +14,10 @@ templates: ['Template:PacketGuide', 'Template:ServerPacket', 'Template:ClientPac
 ---
 
 # ObjcontrollerPacketTemplate
+
+> [!NOTE]
+> **Origem da Descoberta: Wiki SWGANH**
+> Esta entrada foi catalogada originalmente na Wiki do SWGANH (completude de 0%). A estrutura do pacote e seus campos permanecem pendentes de reversão e validação binária.
 
 ## Notices
 _none_

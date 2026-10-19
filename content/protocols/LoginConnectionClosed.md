@@ -6,6 +6,7 @@ opcode: C38256F0
 revision_id: 21458
 last_modified: 2008-01-09T02:25:45Z
 completion: 0%
+discovery_source: "Wiki SWGANH"
 direction: S→C
 sample_status: placeholder
 categories: ['Pages with missing packet samples', 'Packets', 'Server Packets', '0% Complete']
@@ -13,6 +14,10 @@ templates: ['Template:MissingPacket', 'Template:Ambox', 'Template:PageHeader', '
 ---
 
 # LoginConnectionClosed
+
+> [!NOTE]
+> **Origem da Descoberta: Wiki SWGANH**
+> Esta entrada foi catalogada originalmente na Wiki do SWGANH (completude de 0%). A estrutura do pacote e seus campos permanecem pendentes de reversão e validação binária.
 
 ## Notices
 - This article or section needs additional data . Please add a sample packet!

@@ -6,6 +6,7 @@ opcode: A16CF9AF
 revision_id: 79390
 last_modified: 2012-07-19T21:31:03Z
 completion: 0%
+discovery_source: "Wiki SWGANH"
 direction: S→C
 sample_status: present
 categories: ['Packets', 'Server Packets', '0% Complete']
@@ -13,6 +14,10 @@ templates: ['Template:PageHeader', 'Template:ServerPacket', 'Template:0%']
 ---
 
 # LinkDeadMessage
+
+> [!NOTE]
+> **Origem da Descoberta: Wiki SWGANH**
+> Esta entrada foi catalogada originalmente na Wiki do SWGANH (completude de 0%). A estrutura do pacote e seus campos permanecem pendentes de reversão e validação binária.
 
 ## Notices
 _none_

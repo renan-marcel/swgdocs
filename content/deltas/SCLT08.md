@@ -6,6 +6,7 @@ opcode:
 revision_id: 21404
 last_modified: 2008-01-08T17:44:47Z
 completion: 0%
+discovery_source: "Wiki SWGANH"
 direction: unknown
 sample_status: present
 categories: ['Packets', '0% Complete']
@@ -13,6 +14,10 @@ templates: ['Template:PageHeader', 'Template:SCLTArchitectureNAV', 'Template:0%'
 ---
 
 # SCLT08
+
+> [!NOTE]
+> **Origem da Descoberta: Wiki SWGANH**
+> Esta entrada foi catalogada originalmente na Wiki do SWGANH (completude de 0%). A estrutura do pacote e seus campos permanecem pendentes de reversão e validação binária.
 
 ## Notices
 _none_

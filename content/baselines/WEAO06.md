@@ -6,6 +6,7 @@ opcode:
 revision_id: 79422
 last_modified: 
 completion: 0%
+discovery_source: "Wiki SWGANH"
 direction: S→C
 sample_status: present
 categories: ['Packets', '0% Complete', 'Server Packets']
@@ -13,6 +14,10 @@ templates: ['Template:PageHeader', 'Template:WEAOArchitectureNAV', 'Template:0%'
 ---
 
 # WEAO06
+
+> [!NOTE]
+> **Origem da Descoberta: Wiki SWGANH**
+> Esta entrada foi catalogada originalmente na Wiki do SWGANH (completude de 0%). A estrutura do pacote e seus campos permanecem pendentes de reversão e validação binária.
 
 ## Notices
 _none_

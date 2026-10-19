@@ -6,6 +6,7 @@ opcode: 5F628053
 revision_id: 21490
 last_modified: 
 completion: 0%
+discovery_source: "Wiki SWGANH"
 direction: S→C
 sample_status: placeholder
 categories: ['Pages with missing packet samples', 'Packets', 'Server Packets', '0% Complete']
@@ -13,6 +14,10 @@ templates: ['Template:MissingPacket', 'Template:Ambox', 'Template:PageHeader', '
 ---
 
 # SaveTextOnClient
+
+> [!NOTE]
+> **Origem da Descoberta: Wiki SWGANH**
+> Esta entrada foi catalogada originalmente na Wiki do SWGANH (completude de 0%). A estrutura do pacote e seus campos permanecem pendentes de reversão e validação binária.
 
 ## Notices
 - This article or section needs additional data . Please add a sample packet!

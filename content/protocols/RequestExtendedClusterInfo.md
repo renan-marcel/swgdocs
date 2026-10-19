@@ -6,15 +6,16 @@ section: "protocols"
 category: "Login & Connection"
 direction: "C→S"
 completion: "0%"
+discovery_source: "Decomp do Binary Ninja"
 sample_status: "absent"
 status: "stub"
 ---
 
 # RequestExtendedClusterInfo (8E33ED05)
 
-> [!CAUTION]
-> **Documentation Pending / Reversal Needed**
-> This packet was identified in SWG network specifications (Opcode: `8E33ED05`), but requires packet captures to fully verify all payload offsets.
+> [!NOTE]
+> **Origem da Descoberta: Decomp do Binary Ninja**
+> Este opcode/identificador foi descoberto a partir da desmontagem e descompilação estática do executável cliente SWGEmu.exe via Binary Ninja, aguardando mapeamento completo de membros e serialização.
 
 Client-to-server request sent during cluster / server selection to retrieve extended cluster status, population indicators, and connection metrics.
 
