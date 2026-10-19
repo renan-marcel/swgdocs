@@ -26,7 +26,7 @@ if (typeof window !== 'undefined') {
 // Global registries initialized from window.SWG_* or defaults
 const OPCODES = Object.assign({
   'AB2174B6': { name: 'AddMapLocationMessage', sec: 'protocols', dir: 'S→C', url: '../protocols/AddMapLocationMessage.html', comp: '100%' },
-  '7CA18726': { name: 'ObjectMenuSelectMessage', sec: 'protocols', dir: 'C→S', url: '../protocols/ObjectMenuSelectMessage%3A%3AMESSAGE_TYPE.html', comp: '100%' },
+  '7CA18726': { name: 'ObjectMenuSelectMessage', sec: 'protocols', dir: 'C→S', url: '../protocols/ObjectMenuSelectMessage--MESSAGE_TYPE.html', comp: '100%' },
   '80CE5E46': { name: 'ObjControllerMessage', sec: 'controllers', dir: 'C↔S', url: '../controllers/ObjControllerMessage.html', comp: '100%' },
   '00000116': { name: 'CommandQueueEnqueue', sec: 'commands', dir: 'C→S', url: '../commands/CommandQueueEnqueue (00000116).html', comp: '100%' },
   '2A68DE42': { name: 'ChatServerAgent', sec: 'protocols', dir: 'S→C', url: '../protocols/ChatServerAgent.html', comp: '100%' },

@@ -4,14 +4,14 @@ Order,Section,SectionTitle,Name,Opcode,Direction,Category,DiscoverySource,Relati
 3,protocols,SWG Protocols,ConnectionServerConnectionFailed,FFFFFFFF,S→C,Login & Connection,Wiki SWGANH,protocols/ConnectionServerConnectionFailed.html,0%
 4,protocols,SWG Protocols,ConnectionServerConnectionOpened,3CA2F9A7,S→C,Login & Connection,Wiki SWGANH,protocols/ConnectionServerConnectionOpened.html,0%
 5,protocols,SWG Protocols,ConnectionServerConnectionReset,FFFFFFFF,S→C,Login & Connection,Wiki SWGANH,protocols/ConnectionServerConnectionReset.html,0%
-6,protocols,SWG Protocols,CuiControlsMenuBindEntry::Messages::UPDATE BINDING,32CD924B,C→S,General & System Packets,Wiki SWGANH,protocols/CuiControlsMenuBindEntry%3A%3AMessages%3A%3AUPDATE BINDING.html,0%
-7,protocols,SWG Protocols,CuiIoWin::Messages::CONTROL KEY DOWN,AA867C55,C→S,General & System Packets,Wiki SWGANH,protocols/CuiIoWin%3A%3AMessages%3A%3ACONTROL KEY DOWN.html,0%
-8,protocols,SWG Protocols,CuiIoWin::Messages::CONTROL KEY UP,81573066,C→S,General & System Packets,Wiki SWGANH,protocols/CuiIoWin%3A%3AMessages%3A%3ACONTROL KEY UP.html,0%
-9,protocols,SWG Protocols,CuiIoWin::Messages::POINTER INPUT TOGGLED,399EC0EA,C→S,General & System Packets,Wiki SWGANH,protocols/CuiIoWin%3A%3AMessages%3A%3APOINTER INPUT TOGGLED.html,0%
-10,protocols,SWG Protocols,CuiLoadingManager::FullscreenBackButtonEnabled,FFFFFFFF,S→C,General & System Packets,Wiki SWGANH,protocols/CuiLoadingManager%3A%3AFullscreenBackButtonEnabled.html,0%
-11,protocols,SWG Protocols,CuiLoadingManager::FullscreenLoadingDisabled,E78FB0BF,S→C,General & System Packets,Wiki SWGANH,protocols/CuiLoadingManager%3A%3AFullscreenLoadingDisabled.html,0%
-12,protocols,SWG Protocols,CuiLoadingManager::FullscreenLoadingEnabled,FFFFFFFF,S→C,General & System Packets,Wiki SWGANH,protocols/CuiLoadingManager%3A%3AFullscreenLoadingEnabled.html,0%
-13,protocols,SWG Protocols,CuiSpatialChatManager::Messages::CHAT RECEIVED,28956A79,S→C,Chat & Social,Wiki SWGANH,protocols/CuiSpatialChatManager%3A%3AMessages%3A%3ACHAT RECEIVED.html,0%
+6,protocols,SWG Protocols,CuiControlsMenuBindEntry::Messages::UPDATE BINDING,32CD924B,C→S,General & System Packets,Wiki SWGANH,protocols/CuiControlsMenuBindEntry--Messages--UPDATE BINDING.html,0%
+7,protocols,SWG Protocols,CuiIoWin::Messages::CONTROL KEY DOWN,AA867C55,C→S,General & System Packets,Wiki SWGANH,protocols/CuiIoWin--Messages--CONTROL KEY DOWN.html,0%
+8,protocols,SWG Protocols,CuiIoWin::Messages::CONTROL KEY UP,81573066,C→S,General & System Packets,Wiki SWGANH,protocols/CuiIoWin--Messages--CONTROL KEY UP.html,0%
+9,protocols,SWG Protocols,CuiIoWin::Messages::POINTER INPUT TOGGLED,399EC0EA,C→S,General & System Packets,Wiki SWGANH,protocols/CuiIoWin--Messages--POINTER INPUT TOGGLED.html,0%
+10,protocols,SWG Protocols,CuiLoadingManager::FullscreenBackButtonEnabled,FFFFFFFF,S→C,General & System Packets,Wiki SWGANH,protocols/CuiLoadingManager--FullscreenBackButtonEnabled.html,0%
+11,protocols,SWG Protocols,CuiLoadingManager::FullscreenLoadingDisabled,E78FB0BF,S→C,General & System Packets,Wiki SWGANH,protocols/CuiLoadingManager--FullscreenLoadingDisabled.html,0%
+12,protocols,SWG Protocols,CuiLoadingManager::FullscreenLoadingEnabled,FFFFFFFF,S→C,General & System Packets,Wiki SWGANH,protocols/CuiLoadingManager--FullscreenLoadingEnabled.html,0%
+13,protocols,SWG Protocols,CuiSpatialChatManager::Messages::CHAT RECEIVED,28956A79,S→C,Chat & Social,Wiki SWGANH,protocols/CuiSpatialChatManager--Messages--CHAT RECEIVED.html,0%
 14,protocols,SWG Protocols,GameConnectionClosed,B93E9488,S→C,Login & Connection,Wiki SWGANH,protocols/GameConnectionClosed.html,0%
 15,protocols,SWG Protocols,GameConnectionOpened,BE144221,S→C,Login & Connection,Wiki SWGANH,protocols/GameConnectionOpened.html,0%
 16,protocols,SWG Protocols,GameConnectionReset,FFFFFFFF,S→C,Login & Connection,Wiki SWGANH,protocols/GameConnectionReset.html,0%

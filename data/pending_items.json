@@ -87,7 +87,7 @@
       "d": "C→S",
       "c": "0%",
       "ss": "placeholder",
-      "u": "protocols/CuiControlsMenuBindEntry%3A%3AMessages%3A%3AUPDATE BINDING.html",
+      "u": "protocols/CuiControlsMenuBindEntry--Messages--UPDATE BINDING.html",
       "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode",
       "discovery_source": "Wiki SWGANH"
     },
@@ -100,7 +100,7 @@
       "d": "C→S",
       "c": "0%",
       "ss": "placeholder",
-      "u": "protocols/CuiIoWin%3A%3AMessages%3A%3ACONTROL KEY DOWN.html",
+      "u": "protocols/CuiIoWin--Messages--CONTROL KEY DOWN.html",
       "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode",
       "discovery_source": "Wiki SWGANH"
     },
@@ -113,7 +113,7 @@
       "d": "C→S",
       "c": "0%",
       "ss": "placeholder",
-      "u": "protocols/CuiIoWin%3A%3AMessages%3A%3ACONTROL KEY UP.html",
+      "u": "protocols/CuiIoWin--Messages--CONTROL KEY UP.html",
       "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode",
       "discovery_source": "Wiki SWGANH"
     },
@@ -126,7 +126,7 @@
       "d": "C→S",
       "c": "0%",
       "ss": "placeholder",
-      "u": "protocols/CuiIoWin%3A%3AMessages%3A%3APOINTER INPUT TOGGLED.html",
+      "u": "protocols/CuiIoWin--Messages--POINTER INPUT TOGGLED.html",
       "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode",
       "discovery_source": "Wiki SWGANH"
     },
@@ -139,7 +139,7 @@
       "d": "S→C",
       "c": "0%",
       "ss": "placeholder",
-      "u": "protocols/CuiLoadingManager%3A%3AFullscreenBackButtonEnabled.html",
+      "u": "protocols/CuiLoadingManager--FullscreenBackButtonEnabled.html",
       "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode",
       "discovery_source": "Wiki SWGANH"
     },
@@ -152,7 +152,7 @@
       "d": "S→C",
       "c": "0%",
       "ss": "placeholder",
-      "u": "protocols/CuiLoadingManager%3A%3AFullscreenLoadingDisabled.html",
+      "u": "protocols/CuiLoadingManager--FullscreenLoadingDisabled.html",
       "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode",
       "discovery_source": "Wiki SWGANH"
     },
@@ -165,7 +165,7 @@
       "d": "S→C",
       "c": "0%",
       "ss": "placeholder",
-      "u": "protocols/CuiLoadingManager%3A%3AFullscreenLoadingEnabled.html",
+      "u": "protocols/CuiLoadingManager--FullscreenLoadingEnabled.html",
       "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode",
       "discovery_source": "Wiki SWGANH"
     },
@@ -178,7 +178,7 @@
       "d": "S→C",
       "c": "0%",
       "ss": "placeholder",
-      "u": "protocols/CuiSpatialChatManager%3A%3AMessages%3A%3ACHAT RECEIVED.html",
+      "u": "protocols/CuiSpatialChatManager--Messages--CHAT RECEIVED.html",
       "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode",
       "discovery_source": "Wiki SWGANH"
     },

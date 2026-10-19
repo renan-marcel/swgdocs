@@ -206,7 +206,7 @@
           "section_name": "Protocols",
           "direction": "C→S",
           "category": "General & System Packets",
-          "url": "protocols/ObjectMenuSelectMessage%3A%3AMESSAGE_TYPE.html",
+          "url": "protocols/ObjectMenuSelectMessage--MESSAGE_TYPE.html",
           "fields_count": 4,
           "unpack_address": "0x00af3c3c",
           "vtables": ["0x015ebaa0"],

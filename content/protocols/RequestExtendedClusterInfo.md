@@ -52,5 +52,5 @@ Client-to-server request sent during cluster / server selection to retrieve exte
 
 - [LoginClusterStatus](../../protocols/LoginClusterStatus.html)
 - [LoginClientId](../../protocols/LoginClientId.html)
-- [Main::Login (PacketTypeGroup)](../../protocols/Main%3A%3ALogin (PacketTypeGroup).html)
+- [Main::Login (PacketTypeGroup)](../../protocols/Main--Login (PacketTypeGroup).html)
 

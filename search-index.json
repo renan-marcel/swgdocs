@@ -15980,7 +15980,7 @@
     "d": "unknown",
     "c": "Group Hub",
     "ss": "absent",
-    "u": "protocols/Cui%3A%3AControlKey (PacketTypeGroup).html",
+    "u": "protocols/Cui--ControlKey (PacketTypeGroup).html",
     "k": ""
   },
   {
@@ -15992,7 +15992,7 @@
     "d": "C→S",
     "c": "0%",
     "ss": "placeholder",
-    "u": "protocols/CuiControlsMenuBindEntry%3A%3AMessages%3A%3AUPDATE BINDING.html",
+    "u": "protocols/CuiControlsMenuBindEntry--Messages--UPDATE BINDING.html",
     "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
   },
   {
@@ -16004,7 +16004,7 @@
     "d": "C→S",
     "c": "0%",
     "ss": "placeholder",
-    "u": "protocols/CuiIoWin%3A%3AMessages%3A%3ACONTROL KEY DOWN.html",
+    "u": "protocols/CuiIoWin--Messages--CONTROL KEY DOWN.html",
     "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
   },
   {
@@ -16016,7 +16016,7 @@
     "d": "C→S",
     "c": "0%",
     "ss": "placeholder",
-    "u": "protocols/CuiIoWin%3A%3AMessages%3A%3ACONTROL KEY UP.html",
+    "u": "protocols/CuiIoWin--Messages--CONTROL KEY UP.html",
     "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
   },
   {
@@ -16028,7 +16028,7 @@
     "d": "C→S",
     "c": "0%",
     "ss": "placeholder",
-    "u": "protocols/CuiIoWin%3A%3AMessages%3A%3APOINTER INPUT TOGGLED.html",
+    "u": "protocols/CuiIoWin--Messages--POINTER INPUT TOGGLED.html",
     "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
   },
   {
@@ -16040,7 +16040,7 @@
     "d": "S→C",
     "c": "0%",
     "ss": "placeholder",
-    "u": "protocols/CuiLoadingManager%3A%3AFullscreenBackButtonEnabled.html",
+    "u": "protocols/CuiLoadingManager--FullscreenBackButtonEnabled.html",
     "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
   },
   {
@@ -16052,7 +16052,7 @@
     "d": "S→C",
     "c": "0%",
     "ss": "placeholder",
-    "u": "protocols/CuiLoadingManager%3A%3AFullscreenLoadingDisabled.html",
+    "u": "protocols/CuiLoadingManager--FullscreenLoadingDisabled.html",
     "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
   },
   {
@@ -16064,7 +16064,7 @@
     "d": "S→C",
     "c": "0%",
     "ss": "placeholder",
-    "u": "protocols/CuiLoadingManager%3A%3AFullscreenLoadingEnabled.html",
+    "u": "protocols/CuiLoadingManager--FullscreenLoadingEnabled.html",
     "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
   },
   {
@@ -16076,7 +16076,7 @@
     "d": "S→C",
     "c": "0%",
     "ss": "placeholder",
-    "u": "protocols/CuiSpatialChatManager%3A%3AMessages%3A%3ACHAT RECEIVED.html",
+    "u": "protocols/CuiSpatialChatManager--Messages--CHAT RECEIVED.html",
     "k": "uint8 uint16 uint32 uint32 uint64 ASCII String Unicode String Customization String Byte String LIST Component Opperand_Count Opcode"
   },
   {
@@ -16328,7 +16328,7 @@
     "d": "S→C",
     "c": "25%",
     "ss": "placeholder",
-    "u": "protocols/Game%3A%3ASCENE CHANGED.html",
+    "u": "protocols/Game--SCENE CHANGED.html",
     "k": "uint16 uint32 Opperand_Count Opcode"
   },
   {
@@ -16760,7 +16760,7 @@
     "d": "unknown",
     "c": "Group Hub",
     "ss": "absent",
-    "u": "protocols/Main%3A%3ACSR (PacketTypeGroup).html",
+    "u": "protocols/Main--CSR (PacketTypeGroup).html",
     "k": ""
   },
   {
@@ -16772,7 +16772,7 @@
     "d": "unknown",
     "c": "Group Hub",
     "ss": "absent",
-    "u": "protocols/Main%3A%3ACharCreate (PacketTypeGroup).html",
+    "u": "protocols/Main--CharCreate (PacketTypeGroup).html",
     "k": ""
   },
   {
@@ -16784,7 +16784,7 @@
     "d": "unknown",
     "c": "Group Hub",
     "ss": "absent",
-    "u": "protocols/Main%3A%3ACharacterSheet (PacketTypeGroup).html",
+    "u": "protocols/Main--CharacterSheet (PacketTypeGroup).html",
     "k": ""
   },
   {
@@ -16796,7 +16796,7 @@
     "d": "unknown",
     "c": "Group Hub",
     "ss": "absent",
-    "u": "protocols/Main%3A%3AChat (PacketTypeGroup).html",
+    "u": "protocols/Main--Chat (PacketTypeGroup).html",
     "k": ""
   },
   {
@@ -16808,7 +16808,7 @@
     "d": "unknown",
     "c": "Group Hub",
     "ss": "absent",
-    "u": "protocols/Main%3A%3AChatroom (PacketTypeGroup).html",
+    "u": "protocols/Main--Chatroom (PacketTypeGroup).html",
     "k": ""
   },
   {
@@ -16820,7 +16820,7 @@
     "d": "unknown",
     "c": "Group Hub",
     "ss": "absent",
-    "u": "protocols/Main%3A%3AConnectionClosed (PacketTypeGroup).html",
+    "u": "protocols/Main--ConnectionClosed (PacketTypeGroup).html",
     "k": ""
   },
   {
@@ -16832,7 +16832,7 @@
     "d": "unknown",
     "c": "Group Hub",
     "ss": "absent",
-    "u": "protocols/Main%3A%3AContainer (PacketTypeGroup).html",
+    "u": "protocols/Main--Container (PacketTypeGroup).html",
     "k": ""
   },
   {
@@ -16844,7 +16844,7 @@
     "d": "unknown",
     "c": "Group Hub",
     "ss": "absent",
-    "u": "protocols/Main%3A%3AEMail (PacketTypeGroup)_case.html",
+    "u": "protocols/Main--EMail (PacketTypeGroup)_case.html",
     "k": ""
   },
   {
@@ -16856,7 +16856,7 @@
     "d": "unknown",
     "c": "Group Hub",
     "ss": "absent",
-    "u": "protocols/Main%3A%3AEmail (PacketTypeGroup).html",
+    "u": "protocols/Main--Email (PacketTypeGroup).html",
     "k": ""
   },
   {
@@ -16868,7 +16868,7 @@
     "d": "unknown",
     "c": "Group Hub",
     "ss": "absent",
-    "u": "protocols/Main%3A%3AGalaxyLoopTime (PacketTypeGroup).html",
+    "u": "protocols/Main--GalaxyLoopTime (PacketTypeGroup).html",
     "k": ""
   },
   {
@@ -16880,7 +16880,7 @@
     "d": "unknown",
     "c": "Group Hub",
     "ss": "absent",
-    "u": "protocols/Main%3A%3ALogin (PacketTypeGroup).html",
+    "u": "protocols/Main--Login (PacketTypeGroup).html",
     "k": ""
   },
   {
@@ -16892,7 +16892,7 @@
     "d": "unknown",
     "c": "Group Hub",
     "ss": "absent",
-    "u": "protocols/Main%3A%3AMissions (PacketTypeGroup)).html",
+    "u": "protocols/Main--Missions (PacketTypeGroup)).html",
     "k": ""
   },
   {
@@ -16904,7 +16904,7 @@
     "d": "unknown",
     "c": "Group Hub",
     "ss": "absent",
-    "u": "protocols/Main%3A%3APostLogin (PacketTypeGroup).html",
+    "u": "protocols/Main--PostLogin (PacketTypeGroup).html",
     "k": ""
   },
   {
@@ -16916,7 +16916,7 @@
     "d": "unknown",
     "c": "Group Hub",
     "ss": "absent",
-    "u": "protocols/Main%3A%3ASUI (PacketTypeGroup).html",
+    "u": "protocols/Main--SUI (PacketTypeGroup).html",
     "k": ""
   },
   {
@@ -16928,7 +16928,7 @@
     "d": "unknown",
     "c": "Group Hub",
     "ss": "absent",
-    "u": "protocols/Main%3A%3ATells (PacketTypeGroup).html",
+    "u": "protocols/Main--Tells (PacketTypeGroup).html",
     "k": ""
   },
   {
@@ -17036,7 +17036,7 @@
     "d": "C→S",
     "c": "100%",
     "ss": "present",
-    "u": "protocols/ObjectMenuSelectMessage%3A%3AMESSAGE TYPE.html",
+    "u": "protocols/ObjectMenuSelectMessage--MESSAGE TYPE.html",
     "k": "Operand_Count Opcode TargetObjectId SelectedMenuItem Operand_Count Opcode C++ Class Constructor Address"
   },
   {
@@ -17048,7 +17048,7 @@
     "d": "C→S",
     "c": "100%",
     "ss": "present",
-    "u": "protocols/ObjectMenuSelectMessage%3A%3AMESSAGE_TYPE.html",
+    "u": "protocols/ObjectMenuSelectMessage--MESSAGE_TYPE.html",
     "k": "Operand_Count Opcode TargetObjectId SelectedMenuItem Operand_Count Opcode C++ Class Constructor Address"
   },
   {
@@ -17948,7 +17948,7 @@
     "d": "unknown",
     "c": "Specification",
     "ss": "present",
-    "u": "tre-subfiles/TRE%3ATRE Breakdown.html",
+    "u": "tre-subfiles/TRE-TRE Breakdown.html",
     "k": "//download.nvidia.com/developer/NVTextureSuite/Photoshop_Plugins_7.83.0629.1500.exe //msdn.microsoft.com/library/default.asp?url=/library/en-us/directx9_c/dx9_graphics_reference_dds_file.asp"
   },
   {
