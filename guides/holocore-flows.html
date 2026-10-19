@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holocore: fluxos de execução | SWG Docs</title>
+<meta name="description" content="Fluxos de inicialização, login, zone-in, awareness, rede e persistência.">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>.holocore-content{max-width:1200px;margin:2rem auto;padding:0 1.5rem;overflow-wrap:anywhere}
+.holocore-content h1,.holocore-content h2,.holocore-content h3{margin:1.5rem 0 1rem}
+.holocore-content p,.holocore-content ul,.holocore-content ol{margin:1rem 0;line-height:1.75}
+.holocore-content pre{overflow:auto;padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:.5rem}
+.holocore-content ul,.holocore-content ol{padding-left:1.5rem}.holocore-content .table-wrap{overflow-x:auto}</style></head>
+<body data-root="../"><header class="navbar">
+<div class="brand">
+<a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+<span style="font-size:1.4rem;">🪐</span>
+<span>SWG Docs</span>
+</a>
+<span class="tag">Protocol Wiki</span>
+</div>
+<ul class="nav-links">
+<li><a class="" href="../protocols/index.html">Protocols</a></li>
+<li><a class="" href="../commands/index.html">Commands</a></li>
+<li><a class="" href="../controllers/index.html">Controllers</a></li>
+<li><a class="" href="../baselines/index.html">Baselines</a></li>
+<li><a class="" href="../deltas/index.html">Deltas</a></li>
+<li><a class="active" href="../guides/index.html">Guides</a></li>
+<li><a class="" href="../tre-subfiles/index.html">TRE</a></li>
+</ul>
+<div class="nav-actions">
+<div class="search-bar-wrap">
+<span class="search-icon">🔍</span>
+<input autocomplete="off" id="global-search-input" placeholder="Search opcode, packet..." type="text"/>
+<div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+</div>
+<button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+</div>
+</header>
+<main class="holocore-content"><nav aria-label="Breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Guides</a> / Holocore</nav>
+<details><summary>Guias Holocore</summary><ul><li><a href="holocore-overview.html">Holocore: arquitetura e mapa funcional</a></li><li><a href="holocore-flows.html">Holocore: fluxos de execução</a></li><li><a href="holocore-network.html">Holocore: transporte de rede e fluxo de pacotes</a></li><li><a href="holocore-services.html">Holocore: serviços, intents e gameplay</a></li><li><a href="holocore-clientdata.html">Holocore: conversão de dados do cliente</a></li></ul></details>
+<p><a href="../content/guides/holocore-flows.md">Ler Markdown</a> · Revisão ff53903 · Análise estática</p>
+<article class="guide-body"><h1 id="holocore-fluxos-de-execucao">Holocore: fluxos de execução</h1>
+<p>Esta página percorre a revisão <a href="https://github.com/ProjectSWGCore/Holocore/tree/ff53903bbb8b0ff2edcd2493d66f940767036aaa">ff53903bbb8b0ff2edcd2493d66f940767036aaa</a> de ponta a ponta. Os diagramas resumem caminhos implementados em código. Chamadas de intent e ações de serviços representam eventos relacionados; o agendamento interno é fornecido por jlcommon, por isso o diagrama não presume execução síncrona ou transações.</p>
+<h2 id="1-inicializacao-e-encerramento">1. Inicialização e encerramento</h2>
+<p>A entrada é ProjectSWG.main. Depois da leitura dos argumentos e da configuração de logs, o servidor verifica marker.txt, abre a base de dados, aponta o parser de IFF para serverdata, configura a galáxia e cria os gerenciadores globais de intents e coroutines. Inicia GameplayManager antes de SupportManager; o próprio código diz que a ordem permite a Gameplay receber intents de Support.</p>
+<pre><code>ProjectSWG.run
+  -&gt; argumentos e logging
+  -&gt; valida marker.txt
+  -&gt; inicializa MongoDB
+  -&gt; SWGParser usa serverdata
+  -&gt; prepara galáxia
+  -&gt; cria IntentManager e HolocoreCoroutine
+  -&gt; GameplayManager.start()
+  -&gt; SupportManager.start()
+  -&gt; publica estado OPEN
+  -&gt; Manager.run(..., 50)
+  -&gt; estado TERMINATING
+  -&gt; Manager.stop(...)
+  -&gt; fecha IntentManager/coroutines
+  -&gt; fecha MongoDB e ScheduledUtilities
+</code></pre>
+<p>Ao inicializar seus serviços, ObjectStorageService carrega buildouts estáticos e documentos salvos. Os objetos carregados geram ObjectCreatedIntent para que os serviços interessados reconstruam índices e awareness. Na partida, os buildouts também são publicados como objetos criados.</p>
+<h2 id="2-conexao-autenticacao-e-sessao">2. Conexão, autenticação e sessão</h2>
+<p>Há estados diferentes para o socket e para a conta do jogador. O status interno da sessão WebSocket não é o mesmo que PlayerState.</p>
+<pre><code>TCP aceita canal
+  -&gt; NetworkClient recebe conexão
+  -&gt; ConnectionOpenedIntent
+  -&gt; PlayerSessionService registra Player
+  -&gt; PlayerState = CONNECTED
+  -&gt; handshake WebSocket lê username/password/protocolVersion
+  -&gt; compara NetworkProtocol.VERSION
+  -&gt; envia HoloConnectionStarted
+  -&gt; RequestLoginIntent
+  -&gt; LoginService valida versão/conta/senha/banimento
+  -&gt; sucesso: PlayerState = LOGGED_IN
+              PlayerServer = LOGIN
+              retorna os dados de login pelo protocolo recebido
+  -&gt; falha: estado DISCONNECTED e resposta de erro
+</code></pre>
+<p>Os valores de username, password e protocolVersion vêm de parâmetros da URL e são decodificados com Base64 padrão do Java. A autenticação acontece depois da negociação WebSocket. O fluxo inclui tanto HoloLoginRequestPacket quanto o caminho legado LoginClientId. Uma versão inválida, conta ausente, banimento ou senha incorreta segue caminhos de erro específicos.</p>
+<p>Há dois formatos de resposta no código: RequestLoginIntent, gerado no upgrade WebSocket, segue o caminho legado e envia token, cluster, flags e enumeração de personagens. Um HoloLoginRequestPacket recebido como pacote responde com HoloLoginResponsePacket contendo o resultado, galáxias e personagens.</p>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>PlayerState</th>
+<th>Significado no fluxo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DISCONNECTED</td>
+<td>Sem sessão de jogador ativa ou login encerrado por falha</td>
+</tr>
+<tr>
+<td>CONNECTED</td>
+<td>A conexão foi associada a um Player</td>
+</tr>
+<tr>
+<td>LOGGING_IN</td>
+<td>Login em validação</td>
+</tr>
+<tr>
+<td>LOGGED_IN</td>
+<td>Autenticado; ainda na etapa de seleção/entrada na zona</td>
+</tr>
+<tr>
+<td>ZONING_IN</td>
+<td>Servidor enviou a cena e espera o cliente ficar pronto</td>
+</tr>
+<tr>
+<td>ZONED_IN</td>
+<td>Cliente respondeu CmdSceneReady e está na zona</td>
+</tr>
+</tbody>
+</table></div>
+<p>PlayerServer identifica qual etapa/protocolo de servidor está ativa (por exemplo, LOGIN ou ZONE); não é o estado de autenticação.</p>
+<h2 id="3-selecao-de-personagem-e-entrada-na-zona">3. Seleção de personagem e entrada na zona</h2>
+<p>Após o login, ZoneService recebe ClientIdMsg e marca PlayerServer.ZONE. Quando chega SelectCharacter, busca o objeto pelo ID e passa a seleção para ZoneRequester. O requester rejeita personagem inexistente, objeto que não seja CreatureObject, personagem sem PlayerObject ou personagem já associado a outra sessão ativa. Se a validação passa, atribui o Player como dono e publica RequestZoneInIntent.</p>
+<pre><code>SelectCharacter(characterId)
+  -&gt; ZoneService procura objeto
+  -&gt; ZoneRequester valida tipo, ghost e sessão existente
+  -&gt; atribui owner ao CreatureObject
+  -&gt; RequestZoneInIntent
+  -&gt; AwarenessService.handleZoneIn(...)
+  -&gt; move/reinicializa objeto e awareness
+  -&gt; PlayerState = ZONING_IN
+  -&gt; primeiro zone-in: heartbeat, status de chat e parâmetros
+  -&gt; CmdStartScene
+  -&gt; cliente carrega a cena
+  -&gt; CmdSceneReady
+  -&gt; PlayerState = ZONED_IN
+  -&gt; PlayerEvent.PE_ZONE_IN_SERVER
+</code></pre>
+<p>O zone-in inicial envia também eventos de primeiro acesso e pode produzir a mensagem configurada de boas-vindas. Teleporte ou viagem reutiliza o tratamento de zone-in quando muda o terreno. Estados inesperados durante essa transição podem fazer o servidor encerrar a conexão como suspeita.</p>
+<h2 id="4-replicacao-de-objetos-para-o-cliente">4. Replicação de objetos para o cliente</h2>
+<p>Awareness mantém o conjunto de objetos visíveis a cada criatura. Quando esse conjunto muda, CreatureObjectAwareness calcula criações e destruições e atualiza observers. Para cada objeto novo, o servidor envia primeiro SceneCreateObjectByCrc e baselines 3 e 6; para o objeto do próprio jogador também envia baselines adicionais. Em seguida podem vir permissões de célula, postura, PvP e contenção. SceneEndBaselines fecha os grupos de criação; objetos que saem do conjunto recebem SceneDestroyObject.</p>
+<pre><code>ObjectCreatedIntent / mudança de posição ou container
+  -&gt; AwarenessService atualiza conjunto visível
+  -&gt; CreatureObjectAwareness.flush(player)
+  -&gt; create: SceneCreateObjectByCrc
+            baselines e dados auxiliares
+            UpdateContainmentMessage se há parent
+  -&gt; destroy: SceneDestroyObject
+  -&gt; Player.sendPacket(...)
+  -&gt; NetworkClient codifica pacote
+  -&gt; frame binário WebSocket
+</code></pre>
+<p>Os leitores nativos de SceneCreateObjectByCrc e UpdateContainmentMessage foram confrontados com Binary Ninja na <a href="holocore-network.html">análise de mensagens</a>. O confronto cobre os layouts dessas mensagens selecionadas, não a totalidade da replicação.</p>
+<h2 id="5-acao-recebida-e-mudanca-no-mundo">5. Ação recebida e mudança no mundo</h2>
+<p>Como exemplo de pacote de movimento, ClientAwarenessService recebe DataTransform através do IntentMultiplexer. Antes de alterar o mundo, confirma que há personagem conectado, que o ID é o do personagem do jogador, que a postura permite movimento e que não há teleporte em andamento. A variante com parent também resolve o objeto pai e rejeita parent desconhecido. Montarias têm tratamento próprio.</p>
+<pre><code>frame binário
+  -&gt; NetworkClient resolve CRC e decodifica pacote
+  -&gt; InboundPacketIntent(player, DataTransform)
+  -&gt; ClientAwarenessService valida identidade/estado/parent
+  -&gt; MoveObjectIntent
+  -&gt; AwarenessService aplica systemMove
+  -&gt; recalcula awareness e relações de parent
+  -&gt; transmite transforms e criação/destruição a observers
+  -&gt; Player.sendPacket -&gt; WebSocket binário
+</code></pre>
+<p>Assim, o socket não aplica diretamente as regras do mundo. Ele converte bytes em pacote e intent; serviços de suporte validam e alteram estado, e a camada de awareness propaga as mudanças aos jogadores que observam os objetos.</p>
+<h2 id="6-objetos-e-persistencia">6. Objetos e persistência</h2>
+<p>Dados estáticos e dados persistentes entram por caminhos separados. BuildoutLoader reconstrói objetos do mundo a partir de serverdata. ObjectStorageService também busca documentos salvos na base, recria objetos, restaura pais/células e waypoints, atualiza o próximo ID e publica ObjectCreatedIntent.</p>
+<pre><code>boot: serverdata -&gt; BuildoutLoader -&gt; objectMap/buildouts
+      MongoDB -&gt; factories -&gt; grafo pai/filho -&gt; objectMap
+      ObjectCreatedIntent -&gt; índices, awareness e demais observers
+
+runtime: objeto persistente criado -&gt; ObjectCreatedIntent -&gt; gravação inicial
+         conjunto persistido -&gt; salvamento periódico (5 min)
+         shutdown -&gt; salvamento final -&gt; fecha database
+</code></pre>
+<p>No código, o armazenamento periódico usa uma thread e intervalo de cinco minutos. A descrição não estabelece garantias ACID, recuperação contra falhas no meio da gravação ou cobertura de todos os tipos de objeto.</p>
+<h2 id="7-como-seguir-outro-fluxo">7. Como seguir outro fluxo</h2>
+<p>Para seguir uma funcionalidade específica, comece no pacote correspondente em intents, encontre os métodos @IntentHandler ou a entrada @Multiplexer, e acompanhe o pacote até os métodos sendPacket, ObjectCreatedIntent, MoveObjectIntent ou outro evento de saída. O contrato de despacho e escalonamento de jlcommon é externo. Os codecs de rede compartilhados são do submódulo pswgcommon; esse submódulo estava desinicializado no checkout examinado.</p>
+<h3 id="fontes-principais">Fontes principais</h3>
+<ul>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/main/java/com/projectswg/holocore/ProjectSWG.kt#L66">ProjectSWG.kt</a></li>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/main/java/com/projectswg/holocore/resources/support/global/network/NetworkClient.kt#L98">NetworkClient.kt</a></li>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/main/java/com/projectswg/holocore/services/support/global/zone/PlayerSessionService.java">PlayerSessionService.java</a></li>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/main/java/com/projectswg/holocore/services/support/global/zone/LoginService.java">LoginService.java</a></li>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/main/java/com/projectswg/holocore/services/support/global/zone/ZoneService.java">ZoneService.java</a></li>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/main/java/com/projectswg/holocore/resources/support/global/zone/ZoneRequester.kt">ZoneRequester.kt</a></li>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/main/java/com/projectswg/holocore/services/support/objects/awareness/AwarenessService.java">AwarenessService.java</a></li>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/main/java/com/projectswg/holocore/services/support/objects/awareness/ClientAwarenessService.java">ClientAwarenessService.java</a></li>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/main/java/com/projectswg/holocore/resources/support/objects/swg/creature/CreatureObjectAwareness.kt">CreatureObjectAwareness.kt</a></li>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/main/java/com/projectswg/holocore/services/support/objects/ObjectStorageService.java">ObjectStorageService.java</a></li>
+</ul></article></main>
+<footer><a href="holocore-overview.html">Holocore</a> · <a href="../index.html">SWG Docs</a></footer>
+<script src="../assets/js/app.js"></script></body></html>

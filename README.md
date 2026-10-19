@@ -15,9 +15,9 @@ This repository is ready to be hosted directly on **GitHub Pages** with zero con
 | [**Object Controllers**](controllers/) | **177** | `ObjControllerMessage` (0000000B) sub-handlers and controller IDs |
 | [**Baselines**](baselines/) | **77** | Full object serialization definitions (`CREO`, `PLAY`, `TANO`, `SHIP`, etc.) |
 | [**Deltas**](deltas/) | **76** | Differential update packets modifying object baselines and counters |
-| [**Guides**](guides/) | **20** | Technical guides on SOE transport, CRC, compression, encryption, reversing, and server implementation |
+| [**Guides**](guides/) | **21** | Technical guides on SOE transport, CRC, compression, encryption, reversing, and server implementation |
 | [**PSWGCommon**](guides/pswgcommon-overview.html) | **7 guides** | Architecture, codecs, models, assets, source catalog, and Binary Ninja message comparisons |
-| [**Holocore**](guides/holocore-overview.html) | **4 guides** | Server architecture, network flow, gameplay services, and client-data conversion |
+| [**Holocore**](guides/holocore-overview.html) | **5 guides** | Server architecture, execution flows, network, gameplay services, and client-data conversion |
 | [**TRE Sub-Files**](tre-subfiles/) | **9** | Client asset file specifications (`TRE`, `STF`, `QST`, `TRN`, `TOC`) |
 | [**Reversal History**](history/) | **31** | Chronological ledger of decoded/reversed packets with unpack VAs and schemas |
 | [**Pending Backlog (0%)**](pending/) | **895** | Master catalog of all unmapped packets, commands, and controllers at 0% completion |

@@ -12,6 +12,7 @@ O guia organiza os principais subsistemas e oferece caminhos de leitura. Ele nã
 
 | Guia | Conteúdo |
 | --- | --- |
+| [Fluxos de execução](holocore-flows.md) | Inicialização, login, entrada na zona, awareness, ações de jogo e persistência |
 | [Rede e protocolos](holocore-network.md) | TCP/WebSocket, handshake, despacho de CRC e mensagens confirmadas no cliente |
 | [Serviços e gameplay](holocore-services.md) | Inicialização, managers, intents, objetos, login, chat e persistência |
 | [Dados do cliente](holocore-clientdata.md) | Conversores, arquivos SDB/IFF, loaders e lacunas conhecidas |

@@ -3,7 +3,7 @@
   "wiki_title": "Packet Guides",
   "wiki_url": "https://wiki.swganh.org/index.php/Packet_Guides",
   "description": "Technical tutorials and foundational architecture references on Star Wars Galaxies networking, SOE protocol, encryption, CRC checksums, and packet reversing.",
-  "total_guides": 20,
+  "total_guides": 21,
   "sections": [
     {
       "id": "generic-tutorials",
@@ -191,7 +191,7 @@
     {
       "id": "holocore",
       "title": "Holocore",
-      "count": 4,
+      "count": 5,
       "guides": [
         {
           "title": "Holocore: arquitetura e mapa funcional",
@@ -200,6 +200,15 @@
           "md_file": "holocore-overview.md",
           "badge": "Source analysis",
           "summary": "Mapa funcional, estrutura do repositório, inicialização e limites.",
+          "category": "Holocore"
+        },
+        {
+          "title": "Holocore: fluxos de execução",
+          "slug": "holocore-flows",
+          "html_file": "holocore-flows.html",
+          "md_file": "holocore-flows.md",
+          "badge": "Source analysis",
+          "summary": "Fluxos de inicialização, login, zone-in, awareness, rede e persistência.",
           "category": "Holocore"
         },
         {

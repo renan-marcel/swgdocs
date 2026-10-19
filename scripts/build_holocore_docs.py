@@ -8,11 +8,12 @@ import markdown
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
-SLUGS = ["holocore-overview", "holocore-network", "holocore-services", "holocore-clientdata"]
+SLUGS = ["holocore-overview", "holocore-flows", "holocore-network", "holocore-services", "holocore-clientdata"]
 START = "<!-- holocore-guides:start -->"
 END = "<!-- holocore-guides:end -->"
 SUMMARIES = {
     "holocore-overview": "Mapa funcional, estrutura do repositório, inicialização e limites.",
+    "holocore-flows": "Fluxos de inicialização, login, zone-in, awareness, rede e persistência.",
     "holocore-network": "Transporte TCP/WebSocket, handshake, CRC e comparação estática com Binary Ninja.",
     "holocore-services": "Managers, intents, gameplay, objetos, login, chat e persistência.",
     "holocore-clientdata": "Conversores de clientdata, arquivos SDB/IFF e loaders runtime.",
@@ -114,5 +115,3 @@ def build():
 
 if __name__ == "__main__":
     build()
-
-\n

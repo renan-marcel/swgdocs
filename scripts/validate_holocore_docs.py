@@ -6,7 +6,7 @@ import json
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
-SLUGS = ["holocore-overview", "holocore-network", "holocore-services", "holocore-clientdata"]
+SLUGS = ["holocore-overview", "holocore-flows", "holocore-network", "holocore-services", "holocore-clientdata"]
 
 
 def main():
@@ -45,5 +45,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-\n

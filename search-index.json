@@ -18240,6 +18240,18 @@
     "k": "Mapa funcional, estrutura do repositório, inicialização e limites. Holocore Java Kotlin ProjectSWG server networking gameplay"
   },
   {
+    "t": "Holocore: fluxos de execução",
+    "s": "guides",
+    "st": "Packet Guides",
+    "sc": "Holocore",
+    "o": "",
+    "d": "unknown",
+    "c": "source",
+    "ss": "absent",
+    "u": "guides/holocore-flows.html",
+    "k": "Fluxos de inicialização, login, zone-in, awareness, rede e persistência. Holocore Java Kotlin ProjectSWG server networking gameplay"
+  },
+  {
     "t": "Holocore: transporte de rede e fluxo de pacotes",
     "s": "guides",
     "st": "Packet Guides",
