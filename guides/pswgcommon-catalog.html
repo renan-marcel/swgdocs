@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSWGCommon: catálogo lexical das fontes | SWG Docs</title>
+<meta name="description" content="Inventário completo de arquivos e cruzamento nominal de mensagens.">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>.pswg-content{max-width:1200px;margin:2rem auto;padding:0 1.5rem;overflow-wrap:anywhere}
+.pswg-content h1,.pswg-content h2,.pswg-content h3{margin:1.5rem 0 1rem}
+.pswg-content p,.pswg-content ul,.pswg-content ol{margin:1rem 0;line-height:1.75}
+.pswg-content pre{overflow-x:auto;padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:.5rem;line-height:1.6}
+.pswg-content ul,.pswg-content ol{padding-left:1.5rem}.pswg-content .table-wrap{max-width:100%;overflow-x:auto}
+.pswg-content details{margin:1rem 0}.pswg-content summary{cursor:pointer;font-weight:600}</style></head>
+<body data-root="../"><header class="navbar">
+<div class="brand">
+<a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+<span style="font-size:1.4rem;">🪐</span>
+<span>SWG Docs</span>
+</a>
+<span class="tag">Protocol Wiki</span>
+</div>
+<ul class="nav-links">
+<li><a class="" href="../protocols/index.html">Protocols</a></li>
+<li><a class="" href="../commands/index.html">Commands</a></li>
+<li><a class="" href="../controllers/index.html">Controllers</a></li>
+<li><a class="" href="../baselines/index.html">Baselines</a></li>
+<li><a class="" href="../deltas/index.html">Deltas</a></li>
+<li><a class="active" href="../guides/index.html">Guides</a></li>
+<li><a class="" href="../tre-subfiles/index.html">TRE</a></li>
+</ul>
+<div class="nav-actions">
+<div class="search-bar-wrap">
+<span class="search-icon">🔍</span>
+<input autocomplete="off" id="global-search-input" placeholder="Search opcode, packet..." type="text"/>
+<div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+</div>
+<button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+</div>
+</header>
+<main class="pswg-content">
+<nav aria-label="Breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Guides</a> / PSWGCommon</nav>
+<details><summary>Guias PSWGCommon</summary><ul><li><a href="pswgcommon-overview.html">PSWGCommon: arquitetura e guia de leitura</a></li><li><a href="pswgcommon-network.html">PSWGCommon: codecs, pacotes e replicação</a></li><li><a href="pswgcommon-data.html">PSWGCommon: dados, serialização e persistência</a></li><li><a href="pswgcommon-assets.html">PSWGCommon: arquivos do cliente e terreno</a></li><li><a href="pswgcommon-binary.html">PSWGCommon: evidências REA e Binary Ninja</a></li><li><a href="pswgcommon-client-messages.html">PSWGCommon: três mensagens comparadas com o cliente</a></li><li><a href="pswgcommon-catalog.html">PSWGCommon: catálogo lexical das fontes</a></li></ul></details>
+<p><a href="../content/guides/pswgcommon-catalog.md">Ler Markdown</a> · Revisão 9ab4234 · Evidência estática</p>
+<article class="guide-body"><h1 id="pswgcommon-catalogo-lexical-das-fontes">PSWGCommon: catálogo lexical das fontes</h1>
+<p>Gerado por <code>scripts/inventory_pswgcommon.py</code>, usando apenas a biblioteca padrão do Python. O <a href="../data/pswgcommon-inventory.json">inventário JSON</a> contém todos os arquivos sob <code>src</code>, SHA-256, tamanho, pacote, tipos reconhecidos, referências de CRC e vínculos nominais.</p>
+<p>Revisão de referência: <code>9ab4234e94be480f3b48f539a1f0dd6f5bd408a4</code>. Arquivos: <strong>433</strong>; Java/Kotlin: <strong>431</strong>; arquivos sob <code>src/test</code>: <strong>5</strong>; candidatos em <code>network/packets</code>: <strong>238</strong>.</p>
+<h2 id="escopo-e-limites">Escopo e limites</h2>
+<p>A cobertura é lexical: expressões regulares com comentários e strings mascarados, sem AST, resolução de herança, call graph, execução, decompilação ou comparação de payloads. A lista de candidatos inclui classes auxiliares no diretório de packets. Os tipos de topo são reconhecidos apenas quando a declaração tem forma simples; funções Kotlin, aliases e estruturas complexas podem não receber um tipo identificado. Valores de CRC são literais extraídos, não calculados. Arquivos não Java/Kotlin recebem hash, mas não análise de declarações.</p>
+<p>A associação com <code>content/protocols</code> compara o nome da classe/arquivo e os argumentos literais de <code>getCrc</code> com o título ou nome do arquivo Markdown, ignorando caixa e pontuação. Ela não verifica opcode, direção, versão, campos ou compatibilidade. Todas as correspondências são candidatas; múltiplas páginas ou arquivos com o mesmo nome são mantidos e expostos como ambiguidades no JSON, sem escolher uma silenciosamente.</p>
+<p>Os links GitHub fixam a revisão Git. Os hashes descrevem os bytes locais; alterações locais ou arquivos não rastreados podem divergir dessa revisão. O JSON registra o estado Git de <code>src</code>.</p>
+<p>Para regenerar, execute <code>python scripts/inventory_pswgcommon.py</code> na raiz de <code>swgdocs</code>. Use <code>--source</code> e <code>--docs</code> para outras localizações. Não há timestamps na saída.</p>
+<h2 id="contagens">Contagens</h2>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>Extensão</th>
+<th style="text-align: right;">Arquivos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.csv</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>.java</code></td>
+<td style="text-align: right;">322</td>
+</tr>
+<tr>
+<td><code>.kt</code></td>
+<td style="text-align: right;">109</td>
+</tr>
+<tr>
+<td><code>.sdb</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>Conjunto de fontes</th>
+<th style="text-align: right;">Arquivos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>main</code></td>
+<td style="text-align: right;">428</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td style="text-align: right;">5</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="pacotes">Pacotes</h2>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>Pacote</th>
+<th style="text-align: right;">Arquivos Java/Kotlin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;none&gt;</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data</code></td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.combat</code></td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.customization</code></td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.encodables.chat</code></td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.encodables.galaxy</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.encodables.gcw</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.encodables.map</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.encodables.mongo</code></td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.encodables.oob</code></td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.encodables.oob.waypoint</code></td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.encodables.player</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.encodables.tangible</code></td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.info</code></td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.location</code></td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.math</code></td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.math.extents</code></td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.objects</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.radial</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.schematic</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.sui</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgfile</code></td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgfile.visitors</code></td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgfile.visitors.appearance</code></td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgfile.visitors.appearance.render</code></td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgfile.visitors.shader</code></td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgiff</code></td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgiff.parsers</code></td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgiff.parsers.appearance</code></td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgiff.parsers.appearance.extents</code></td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgiff.parsers.creation</code></td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgiff.parsers.footprint</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgiff.parsers.math</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgiff.parsers.misc</code></td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgiff.parsers.slots</code></td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgiff.parsers.terrain</code></td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgiff.parsers.terrain.affectors</code></td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgiff.parsers.terrain.bitmap</code></td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgiff.parsers.terrain.boundaries</code></td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgiff.parsers.terrain.filters</code></td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.data.swgiff.parsers.terrain.fractals</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.encoding</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.hcap</code></td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg</code></td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.admin</code></td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.holo</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.holo.login</code></td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.login</code></td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.login.creation</code></td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone</code></td>
+<td style="text-align: right;">41</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.auction</code></td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.baselines</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.building</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.chat</code></td>
+<td style="text-align: right;">42</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.combat</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.crafting.resources</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.crafting.surveying</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.deltas</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.guild</code></td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.harvesters</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.insertion</code></td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.object_controller</code></td>
+<td style="text-align: right;">51</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.object_controller.combat</code></td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.object_controller.conversation</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.object_controller.loot</code></td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.object_controller.quest</code></td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.resource</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.server_ui</code></td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.space</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.spatial</code></td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.structures</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.network.packets.swg.zone.trade</code></td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.process</code></td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>com.projectswg.common.utilities</code></td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="candidatos-a-packets-e-correspondencias-nominais">Candidatos a packets e correspondências nominais</h2>
+<p>CRC ausente significa que não foi extraída uma declaração simples nesse arquivo. Chamadas <code>getCrc</code> também podem pertencer a auxiliares ou seletores internos.</p>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>Fonte</th>
+<th>CRC / argumento literal de getCrc</th>
+<th>Páginas candidatas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/PacketSerializationException.java">PacketSerializationException.java</a></td>
+<td>—</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/PacketType.java">PacketType.java</a></td>
+<td>—</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/SOEPacket.java">SOEPacket.java</a></td>
+<td>—</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/admin/AdminPacket.java">swg/admin/AdminPacket.java</a></td>
+<td>—</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/admin/AdminShutdownServer.java">swg/admin/AdminShutdownServer.java</a></td>
+<td><code>getCrc("AdminShutdownServer")</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/ErrorMessage.java">swg/ErrorMessage.java</a></td>
+<td><code>getCrc("ErrorMessage")</code> (L34)</td>
+<td><a href="../protocols/ErrorMessage.html">ErrorMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/holo/HoloConnectionStarted.java">swg/holo/HoloConnectionStarted.java</a></td>
+<td><code>getCrc("HoloConnectionStarted")</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/holo/HoloConnectionStopped.java">swg/holo/HoloConnectionStopped.java</a></td>
+<td><code>getCrc("HoloConnectionStopped")</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/holo/HoloPacket.java">swg/holo/HoloPacket.java</a></td>
+<td>—</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/holo/HoloSetProtocolVersion.java">swg/holo/HoloSetProtocolVersion.java</a></td>
+<td><code>getCrc("HoloSetProtocolVersion")</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/holo/login/HoloLoginRequestPacket.java">swg/holo/login/HoloLoginRequestPacket.java</a></td>
+<td><code>getCrc("HoloLoginRequestPacket")</code> (L35)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/holo/login/HoloLoginResponsePacket.java">swg/holo/login/HoloLoginResponsePacket.java</a></td>
+<td><code>getCrc("HoloLoginResponsePacket")</code> (L43)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/AccountFeatureBits.java">swg/login/AccountFeatureBits.java</a></td>
+<td><code>0x979F0279</code> (L35)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/CharacterCreationDisabled.java">swg/login/CharacterCreationDisabled.java</a></td>
+<td><code>0xF4A15265</code> (L35)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/ClientIdMsg.java">swg/login/ClientIdMsg.java</a></td>
+<td><code>getCrc("ClientIdMsg")</code> (L35)</td>
+<td><a href="../protocols/ClientIdMsg.html">ClientIdMsg</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/ClientPermissionsMessage.java">swg/login/ClientPermissionsMessage.java</a></td>
+<td><code>getCrc("ClientPermissionsMessage")</code> (L34)</td>
+<td><a href="../protocols/ClientPermissionsMessage.html">ClientPermissionsMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/ConnectionServerLagResponse.java">swg/login/ConnectionServerLagResponse.java</a></td>
+<td><code>getCrc("ConnectionServerLagResponse")</code> (L35)</td>
+<td><a href="../protocols/ConnectionServerLagResponse.html">ConnectionServerLagResponse</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/creation/ClientCreateCharacter.java">swg/login/creation/ClientCreateCharacter.java</a></td>
+<td><code>getCrc("ClientCreateCharacter")</code> (L37)</td>
+<td><a href="../protocols/ClientCreateCharacter.html">ClientCreateCharacter</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/creation/ClientVerifyAndLockNameRequest.java">swg/login/creation/ClientVerifyAndLockNameRequest.java</a></td>
+<td><code>getCrc("ClientVerifyAndLockNameRequest")</code> (L34)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/creation/ClientVerifyAndLockNameResponse.java">swg/login/creation/ClientVerifyAndLockNameResponse.java</a></td>
+<td><code>getCrc("ClientVerifyAndLockNameResponse")</code> (L36)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/creation/CreateCharacterFailure.java">swg/login/creation/CreateCharacterFailure.java</a></td>
+<td><code>getCrc("ClientCreateCharacterFailed")</code> (L34)</td>
+<td><a href="../protocols/ClientCreateCharacterFailed.html">ClientCreateCharacterFailed</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/creation/CreateCharacterSuccess.java">swg/login/creation/CreateCharacterSuccess.java</a></td>
+<td><code>getCrc("ClientCreateCharacterSuccess")</code> (L34)</td>
+<td><a href="../protocols/ClientCreateCharacterSuccess.html">ClientCreateCharacterSuccess</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/creation/DeleteCharacterRequest.java">swg/login/creation/DeleteCharacterRequest.java</a></td>
+<td><code>getCrc("DeleteCharacterMessage")</code> (L34)</td>
+<td><a href="../protocols/DeleteCharacterMessage.html">DeleteCharacterMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/creation/DeleteCharacterResponse.java">swg/login/creation/DeleteCharacterResponse.java</a></td>
+<td><code>getCrc("DeleteCharacterReplyMessage")</code> (L34)</td>
+<td><a href="../protocols/DeleteCharacterReplyMessage.html">DeleteCharacterReplyMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/creation/RandomNameRequest.java">swg/login/creation/RandomNameRequest.java</a></td>
+<td><code>getCrc("ClientRandomNameRequest")</code> (L34)</td>
+<td><a href="../protocols/ClientRandomNameRequest.html">ClientRandomNameRequest</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/creation/RandomNameResponse.java">swg/login/creation/RandomNameResponse.java</a></td>
+<td><code>getCrc("ClientRandomNameResponse")</code> (L34)</td>
+<td><a href="../protocols/ClientRandomNameResponse.html">ClientRandomNameResponse</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/EnumerateCharacterId.java">swg/login/EnumerateCharacterId.java</a></td>
+<td><code>getCrc("EnumerateCharacterId")</code> (L37)</td>
+<td><a href="../protocols/EnumerateCharacterId.html">EnumerateCharacterId</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/LoginClientId.java">swg/login/LoginClientId.java</a></td>
+<td><code>getCrc("LoginClientId")</code> (L34)</td>
+<td><a href="../protocols/LoginClientId.html">LoginClientId</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/LoginClientToken.java">swg/login/LoginClientToken.java</a></td>
+<td><code>getCrc("LoginClientToken")</code> (L34)</td>
+<td><a href="../protocols/LoginClientToken.html">LoginClientToken</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/LoginClusterStatus.java">swg/login/LoginClusterStatus.java</a></td>
+<td><code>getCrc("LoginClusterStatus")</code> (L40)</td>
+<td><a href="../protocols/LoginClusterStatus.html">LoginClusterStatus</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/LoginEnumCluster.java">swg/login/LoginEnumCluster.java</a></td>
+<td><code>0xC11C63B9</code> (L40)</td>
+<td><a href="../protocols/LoginEnumCluster.html">LoginEnumCluster</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/LoginIncorrectClientId.java">swg/login/LoginIncorrectClientId.java</a></td>
+<td><code>getCrc("LoginIncorrectClientId")</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/OfflineServersMessage.java">swg/login/OfflineServersMessage.java</a></td>
+<td><code>0xF41A5265</code> (L37)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/RequestExtendedClusters.java">swg/login/RequestExtendedClusters.java</a></td>
+<td><code>getCrc("RequestExtendedClusterInfo")</code> (L35)</td>
+<td><a href="../protocols/RequestExtendedClusterInfo.html">RequestExtendedClusterInfo</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/ServerId.java">swg/login/ServerId.java</a></td>
+<td><code>0x58C07F21</code> (L35)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/ServerString.java">swg/login/ServerString.java</a></td>
+<td><code>0x0E20D7E9</code> (L35)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/login/StationIdHasJediSlot.java">swg/login/StationIdHasJediSlot.java</a></td>
+<td><code>0xCC9FCCF8</code> (L35)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/ServerUnixEpochTime.java">swg/ServerUnixEpochTime.java</a></td>
+<td><code>getCrc("ServerUnixEpochTime")</code> (L34)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/auction/AuctionQueryHeadersMessage.kt">swg/zone/auction/AuctionQueryHeadersMessage.kt</a></td>
+<td><code>getCrc("AuctionQueryHeadersMessage")</code> (L50)</td>
+<td><a href="../protocols/AuctionQueryHeadersMessage.html">AuctionQueryHeadersMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/auction/AuctionQueryHeadersResponseMessage.java">swg/zone/auction/AuctionQueryHeadersResponseMessage.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("AuctionQueryHeadersResponseMessage")</code> (L40)</td>
+<td><a href="../protocols/AuctionQueryHeadersResponseMessage.html">AuctionQueryHeadersResponseMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/auction/BidAuctionMessage.kt">swg/zone/auction/BidAuctionMessage.kt</a></td>
+<td><code>getCrc("BidAuctionMessage")</code> (L39)</td>
+<td><a href="../protocols/BidAuctionMessage.html">BidAuctionMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/auction/BidAuctionResponseMessage.kt">swg/zone/auction/BidAuctionResponseMessage.kt</a></td>
+<td><code>getCrc("BidAuctionResponseMessage")</code> (L38)</td>
+<td><a href="../protocols/BidAuctionResponseMessage.html">BidAuctionResponseMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/auction/CancelLiveAuctionMessage.kt">swg/zone/auction/CancelLiveAuctionMessage.kt</a></td>
+<td><code>getCrc("CancelLiveAuctionMessage")</code> (L37)</td>
+<td><a href="../protocols/CancelLiveAuctionMessage.html">CancelLiveAuctionMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/auction/CancelLiveAuctionResponseMessage.kt">swg/zone/auction/CancelLiveAuctionResponseMessage.kt</a></td>
+<td><code>getCrc("CancelLiveAuctionResponseMessage")</code> (L39)</td>
+<td><a href="../protocols/CancelLiveAuctionResponseMessage.html">CancelLiveAuctionResponseMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/auction/CommoditiesItemTypeListRequest.java">swg/zone/auction/CommoditiesItemTypeListRequest.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("CommoditiesItemTypeListRequest")</code> (L34)</td>
+<td><a href="../protocols/CommoditiesItemTypeListRequest.html">CommoditiesItemTypeListRequest</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/auction/CommoditiesItemTypeListResponse.java">swg/zone/auction/CommoditiesItemTypeListResponse.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("CommoditiesItemTypeListResponse")</code> (L34)</td>
+<td><a href="../protocols/CommoditiesItemTypeListResponse.html">CommoditiesItemTypeListResponse</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/auction/CreateAuctionResponseMessage.kt">swg/zone/auction/CreateAuctionResponseMessage.kt</a></td>
+<td><code>getCrc("CreateAuctionResponseMessage")</code> (L39)</td>
+<td><a href="../protocols/CreateAuctionResponseMessage.html">CreateAuctionResponseMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/auction/CreateImmediateAuctionMessage.kt">swg/zone/auction/CreateImmediateAuctionMessage.kt</a></td>
+<td><code>getCrc("CreateImmediateAuctionMessage")</code> (L42)</td>
+<td><a href="../protocols/CreateImmediateAuctionMessage.html">CreateImmediateAuctionMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/auction/GetAuctionDetails.kt">swg/zone/auction/GetAuctionDetails.kt</a></td>
+<td><code>getCrc("GetAuctionDetails")</code> (L37)</td>
+<td><a href="../protocols/GetAuctionDetails.html">GetAuctionDetails</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/auction/GetAuctionDetailsResponse.java">swg/zone/auction/GetAuctionDetailsResponse.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("GetAuctionDetailsResponse")</code> (L39)</td>
+<td><a href="../protocols/GetAuctionDetailsResponse.html">GetAuctionDetailsResponse</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/auction/IsVendorOwnerMessage.kt">swg/zone/auction/IsVendorOwnerMessage.kt</a></td>
+<td><code>getCrc("IsVendorOwnerMessage")</code> (L37)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/auction/IsVendorOwnerResponseMessage.java">swg/zone/auction/IsVendorOwnerResponseMessage.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("IsVendorOwnerResponseMessage")</code> (L35)</td>
+<td><a href="../protocols/IsVendorOwnerResponseMessage.html">IsVendorOwnerResponseMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/auction/RetrieveAuctionItemMessage.kt">swg/zone/auction/RetrieveAuctionItemMessage.kt</a></td>
+<td><code>getCrc("RetrieveAuctionItemMessage")</code> (L38)</td>
+<td><a href="../protocols/RetrieveAuctionItemMessage.html">RetrieveAuctionItemMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/auction/RetrieveAuctionItemResponseMessage.kt">swg/zone/auction/RetrieveAuctionItemResponseMessage.kt</a></td>
+<td><code>getCrc("RetrieveAuctionItemResponseMessage")</code> (L38)</td>
+<td><a href="../protocols/RetrieveAuctionItemResponseMessage.html">RetrieveAuctionItemResponseMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/BadgesResponseMessage.java">swg/zone/BadgesResponseMessage.java</a></td>
+<td><code>getCrc("BadgesResponseMessage")</code> (L34)</td>
+<td><a href="../protocols/BadgesResponseMessage.html">BadgesResponseMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/baselines/Baseline.java">swg/zone/baselines/Baseline.java</a></td>
+<td><code>getCrc("BaselinesMessage")</code> (L35)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/building/UpdateCellPermissionMessage.java">swg/zone/building/UpdateCellPermissionMessage.java</a></td>
+<td><code>getCrc("UpdateCellPermissionMessage")</code> (L33)</td>
+<td><a href="../protocols/UpdateCellPermissionMessage.html">UpdateCellPermissionMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/CharacterSheetResponseMessage.kt">swg/zone/CharacterSheetResponseMessage.kt</a></td>
+<td><code>getCrc("CharacterSheetResponseMessage")</code> (L96)</td>
+<td><a href="../protocols/CharacterSheetResponseMessage.html">CharacterSheetResponseMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatAddModeratorToRoom.java">swg/zone/chat/ChatAddModeratorToRoom.java</a></td>
+<td><code>getCrc("ChatAddModeratorToRoom")</code> (L35)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatBanAvatarFromRoom.java">swg/zone/chat/ChatBanAvatarFromRoom.java</a></td>
+<td><code>getCrc("ChatBanAvatarFromRoom")</code> (L36)</td>
+<td><a href="../protocols/ChatBanAvatarFromRoom.html">ChatBanAvatarFromRoom</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatCreateRoom.java">swg/zone/chat/ChatCreateRoom.java</a></td>
+<td><code>getCrc("ChatCreateRoom")</code> (L37)</td>
+<td><a href="../protocols/ChatCreateRoom.html">ChatCreateRoom</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatDeletePersistentMessage.java">swg/zone/chat/ChatDeletePersistentMessage.java</a></td>
+<td><code>getCrc("ChatDeletePersistentMessage")</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatDestroyRoom.java">swg/zone/chat/ChatDestroyRoom.java</a></td>
+<td><code>getCrc("ChatDestroyRoom")</code> (L37)</td>
+<td><a href="../protocols/ChatDestroyRoom.html">ChatDestroyRoom</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatEnterRoomById.kt">swg/zone/chat/ChatEnterRoomById.kt</a></td>
+<td><code>getCrc("ChatEnterRoomById")</code> (L38)</td>
+<td><a href="../protocols/ChatEnterRoomById.html">ChatEnterRoomById</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatFriendsListUpdate.java">swg/zone/chat/ChatFriendsListUpdate.java</a></td>
+<td><code>getCrc("ChatFriendsListUpdate")</code> (L34)</td>
+<td><a href="../protocols/ChatFriendsListUpdate.html">ChatFriendsListUpdate</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatIgnoreList.java">swg/zone/chat/ChatIgnoreList.java</a></td>
+<td><code>0xF8C275B0</code> (L37)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatInstantMessageToCharacter.java">swg/zone/chat/ChatInstantMessageToCharacter.java</a></td>
+<td><code>getCrc("ChatInstantMessageToCharacter")</code> (L33)</td>
+<td><a href="../protocols/ChatInstantMessageToCharacter.html">ChatInstantMessageToCharacter</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatInstantMessageToClient.java">swg/zone/chat/ChatInstantMessageToClient.java</a></td>
+<td><code>getCrc("ChatInstantMessageToClient")</code> (L33)</td>
+<td><a href="../protocols/ChatInstantMessageToClient.html">ChatInstantMessageToClient</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatInviteAvatarToRoom.java">swg/zone/chat/ChatInviteAvatarToRoom.java</a></td>
+<td><code>getCrc("ChatInviteAvatarToRoom")</code> (L38)</td>
+<td><a href="../protocols/ChatInviteAvatarToRoom.html">ChatInviteAvatarToRoom</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatKickAvatarFromRoom.java">swg/zone/chat/ChatKickAvatarFromRoom.java</a></td>
+<td><code>getCrc("ChatKickAvatarFromRoom")</code> (L38)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatOnAddModeratorToRoom.java">swg/zone/chat/ChatOnAddModeratorToRoom.java</a></td>
+<td><code>getCrc("ChatOnAddModeratorToRoom")</code> (L38)</td>
+<td><a href="../protocols/ChatOnAddModeratorToRoom.html">ChatOnAddModeratorToRoom</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatOnBanAvatarFromRoom.java">swg/zone/chat/ChatOnBanAvatarFromRoom.java</a></td>
+<td><code>getCrc("ChatOnBanAvatarFromRoom")</code> (L38)</td>
+<td><a href="../protocols/ChatOnBanAvatarFromRoom.html">ChatOnBanAvatarFromRoom</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatOnConnectAvatar.java">swg/zone/chat/ChatOnConnectAvatar.java</a></td>
+<td><code>getCrc("ChatOnConnectAvatar")</code> (L33)</td>
+<td><a href="../protocols/ChatOnConnectAvatar.html">ChatOnConnectAvatar</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatOnCreateRoom.java">swg/zone/chat/ChatOnCreateRoom.java</a></td>
+<td><code>getCrc("ChatOnCreateRoom")</code> (L38)</td>
+<td><a href="../protocols/ChatOnCreateRoom.html">ChatOnCreateRoom</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatOnDestroyRoom.java">swg/zone/chat/ChatOnDestroyRoom.java</a></td>
+<td><code>getCrc("ChatOnDestroyRoom")</code> (L34)</td>
+<td><a href="../protocols/ChatOnDestroyRoom.html">ChatOnDestroyRoom</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatOnEnteredRoom.java">swg/zone/chat/ChatOnEnteredRoom.java</a></td>
+<td><code>getCrc("ChatOnEnteredRoom")</code> (L36)</td>
+<td><a href="../protocols/ChatOnEnteredRoom.html">ChatOnEnteredRoom</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatOnInviteToRoom.java">swg/zone/chat/ChatOnInviteToRoom.java</a></td>
+<td><code>getCrc("ChatOnInviteToRoom")</code> (L38)</td>
+<td><a href="../protocols/ChatOnInviteToRoom.html">ChatOnInviteToRoom</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatOnKickAvatarFromRoom.java">swg/zone/chat/ChatOnKickAvatarFromRoom.java</a></td>
+<td><code>getCrc("ChatOnKickAvatarFromRoom")</code> (L38)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatOnLeaveRoom.java">swg/zone/chat/ChatOnLeaveRoom.java</a></td>
+<td><code>getCrc("ChatOnLeaveRoom")</code> (L34)</td>
+<td><a href="../protocols/ChatOnLeaveRoom.html">ChatOnLeaveRoom</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatOnReceiveRoomInvitation.java">swg/zone/chat/ChatOnReceiveRoomInvitation.java</a></td>
+<td><code>getCrc("ChatOnReceiveRoomInvitation")</code> (L34)</td>
+<td><a href="../protocols/ChatOnReceiveRoomInvitation.html">ChatOnReceiveRoomInvitation</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatOnRemoveModeratorFromRoom.java">swg/zone/chat/ChatOnRemoveModeratorFromRoom.java</a></td>
+<td><code>getCrc("ChatOnRemoveModeratorFromRoom")</code> (L38)</td>
+<td><a href="../protocols/ChatOnRemoveModeratorFromRoom.html">ChatOnRemoveModeratorFromRoom</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatOnSendInstantMessage.java">swg/zone/chat/ChatOnSendInstantMessage.java</a></td>
+<td><code>getCrc("ChatOnSendInstantMessage")</code> (L33)</td>
+<td><a href="../protocols/ChatOnSendInstantMessage.html">ChatOnSendInstantMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatOnSendPersistentMessage.java">swg/zone/chat/ChatOnSendPersistentMessage.java</a></td>
+<td><code>getCrc("ChatOnSendPersistentMessage")</code> (L34)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatOnSendRoomMessage.kt">swg/zone/chat/ChatOnSendRoomMessage.kt</a></td>
+<td><code>getCrc("ChatOnSendRoomMessage")</code> (L49)</td>
+<td><a href="../protocols/ChatOnSendRoomMessage.html">ChatOnSendRoomMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatOnUnbanAvatarFromRoom.java">swg/zone/chat/ChatOnUnbanAvatarFromRoom.java</a></td>
+<td><code>getCrc("ChatOnUnbanAvatarFromRoom")</code> (L38)</td>
+<td><a href="../protocols/ChatOnUnbanAvatarFromRoom.html">ChatOnUnbanAvatarFromRoom</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatOnUninviteFromRoom.java">swg/zone/chat/ChatOnUninviteFromRoom.java</a></td>
+<td><code>getCrc("ChatOnUninviteFromRoom")</code> (L38)</td>
+<td><a href="../protocols/ChatOnUninviteFromRoom.html">ChatOnUninviteFromRoom</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatPersistentMessageToClient.java">swg/zone/chat/ChatPersistentMessageToClient.java</a></td>
+<td><code>getCrc("ChatPersistentMessageToClient")</code> (L37)</td>
+<td><a href="../protocols/ChatPersistentMessageToClient.html">ChatPersistentMessageToClient</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatPersistentMessageToServer.java">swg/zone/chat/ChatPersistentMessageToServer.java</a></td>
+<td><code>getCrc("ChatPersistentMessageToServer")</code> (L34)</td>
+<td><a href="../protocols/ChatPersistentMessageToServer.html">ChatPersistentMessageToServer</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatQueryRoom.java">swg/zone/chat/ChatQueryRoom.java</a></td>
+<td><code>getCrc("ChatQueryRoom")</code> (L37)</td>
+<td><a href="../protocols/ChatQueryRoom.html">ChatQueryRoom</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatQueryRoomResults.java">swg/zone/chat/ChatQueryRoomResults.java</a></td>
+<td><code>getCrc("ChatQueryRoomResults")</code> (L36)</td>
+<td><a href="../protocols/ChatQueryRoomResults.html">ChatQueryRoomResults</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatRemoveAvatarFromRoom.java">swg/zone/chat/ChatRemoveAvatarFromRoom.java</a></td>
+<td><code>getCrc("ChatRemoveAvatarFromRoom")</code> (L38)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatRemoveModeratorFromRoom.java">swg/zone/chat/ChatRemoveModeratorFromRoom.java</a></td>
+<td><code>getCrc("ChatRemoveModeratorFromRoom")</code> (L38)</td>
+<td><a href="../protocols/ChatRemoveModeratorFromRoom.html">ChatRemoveModeratorFromRoom</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatRequestPersistentMessage.java">swg/zone/chat/ChatRequestPersistentMessage.java</a></td>
+<td><code>getCrc("ChatRequestPersistentMessage")</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatRequestRoomList.java">swg/zone/chat/ChatRequestRoomList.java</a></td>
+<td><code>getCrc("ChatRequestRoomList")</code> (L34)</td>
+<td><a href="../protocols/ChatRequestRoomList.html">ChatRequestRoomList</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatRoomMessage.kt">swg/zone/chat/ChatRoomMessage.kt</a></td>
+<td><code>getCrc("ChatRoomMessage")</code> (L62)</td>
+<td><a href="../protocols/ChatRoomMessage.html">ChatRoomMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatSendToRoom.java">swg/zone/chat/ChatSendToRoom.java</a></td>
+<td><code>getCrc("ChatSendToRoom")</code> (L34)</td>
+<td><a href="../protocols/ChatSendToRoom.html">ChatSendToRoom</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatSystemMessage.java">swg/zone/chat/ChatSystemMessage.java</a></td>
+<td><code>getCrc("ChatSystemMessage")</code> (L36)</td>
+<td><a href="../protocols/ChatSystemMessage.html">ChatSystemMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatUnbanAvatarFromRoom.java">swg/zone/chat/ChatUnbanAvatarFromRoom.java</a></td>
+<td><code>getCrc("ChatUnbanAvatarFromRoom")</code> (L38)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatUninviteFromRoom.java">swg/zone/chat/ChatUninviteFromRoom.java</a></td>
+<td><code>getCrc("ChatUninviteFromRoom")</code> (L38)</td>
+<td><a href="../protocols/ChatUninviteFromRoom.html">ChatUninviteFromRoom</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ConGenericMessage.java">swg/zone/chat/ConGenericMessage.java</a></td>
+<td><code>getCrc("ConGenericMessage")</code> (L33)</td>
+<td><a href="../protocols/ConGenericMessage.html">ConGenericMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/ClientOpenContainerMessage.java">swg/zone/ClientOpenContainerMessage.java</a></td>
+<td><code>getCrc("ClientOpenContainerMessage")</code> (L33)</td>
+<td><a href="../protocols/ClientOpenContainerMessage.html">ClientOpenContainerMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/CmdSceneReady.java">swg/zone/CmdSceneReady.java</a></td>
+<td><code>getCrc("CmdSceneReady")</code> (L33)</td>
+<td><a href="../protocols/CmdSceneReady.html">CmdSceneReady</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/combat/GrantCommandMessage.java">swg/zone/combat/GrantCommandMessage.java</a></td>
+<td><code>0xE67E3875</code> (L34)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/CommPlayerMessage.java">swg/zone/CommPlayerMessage.java</a></td>
+<td><code>getCrc("CommPlayerMessage")</code> (L39)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/ConnectPlayerResponseMessage.java">swg/zone/ConnectPlayerResponseMessage.java</a></td>
+<td><code>getCrc("ConnectPlayerResponseMessage")</code> (L33)</td>
+<td><a href="../protocols/ConnectPlayerResponseMessage.html">ConnectPlayerResponseMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/crafting/resources/ResourceListForSurveyMessage.java">swg/zone/crafting/resources/ResourceListForSurveyMessage.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("ResourceListForSurveyMessage")</code> (L37)</td>
+<td><a href="../protocols/ResourceListForSurveyMessage.html">ResourceListForSurveyMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/crafting/surveying/SurveyMessage.java">swg/zone/crafting/surveying/SurveyMessage.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("SurveyMessage")</code> (L37)</td>
+<td><a href="../protocols/SurveyMessage.html">SurveyMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/CreateClientPathMessage.java">swg/zone/CreateClientPathMessage.java</a></td>
+<td><code>getCrc("CreateClientPathMessage")</code> (L41)</td>
+<td><a href="../protocols/CreateClientPathMessage.html">CreateClientPathMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/deltas/DeltasMessage.java">swg/zone/deltas/DeltasMessage.java</a></td>
+<td><code>getCrc("DeltasMessage")</code> (L38)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/DestroyClientPathMessage.java">swg/zone/DestroyClientPathMessage.java</a></td>
+<td><code>getCrc("DestroyClientPathMessage")</code> (L37)</td>
+<td><a href="../protocols/DestroyClientPathMessage.html">DestroyClientPathMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/EnterTicketPurchaseModeMessage.java">swg/zone/EnterTicketPurchaseModeMessage.java</a></td>
+<td><code>getCrc("EnterTicketPurchaseModeMessage")</code> (L33)</td>
+<td><a href="../protocols/EnterTicketPurchaseModeMessage.html">EnterTicketPurchaseModeMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/ExecuteConsoleCommand.kt">swg/zone/ExecuteConsoleCommand.kt</a></td>
+<td><code>getCrc("ExecuteConsoleCommand")</code> (L9)</td>
+<td><a href="../protocols/ExecuteConsoleCommand.html">ExecuteConsoleCommand</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/FactionResponseMessage.kt">swg/zone/FactionResponseMessage.kt</a></td>
+<td><code>getCrc("FactionResponseMessage")</code> (L68)</td>
+<td><a href="../protocols/FactionResponseMessage.html">FactionResponseMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/GalaxyLoopTimesResponse.java">swg/zone/GalaxyLoopTimesResponse.java</a></td>
+<td><code>getCrc("GalaxyLoopTimesResponse")</code> (L33)</td>
+<td><a href="../protocols/GalaxyLoopTimesResponse.html">GalaxyLoopTimesResponse</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/GameServerLagResponse.java">swg/zone/GameServerLagResponse.java</a></td>
+<td><code>getCrc("GameServerLagResponse")</code> (L35)</td>
+<td><a href="../protocols/GameServerLagResponse.html">GameServerLagResponse</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/GcwGroupsRsp.java">swg/zone/GcwGroupsRsp.java</a></td>
+<td><code>getCrc("GcwGroupsRsp")</code> (L40)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/GcwRegionsReq.java">swg/zone/GcwRegionsReq.java</a></td>
+<td><code>getCrc("GcwRegionsReq")</code> (L34)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/GcwRegionsRsp.java">swg/zone/GcwRegionsRsp.java</a></td>
+<td><code>getCrc("GcwRegionsRsp")</code> (L41)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/guild/GuildRequestMessage.java">swg/zone/guild/GuildRequestMessage.java</a></td>
+<td><code>getCrc("GuildRequestMessage")</code> (L35)</td>
+<td><a href="../protocols/GuildRequestMessage.html">GuildRequestMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/guild/GuildResponseMessage.java">swg/zone/guild/GuildResponseMessage.java</a></td>
+<td><code>getCrc("GuildResponseMessage")</code> (L35)</td>
+<td><a href="../protocols/GuildResponseMessage.html">GuildResponseMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/harvesters/ResourceHarvesterActivatePageMessage.java">swg/zone/harvesters/ResourceHarvesterActivatePageMessage.java</a></td>
+<td><code>getCrc("ResourceHarvesterActivatePageMessage")</code> (L34)</td>
+<td><a href="../protocols/ResourceHarvesterActivatePageMessage.html">ResourceHarvesterActivatePageMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/HeartBeat.java">swg/zone/HeartBeat.java</a></td>
+<td><code>getCrc("HeartBeat")</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/insertion/ChatRoomList.java">swg/zone/insertion/ChatRoomList.java</a></td>
+<td><code>getCrc("ChatRoomList")</code> (L39)</td>
+<td><a href="../protocols/ChatRoomList.html">ChatRoomList</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/insertion/ChatServerStatus.java">swg/zone/insertion/ChatServerStatus.java</a></td>
+<td><code>getCrc("ChatServerStatus")</code> (L33)</td>
+<td><a href="../protocols/ChatServerStatus.html">ChatServerStatus</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/insertion/CmdStartScene.java">swg/zone/insertion/CmdStartScene.java</a></td>
+<td><code>getCrc("CmdStartScene")</code> (L37)</td>
+<td><a href="../protocols/CmdStartScene.html">CmdStartScene</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/insertion/ConnectPlayerMessage.java">swg/zone/insertion/ConnectPlayerMessage.java</a></td>
+<td><code>getCrc("ConnectPlayerMessage")</code> (L33)</td>
+<td><a href="../protocols/ConnectPlayerMessage.html">ConnectPlayerMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/insertion/SelectCharacter.java">swg/zone/insertion/SelectCharacter.java</a></td>
+<td><code>getCrc("SelectCharacter")</code> (L33)</td>
+<td><a href="../protocols/SelectCharacter.html">SelectCharacter</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/LagRequest.java">swg/zone/LagRequest.java</a></td>
+<td><code>getCrc("LagRequest")</code> (L35)</td>
+<td><a href="../protocols/LagRequest.html">LagRequest</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/Animation.java">swg/zone/object_controller/Animation.java</a></td>
+<td><code>0x00F2</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/BiographyUpdate.java">swg/zone/object_controller/BiographyUpdate.java</a></td>
+<td><code>0x01DB</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/BuffAddUpdate.java">swg/zone/object_controller/BuffAddUpdate.java</a></td>
+<td><code>0x0229</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/BuffRemoveUpdate.java">swg/zone/object_controller/BuffRemoveUpdate.java</a></td>
+<td><code>0x022A</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/ChangeRoleIconChoice.java">swg/zone/object_controller/ChangeRoleIconChoice.java</a></td>
+<td><code>0x044D</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/combat/CombatAction.java">swg/zone/object_controller/combat/CombatAction.java</a></td>
+<td><code>0x00CC</code> (L41)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/combat/CombatSpam.java">swg/zone/object_controller/combat/CombatSpam.java</a></td>
+<td><code>0x0134</code> (L37)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/CommandQueueDequeue.java">swg/zone/object_controller/CommandQueueDequeue.java</a></td>
+<td><code>0x0117</code> (L35)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/CommandQueueEnqueue.java">swg/zone/object_controller/CommandQueueEnqueue.java</a></td>
+<td><code>0x0116</code> (L34)<br/><code>0</code> (L37)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/CommandTimer.java">swg/zone/object_controller/CommandTimer.java</a></td>
+<td><code>0x0448</code> (L36)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/conversation/NpcConversationMessage.java">swg/zone/object_controller/conversation/NpcConversationMessage.java</a></td>
+<td><code>0x00DF</code> (L35)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/conversation/NpcConversationOptions.java">swg/zone/object_controller/conversation/NpcConversationOptions.java</a></td>
+<td><code>0x00E0</code> (L37)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/conversation/StartNpcConversation.java">swg/zone/object_controller/conversation/StartNpcConversation.java</a></td>
+<td><code>0x00DD</code> (L34)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/conversation/StopNpcConversation.java">swg/zone/object_controller/conversation/StopNpcConversation.java</a></td>
+<td><code>0x00DE</code> (L35)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/CraftAcknowledge.java">swg/zone/object_controller/CraftAcknowledge.java</a></td>
+<td><code>0x010C</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/CraftExperimentationResponse.java">swg/zone/object_controller/CraftExperimentationResponse.java</a></td>
+<td><code>0x0113</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/CraftingSessionEnded.java">swg/zone/object_controller/CraftingSessionEnded.java</a></td>
+<td><code>0x01C2</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/DataTransform.java">swg/zone/object_controller/DataTransform.java</a></td>
+<td><code>0x0071</code> (L34)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/DataTransformWithParent.java">swg/zone/object_controller/DataTransformWithParent.java</a></td>
+<td><code>0x00F1</code> (L35)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/DraftSlotsQueryResponse.java">swg/zone/object_controller/DraftSlotsQueryResponse.java</a></td>
+<td><code>0x01BF</code> (L35)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/EntertainerFlourishType.kt">swg/zone/object_controller/EntertainerFlourishType.kt</a></td>
+<td><code>0x0166</code> (L40)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/ImageDesignChangeMessage.kt">swg/zone/object_controller/ImageDesignChangeMessage.kt</a></td>
+<td><code>0x0238</code> (L40)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/ImageDesignEndMessage.kt">swg/zone/object_controller/ImageDesignEndMessage.kt</a></td>
+<td><code>0x0239</code> (L40)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/ImageDesignStartMessage.kt">swg/zone/object_controller/ImageDesignStartMessage.kt</a></td>
+<td><code>0x023A</code> (L14)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/IndexParameter.kt">swg/zone/object_controller/IndexParameter.kt</a></td>
+<td>—</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/IntendedTarget.java">swg/zone/object_controller/IntendedTarget.java</a></td>
+<td><code>0x04C5</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/JTLTerminalSharedMessage.java">swg/zone/object_controller/JTLTerminalSharedMessage.java</a></td>
+<td><code>0x041C</code> (L34)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/LookAtTarget.java">swg/zone/object_controller/LookAtTarget.java</a></td>
+<td><code>0x0126</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/loot/GroupCloseLotteryWindow.java">swg/zone/object_controller/loot/GroupCloseLotteryWindow.java</a></td>
+<td><code>0x043E</code> (L34)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/loot/GroupOpenLotteryWindow.java">swg/zone/object_controller/loot/GroupOpenLotteryWindow.java</a></td>
+<td><code>0x043D</code> (L34)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/loot/GroupRequestLotteryItems.java">swg/zone/object_controller/loot/GroupRequestLotteryItems.java</a></td>
+<td><code>0x0440</code> (L38)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/MessageQueueCraftCustomization.java">swg/zone/object_controller/MessageQueueCraftCustomization.java</a></td>
+<td><code>0x015A</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/MessageQueueCraftEmptySlot.java">swg/zone/object_controller/MessageQueueCraftEmptySlot.java</a></td>
+<td><code>0x0108</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/MessageQueueCraftExperiment.java">swg/zone/object_controller/MessageQueueCraftExperiment.java</a></td>
+<td><code>0x0106</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/MessageQueueCraftFillSlot.java">swg/zone/object_controller/MessageQueueCraftFillSlot.java</a></td>
+<td><code>0x0107</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/MessageQueueCraftIngredients.java">swg/zone/object_controller/MessageQueueCraftIngredients.java</a></td>
+<td><code>0x0105</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/MessageQueueCraftRequestSession.java">swg/zone/object_controller/MessageQueueCraftRequestSession.java</a></td>
+<td><code>0x010F</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/MessageQueueCraftSelectSchematic.java">swg/zone/object_controller/MessageQueueCraftSelectSchematic.java</a></td>
+<td><code>0x010E</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/MessageQueueDraftSchematics.java">swg/zone/object_controller/MessageQueueDraftSchematics.java</a></td>
+<td><code>0x0102</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/MessageQueueHarvesterResourceData.java">swg/zone/object_controller/MessageQueueHarvesterResourceData.java</a></td>
+<td><code>0x00EA</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/MessageQueueResourceEmptyHopper.java">swg/zone/object_controller/MessageQueueResourceEmptyHopper.java</a></td>
+<td><code>0x00ED</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/MessageQueueSpaceMiningSellResource.java">swg/zone/object_controller/MessageQueueSpaceMiningSellResource.java</a></td>
+<td><code>0x04B6</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/MissionAbort.kt">swg/zone/object_controller/MissionAbort.kt</a></td>
+<td><code>0x0142</code> (L42)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/MissionAcceptRequest.java">swg/zone/object_controller/MissionAcceptRequest.java</a></td>
+<td><code>0x00F9</code> (L34)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/MissionAcceptResponse.kt">swg/zone/object_controller/MissionAcceptResponse.kt</a></td>
+<td><code>0x00FA</code> (L18)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/MissionListRequest.java">swg/zone/object_controller/MissionListRequest.java</a></td>
+<td><code>0x00F5</code> (L34)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/MorphParameter.kt">swg/zone/object_controller/MorphParameter.kt</a></td>
+<td>—</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/NextCraftingStage.java">swg/zone/object_controller/NextCraftingStage.java</a></td>
+<td><code>0x0109</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/NextCraftingStageResult.java">swg/zone/object_controller/NextCraftingStageResult.java</a></td>
+<td><code>0x01BE</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/ObjectController.java">swg/zone/object_controller/ObjectController.java</a></td>
+<td><code>0x80CE5E46</code> (L47)<br/><code>data.getInt()</code> (L111)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/ObjectMenuRequest.java">swg/zone/object_controller/ObjectMenuRequest.java</a></td>
+<td><code>0x0146</code> (L37)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/ObjectMenuResponse.java">swg/zone/object_controller/ObjectMenuResponse.java</a></td>
+<td><code>0x0147</code> (L37)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/PlayerEmote.kt">swg/zone/object_controller/PlayerEmote.kt</a></td>
+<td><code>0x012E</code> (L76)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/PostureUpdate.java">swg/zone/object_controller/PostureUpdate.java</a></td>
+<td><code>0x0131</code> (L35)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/quest/QuestCompletedMessage.java">swg/zone/object_controller/quest/QuestCompletedMessage.java</a></td>
+<td><code>0x04B8</code> (L35)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/quest/QuestTaskCounterMessage.java">swg/zone/object_controller/quest/QuestTaskCounterMessage.java</a></td>
+<td><code>0x0441</code> (L34)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/quest/QuestTaskTimerData.kt">swg/zone/object_controller/quest/QuestTaskTimerData.kt</a></td>
+<td><code>0x0444</code> (L41)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/SecureTrade.java">swg/zone/object_controller/SecureTrade.java</a></td>
+<td><code>0x0115</code> (L35)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/ShowFlyText.java">swg/zone/object_controller/ShowFlyText.java</a></td>
+<td><code>0x01BD</code> (L39)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/ShowLootBox.java">swg/zone/object_controller/ShowLootBox.java</a></td>
+<td><code>0x04BC</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/SitOnObject.java">swg/zone/object_controller/SitOnObject.java</a></td>
+<td><code>0x013B</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/SpatialChat.java">swg/zone/object_controller/SpatialChat.java</a></td>
+<td><code>0x00F4</code> (L34)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/object_controller/TeleportAck.java">swg/zone/object_controller/TeleportAck.java</a></td>
+<td><code>0x013F</code> (L34)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/ObjectMenuSelect.java">swg/zone/ObjectMenuSelect.java</a></td>
+<td><code>getCrc("ObjectMenuSelectMessage::MESSAGE_TYPE")</code> (L34)</td>
+<td><a href="../protocols/ObjectMenuSelectMessage--MESSAGE%20TYPE.html">ObjectMenuSelectMessage::MESSAGE TYPE</a><br/><a href="../protocols/ObjectMenuSelectMessage--MESSAGE_TYPE.html">ObjectMenuSelectMessage::MESSAGE_TYPE</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/ParametersMessage.java">swg/zone/ParametersMessage.java</a></td>
+<td><code>getCrc("ParametersMessage")</code> (L33)</td>
+<td><a href="../protocols/ParametersMessage.html">ParametersMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/PlanetTravelPointListRequest.java">swg/zone/PlanetTravelPointListRequest.java</a></td>
+<td><code>getCrc("PlanetTravelPointListRequest")</code> (L34)</td>
+<td><a href="../protocols/PlanetTravelPointListRequest.html">PlanetTravelPointListRequest</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/PlanetTravelPointListResponse.java">swg/zone/PlanetTravelPointListResponse.java</a></td>
+<td><code>getCrc("PlanetTravelPointListResponse")</code> (L39)</td>
+<td><a href="../protocols/PlanetTravelPointListResponse.html">PlanetTravelPointListResponse</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/PlayClientEffectLocMessage.java">swg/zone/PlayClientEffectLocMessage.java</a></td>
+<td><code>getCrc("PlayClientEffectLocMessage")</code> (L12)</td>
+<td><a href="../protocols/PlayClientEffectLocMessage.html">PlayClientEffectLocMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/PlayClientEffectObjectMessage.java">swg/zone/PlayClientEffectObjectMessage.java</a></td>
+<td><code>getCrc("PlayClientEffectObjectMessage")</code> (L33)</td>
+<td><a href="../protocols/PlayClientEffectObjectMessage.html">PlayClientEffectObjectMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/PlayClientEffectObjectTransformMessage.java">swg/zone/PlayClientEffectObjectTransformMessage.java</a></td>
+<td><code>getCrc("PlayClientEffectObjectTransformMessage")</code> (L34)</td>
+<td><a href="../protocols/PlayClientEffectObjectTransformMessage.html">PlayClientEffectObjectTransformMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/PlayMusicMessage.java">swg/zone/PlayMusicMessage.java</a></td>
+<td><code>getCrc("PlayMusicMessage")</code> (L33)</td>
+<td><a href="../protocols/PlayMusicMessage.html">PlayMusicMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/RequestGalaxyLoopTimes.java">swg/zone/RequestGalaxyLoopTimes.java</a></td>
+<td><code>getCrc("RequestGalaxyLoopTimes")</code> (L33)</td>
+<td><a href="../protocols/RequestGalaxyLoopTimes.html">RequestGalaxyLoopTimes</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/resource/ResourceWeight.java">swg/zone/resource/ResourceWeight.java</a></td>
+<td><code>0x0207</code> (L40)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/SceneCreateObjectByCrc.java">swg/zone/SceneCreateObjectByCrc.java</a></td>
+<td><code>getCrc("SceneCreateObjectByCrc")</code> (L35)</td>
+<td><a href="../protocols/SceneCreateObjectByCrc.html">SceneCreateObjectByCrc</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/SceneCreateObjectByName.java">swg/zone/SceneCreateObjectByName.java</a></td>
+<td><code>getCrc("SceneCreateObjectByName")</code> (L36)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/SceneDestroyObject.java">swg/zone/SceneDestroyObject.java</a></td>
+<td><code>getCrc("SceneDestroyObject")</code> (L33)</td>
+<td><a href="../protocols/SceneDestroyObject.html">SceneDestroyObject</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/SceneEndBaselines.java">swg/zone/SceneEndBaselines.java</a></td>
+<td><code>getCrc("SceneEndBaselines")</code> (L33)</td>
+<td><a href="../protocols/SceneEndBaselines.html">SceneEndBaselines</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/server_ui/SuiCreatePageMessage.java">swg/zone/server_ui/SuiCreatePageMessage.java</a></td>
+<td><code>getCrc("SuiCreatePageMessage")</code> (L35)</td>
+<td><a href="../protocols/SuiCreatePageMessage.html">SuiCreatePageMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/server_ui/SuiEventNotification.java">swg/zone/server_ui/SuiEventNotification.java</a></td>
+<td><code>getCrc("SuiEventNotification")</code> (L36)</td>
+<td><a href="../protocols/SuiEventNotification.html">SuiEventNotification</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/server_ui/SuiForceClosePage.java">swg/zone/server_ui/SuiForceClosePage.java</a></td>
+<td><code>getCrc("SuiForceClosePage")</code> (L37)</td>
+<td><a href="../protocols/SuiForceClosePage.html">SuiForceClosePage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/ServerNowEpochTime.java">swg/zone/ServerNowEpochTime.java</a></td>
+<td><code>getCrc("ServerNowEpochTime")</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/ServerTimeMessage.java">swg/zone/ServerTimeMessage.java</a></td>
+<td><code>getCrc("ServerTimeMessage")</code> (L33)</td>
+<td><a href="../protocols/ServerTimeMessage.html">ServerTimeMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/ServerWeatherMessage.java">swg/zone/ServerWeatherMessage.java</a></td>
+<td><code>getCrc("ServerWeatherMessage")</code> (L34)</td>
+<td><a href="../protocols/ServerWeatherMessage.html">ServerWeatherMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/SetWaypointColor.java">swg/zone/SetWaypointColor.java</a></td>
+<td><code>getCrc("SetWaypointColor")</code> (L33)</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/space/ShipUpdateTransformMessage.java">swg/zone/space/ShipUpdateTransformMessage.java</a></td>
+<td><code>getCrc("ShipUpdateTransformMessage")</code> (L36)</td>
+<td><a href="../protocols/ShipUpdateTransformMessage.html">ShipUpdateTransformMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/spatial/AttributeList.kt">swg/zone/spatial/AttributeList.kt</a></td>
+<td>—</td>
+<td>Sem correspondência nominal</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/spatial/AttributeListMessage.java">swg/zone/spatial/AttributeListMessage.java</a></td>
+<td><code>getCrc("AttributeListMessage")</code> (L33)</td>
+<td><a href="../protocols/AttributeListMessage.html">AttributeListMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/spatial/GetMapLocationsMessage.java">swg/zone/spatial/GetMapLocationsMessage.java</a></td>
+<td><code>getCrc("GetMapLocationsMessage")</code> (L33)</td>
+<td><a href="../protocols/GetMapLocationsMessage.html">GetMapLocationsMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/spatial/GetMapLocationsResponseMessage.java">swg/zone/spatial/GetMapLocationsResponseMessage.java</a></td>
+<td><code>getCrc("GetMapLocationsResponseMessage")</code> (L36)</td>
+<td><a href="../protocols/GetMapLocationsResponseMessage.html">GetMapLocationsResponseMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/spatial/NewTicketActivityResponseMessage.java">swg/zone/spatial/NewTicketActivityResponseMessage.java</a></td>
+<td><code>getCrc("NewTicketActivityResponseMessage")</code> (L33)</td>
+<td><a href="../protocols/NewTicketActivityResponseMessage.html">NewTicketActivityResponseMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/StopClientEffectObjectByLabelMessage.java">swg/zone/StopClientEffectObjectByLabelMessage.java</a></td>
+<td><code>getCrc("StopClientEffectObjectByLabelMessage")</code> (L33)</td>
+<td><a href="../protocols/StopClientEffectObjectByLabelMessage.html">StopClientEffectObjectByLabelMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/structures/EnterStructurePlacementModeMessage.kt">swg/zone/structures/EnterStructurePlacementModeMessage.kt</a></td>
+<td><code>getCrc("EnterStructurePlacementModeMessage")</code> (L56)</td>
+<td><a href="../protocols/EnterStructurePlacementModeMessage.html">EnterStructurePlacementModeMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/trade/AbortTradeMessage.java">swg/zone/trade/AbortTradeMessage.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("AbortTradeMessage")</code> (L34)</td>
+<td><a href="../protocols/AbortTradeMessage.html">AbortTradeMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/trade/AcceptTransactionMessage.java">swg/zone/trade/AcceptTransactionMessage.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("AcceptTransactionMessage")</code> (L34)</td>
+<td><a href="../protocols/AcceptTransactionMessage.html">AcceptTransactionMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/trade/AddItemFailedMessage.java">swg/zone/trade/AddItemFailedMessage.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("AddItemFailedMessage")</code> (L34)</td>
+<td><a href="../protocols/AddItemFailedMessage.html">AddItemFailedMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/trade/AddItemMessage.java">swg/zone/trade/AddItemMessage.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("AddItemMessage")</code> (L34)</td>
+<td><a href="../protocols/AddItemMessage.html">AddItemMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/trade/BeginTradeMessage.java">swg/zone/trade/BeginTradeMessage.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("BeginTradeMessage")</code> (L34)</td>
+<td><a href="../protocols/BeginTradeMessage.html">BeginTradeMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/trade/BeginVerificationMessage.java">swg/zone/trade/BeginVerificationMessage.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("BeginVerificationMessage")</code> (L34)</td>
+<td><a href="../protocols/BeginVerificationMessage.html">BeginVerificationMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/trade/DenyTradeMessage.java">swg/zone/trade/DenyTradeMessage.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("DenyTradeMessage")</code> (L34)</td>
+<td><a href="../protocols/DenyTradeMessage.html">DenyTradeMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/trade/GiveMoneyMessage.java">swg/zone/trade/GiveMoneyMessage.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("GiveMoneyMessage")</code> (L34)</td>
+<td><a href="../protocols/GiveMoneyMessage.html">GiveMoneyMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/trade/RemoveItemMessage.java">swg/zone/trade/RemoveItemMessage.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("RemoveItemMessage")</code> (L34)</td>
+<td><a href="../protocols/RemoveItemMessage.html">RemoveItemMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/trade/TradeCompleteMessage.java">swg/zone/trade/TradeCompleteMessage.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("TradeCompleteMessage")</code> (L34)</td>
+<td><a href="../protocols/TradeCompleteMessage.html">TradeCompleteMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/trade/UnAcceptTransactionMessage.java">swg/zone/trade/UnAcceptTransactionMessage.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("UnAcceptTransactionMessage")</code> (L34)</td>
+<td><a href="../protocols/UnAcceptTransactionMessage.html">UnAcceptTransactionMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/trade/VerifyTradeMessage.java">swg/zone/trade/VerifyTradeMessage.java</a></td>
+<td><code>com.projectswg.common.data.CRC.getCrc("VerifyTradeMessage")</code> (L34)</td>
+<td><a href="../protocols/VerifyTradeMessage.html">VerifyTradeMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/UpdateContainmentMessage.java">swg/zone/UpdateContainmentMessage.java</a></td>
+<td><code>getCrc("UpdateContainmentMessage")</code> (L33)</td>
+<td><a href="../protocols/UpdateContainmentMessage.html">UpdateContainmentMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/UpdatePostureMessage.java">swg/zone/UpdatePostureMessage.java</a></td>
+<td><code>getCrc("UpdatePostureMessage")</code> (L34)</td>
+<td><a href="../protocols/UpdatePostureMessage.html">UpdatePostureMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/UpdatePvpStatusMessage.java">swg/zone/UpdatePvpStatusMessage.java</a></td>
+<td><code>getCrc("UpdatePvpStatusMessage")</code> (L40)</td>
+<td><a href="../protocols/UpdatePvpStatusMessage.html">UpdatePvpStatusMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/UpdateTransformMessage.java">swg/zone/UpdateTransformMessage.java</a></td>
+<td><code>getCrc("UpdateTransformMessage")</code> (L34)</td>
+<td><a href="../protocols/UpdateTransformMessage.html">UpdateTransformMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/UpdateTransformWithParentMessage.java">swg/zone/UpdateTransformWithParentMessage.java</a></td>
+<td><code>getCrc("UpdateTransformWithParentMessage")</code> (L38)</td>
+<td><a href="../protocols/UpdateTransformWithParentMessage.html">UpdateTransformWithParentMessage</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/SWGPacket.java">SWGPacket.java</a></td>
+<td>—</td>
+<td>Sem correspondência nominal</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="ambiguidades-explicitas">Ambiguidades explícitas</h2>
+<p>Grupos de nomes de fontes duplicados: <strong>0</strong>; nomes associados a múltiplas páginas: <strong>2</strong>; arquivos com múltiplos tipos de topo reconhecidos: <strong>0</strong>; tipos de topo com nome qualificado repetido: <strong>0</strong>.</p>
+<p>Consulte <code>ambiguities</code> no JSON para os caminhos completos. Um candidato sem página não prova ausência de documentação: nomes alternativos e páginas agregadas podem não ser reconhecidos por este método.</p></article>
+</main><footer><a href="pswgcommon-overview.html">PSWGCommon</a> · <a href="../index.html">SWG Docs</a></footer>
+<script src="../assets/js/app.js"></script></body></html>

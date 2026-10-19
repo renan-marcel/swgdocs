@@ -15165,7 +15165,7 @@
     "c": "100%",
     "ss": "present",
     "u": "protocols/ChatInstantMessageToClient.html",
-    "k": "Opperand_Count Opcode Game ID Galaxy Name Playername Message 0 Opperand_Count Opcode"
+    "k": "Opperand_Count Opcode Game ID Galaxy Name Playername Message OutOfBand U_STRING PSWGCommon client operand count discrepancy"
   },
   {
     "t": "ChatInviteAvatarToRoom",
@@ -17433,7 +17433,7 @@
     "c": "75%",
     "ss": "present",
     "u": "protocols/SceneCreateObjectByCrc.html",
-    "k": "Operand_Count Opcode ObjectID QuaternionX QuaternionY QuaternionZ QuaternionW X-Coordinate Y-Coordinate Z-Coordinate Operand_Count Opcode"
+    "k": "Operand_Count Opcode ObjectID QuaternionX QuaternionY QuaternionZ QuaternionW X-Coordinate Y-Coordinate Z-Coordinate ObjectCRC ByteFlag Transform hyperspace PSWGCommon client cross-check"
   },
   {
     "t": "SceneDestroyObject",
@@ -17757,7 +17757,7 @@
     "c": "100%",
     "ss": "present",
     "u": "protocols/UpdateContainmentMessage.html",
-    "k": "Operand_Count Opcode ObjectID Parent Id Arrangement Id Opperand_Count Opcode"
+    "k": "Operand_Count Opcode ObjectID Parent Id Arrangement Id containerId slotIndex PSWGCommon client cross-check"
   },
   {
     "t": "UpdateMissileMessage",

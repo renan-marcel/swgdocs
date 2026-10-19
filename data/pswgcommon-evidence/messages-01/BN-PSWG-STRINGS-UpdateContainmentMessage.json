@@ -1,0 +1,20 @@
+{
+  "id": "BN-PSWG-STRINGS-UpdateContainmentMessage",
+  "tool": "bn_string_list",
+  "params": {
+    "query": "UpdateContainmentMessage",
+    "limit": 15,
+    "previewBytes": 120
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_string_list\"\nquery: \"UpdateContainmentMessage\"\npreviewBytes: 120\noffset: 0\nlimit: 15\ncount: 3\ntotal: 3\nnextOffset: null\ntruncated: false\n---\n\n| string | type | length | previewEscaped | previewHex | previewTruncated |\n| --- | --- | --- | --- | --- | --- |\n| 0x18759b4 | AsciiString | 0x18 | UpdateContainmentMessage | 557064617465436f6e7461696e6d656e744d657373616765 | false |\n| 0x18760e0 | AsciiString | 0x9d | UpdateContainmentMessage: object id=[%s] received containment update with bad o2p position info x=[%0.2f], y=[%0.2f], z= | 557064617465436f6e7461696e6d656e744d6573736167653a206f626a6563742069643d5b25735d20726563656976656420636f6e7461696e6d656e7420757064617465207769746820626164206f327020706f736974696f6e20696e666f20783d5b25302e32665d2c20793d5b25302e32665d2c207a3d | true |\n| 0x18b0b40 | AsciiString | 0x1e | .?AVUpdateContainmentMessage@@ | 2e3f4156557064617465436f6e7461696e6d656e744d6573736167654040 | false |\n"
+      }
+    ],
+    "isError": false
+  },
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "classification": "static analysis; decompiler types and generated names may be approximate"
+}

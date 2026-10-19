@@ -15165,7 +15165,7 @@
     "c": "100%",
     "ss": "present",
     "u": "protocols/ChatInstantMessageToClient.html",
-    "k": "Opperand_Count Opcode Game ID Galaxy Name Playername Message 0 Opperand_Count Opcode"
+    "k": "Opperand_Count Opcode Game ID Galaxy Name Playername Message OutOfBand U_STRING PSWGCommon client operand count discrepancy"
   },
   {
     "t": "ChatInviteAvatarToRoom",
@@ -17433,7 +17433,7 @@
     "c": "75%",
     "ss": "present",
     "u": "protocols/SceneCreateObjectByCrc.html",
-    "k": "Operand_Count Opcode ObjectID QuaternionX QuaternionY QuaternionZ QuaternionW X-Coordinate Y-Coordinate Z-Coordinate Operand_Count Opcode"
+    "k": "Operand_Count Opcode ObjectID QuaternionX QuaternionY QuaternionZ QuaternionW X-Coordinate Y-Coordinate Z-Coordinate ObjectCRC ByteFlag Transform hyperspace PSWGCommon client cross-check"
   },
   {
     "t": "SceneDestroyObject",
@@ -17757,7 +17757,7 @@
     "c": "100%",
     "ss": "present",
     "u": "protocols/UpdateContainmentMessage.html",
-    "k": "Operand_Count Opcode ObjectID Parent Id Arrangement Id Opperand_Count Opcode"
+    "k": "Operand_Count Opcode ObjectID Parent Id Arrangement Id containerId slotIndex PSWGCommon client cross-check"
   },
   {
     "t": "UpdateMissileMessage",
@@ -18142,5 +18142,89 @@
     "ss": "present",
     "u": "protocols/SuiUpdatePageMessage (5F3342F6).html",
     "k": "Operand_Count Opcode PageId UpdateType PropertyPath PropertyValue Operand_Count Opcode C++ Class Constructor Address Serialization Mechanism"
+  },
+  {
+    "t": "PSWGCommon: arquitetura e guia de leitura",
+    "s": "guides",
+    "st": "Packet Guides",
+    "sc": "PSWGCommon",
+    "o": "",
+    "d": "unknown",
+    "c": "source",
+    "ss": "absent",
+    "u": "guides/pswgcommon-overview.html",
+    "k": "Arquitetura, dependências, fluxos e limites da investigação. pswgcommon-overview pswgcommon Java Kotlin ProjectSWG REA Binary Ninja"
+  },
+  {
+    "t": "PSWGCommon: codecs, pacotes e replicação",
+    "s": "guides",
+    "st": "Packet Guides",
+    "sc": "PSWGCommon",
+    "o": "",
+    "d": "unknown",
+    "c": "source",
+    "ss": "absent",
+    "u": "guides/pswgcommon-network.html",
+    "k": "Codecs, endian, framing, factories, baseline, delta e controllers. pswgcommon-network pswgcommon Java Kotlin ProjectSWG REA Binary Ninja"
+  },
+  {
+    "t": "PSWGCommon: dados, serialização e persistência",
+    "s": "guides",
+    "st": "Packet Guides",
+    "sc": "PSWGCommon",
+    "o": "",
+    "d": "unknown",
+    "c": "source",
+    "ss": "absent",
+    "u": "guides/pswgcommon-data.html",
+    "k": "Modelos, CRC, customização, OOB, SUI e persistência Mongo. pswgcommon-data pswgcommon Java Kotlin ProjectSWG REA Binary Ninja"
+  },
+  {
+    "t": "PSWGCommon: arquivos do cliente e terreno",
+    "s": "guides",
+    "st": "Packet Guides",
+    "sc": "PSWGCommon",
+    "o": "",
+    "d": "unknown",
+    "c": "source",
+    "ss": "absent",
+    "u": "guides/pswgcommon-assets.html",
+    "k": "As duas APIs IFF, formatos, caches e motor de terreno. pswgcommon-assets pswgcommon Java Kotlin ProjectSWG REA Binary Ninja"
+  },
+  {
+    "t": "PSWGCommon: evidências REA e Binary Ninja",
+    "s": "guides",
+    "st": "Packet Guides",
+    "sc": "PSWGCommon",
+    "o": "",
+    "d": "unknown",
+    "c": "source",
+    "ss": "absent",
+    "u": "guides/pswgcommon-binary.html",
+    "k": "Evidências do Binary Ninja e limitações do provedor REA. pswgcommon-binary pswgcommon Java Kotlin ProjectSWG REA Binary Ninja"
+  },
+  {
+    "t": "PSWGCommon: três mensagens comparadas com o cliente",
+    "s": "guides",
+    "st": "Packet Guides",
+    "sc": "PSWGCommon",
+    "o": "",
+    "d": "unknown",
+    "c": "source",
+    "ss": "absent",
+    "u": "guides/pswgcommon-client-messages.html",
+    "k": "Contenção, criação de objetos e chat confrontados com leitores e escritores do cliente. pswgcommon-client-messages pswgcommon Java Kotlin ProjectSWG REA Binary Ninja"
+  },
+  {
+    "t": "PSWGCommon: catálogo lexical das fontes",
+    "s": "guides",
+    "st": "Packet Guides",
+    "sc": "PSWGCommon",
+    "o": "",
+    "d": "unknown",
+    "c": "source",
+    "ss": "absent",
+    "u": "guides/pswgcommon-catalog.html",
+    "k": "Inventário completo de arquivos e cruzamento nominal de mensagens. pswgcommon-catalog pswgcommon Java Kotlin ProjectSWG REA Binary Ninja"
   }
 ]

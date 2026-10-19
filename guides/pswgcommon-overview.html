@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSWGCommon: arquitetura e guia de leitura | SWG Docs</title>
+<meta name="description" content="Arquitetura, dependências, fluxos e limites da investigação.">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>.pswg-content{max-width:1200px;margin:2rem auto;padding:0 1.5rem;overflow-wrap:anywhere}
+.pswg-content h1,.pswg-content h2,.pswg-content h3{margin:1.5rem 0 1rem}
+.pswg-content p,.pswg-content ul,.pswg-content ol{margin:1rem 0;line-height:1.75}
+.pswg-content pre{overflow-x:auto;padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:.5rem;line-height:1.6}
+.pswg-content ul,.pswg-content ol{padding-left:1.5rem}.pswg-content .table-wrap{max-width:100%;overflow-x:auto}
+.pswg-content details{margin:1rem 0}.pswg-content summary{cursor:pointer;font-weight:600}</style></head>
+<body data-root="../"><header class="navbar">
+<div class="brand">
+<a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+<span style="font-size:1.4rem;">🪐</span>
+<span>SWG Docs</span>
+</a>
+<span class="tag">Protocol Wiki</span>
+</div>
+<ul class="nav-links">
+<li><a class="" href="../protocols/index.html">Protocols</a></li>
+<li><a class="" href="../commands/index.html">Commands</a></li>
+<li><a class="" href="../controllers/index.html">Controllers</a></li>
+<li><a class="" href="../baselines/index.html">Baselines</a></li>
+<li><a class="" href="../deltas/index.html">Deltas</a></li>
+<li><a class="active" href="../guides/index.html">Guides</a></li>
+<li><a class="" href="../tre-subfiles/index.html">TRE</a></li>
+</ul>
+<div class="nav-actions">
+<div class="search-bar-wrap">
+<span class="search-icon">🔍</span>
+<input autocomplete="off" id="global-search-input" placeholder="Search opcode, packet..." type="text"/>
+<div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+</div>
+<button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+</div>
+</header>
+<main class="pswg-content">
+<nav aria-label="Breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Guides</a> / PSWGCommon</nav>
+<details><summary>Guias PSWGCommon</summary><ul><li><a href="pswgcommon-overview.html">PSWGCommon: arquitetura e guia de leitura</a></li><li><a href="pswgcommon-network.html">PSWGCommon: codecs, pacotes e replicação</a></li><li><a href="pswgcommon-data.html">PSWGCommon: dados, serialização e persistência</a></li><li><a href="pswgcommon-assets.html">PSWGCommon: arquivos do cliente e terreno</a></li><li><a href="pswgcommon-binary.html">PSWGCommon: evidências REA e Binary Ninja</a></li><li><a href="pswgcommon-client-messages.html">PSWGCommon: três mensagens comparadas com o cliente</a></li><li><a href="pswgcommon-catalog.html">PSWGCommon: catálogo lexical das fontes</a></li></ul></details>
+<p><a href="../content/guides/pswgcommon-overview.md">Ler Markdown</a> · Revisão 9ab4234 · Evidência estática</p>
+<article class="guide-body"><h1 id="pswgcommon-arquitetura-e-guia-de-leitura">PSWGCommon: arquitetura e guia de leitura</h1>
+<p>Análise de 19/10/2026 da revisão <code>9ab4234e94be480f3b48f539a1f0dd6f5bd408a4</code> de <a href="https://github.com/ProjectSWGCore/pswgcommon/tree/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4">ProjectSWGCore/pswgcommon</a>. A biblioteca reúne contratos de dados, codecs de mensagens, leitores de assets e utilitários compartilhados por aplicações ProjectSWG. O módulo JPMS chama-se <code>com.projectswg.common</code>; o artefato Gradle declara grupo <code>com.projectswg</code>, versão <code>1.0.0</code> e plugin <code>java-library</code>.</p>
+<p>O código se identifica como parte do emulador NGE baseado no publish final anterior aos eventos de encerramento. Isso importa ao comparar layouts com a documentação histórica e com o cliente <code>SWGEmu.exe</code> disponível neste workspace: a identidade de uma classe ou opcode não demonstra identidade de versão nem de todos os campos. Nenhuma página de pacote recebeu status de confirmação binária apenas por existir na biblioteca.</p>
+<h2 id="como-navegar-pela-analise">Como navegar pela análise</h2>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>Guia</th>
+<th>Pergunta respondida</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="pswgcommon-network.html">Rede, codecs e replicação</a></td>
+<td>Como bytes viram mensagens; endian, strings, framing, factories, OCM, baseline, delta e HCAP</td>
+</tr>
+<tr>
+<td><a href="pswgcommon-data.html">Dados e persistência</a></td>
+<td>Como objetos compartilhados são representados em rede, Mongo, customização, OOB e SUI</td>
+</tr>
+<tr>
+<td><a href="pswgcommon-assets.html">Assets e terreno</a></td>
+<td>Como os dois sistemas IFF carregam dados, resolvem formatos, mantêm caches e calculam terreno</td>
+</tr>
+<tr>
+<td><a href="pswgcommon-binary.html">Comparação com o binário</a></td>
+<td>O que REA e Binary Ninja conseguiram verificar e o que continua desconhecido</td>
+</tr>
+<tr>
+<td><a href="pswgcommon-client-messages.html">Mensagens comparadas com o cliente</a></td>
+<td>Tipos e layouts de contenção, criação na cena e chat; divergências de contador e strings</td>
+</tr>
+<tr>
+<td><a href="pswgcommon-catalog.html">Catálogo de fontes e mensagens</a></td>
+<td>Onde estão os arquivos, pacotes e correspondências nominais com o portal</td>
+</tr>
+</tbody>
+</table></div>
+<p>O <a href="../data/pswgcommon-inventory.json">inventário JSON</a> preserva caminhos, hashes e classificação dos arquivos. É um inventário lexical: não substitui leitura das implementações, resolução de herança nem call graph. O catálogo liga mensagens às páginas existentes por nome; isso é uma pista de navegação, não uma validação de esquema.</p>
+<h2 id="fluxos-principais">Fluxos principais</h2>
+<pre><code class="language-text">Consumidor (por exemplo, servidor)
+  -&gt; modelos Encodable -&gt; NetBuffer -&gt; SWGPacket.encode()
+  -&gt; NetworkProtocol.encode() -&gt; envelope de comprimento -&gt; consumidor de I/O
+
+Entrada do consumidor -&gt; NetworkProtocol.decode()
+  -&gt; opcode -&gt; PacketType -&gt; pacote concreto -&gt; NetBuffer -&gt; valores do modelo
+  -&gt; caso ObjectController: segundo despacho pelo controller ID
+
+Arquivo local do cliente
+  -&gt; ClientFactory / SWGFile / visitantes (API swgfile)
+  OU SWGParser / IffForm / SWGParserFactory / cache (API swgiff)
+  -&gt; dados de objetos, aparência, portais, slots ou terreno
+
+Modelo MongoPersistable -&gt; MongoData -&gt; documento BSON
+</code></pre>
+<p>Esses fluxos têm contratos diferentes. O envelope de comprimento de <code>NetworkProtocol</code> não demonstra implementação completa de transporte SOE. Um <code>Encodable</code> não possui necessariamente envelope próprio. Dados Mongo não são cópia automática dos bytes de rede. As duas APIs IFF têm registros de formatos e estado de leitura distintos.</p>
+<h2 id="mapa-de-responsabilidades">Mapa de responsabilidades</h2>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>Área de fontes</th>
+<th>Papel e pontos de entrada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>encoding</code></td>
+<td><code>Encodable</code>, <code>Encoder</code>, <code>CachedEncode</code>: contrato binário, conversões e cache de bytes</td>
+</tr>
+<tr>
+<td><code>network</code></td>
+<td><code>NetBuffer</code>, <code>NetBufferStream</code>, <code>NetworkProtocol</code>, TLS; delegação de I/O ao consumidor</td>
+</tr>
+<tr>
+<td><code>network.packets</code></td>
+<td>Bases SWG/SOE, registro <code>PacketType</code>, mensagens de aplicação e controllers</td>
+</tr>
+<tr>
+<td><code>network.hcap</code></td>
+<td>Entrada/saída de registros de captura e reconstrução de mensagens</td>
+</tr>
+<tr>
+<td><code>data.encodables</code></td>
+<td>Chat, correio, GCW, mapa, flags de tangible e pacotes de texto OOB</td>
+</tr>
+<tr>
+<td><code>data.location</code>, <code>data.math</code></td>
+<td>Posição, orientação, terreno, geometria e volumes usados pelos modelos e parsers</td>
+</tr>
+<tr>
+<td><code>data.customization</code></td>
+<td>Variáveis de aparência e formato compacto de customização</td>
+</tr>
+<tr>
+<td><code>data.sui</code>, <code>data.radial</code></td>
+<td>Construção de interface SUI e representações de menus</td>
+</tr>
+<tr>
+<td><code>data.swgfile</code></td>
+<td>Leitor IFF e visitantes para dados extraídos do cliente</td>
+</tr>
+<tr>
+<td><code>data.swgiff</code></td>
+<td>Outra árvore IFF, parsers especializados, cache e motor de terreno</td>
+</tr>
+<tr>
+<td><code>data.info</code>, <code>utilities</code>, <code>process</code></td>
+<td>Configuração, caminhos locais, conversões, threads, relógio e lançamento de JAR</td>
+</tr>
+</tbody>
+</table></div>
+<p>As enumerações e estruturas restantes, como combate, objetos e schematic, são indexadas no catálogo. Não se deve inferir implementação de regras de jogo pela presença desses tipos. A aplicação que usa a biblioteca decide autorização, ciclo de vida de objetos e tratamento dos valores recebidos.</p>
+<h2 id="build-e-dependencias">Build e dependências</h2>
+<p><code>build.gradle.kts</code> configura Java/Kotlin mistos em <code>src/main/java</code>, JUnit Jupiter e compilação modular. Exporta como dependências de API annotations <code>20.1.0</code>, <code>jlcommon 1.10.1</code> e Bouncy Castle <code>1.71</code>; usa Kotlin stdlib e MongoDB sync driver <code>3.12.2</code> na implementação. O descritor JPMS declara os módulos requeridos e os packages exportados. Fonte: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/build.gradle.kts">build.gradle.kts</a> e <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/module-info.java">module-info.java</a>.</p>
+<p>A árvore isolada não contém wrapper nem <code>settings.gradle.kts</code>. A versão do plugin Kotlin e as propriedades extras <code>javaVersion</code> e <code>kotlinTargetJdk</code> são fornecidas externamente. No checkout local de <code>Holocore</code>, <code>settings.gradle.kts</code> inclui <code>pswgcommon</code>, <code>.gitmodules</code> aponta para este repositório e o build pai fornece essas propriedades. Porém, o subdiretório <code>Holocore/pswgcommon</code> estava vazio durante a inspeção; o clone analisado é o diretório irmão. Logo, executar o wrapper do pai sem preparar seu submódulo não testa automaticamente as fontes aqui analisadas. Não foi escolhido um JDK arbitrário nem declarada compilação bem-sucedida.</p>
+<p>O <code>module-info.java</code> expõe <code>jlcommon</code> e <code>java.management</code> transitivamente, declara <code>java.sql</code> e <code>java.desktop</code> como <code>requires static</code>, além de BSON, annotations, Bouncy Castle e Kotlin. A biblioteca não oferece um <code>main</code> de servidor: <code>JarProcessBuilder</code> apenas monta um comando Java com opções de memória/VM e chama <code>ProcessBuilder.start()</code> quando solicitado. Fonte: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/process/JarProcessBuilder.java#L161"><code>process/JarProcessBuilder.java:161–198</code></a>.</p>
+<h2 id="recursos-e-estado-compartilhado">Recursos e estado compartilhado</h2>
+<p>O recurso <code>data/crc_database.csv</code> permite mapear CRCs conhecidos para nomes; não inverte matematicamente o hash. <code>customization_variables.sdb</code> fornece IDs de variáveis de aparência. Os leitores de assets procuram por padrão uma árvore local <code>clientdata</code>; não há extração TRE implícita nesse caminho. A disponibilidade desses dados afeta o resultado e os testes de terreno.</p>
+<p>Caches não são intercambiáveis: <code>CachedEncode</code> conserva bytes até invalidação explícita, enquanto os leitores de assets possuem caches de objetos e cursores de leitura próprios. Antes de compartilhar instâncias entre threads ou reserializar um objeto decodificado, confira o contrato do tipo. O guia de rede e o de assets descrevem os casos concretos em que leitura seguida de escrita não preserva os dados.</p>
+<h2 id="resultado-e-limites-da-investigacao">Resultado e limites da investigação</h2>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>Questão</th>
+<th>Estado</th>
+<th>Evidência e limite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Módulo, build e dependências</td>
+<td>Respondida por fontes</td>
+<td>Build e descritor JPMS; compilação não executada</td>
+</tr>
+<tr>
+<td>Codecs e despacho de mensagens</td>
+<td>Respondida na arquitetura</td>
+<td>Implementações e exemplos derivados; não houve revisão campo a campo de todas as mensagens</td>
+</tr>
+<tr>
+<td>Baseline, delta e OCM</td>
+<td>Parcial</td>
+<td>Envelopes e factories documentados; sem reconstrução de todas as views de objetos no consumidor</td>
+</tr>
+<tr>
+<td>Modelos, customização e persistência</td>
+<td>Respondida nos contratos centrais</td>
+<td>Fontes e testes existentes lidos; testes da JVM não executados</td>
+</tr>
+<tr>
+<td>Assets e terreno</td>
+<td>Respondida na arquitetura, parcial nos formatos</td>
+<td>Registros e parsers lidos; faltam corpus de assets/versionamento e testes dinâmicos</td>
+</tr>
+<tr>
+<td>Correspondência com o cliente</td>
+<td>Parcial</td>
+<td>Tabela CRC e três layouts de mensagens confrontados com o Binary Ninja; consumidores semânticos ainda parciais</td>
+</tr>
+<tr>
+<td>REA nativo</td>
+<td>Limitado pelo provedor</td>
+<td>Ghidra/REA no Windows recusou PE x86; resposta preservada</td>
+</tr>
+<tr>
+<td>Inventário da árvore</td>
+<td>Respondida como inventário lexical</td>
+<td>JSON com arquivos e hashes; não é cobertura semântica integral</td>
+</tr>
+</tbody>
+</table></div>
+<p>Próximas verificações úteis são testes de ida e volta de baseline/OOB/customização, limites de framing, fixtures UTF-8 e leitura de floats após operações big-endian; depois, comparação de mensagens selecionadas contra o cliente da versão correta. Os achados descritos são problemas ou lacunas observados por inspeção; esta atualização altera documentação, não a biblioteca.</p></article>
+</main><footer><a href="pswgcommon-overview.html">PSWGCommon</a> · <a href="../index.html">SWG Docs</a></footer>
+<script src="../assets/js/app.js"></script></body></html>

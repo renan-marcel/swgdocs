@@ -3,7 +3,7 @@
   "wiki_title": "Packet Guides",
   "wiki_url": "https://wiki.swganh.org/index.php/Packet_Guides",
   "description": "Technical tutorials and foundational architecture references on Star Wars Galaxies networking, SOE protocol, encryption, CRC checksums, and packet reversing.",
-  "total_guides": 9,
+  "total_guides": 16,
   "sections": [
     {
       "id": "generic-tutorials",
@@ -115,6 +115,76 @@
           "badge": "Guide",
           "summary": "Step-by-step methodology for analyzing unknown packet byte streams, identifying datatypes, and reconstructing struct definitions.",
           "category": "SOE / SWG Packet Related Tutorials"
+        }
+      ]
+    },
+    {
+      "id": "pswgcommon",
+      "title": "PSWGCommon",
+      "count": 7,
+      "guides": [
+        {
+          "title": "PSWGCommon: arquitetura e guia de leitura",
+          "slug": "pswgcommon-overview",
+          "html_file": "pswgcommon-overview.html",
+          "md_file": "pswgcommon-overview.md",
+          "badge": "Source analysis",
+          "summary": "Arquitetura, dependências, fluxos e limites da investigação.",
+          "category": "PSWGCommon"
+        },
+        {
+          "title": "PSWGCommon: codecs, pacotes e replicação",
+          "slug": "pswgcommon-network",
+          "html_file": "pswgcommon-network.html",
+          "md_file": "pswgcommon-network.md",
+          "badge": "Source analysis",
+          "summary": "Codecs, endian, framing, factories, baseline, delta e controllers.",
+          "category": "PSWGCommon"
+        },
+        {
+          "title": "PSWGCommon: dados, serialização e persistência",
+          "slug": "pswgcommon-data",
+          "html_file": "pswgcommon-data.html",
+          "md_file": "pswgcommon-data.md",
+          "badge": "Source analysis",
+          "summary": "Modelos, CRC, customização, OOB, SUI e persistência Mongo.",
+          "category": "PSWGCommon"
+        },
+        {
+          "title": "PSWGCommon: arquivos do cliente e terreno",
+          "slug": "pswgcommon-assets",
+          "html_file": "pswgcommon-assets.html",
+          "md_file": "pswgcommon-assets.md",
+          "badge": "Source analysis",
+          "summary": "As duas APIs IFF, formatos, caches e motor de terreno.",
+          "category": "PSWGCommon"
+        },
+        {
+          "title": "PSWGCommon: evidências REA e Binary Ninja",
+          "slug": "pswgcommon-binary",
+          "html_file": "pswgcommon-binary.html",
+          "md_file": "pswgcommon-binary.md",
+          "badge": "Source analysis",
+          "summary": "Evidências do Binary Ninja e limitações do provedor REA.",
+          "category": "PSWGCommon"
+        },
+        {
+          "title": "PSWGCommon: três mensagens comparadas com o cliente",
+          "slug": "pswgcommon-client-messages",
+          "html_file": "pswgcommon-client-messages.html",
+          "md_file": "pswgcommon-client-messages.md",
+          "badge": "Source analysis",
+          "summary": "Contenção, criação de objetos e chat confrontados com leitores e escritores do cliente.",
+          "category": "PSWGCommon"
+        },
+        {
+          "title": "PSWGCommon: catálogo lexical das fontes",
+          "slug": "pswgcommon-catalog",
+          "html_file": "pswgcommon-catalog.html",
+          "md_file": "pswgcommon-catalog.md",
+          "badge": "Source analysis",
+          "summary": "Inventário completo de arquivos e cruzamento nominal de mensagens.",
+          "category": "PSWGCommon"
         }
       ]
     }

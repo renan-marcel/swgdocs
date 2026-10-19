@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSWGCommon: arquivos do cliente e terreno | SWG Docs</title>
+<meta name="description" content="As duas APIs IFF, formatos, caches e motor de terreno.">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>.pswg-content{max-width:1200px;margin:2rem auto;padding:0 1.5rem;overflow-wrap:anywhere}
+.pswg-content h1,.pswg-content h2,.pswg-content h3{margin:1.5rem 0 1rem}
+.pswg-content p,.pswg-content ul,.pswg-content ol{margin:1rem 0;line-height:1.75}
+.pswg-content pre{overflow-x:auto;padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:.5rem;line-height:1.6}
+.pswg-content ul,.pswg-content ol{padding-left:1.5rem}.pswg-content .table-wrap{max-width:100%;overflow-x:auto}
+.pswg-content details{margin:1rem 0}.pswg-content summary{cursor:pointer;font-weight:600}</style></head>
+<body data-root="../"><header class="navbar">
+<div class="brand">
+<a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+<span style="font-size:1.4rem;">🪐</span>
+<span>SWG Docs</span>
+</a>
+<span class="tag">Protocol Wiki</span>
+</div>
+<ul class="nav-links">
+<li><a class="" href="../protocols/index.html">Protocols</a></li>
+<li><a class="" href="../commands/index.html">Commands</a></li>
+<li><a class="" href="../controllers/index.html">Controllers</a></li>
+<li><a class="" href="../baselines/index.html">Baselines</a></li>
+<li><a class="" href="../deltas/index.html">Deltas</a></li>
+<li><a class="active" href="../guides/index.html">Guides</a></li>
+<li><a class="" href="../tre-subfiles/index.html">TRE</a></li>
+</ul>
+<div class="nav-actions">
+<div class="search-bar-wrap">
+<span class="search-icon">🔍</span>
+<input autocomplete="off" id="global-search-input" placeholder="Search opcode, packet..." type="text"/>
+<div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+</div>
+<button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+</div>
+</header>
+<main class="pswg-content">
+<nav aria-label="Breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Guides</a> / PSWGCommon</nav>
+<details><summary>Guias PSWGCommon</summary><ul><li><a href="pswgcommon-overview.html">PSWGCommon: arquitetura e guia de leitura</a></li><li><a href="pswgcommon-network.html">PSWGCommon: codecs, pacotes e replicação</a></li><li><a href="pswgcommon-data.html">PSWGCommon: dados, serialização e persistência</a></li><li><a href="pswgcommon-assets.html">PSWGCommon: arquivos do cliente e terreno</a></li><li><a href="pswgcommon-binary.html">PSWGCommon: evidências REA e Binary Ninja</a></li><li><a href="pswgcommon-client-messages.html">PSWGCommon: três mensagens comparadas com o cliente</a></li><li><a href="pswgcommon-catalog.html">PSWGCommon: catálogo lexical das fontes</a></li></ul></details>
+<p><a href="../content/guides/pswgcommon-assets.md">Ler Markdown</a> · Revisão 9ab4234 · Evidência estática</p>
+<article class="guide-body"><h1 id="pswgcommon-arquivos-do-cliente-e-terreno">PSWGCommon: arquivos do cliente e terreno</h1>
+<p>Este guia descreve a implementação encontrada nas fontes de <code>pswgcommon</code>, revisão <code>9ab4234e94be480f3b48f539a1f0dd6f5bd408a4</code>. As observações abaixo resultam de leitura estática; não representam testes executados, comparação com o cliente original ou confirmação por desmontagem. A existência de um parser registrado não garante suporte integral ao formato nem preservação dos dados ao gravá-los novamente.</p>
+<p>Nas referências, os caminhos <code>data/...</code> partem de <code>pswgcommon/src/main/java/com/projectswg/common/</code>. O número após <code>:</code> identifica a linha nessa revisão. O repositório de origem é <a href="https://github.com/ProjectSWGCore/pswgcommon/tree/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4">ProjectSWGCore/pswgcommon</a>.</p>
+<h2 id="duas-familias-de-leitores">Duas famílias de leitores</h2>
+<p>Há duas APIs paralelas para IFF. Elas possuem modelos de nós e registros de formatos diferentes; escolher uma não equivale a acessar automaticamente todos os formatos da outra.</p>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>API</th>
+<th>Entrada e fluxo</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data.swgfile</code></td>
+<td><code>ClientFactory.getInfoFromFile</code> → <code>SWGFile.read</code> → árvore <code>swgfile.IffNode</code> → seleção pelo tag raiz → <code>ClientData.readIff</code></td>
+<td>Um visitante especializado, como <code>ObjectData</code>, <code>DatatableData</code> ou <code>WorldSnapshotData</code></td>
+</tr>
+<tr>
+<td><code>data.swgiff</code></td>
+<td><code>SWGParser.parse</code> → <code>SWGParserCache</code> → <code>IffForm.read</code> → seleção pelo tag → <code>SWGParser.read</code></td>
+<td>Um parser especializado, como <code>TerrainTemplate</code>, <code>PortalLayoutTemplate</code> ou um parser de extent</td>
+</tr>
+</tbody>
+</table></div>
+<p>O primeiro fluxo está em <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgfile/ClientFactory.java#L71"><code>data/swgfile/ClientFactory.java:71</code></a> e <code>:114</code>; o segundo, em <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/SWGParser.java#L24"><code>data/swgiff/parsers/SWGParser.java:24</code></a>, <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/SWGParserCache.java#L42"><code>SWGParserCache.java:42</code></a> e <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/SWGParserFactory.java#L105"><code>SWGParserFactory.java:105</code></a>. <code>ClientData</code> fornece métodos vazios por padrão (<a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgfile/ClientData.java#L32"><code>data/swgfile/ClientData.java:32</code></a>), enquanto <code>SWGParser</code> exige <code>read</code> e <code>write</code> na interface (<a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/SWGParser.java#L11"><code>data/swgiff/parsers/SWGParser.java:11</code></a>). Isso não impede que uma implementação de <code>write</code> retorne <code>null</code>.</p>
+<p>Ambas as entradas por caminho textual procuram arquivos locais em <code>clientdata</code> por padrão. A API <code>SWGParser</code> permite mudar essa base com <code>setBasePath</code>; <code>ClientFactory.getFolder</code> devolve <code>clientdata/</code>. Entradas por <code>File</code> usam o arquivo informado diretamente. Os fluxos examinados abrem arquivos com <code>FileChannel</code>; não fazem extração de arquivos <code>.tre</code> nessa etapa. Fontes: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgfile/ClientFactory.java#L71"><code>data/swgfile/ClientFactory.java:71</code></a>, <code>:136</code>, <code>:213</code>; <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/SWGParserFactory.java#L36"><code>data/swgiff/parsers/SWGParserFactory.java:36</code></a>, <code>:82</code>, <code>:96</code>; <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/IffForm.java#L227"><code>data/swgiff/IffForm.java:227</code></a>.</p>
+<h2 id="estrutura-iff-e-ordem-dos-bytes">Estrutura IFF e ordem dos bytes</h2>
+<p>A estrutura interpretada é uma árvore de forms e chunks:</p>
+<pre><code class="language-text">FORM | tamanho BE de 32 bits | tag de quatro bytes | filhos...
+chunk: tag de quatro bytes | tamanho BE de 32 bits | payload...
+</code></pre>
+<p>O tamanho do <code>FORM</code> inclui o tag de tipo e seus filhos, excluindo os oito bytes iniciais. A validação externa compara o tamanho do arquivo com <code>formSize + 8</code>. O payload dos chunks é normalmente lido em <strong>little-endian</strong>, enquanto comprimentos da estrutura usam <strong>big-endian</strong>. Fontes: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/IffForm.java#L237"><code>data/swgiff/IffForm.java:237</code></a>, <code>:278</code>, <code>:316</code>; <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/IffChunk.java#L25"><code>data/swgiff/IffChunk.java:25</code></a>; <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgfile/IffNode.java#L272"><code>data/swgfile/IffNode.java:272</code></a>, <code>:290</code>, <code>:306</code>.</p>
+<p>Na API <code>swgiff</code>, um primeiro filho cujo tag é reconhecido como versão é incorporado ao form pai: a versão passa para <code>getVersion()</code> e seus filhos são promovidos. Na escrita, uma versão explícita é reconstruída como <code>FORM</code> com tag decimal de quatro posições. A API <code>swgfile</code> conserva os forms de versão como nós navegáveis. Fontes: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/IffForm.java#L250"><code>data/swgiff/IffForm.java:250</code></a>, <code>:283</code>; <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgfile/IffNode.java#L184"><code>data/swgfile/IffNode.java:184</code></a>, <code>:290</code>.</p>
+<p>Alguns detalhes relevantes ao comparar bytes ou portar um parser:</p>
+<ul>
+<li><code>IffChunk.readString()</code> lê até NUL e converte cada byte diretamente para <code>char</code>; <code>writeString()</code> codifica UTF-8. Texto fora de ASCII não tem uma conversão inversa garantida (<a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/IffChunk.java#L101"><code>data/swgiff/IffChunk.java:101</code></a>, <code>:195</code>).</li>
+<li>Strings Unicode têm comprimento de 32 bits e dados UTF-16LE (<a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/IffChunk.java#L93"><code>data/swgiff/IffChunk.java:93</code></a>, <code>:188</code>).</li>
+<li>Quaternions são lidos e escritos na ordem <code>w, x, y, z</code>, convertendo para o construtor <code>Quaternion(x,y,z,w)</code> (<a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/IffChunk.java#L117"><code>data/swgiff/IffChunk.java:117</code></a>, <code>:209</code>).</li>
+<li>Transforms são matrizes de floats <code>3 × 4</code>; a quarta coluna fornece a posição (<a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/IffChunk.java#L133"><code>data/swgiff/IffChunk.java:133</code></a>).</li>
+<li>Os métodos antigos <code>readUInt</code>, <code>readUShort</code> e <code>readULong</code> selecionam big-endian e devolvem tipos Java assinados. O prefixo <code>U</code> não os transforma em valores inteiros sem sinal (<a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgfile/IffNode.java#L121"><code>data/swgfile/IffNode.java:121</code></a>).</li>
+<li>A API antiga considera booleano verdadeiro apenas o byte <code>1</code>; a nova considera qualquer byte diferente de zero (<a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgfile/IffNode.java#L136"><code>data/swgfile/IffNode.java:136</code></a>; <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/IffChunk.java#L65"><code>data/swgiff/IffChunk.java:65</code></a>).</li>
+</ul>
+<p><code>close()</code> em <code>IffForm</code>/<code>IffChunk</code> marca o nó como lido. Métodos <code>readForm</code> e <code>readChunk</code> procuram nós ainda não marcados; portanto, os blocos <code>use</code> de Kotlin e <code>try</code> com recursos de Java têm também efeito no avanço lógico do parser. Não se trata de uma árvore imutável que possa ser relida indiscriminadamente. Fontes: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/IffForm.java#L34"><code>data/swgiff/IffForm.java:34</code></a>, <code>:89</code>, <code>:146</code>; <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/IffChunk.java#L33"><code>data/swgiff/IffChunk.java:33</code></a>.</p>
+<h2 id="formatos-registrados">Formatos registrados</h2>
+<p>O registro antigo está em <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgfile/ClientFactory.java#L160"><code>data/swgfile/ClientFactory.java:160</code></a>. O registro novo está em <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/SWGParserFactory.java#L38"><code>data/swgiff/parsers/SWGParserFactory.java:38</code></a>. A tabela resume <strong>encaminhamento disponível</strong>, sem afirmar cobertura completa de todas as versões.</p>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>Família</th>
+<th>Tags em <code>swgfile</code></th>
+<th>Tags em <code>swgiff</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dados gerais</td>
+<td><code>CSTB</code>, <code>DTII</code>, <code>PRFI</code>, <code>ARGD</code>, <code>0006</code>, <code>SLTD</code>, <code>WSNP</code>, <code>CIDM</code>, <code>FOOT</code></td>
+<td><code>CSTB</code>, <code>PFDT</code>, <code>PRFI</code>, <code>ARGD</code>, <code>SLTD</code>, <code>FOOT</code>, <code>IDTL</code></td>
+</tr>
+<tr>
+<td>Aparência e renderização</td>
+<td><code>APPR</code>, <code>APT</code>, <code>CSHD</code>, <code>DTLA</code>, <code>SKTM</code>, <code>MESH</code>, <code>MLOD</code>, <code>SLOD</code>, <code>SMAT</code>, <code>SKMG</code>, <code>SSHT</code></td>
+<td><code>APPR</code>, <code>APT</code>, <code>DTLA</code>, <code>MESH</code></td>
+</tr>
+<tr>
+<td>Portais</td>
+<td><code>PRTO</code></td>
+<td><code>PRTO</code>, <code>CELL</code>, <code>PRTL</code></td>
+</tr>
+<tr>
+<td>Volumes/extent</td>
+<td>Integrados aos visitantes correspondentes</td>
+<td><code>CMPT</code>, <code>CMSH</code>, <code>CPST</code>, <code>DTAL</code>, <code>EXBX</code>, <code>EXSP</code>, <code>NULL</code>, <code>XCYL</code>, <code>XOCL</code></td>
+</tr>
+<tr>
+<td>Terreno</td>
+<td>Sem registro <code>PTAT</code></td>
+<td><code>PTAT</code>, <code>LAYR</code>, <code>AHCN</code>, <code>AHFR</code>, <code>AHTR</code>, <code>AROA</code>, <code>BREC</code>, <code>BCIR</code>, <code>BPLN</code>, <code>BPOL</code>, <code>FBIT</code>, <code>FDIR</code>, <code>FFRA</code>, <code>FHGT</code>, <code>FSLP</code>, <code>FSHD</code></td>
+</tr>
+<tr>
+<td>Templates de objeto</td>
+<td>Diversos tags, como <code>SHOT</code>, <code>STOT</code>, <code>SCOT</code>, <code>SBOT</code>, <code>SSHP</code>, <code>SWOT</code>, dirigidos a <code>ObjectData</code></td>
+<td>Sem registro equivalente no factory</td>
+</tr>
+</tbody>
+</table></div>
+<p>O espaço final em <code>APT</code> faz parte do identificador de quatro bytes. Um tag desconhecido retorna <code>null</code> no factory correspondente (<a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgfile/ClientFactory.java#L152"><code>data/swgfile/ClientFactory.java:152</code></a>; <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/SWGParserFactory.java#L105"><code>data/swgiff/parsers/SWGParserFactory.java:105</code></a>). Classes auxiliares também podem ser invocadas diretamente por outros parsers sem estarem no registro geral.</p>
+<h3 id="dados-tabulares-templates-e-snapshots">Dados tabulares, templates e snapshots</h3>
+<p><code>DatatableData</code> interpreta <code>COLS</code>, <code>TYPE</code> e <code>ROWS</code>. As linhas são decodificadas conforme o tipo da coluna: booleano, float, inteiro/CRC/enum, string ou ausência de tipo. <code>DATATABLE_ENUM</code> é tratado como inteiro e ainda possui comentário de implementação pendente. Fontes: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgfile/visitors/DatatableData.java#L54"><code>data/swgfile/visitors/DatatableData.java:54</code></a>, <code>:145</code>, <code>:168</code>.</p>
+<p><code>ObjectData</code> interpreta forms <code>DERV</code> para carregar atributos de outro template por <code>ClientFactory</code>, mescla o mapa herdado e preserva seu tipo de baseline anteriormente determinado. Campos específicos são lidos de chunks <code>XXXX</code>. Sua lista <code>parsedFiles</code> evita reaplicar determinadas referências no mesmo objeto; isso não comprova proteção geral contra ciclos entre arquivos durante a carga recursiva. Fonte: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgfile/visitors/ObjectData.java#L189"><code>data/swgfile/visitors/ObjectData.java:189</code></a>, <code>:202</code>, <code>:209</code>.</p>
+<p><code>WorldSnapshotData</code> despacha o formato de snapshot versão 1. Cada nó versão 0 contém IDs de objeto e container, índice de template, índice de célula, quaternion, posição, raio e CRC do portal layout. Fonte: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgfile/visitors/WorldSnapshotData.java#L45"><code>data/swgfile/visitors/WorldSnapshotData.java:45</code></a>, <code>:101</code>, <code>:117</code>.</p>
+<p>O leitor <code>.stf</code> é separado do IFF: verifica magic <code>0xABCD</code> e um byte de versão; na versão 1 lê valores Unicode por ID e depois associa chaves ASCII a <code>StringId</code>. A versão 0 contém apenas <code>assert(false)</code>, e versões desconhecidas lançam erro. Fontes: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgfile/ClientStringParser.kt#L38"><code>data/swgfile/ClientStringParser.kt:38</code></a>, <code>:42</code>, <code>:62</code>; ordem little-endian dos inteiros em <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/NetBuffer.kt#L227"><code>network/NetBuffer.kt:227</code></a>.</p>
+<h2 id="cache-identidade-e-erros">Cache, identidade e erros</h2>
+<p><code>ClientFactory</code> mantém um <code>ConcurrentHashMap&lt;String, ClientData&gt;</code> estático. A sobrecarga textual usa a string internada como chave, guarda resultados não nulos e oferece <code>freeMemory()</code>. A sobrecarga <code>File</code> ignora esse cache. Como o carregamento ocorre antes de <code>putIfAbsent</code>, chamadas simultâneas podem analisar o mesmo arquivo mais de uma vez e devolver instâncias distintas durante a primeira carga. Fonte: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgfile/ClientFactory.java#L46"><code>data/swgfile/ClientFactory.java:46</code></a>, <code>:98</code>, <code>:114</code>, <code>:136</code>.</p>
+<p><code>SWGParserCache</code> usa <code>ConcurrentHashMap&lt;File, SWGParser&gt;.computeIfAbsent</code>. O código não normaliza caminhos nem consulta data de modificação, não define limite de tamanho e não expõe método de limpeza. Um <code>File</code> equivalente por caminho absoluto e relativo pode gerar entradas distintas. <code>parse(IffForm)</code> passa diretamente pelo factory e não usa o cache de arquivos. Fontes: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/SWGParserCache.java#L37"><code>data/swgiff/parsers/SWGParserCache.java:37</code></a>; <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/SWGParserFactory.java#L100"><code>data/swgiff/parsers/SWGParserFactory.java:100</code></a>.</p>
+<p>Os objetos devolvidos são compartilhados com futuros consumidores do cache, e várias classes expõem estado mutável. Alterar um parser carregado pode afetar chamadas posteriores. Trocar o diretório base não reprocessa automaticamente entradas já armazenadas sob a mesma chave <code>File</code>. Isso deriva da combinação do setter de base e do cache, sem invalidação associada (<a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/SWGParserFactory.java#L82"><code>data/swgiff/parsers/SWGParserFactory.java:82</code></a>; <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/SWGParserCache.java#L39"><code>data/swgiff/parsers/SWGParserCache.java:39</code></a>).</p>
+<p>Não há um resultado de erro unificado: <code>ClientFactory</code> retorna <code>null</code> para arquivo inexistente ou <code>IOException</code>; <code>SWGParserCache</code> imprime <code>IOException</code> e retorna <code>null</code>. Erros de estrutura, buffers insuficientes e outras exceções de execução não são capturados por esses blocos. Várias validações de tags/versões usam <code>assert</code>, cujo efeito depende da configuração da JVM. Fontes: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgfile/ClientFactory.java#L75"><code>data/swgfile/ClientFactory.java:75</code></a>; <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/SWGParserCache.java#L46"><code>data/swgiff/parsers/SWGParserCache.java:46</code></a>; <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/IffForm.java#L231"><code>data/swgiff/IffForm.java:231</code></a>, <code>:241</code>.</p>
+<h2 id="motor-de-terreno">Motor de terreno</h2>
+<p><code>TerrainTemplate</code> representa um terreno <code>PTAT</code>. Seu <code>DATA</code> inclui nome, largura do mapa e dos chunks, tiles por chunk, água global, ciclo de ambiente e parâmetros de distribuição de elementos colidíveis e radiais. Há tratamento específico para campos adicionais da versão 13 e para <code>legacyMap</code> nas versões a partir de 15. O comentário de suporte a todas as versões deve ser entendido como intenção do leitor; o código não valida todas as variantes possíveis. Fonte: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/terrain/TerrainTemplate.kt#L78"><code>data/swgiff/parsers/terrain/TerrainTemplate.kt:78</code></a>.</p>
+<p>Dentro de <code>TGEN</code>, o leitor consome sucessivamente dois forms <code>MGRP</code>, primeiro para fractais e depois para bitmaps, e carrega <code>LYRS/LAYR</code>. Cada layer contém cabeçalho de habilitação/nome, limites geométricos, filtros, modificadores de altura e sublayers. Layers desabilitados são descartados; sublayers sem modificadores de altura ou água também são descartados. Fontes: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/terrain/TerrainTemplate.kt#L131"><code>data/swgiff/parsers/terrain/TerrainTemplate.kt:131</code></a>; <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/terrain/TerrainLayer.kt#L16"><code>TerrainLayer.kt:16</code></a>; <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/terrain/TerrainListLayer.kt#L43"><code>TerrainListLayer.kt:43</code></a>, <code>:110</code>.</p>
+<p>O cálculo de altitude segue estas etapas (<a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/terrain/TerrainTemplate.kt#L228"><code>data/swgiff/parsers/terrain/TerrainTemplate.kt:228</code></a>, <code>:289</code>, <code>:325</code>):</p>
+<ol>
+<li>Localiza o tile, com tamanho <code>chunkWidth / (2 * numberOfTilesPerChunk)</code>.</li>
+<li>Seleciona um dos triângulos do tile pela paridade das coordenadas e pela posição local.</li>
+<li>Calcula a altura de cada um dos três vértices percorrendo a árvore de layers.</li>
+<li>Combina limites por máximo, filtros por mínimo e aplica inversões e feathering. O peso de uma sublayer é multiplicado pelo peso herdado.</li>
+<li>Aplica modificadores de altura sequencialmente, mantendo a altura produzida pelo anterior.</li>
+<li>Obtém o plano do triângulo por produto vetorial e interpola a altura no ponto consultado.</li>
+</ol>
+<p>O retorno <code>TerrainInformation</code> contém altura e componentes da normal calculada por produto vetorial. O código não normaliza esse vetor. O comentário <code>can be cached</code> não implementa um cache de alturas (<a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/terrain/TerrainTemplate.kt#L228"><code>TerrainTemplate.kt:228</code></a>, <code>:274</code>, <code>:321</code>).</p>
+<p><code>getTerrainHeight(x,z)</code> retorna o solo. <code>getWaterHeight(x,z)</code> toma o maior nível entre a água global habilitada e água local em limites poligonais/retangulares que contenham o ponto; sem água, retorna <code>NaN</code>. <code>getHeight(x,z)</code> substitui o solo por água quando ela está acima, retornando normal <code>(0,1,0)</code>. <code>isWater</code> inclui igualdade entre solo e água. A busca de água percorre os limites diretamente, sem repetir a avaliação de filtros e pesos usada no relevo. Fonte: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/terrain/TerrainTemplate.kt#L203"><code>TerrainTemplate.kt:203</code></a>, <code>:212</code>, <code>:220</code>, <code>:306</code>.</p>
+<p>Bitmaps são carregados relativamente à base de <code>SWGParser</code>. <code>BitmapFamily</code> converte uma falha de I/O em <code>bitmap = null</code>; <code>FilterBitmap</code> registra a falta e retorna peso <code>1</code>, comportamento que pode alterar o terreno sem interromper a carga. O filtro usa interpolação de quatro amostras e bytes convertidos para <code>0..255</code>. Fontes: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/terrain/bitmap/BitmapFamily.kt#L13"><code>data/swgiff/parsers/terrain/bitmap/BitmapFamily.kt:13</code></a>; <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/terrain/filters/FilterBitmap.kt#L19"><code>filters/FilterBitmap.kt:19</code></a>.</p>
+<h2 id="limitacoes-concretas-e-cuidados-ao-escrever">Limitações concretas e cuidados ao escrever</h2>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>Implementação</th>
+<th>Comportamento observado nas fontes</th>
+<th>Consequência</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/terrain/filters/FilterDirection.kt#L14"><code>filters/FilterDirection.kt:14</code></a></td>
+<td><code>process</code> chama <code>TODO("unimplemented")</code></td>
+<td>Consultar relevo que avalie esse filtro pode lançar <code>NotImplementedError</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/terrain/filters/FilterShader.kt#L13"><code>filters/FilterShader.kt:13</code></a>, <code>:27</code></td>
+<td><code>process</code> retorna sempre <code>0</code>; <code>write</code> produz tag <code>FSLP</code></td>
+<td>O filtro não avalia shader; a escrita muda o identificador do formato</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/appearance/AppearanceTemplate.java#L71"><code>appearance/AppearanceTemplate.java:71</code></a>, <code>appearance/MeshAppearanceTemplate.java:40</code>, <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/appearance/DetailAppearanceTemplate.java#L92"><code>appearance/DetailAppearanceTemplate.java:92</code></a></td>
+<td><code>write</code> retorna <code>null</code></td>
+<td>A interface comum não garante exportação desses modelos</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/appearance/PortalLayoutTemplate.java#L100"><code>appearance/PortalLayoutTemplate.java:100</code></a>, <code>:131</code>, <code>:141</code></td>
+<td><code>write</code> retorna <code>null</code>; path graph tem TODOs</td>
+<td>Layout de portais não implica reconstrução completa de navegação</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/footprint/FootprintDataParser.java#L94"><code>footprint/FootprintDataParser.java:94</code></a></td>
+<td><code>write</code> retorna <code>null</code></td>
+<td>A leitura de footprint não oferece gravação correspondente</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/terrain/bitmap/TargaBitmap.kt#L50"><code>bitmap/TargaBitmap.kt:50</code></a></td>
+<td>Aceita por assert tipo TGA 2 ou 10, mas o laço lê pixels diretamente</td>
+<td>Não há decodificação de pacotes RLE visível para tipo 10; não presumir suporte integral a TGA comprimido</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/terrain/bitmap/TargaBitmap.kt#L42"><code>bitmap/TargaBitmap.kt:42</code></a>, <code>:55</code>, <code>:65</code>, <code>:72</code></td>
+<td>Dimensiona pelo maior lado ao quadrado; leitura e acesso variam com profundidade de cor</td>
+<td>Variantes retangulares e coloridas precisam de validação com fixtures antes de serem consideradas compatíveis</td>
+</tr>
+</tbody>
+</table></div>
+<p>Os caminhos da tabela partem de <code>data/swgiff/parsers/terrain/</code> para filtros/bitmap e de <code>data/swgiff/parsers/</code> para appearance/footprint.</p>
+<p>Há também assimetrias que merecem testes de ida e volta: <code>IffChunk.readVectorArgb</code> lê componentes na ordem <code>b,a,r,g</code>, enquanto <code>writeVectorArgb</code> grava <code>a,r,g,b</code> (<a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/IffChunk.java#L125"><code>data/swgiff/IffChunk.java:125</code></a>, <code>:217</code>). <code>IffForm.write</code> usa a <strong>posição atual</strong> do buffer como tamanho do chunk, não seu limite: gravar uma árvore recém-lida, cujos buffers ainda estão na posição zero, pode emitir chunks vazios (<a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/IffForm.java#L289"><code>data/swgiff/IffForm.java:289</code></a>, <code>:303</code>).</p>
+<p>O terreno é regravado como versão 14 ou 15, e layers como versão 3. Como layers desabilitados e forms desconhecidos são descartados na leitura, uma exportação não preserva necessariamente o arquivo original nem seu conteúdo de editor. Fontes: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/terrain/TerrainTemplate.kt#L181"><code>data/swgiff/parsers/terrain/TerrainTemplate.kt:181</code></a>; <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/swgiff/parsers/terrain/TerrainListLayer.kt#L64"><code>TerrainListLayer.kt:64</code></a>, <code>:89</code>, <code>:110</code>.</p>
+<h2 id="o-que-os-testes-existentes-cobrem">O que os testes existentes cobrem</h2>
+<p><code>pswgcommon/src/test/java/com/projectswg/common/data/swgiff/parsers/terrain/TestTerrainEngine.kt</code> contém coordenadas de referência para altura em Endor, detecção de água em Corellia, interpolação em Tatooine e casos parametrizados de vários planetas. As tolerâncias incluem <code>0.01</code>, <code>0.02</code> e <code>0.2</code> conforme o caso (<code>:30</code>, <code>:55</code>, <code>:128</code>, <code>:228</code>).</p>
+<p>Esses testes procuram <code>terrain/&lt;nome&gt;</code> via <code>SWGParser.parse</code>; várias verificações encerram a função com <code>?: return</code> quando o terreno não é carregado (<code>:17</code>, <code>:32</code>, <code>:85</code>, <code>:229</code>). Assim, uma suíte aprovada sem os arquivos de cliente pode não ter exercitado essas asserções. Este guia apenas identificou essa cobertura nas fontes; não executou os testes.</p>
+<p>Para evoluir a documentação e os parsers, as verificações mais úteis são fixtures mínimas para endian e versões, ida e volta de chunks ainda não consumidos, filtros de direção/shader, TGA RLE e coordenadas com água local. Essas são propostas de validação, não resultados já demonstrados.</p></article>
+</main><footer><a href="pswgcommon-overview.html">PSWGCommon</a> · <a href="../index.html">SWG Docs</a></footer>
+<script src="../assets/js/app.js"></script></body></html>

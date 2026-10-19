@@ -2,6 +2,14 @@
 
 Este documento estabelece o procedimento operacional padrão (SOP) para engenharia reversa de pacotes de rede do Star Wars Galaxies (SWG) e a **tarefa automatizada de atualização contínua** da página de Histórico (`history/index.html`).
 
+## Referência de implementação PSWGCommon
+
+A análise da biblioteca possui um [índice próprio](content/guides/pswgcommon-overview.md), com Markdown em `content/guides/pswgcommon-*.md`, HTML em `guides/pswgcommon-*.html`, inventário em `data/pswgcommon-inventory.json` e evidências em `data/pswgcommon-evidence/`.
+
+Os scripts desta extensão ficam dentro de `swgdocs/scripts/`: `inventory_pswgcommon.py` lê o clone irmão; `build_pswgcommon_docs.py` renderiza os guias e integra busca/navegação; `validate_pswgcommon_docs.py` verifica os artefatos e links. O renderer requer `scripts/requirements-pswgcommon.txt`; as páginas prontas continuam estáticas. Após executar um gerador legado que sobrescreva índice ou busca, execute novamente `build_pswgcommon_docs.py` e o validador. As fontes Markdown PSWGCommon e seu catálogo são a entrada dessa etapa.
+
+Correspondência nominal de mensagens, existência de um encoder ou coincidência da tabela CRC não autorizam promover um pacote a `100% Verified`. Mantenha o histórico de pacotes para desserializações efetivamente demonstradas no alvo pertinente. Limitações de provedor e afirmações por leitura de fontes devem permanecer separadas de evidência binária e de tráfego observado. A fase inicial da análise da biblioteca não gerou entradas artificiais no histórico. A continuação pelo Binary Ninja registrou três layouts demonstrados no lote 3, com o limite semântico de SceneCreateObjectByCrc preservado. O backlog de protocolos continua sem mudanças de completude nesta etapa.
+
 ---
 
 ## 📌 1. Visão Geral da Arquitetura

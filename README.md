@@ -16,6 +16,7 @@ This repository is ready to be hosted directly on **GitHub Pages** with zero con
 | [**Baselines**](baselines/) | **77** | Full object serialization definitions (`CREO`, `PLAY`, `TANO`, `SHIP`, etc.) |
 | [**Deltas**](deltas/) | **76** | Differential update packets modifying object baselines and counters |
 | [**Guides**](guides/) | **22** | Technical guides on SOE transport, CRC, compression, encryption, and reversing |
+| [**PSWGCommon**](guides/pswgcommon-overview.html) | **7 guides** | Architecture, codecs, models, assets, source catalog, and Binary Ninja message comparisons |
 | [**TRE Sub-Files**](tre-subfiles/) | **9** | Client asset file specifications (`TRE`, `STF`, `QST`, `TRN`, `TOC`) |
 | [**Reversal History**](history/) | **28** | Chronological ledger of all decoded/reversed packets with unpack VAs and schemas |
 | [**Pending Backlog (0%)**](pending/) | **895** | Master catalog of all unmapped packets, commands, and controllers at 0% completion |
@@ -51,6 +52,21 @@ python scripts/generate_pending_page.py
 ---
 
 ## 💻 Running Locally
+
+### PSWGCommon implementation reference
+
+Start with [the architecture guide](content/guides/pswgcommon-overview.md). The analysis covers the local Java/Kotlin library at revision `9ab4234`, with a deterministic inventory of 433 source/resource files and separate guides for networking, shared data, and client assets. The [binary evidence guide](content/guides/pswgcommon-binary.md) records the CRC table comparison and the REA provider limitation on this x86 target. Source-derived findings do not change packet verification percentages.
+
+The HTML is committed and needs no build to view. To regenerate these guides from Markdown, run from the `swgdocs` directory:
+
+```powershell
+python -m pip install -r scripts/requirements-pswgcommon.txt
+python scripts/inventory_pswgcommon.py --source ../pswgcommon
+python scripts/build_pswgcommon_docs.py
+python scripts/validate_pswgcommon_docs.py
+```
+
+The source clone is required only to regenerate the inventory. To repeat the static CRC comparison, with the preserved original executable available, run `python scripts/verify_pswgcommon_evidence.py`. For the three message layouts, run `python scripts/verify_pswgcommon_messages.py`; their cross-reference notes are maintained by `python scripts/apply_pswgcommon_message_crosscheck.py`. The library and its JVM tests were not executed for this documentation update.
 
 No build tools, Node.js, or complex dependencies are needed! You can simply open `index.html` in your browser, or run a lightweight local HTTP server:
 

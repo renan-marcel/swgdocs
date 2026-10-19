@@ -1,0 +1,19 @@
+{
+  "id": "BN-PSWG-UNICODE-UNPACK",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0x11948b0",
+    "limit": 180
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0x11948b0\"\narch: \"x86\"\nname: \"sub_11948b0\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 180\ncount: 75\ntotal: 75\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  int32_t __convention(\"regparm\") sub_11948b0(int32_t arg1, int32_t arg2, int32_t arg3, int32_t* arg4 @ 0x8)\n\n{\n    int32_t var_4 = arg3;\n    int32_t arg_4;\n    int32_t* ebp = arg_4;\n    var_4 = 0;\n    sub_439910(ebp, &var_4, 4);\n    void* eax = ebp[1];\n    int32_t edx_1;\n\n    if (!eax)\n        edx_1 = 0;\n    else\n        edx_1 = **(eax + 0x10) + *ebp;\n\n    int32_t edi = *arg4;\n    int32_t esi = edx_1 + (var_4 << 1);\n    int32_t eax_4 = (esi - edx_1) >> 1;\n    int32_t ecx_4 = (arg4[1] - edi) >> 1;\n    arg_4 = esi;\n\n    if (eax_4 > ecx_4)\n    {\n        if (ecx_4)\n        {\n            int32_t ecx_14 = ecx_4 * 2;\n            int32_t esi_9;\n            int32_t edi_3;\n            edi_3 = __builtin_memcpy(edi, edx_1, ecx_14 & 0xfffffffc);\n            __builtin_memcpy(edi_3, esi_9, ecx_14 & 3);\n            esi = arg_4;\n        }\n\n        int32_t edi_4 = *arg4;\n        arg_4 = arg_4;\n        int32_t* var_18_2 = &arg_4;\n        sub_9b6880(arg4, edx_1 + ((arg4[1] - edi_4) >> 1 << 1), esi);\n        int32_t eax_15 = *ebp + var_4 * 2;\n        *ebp = eax_15;\n        return eax_15;\n    }\n\n    if (eax_4)\n    {\n        int32_t ecx_5 = eax_4 * 2;\n        int32_t esi_2;\n        int32_t edi_1;\n        edi_1 = __builtin_memcpy(edi, edx_1, ecx_5 & 0xfffffffc);\n        __builtin_memcpy(edi_1, esi_2, ecx_5 & 3);\n    }\n\n    char* esi_3 = arg4[1];\n    char* edi_2 = *arg4 + (eax_4 << 1);\n\n    if (edi_2 == esi_3)\n    {\n        int32_t eax_16 = var_4 * 2;\n        *ebp += eax_16;\n        return eax_16;\n    }\n\n    int32_t eax_7 = 0 >> 1;\n\n    if (eax_7 != 0xffffffff)\n        sub_131d240(edi_2, esi_3, (eax_7 + 1) * 2);\n\n    int32_t eax_9 = var_4;\n    arg4[1] += -(((esi_3 - edi_2) >> 1)) << 1;\n    int32_t eax_11 = *ebp + eax_9 * 2;\n    *ebp = eax_11;\n    return eax_11;\n}\n````\n"
+      }
+    ],
+    "isError": false
+  },
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "classification": "static analysis; decompiler types and generated names may be approximate"
+}

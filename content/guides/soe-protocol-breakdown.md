@@ -1618,3 +1618,13 @@ Transclusion expansion time report (%,ms,calls,template)
   3.32%    2.340      1 - Template:PageHeader
 
 Saved in parser cache with key swganh_wiki:pcache:idhash:1826-0!*!0!!*!*!* and timestamp 20261017052150 and revision id 257057
+
+<!-- pswgcommon:start -->
+
+## Referência de implementação PSWGCommon
+
+[NetworkProtocol usa um envelope de comprimento próprio. Veja o contrato implementado pela biblioteca e seus limites.](../guides/pswgcommon-network.md)
+
+Análise de fontes; não altera o status de verificação desta página.
+
+<!-- pswgcommon:end -->

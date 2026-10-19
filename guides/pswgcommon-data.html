@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSWGCommon: dados, serialização e persistência | SWG Docs</title>
+<meta name="description" content="Modelos, CRC, customização, OOB, SUI e persistência Mongo.">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>.pswg-content{max-width:1200px;margin:2rem auto;padding:0 1.5rem;overflow-wrap:anywhere}
+.pswg-content h1,.pswg-content h2,.pswg-content h3{margin:1.5rem 0 1rem}
+.pswg-content p,.pswg-content ul,.pswg-content ol{margin:1rem 0;line-height:1.75}
+.pswg-content pre{overflow-x:auto;padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:.5rem;line-height:1.6}
+.pswg-content ul,.pswg-content ol{padding-left:1.5rem}.pswg-content .table-wrap{max-width:100%;overflow-x:auto}
+.pswg-content details{margin:1rem 0}.pswg-content summary{cursor:pointer;font-weight:600}</style></head>
+<body data-root="../"><header class="navbar">
+<div class="brand">
+<a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+<span style="font-size:1.4rem;">🪐</span>
+<span>SWG Docs</span>
+</a>
+<span class="tag">Protocol Wiki</span>
+</div>
+<ul class="nav-links">
+<li><a class="" href="../protocols/index.html">Protocols</a></li>
+<li><a class="" href="../commands/index.html">Commands</a></li>
+<li><a class="" href="../controllers/index.html">Controllers</a></li>
+<li><a class="" href="../baselines/index.html">Baselines</a></li>
+<li><a class="" href="../deltas/index.html">Deltas</a></li>
+<li><a class="active" href="../guides/index.html">Guides</a></li>
+<li><a class="" href="../tre-subfiles/index.html">TRE</a></li>
+</ul>
+<div class="nav-actions">
+<div class="search-bar-wrap">
+<span class="search-icon">🔍</span>
+<input autocomplete="off" id="global-search-input" placeholder="Search opcode, packet..." type="text"/>
+<div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+</div>
+<button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+</div>
+</header>
+<main class="pswg-content">
+<nav aria-label="Breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Guides</a> / PSWGCommon</nav>
+<details><summary>Guias PSWGCommon</summary><ul><li><a href="pswgcommon-overview.html">PSWGCommon: arquitetura e guia de leitura</a></li><li><a href="pswgcommon-network.html">PSWGCommon: codecs, pacotes e replicação</a></li><li><a href="pswgcommon-data.html">PSWGCommon: dados, serialização e persistência</a></li><li><a href="pswgcommon-assets.html">PSWGCommon: arquivos do cliente e terreno</a></li><li><a href="pswgcommon-binary.html">PSWGCommon: evidências REA e Binary Ninja</a></li><li><a href="pswgcommon-client-messages.html">PSWGCommon: três mensagens comparadas com o cliente</a></li><li><a href="pswgcommon-catalog.html">PSWGCommon: catálogo lexical das fontes</a></li></ul></details>
+<p><a href="../content/guides/pswgcommon-data.md">Ler Markdown</a> · Revisão 9ab4234 · Evidência estática</p>
+<article class="guide-body"><h1 id="pswgcommon-dados-serializacao-e-persistencia">PSWGCommon: dados, serialização e persistência</h1>
+<p>Esta página descreve o código Java/Kotlin presente em <code>pswgcommon</code>, por inspeção estática. Os layouts abaixo representam o comportamento da implementação local; não constituem confirmação de compatibilidade com todas as versões do cliente SWG. Não foram executados a biblioteca nem seus testes para esta análise.</p>
+<p>Os caminhos de evidência são relativos à raiz <code>pswgcommon/src/main/java/com/projectswg/common/</code>. As linhas indicadas correspondem à revisão local analisada em 19/10/2026. Leitores IFF e arquivos do jogo têm escopo separado.</p>
+<h2 id="dois-contratos-para-o-mesmo-objeto">Dois contratos para o mesmo objeto</h2>
+<p><code>Encodable</code> representa bytes de protocolo, enquanto <code>MongoPersistable</code> representa campos de documento. Um objeto pode implementar ambos, mas os formatos não precisam conter os mesmos dados. <code>Location</code>, por exemplo, envia apenas orientação e posição; seu documento também pode conter terreno. <code>Mail</code> envia corpo, assunto e anexos OOB; seu documento armazena também remetente, destinatário, identificação, estado e data.</p>
+<p><code>NetBuffer</code> fornece as primitivas usadas nos layouts: inteiros e floats comuns são little-endian; os métodos <code>addNet*</code> usam big-endian; boolean ocupa um byte; o método chamado ASCII usa UTF-8 com prefixo de tamanho em bytes de 16 bits; Unicode tem contagem de unidades UTF-16 de 32 bits e corpo UTF-16LE; listas comuns começam com contagem de 32 bits. <code>addEncodable</code> acrescenta o objeto, sem um envelope universal de tipo ou tamanho. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/NetBuffer.kt#L38"><code>network/NetBuffer.kt:38–39,99–204</code></a>.</p>
+<p>Vários objetos calculam <code>length</code> somando <code>String.length</code> aos campos chamados ASCII. Para caracteres multibyte em UTF-8, esse cálculo pode reservar menos bytes que o encoder precisa. Os layouts abaixo usam a nomenclatura do código, mas não implicam suporte irrestrito a nomes não ASCII.</p>
+<p>Na tabela, <code>ascii</code> e <code>unicode</code> incluem seus prefixos, <code>list&lt;T&gt;</code> inclui a contagem, <code>i32/i64</code> indicam largura de armazenamento e <code>f32</code> é float de 32 bits. A assinatura Java/Kotlin pode usar tipos com sinal mesmo quando um campo de protocolo funciona como identificador ou máscara.</p>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>Objeto</th>
+<th>Ordem escrita no protocolo</th>
+<th>Evidência</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CRC</code></td>
+<td><code>i32 crc</code></td>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/CRC.java#L104"><code>data/CRC.java:104–120</code></a></td>
+</tr>
+<tr>
+<td><code>Point3D</code></td>
+<td><code>f32 x, y, z</code> (12 bytes)</td>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/location/Point3D.java#L171"><code>data/location/Point3D.java:171–190</code></a></td>
+</tr>
+<tr>
+<td><code>Quaternion</code></td>
+<td><code>f32 x, y, z, w</code> (16 bytes)</td>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/location/Quaternion.java#L208"><code>data/location/Quaternion.java:208–230</code></a></td>
+</tr>
+<tr>
+<td><code>Location</code></td>
+<td><code>Quaternion</code>, <code>Point3D</code> (28 bytes), sem terreno</td>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/location/Location.java#L204"><code>data/location/Location.java:204–224</code></a></td>
+</tr>
+<tr>
+<td><code>ChatAvatar</code></td>
+<td><code>ascii "SWG"</code>, <code>ascii galaxy</code>, <code>ascii name</code></td>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/chat/ChatAvatar.kt#L44"><code>data/encodables/chat/ChatAvatar.kt:44–60</code></a></td>
+</tr>
+<tr>
+<td><code>ChatRoom</code></td>
+<td><code>i32 id</code>, <code>i32 type</code>, boolean moderated, ASCII path, owner, creator, Unicode title, lista de moderators, lista de invited</td>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/chat/ChatRoom.kt#L173"><code>data/encodables/chat/ChatRoom.kt:173–204</code></a></td>
+</tr>
+<tr>
+<td><code>StringId</code></td>
+<td><code>ascii file</code>, <code>i32 0</code>, <code>ascii key</code></td>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/oob/StringId.kt#L57"><code>data/encodables/oob/StringId.kt:57–73</code></a></td>
+</tr>
+<tr>
+<td><code>ProsePackage</code></td>
+<td>base <code>StringId</code>, actor, target, other, <code>i32 di</code>, <code>f32 df</code>, boolean grammarFlag</td>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/oob/ProsePackage.kt#L192"><code>data/encodables/oob/ProsePackage.kt:192–217</code></a></td>
+</tr>
+<tr>
+<td><code>ProsePackage.Prose</code></td>
+<td><code>i64 objectId</code>, <code>StringId</code>, Unicode text</td>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/oob/ProsePackage.kt#L283"><code>data/encodables/oob/ProsePackage.kt:283–299</code></a></td>
+</tr>
+<tr>
+<td><code>WaypointPackage</code></td>
+<td><code>i32 0</code>, Point3D, <code>i64 cellId</code>, <code>i32 terrain.crc</code>, Unicode name, <code>i64 objectId</code>, byte color, boolean active</td>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/oob/waypoint/WaypointPackage.kt#L61"><code>data/encodables/oob/waypoint/WaypointPackage.kt:61–87</code></a></td>
+</tr>
+<tr>
+<td><code>Mail</code></td>
+<td>Unicode message, Unicode subject, <code>OutOfBandPackage</code></td>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/player/Mail.kt#L50"><code>data/encodables/player/Mail.kt:50–66</code></a></td>
+</tr>
+<tr>
+<td><code>SkillMod</code></td>
+<td><code>i32 base</code>, <code>i32 modifier</code> (total lógico = base + modifier)</td>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/tangible/SkillMod.kt#L34"><code>data/encodables/tangible/SkillMod.kt:34–64</code></a></td>
+</tr>
+<tr>
+<td><code>MapLocation</code></td>
+<td><code>i64 id</code>, Unicode name, <code>f32 x</code>, <code>f32 y</code>, byte category, byte subcategory, boolean active</td>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/map/MapLocation.kt#L124"><code>data/encodables/map/MapLocation.kt:124–148</code></a></td>
+</tr>
+<tr>
+<td><code>GcwGroup</code> / <code>GcwRegion</code></td>
+<td>ASCII planetName, lista de zones</td>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/gcw/GcwGroup.kt#L32"><code>data/encodables/gcw/GcwGroup.kt:32–52</code></a>, <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/gcw/GcwRegion.kt#L32"><code>GcwRegion.kt:32–52</code></a></td>
+</tr>
+<tr>
+<td><code>GcwGroupZone</code></td>
+<td>ASCII name, <code>i32 weight</code></td>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/gcw/GcwGroupZone.kt#L32"><code>data/encodables/gcw/GcwGroupZone.kt:32–48</code></a></td>
+</tr>
+<tr>
+<td><code>GcwRegionZone</code></td>
+<td>ASCII name, <code>f32 x, z, radius</code></td>
+<td><a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/gcw/GcwRegionZone.kt#L32"><code>data/encodables/gcw/GcwRegionZone.kt:32–52</code></a></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="crc-e-resolucao-de-nomes">CRC e resolução de nomes</h2>
+<p><code>CRC.getCrc(String)</code> converte diretamente para UTF-8: não transforma caixa, barras ou nomes de arquivo. O algoritmo começa em <code>0xFFFFFFFF</code>, percorre os bytes pela tabela cujo polinômio é <code>0x04C11DB7</code>, desloca à esquerda e complementa o resultado. Isso é a rotina de identificação de nomes desta classe; não se deve substituir automaticamente pelo CRC de transporte SOE. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/CRC.java#L39"><code>data/CRC.java:39–72,152–161</code></a>.</p>
+<p>O objeto pode nascer de texto ou do inteiro CRC. A recuperação de texto consulta um singleton carregado do recurso <code>data/crc_database.csv</code>; um CRC ausente retorna <code>null</code>. O banco é um dicionário conhecido, não uma inversão matemática do hash. <code>addCrc</code> substitui qualquer entrada com o mesmo valor; igualdade e hash de <code>CRC</code> usam exclusivamente o inteiro. O documento persiste somente <code>crc</code>, e a leitura tenta resolver o nome novamente. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/CrcDatabase.java#L44"><code>data/CrcDatabase.java:44–86</code></a> e <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/CRC.java#L77"><code>data/CRC.java:77–100,123–149</code></a>.</p>
+<p><code>Terrain</code> é uma enumeração de caminhos <code>terrain/*.trn</code>, mas calcula o CRC do nome sem prefixo e extensão. Uma consulta desconhecida por CRC retorna <code>null</code>, apesar de um comentário mencionar Tatooine como padrão. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/location/Terrain.java#L106"><code>data/location/Terrain.java:106–121,154–170</code></a>.</p>
+<h2 id="posicao-orientacao-e-terreno">Posição, orientação e terreno</h2>
+<p>Os objetos geométricos mantêm coordenadas em <code>double</code>, mas enviam <code>float</code>, reduzindo a precisão no wire. <code>Point3D</code> oferece distâncias completas e planas; o plano horizontal usa X/Z. <code>Location</code> reúne ponto, quaternion e terreno e oferece um builder para posição, heading e transformações relativas. Seu documento guarda ponto e orientação como subdocumentos com doubles. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/location/Point3D.java#L94"><code>data/location/Point3D.java:94–168,171–205</code></a>, <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/location/Location.java#L98"><code>Location.java:98–152,227–239,375–478</code></a>.</p>
+<p>Os contratos de proximidade não são intercambiáveis: <code>isWithinDistance(Location, radius)</code> verifica terreno, enquanto <code>isWithinFlatDistance(Location, radius)</code> encaminha somente o ponto. <code>getHeadingTo(Location)</code> e <code>getHeadingTo(Point3D)</code> também usam fórmulas com sentidos diferentes. <code>LocationBuilder.build()</code> passa suas referências de ponto e orientação ao novo objeto; continuar alterando o mesmo builder pode alterar uma Location já construída. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/location/Location.java#L111"><code>Location.java:111–152,69–73,476–478</code></a>. Ao integrar movimento, escolha explicitamente o método e evite reutilizar o builder como se produzisse cópias independentes.</p>
+<h2 id="aparencia-e-customizationstring">Aparência e CustomizationString</h2>
+<p><code>CustomizationString</code> mantém nomes de variáveis em um <code>LinkedHashMap</code> sincronizado, preservando ordem de inserção. Os IDs vêm do recurso <code>data/customization/customization_variables.sdb</code>. No Mongo, os nomes e valores são salvos no campo <code>variables</code>, por <code>putMap</code>; esse formato não é a string compactada de rede. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/customization/CustomizationString.kt#L45"><code>data/customization/CustomizationString.kt:45–65,263–284</code></a>.</p>
+<p>Na rede, <code>encode()</code> escreve um array com comprimento de 16 bits. Seu conteúdo é versão <code>2</code>, quantidade de variáveis, pares ID/valor e terminador lógico <code>FF 03</code>. Cada byte lógico é transformado em um caractere UTF-8 de um ou dois bytes; antes disso, <code>00</code> vira <code>FF 01</code> e <code>FF</code> vira <code>FF 02</code>. Portanto, o terminador físico UTF-8 é <code>C3 BF 03</code>. Valores entre 0 e 255 usam um byte lógico. Demais valores marcam o bit <code>0x80</code> do ID e enviam os dois bytes inferiores em ordem little-endian. Uma personalização vazia retorna apenas dois bytes zero. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/customization/CustomizationString.kt#L94"><code>CustomizationString.kt:94–154,179–254</code></a>.</p>
+<p>O chamador precisa retirar o prefixo de array antes de chamar <code>decode</code>: esse método lê <code>data.array</code> desde o início como conteúdo da personalização, não consome um comprimento externo. O teste <code>src/test/java/com/projectswg/common/data/customization/TestCustomizationString.kt</code> documenta esse padrão e casos de round-trip; sua existência não comprova execução nesta análise.</p>
+<p>Há limites concretos a considerar ao reutilizar o parser:</p>
+<ul>
+<li><code>decode()</code> não limpa as variáveis já presentes e não valida versão ou terminador. Um objeto reutilizado pode conservar campos antigos.</li>
+<li>O leitor assume UTF-8 com no máximo dois bytes e não faz verificações explícitas de truncamento.</li>
+<li>O ramo de dois bytes força <code>0xFFFF0000</code> no valor reconstruído. Assim, a implementação também codifica valores positivos maiores que 255, mas os decodifica como negativos; não há round-trip geral para esse intervalo.</li>
+<li>Nomes inválidos são protegidos por <code>assert</code> em <code>put</code>, enquanto <code>encode()</code> usa <code>!!</code> na resolução do ID. Não se deve depender de assertions desativáveis para validar dados externos.</li>
+<li><code>length</code> calcula uma estrutura completa mesmo para uma instância vazia, enquanto <code>encode()</code> retorna apenas dois bytes. Chamadores que reservam espaço com base em <code>length</code> precisam conhecer essa diferença.</li>
+</ul>
+<p>Essas observações derivam de <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/customization/CustomizationString.kt#L62"><code>CustomizationString.kt:62–65,94–154,157–196,231–254</code></a>; não são falhas reproduzidas em execução.</p>
+<h2 id="texto-localizado-prose-e-anexos-oob">Texto localizado, prose e anexos OOB</h2>
+<p><code>StringId</code> modela uma referência <code>@arquivo:chave</code>; não carrega nem traduz o STF. O construtor de argumento único exige <code>:</code> e remove <code>@</code> inicial quando presente. <code>ProsePackage</code> combina uma referência base com três substituições (<code>TU</code>, <code>TT</code>, <code>TO</code>), inteiro decimal (<code>DI</code>), float decimal (<code>DF</code>) e flag gramatical. Cada substituição pode transportar identificação de objeto, outro StringId e texto Unicode. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/oob/StringId.kt#L32"><code>data/encodables/oob/StringId.kt:32–55</code></a> e <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/oob/ProsePackage.kt#L36"><code>ProsePackage.kt:36–190,261–311</code></a>.</p>
+<p><code>OutOfBandPackage</code> envolve esses objetos em um campo tratado como string Unicode pelo cliente: começa com <code>(comprimento total - 4) / 2</code> em 32 bits. Cada registro contém <code>short paddingSize</code>, byte de tipo, inteiro de posição, bytes do objeto e padding zero para alinhamento par. Os tipos implementados no despacho são <code>PROSE_PACKAGE=1</code>, <code>WAYPOINT=4</code> e <code>STRING_ID=5</code>, embora a enumeração declare mais valores. A posição emitida é <code>-1</code> para StringId/prose e <code>-3</code> para waypoint. O modo conversation acrescenta um short zero antes dos registros. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/oob/OutOfBandPackage.kt#L46"><code>OutOfBandPackage.kt:46–87,100–174</code></a> e propriedades <code>oobPosition</code> das classes concretas.</p>
+<p>Persistência OOB usa uma lista de documentos <code>packages</code>; a fábrica inclui <code>oobType</code> como nome textual da enumeração e escolhe a classe na leitura. <code>isConversation</code> não é persistido. Tipos não reconhecidos causam exceção na fábrica Mongo; no parser de rede são registrados em log e não existe um comprimento completo de registro que permita ignorar com segurança um payload arbitrário. <code>decode()</code> também não limpa a lista existente. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/oob/OutOfBandPackage.kt#L64"><code>OutOfBandPackage.kt:64–75,91–123</code></a> e <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/oob/OutOfBandFactory.kt#L33"><code>OutOfBandFactory.kt:33–55</code></a>.</p>
+<p>Uma assimetria merece investigação antes de usar prose como formato de ida e volta: <code>encode</code> escreve <code>df</code> por <code>addFloat</code>, mas <code>decode</code> lê <code>data.int.toFloat()</code>, convertendo o inteiro numericamente em vez de reinterpretar seus bits IEEE-754. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/oob/ProsePackage.kt#L200"><code>ProsePackage.kt:200,211</code></a>.</p>
+<h2 id="chat-correio-e-sui">Chat, correio e SUI</h2>
+<p><code>ChatAvatar</code> emite a galáxia global definida por <code>setGalaxy</code>. Ao decodificar, descarta jogo e galáxia recebidos e converte o nome para minúsculas; igualdade considera apenas nome. Isso pressupõe um contexto de galáxia externo ao objeto. <code>ChatRoom</code> mantém membros, convidados, moderadores e banidos em conjuntos concorrentes e guarda uma codificação em cache. O wire da sala contém convidados e moderadores, mas não membros e banidos. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/chat/ChatAvatar.kt#L34"><code>data/encodables/chat/ChatAvatar.kt:34–88</code></a>, <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/chat/ChatRoom.kt#L36"><code>ChatRoom.kt:36–42,173–204</code></a>.</p>
+<p>As verificações de sala são auxiliares: <code>canJoinRoom</code> examina banimento, associação prévia, acesso público e convite; <code>canSendMessage</code> examina banimento e moderação, mas não exige presença em members. O servidor consumidor deve aplicar as demais regras. A moderação de envio consulta o conjunto moderators diretamente, enquanto <code>isModerator</code> também reconhece owner. Alterar internamente um <code>ChatAvatar</code> já inserido num conjunto ou referenciado por uma sala pode afetar hash e cache sem passar pelos setters da sala. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/chat/ChatRoom.kt#L99"><code>ChatRoom.kt:99–125</code></a> e setters/métodos de mutação no mesmo arquivo.</p>
+<p><code>Mail.encode()</code> é o conteúdo de uma mensagem; não equivale ao documento completo de correio nem ao pacote de entrega. Há uma codificação separada de cabeçalho. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/player/Mail.kt#L50"><code>data/encodables/player/Mail.kt:50–89,112</code></a>.</p>
+<p><code>SuiBaseWindow</code> acumula comandos para manipular widgets e registrar assinaturas de eventos. Cada <code>SuiComponent</code> emite byte de tipo, lista de parâmetros Unicode e lista de parâmetros ASCII; o alvo é o primeiro parâmetro ASCII. Callback é um nome enviado ao cliente e uma referência <code>ISuiCallback</code> guardada localmente no mapa da janela. O callback Java/Kotlin não é serializado. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/sui/SuiComponent.kt#L34"><code>data/sui/SuiComponent.kt:34–46,116–164</code></a> e <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/sui/SuiBaseWindow.kt#L154"><code>SuiBaseWindow.kt:154–209</code></a>.</p>
+<p>A janela escreve ID, script ASCII, lista de componentes, objeto de alcance, distância máxima, long zero e int zero. O decoder para após distância máxima e deixa os 12 bytes finais sem consumir; o significado desses campos não está estabelecido. Embora o encoder tolere script nulo, <code>length</code> usa <code>suiScript!!</code>, exigindo inicialização prévia. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/sui/SuiBaseWindow.kt#L211"><code>SuiBaseWindow.kt:211–243</code></a>.</p>
+<h2 id="persistencia-mongodata">Persistência MongoData</h2>
+<p><code>MongoData</code> envolve <code>org.bson.Document</code>, sem abrir conexão com MongoDB. <code>MongoPersistable</code> exige somente leitura e escrita de campos. <code>_ver</code> é opcional no construtor; não há migração automática. <code>toDocument</code> faz uma cópia superficial. <code>getDocument(key)</code> cria e insere um documento vazio se a chave estiver ausente; a leitura pode, portanto, modificar o documento. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/mongo/MongoData.kt#L38"><code>data/encodables/mongo/MongoData.kt:38–72,172–180</code></a>.</p>
+<p>Maps são gravados como arrays de documentos <code>{key: ..., val: ...}</code>, permitindo chaves que não sejam strings. Objetos persistíveis são convertidos recursivamente em documentos. Na leitura por classe, a implementação procura construtor público <code>MongoData</code> ou construtor vazio e chama <code>readMongo</code>; também aceita fábricas explícitas. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/mongo/MongoData.kt#L228"><code>MongoData.kt:228–290,410–500</code></a>.</p>
+<p>Cuidados de integração extraídos do código:</p>
+<ul>
+<li>Os getters tipados dependem do tipo BSON esperado; defaults resolvem ausência, não todos os conflitos de tipo.</li>
+<li><code>putFloat</code> armazena Double, mas a conversão genérica de coleções trata Float separadamente. Evite presumir representação idêntica entre caminhos de inserção.</li>
+<li><code>putArray(LongArray)</code> usa <code>listOf(array)</code>, produzindo uma lista com o array como elemento, diferente de <code>IntArray</code>, que é expandido em números individuais.</li>
+<li>Muitos métodos <code>put*</code> usam assertions para impedir duplicação de chave; <code>put</code> e <code>putAll</code> genéricos são explicitamente proibidos.</li>
+</ul>
+<p>Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/encodables/mongo/MongoData.kt#L75"><code>MongoData.kt:75–116,293–358,482–500,525–537</code></a>.</p>
+<h2 id="configuracao-e-utilitarios-de-suporte">Configuração e utilitários de suporte</h2>
+<p><code>Config</code> exige arquivo já existente, carrega-o e o salva imediatamente. Consultar chave ausente com default chama <code>setProperty</code>, que salva o arquivo. O parser aceita <code>chave=valor</code>, corta conteúdo a partir de <code>#</code>, separa no primeiro <code>=</code> e não remove espaços. O save reescreve tudo em UTF-8, ordena chaves e substitui comentários por um cabeçalho de data. <code>load()</code> sobrepõe valores no mapa existente sem removê-los: apagar uma chave do arquivo não a elimina automaticamente da instância carregada. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/info/Config.java#L51"><code>data/info/Config.java:51–78,126–179</code></a>, <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/info/ConfigData.java#L80"><code>ConfigData.java:80–153</code></a>.</p>
+<p>Os pacotes <code>data/combat</code>, <code>data/objects</code>, <code>data/radial</code> e <code>data/encodables/tangible</code> também centralizam códigos, flags e enums compartilhados. <code>data/schematic/DraftSchematic.java</code> é um modelo mutável de crafting, com ingredientes e atributos, sem implementar diretamente os contratos wire/Mongo. Os tipos em <code>data/math/extents</code> são modelos geométricos; interpretar sua finalidade requer os leitores IFF que os constroem.</p>
+<p>Outros pontos de entrada úteis são <code>utilities/ByteUtilities.java</code> (hex e conversões), <code>TimeUtilities.java</code> (datas), <code>LocalUtilities.java</code> (diretórios por aplicação), <code>ThreadUtilities.java</code> (fábrica de threads) e <code>process/JarProcessBuilder.java</code> (montagem de comando Java, memória e redirecionamento). <code>network/SecureSocketFactory.java</code> carrega JKS e inicializa TLSv1.2; seus métodos de socket dependem de <code>load()</code> anterior. Isso é independente do transporte UDP SOE.</p>
+<h2 id="hcap-captura-persistida-de-pacotes">HCAP: captura persistida de pacotes</h2>
+<p><code>network/hcap/HcapOutputStream.java</code> escreve versão <code>3</code>, um byte de contagem de propriedades do sistema, pares <code>key=value</code> via <code>DataOutputStream.writeUTF</code>, e registros com boolean de direção, timestamp epoch-millis de 64 bits, tamanho de 16 bits e dados. Os inteiros de <code>DataOutputStream</code> são big-endian, ao contrário das primitivas comuns de <code>NetBuffer</code>. <code>HcapInputStream.java</code> lê tamanho unsigned de 16 bits nas versões anteriores a 4 e int de 32 bits nas seguintes. Esse suporte de leitura não significa que o writer local produza v4.</p>
+<p>O writer não verifica se um pacote cabe no campo de 16 bits, e o reader usa <code>available()</code> para decidir se existe cabeçalho suficiente. Isso funciona como uma convenção de arquivo/captura local, mas não estabelece um parser robusto para qualquer stream incremental. A interpretação dos bytes capturados depende da camada que entregou <code>PacketRecord</code>, e não apenas da extensão HCAP. Evidência: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/hcap/HcapOutputStream.java#L49"><code>network/hcap/HcapOutputStream.java:49–50,66–91</code></a>; <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/hcap/HcapInputStream.java#L76"><code>HcapInputStream.java:76–104</code></a>.</p>
+<h2 id="limite-da-evidencia">Limite da evidência</h2>
+<p>As assimetrias listadas são observáveis no fonte, mas sua ocorrência em produção depende de dados e consumidores. Nenhuma delas foi tratada aqui como comportamento comprovado do executável original ou como resultado obtido pelo Binary Ninja. Para confirmar compatibilidade, o próximo passo é comparar amostras de rede e round-trips dos objetos com a versão exata do cliente, incluindo entradas vazias, truncadas e valores extremos.</p></article>
+</main><footer><a href="pswgcommon-overview.html">PSWGCommon</a> · <a href="../index.html">SWG Docs</a></footer>
+<script src="../assets/js/app.js"></script></body></html>

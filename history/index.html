@@ -13,7 +13,7 @@
   </style>
 </head>
 <body data-root="../">
-  
+
   <header class="navbar">
     <div class="brand">
       <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
@@ -71,11 +71,11 @@
     <!-- Stats Grid -->
     <div class="stats-grid" style="margin-bottom:2.5rem;">
       <div class="stat-card">
-        <div class="stat-num" style="color:#22c55e;">28</div>
+        <div class="stat-num" style="color:#22c55e;">31</div>
         <div class="stat-label">Total de Pacotes Revertidos</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num" style="color:var(--accent-cyan);">13</div>
+        <div class="stat-num" style="color:var(--accent-cyan);">16</div>
         <div class="stat-label">Protocolos Top-Level</div>
       </div>
       <div class="stat-card">
@@ -83,12 +83,12 @@
         <div class="stat-label">ObjectControllers Mapeados</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num" style="color:#f59e0b;">122</div>
+        <div class="stat-num" style="color:#f59e0b;">146</div>
         <div class="stat-label">Campos Wire Revertidos</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num" style="color:#38bdf8;">100%</div>
-        <div class="stat-label">Completude Verificada</div>
+        <div class="stat-num" style="color:#38bdf8;">Estática</div>
+        <div class="stat-label">Natureza da análise</div>
       </div>
     </div>
 
@@ -98,12 +98,122 @@
         <span>🔍</span> Filtrar Histórico:
       </span>
       <input type="text" id="history-filter-input" placeholder="Buscar por nome, opcode (ex: 3871D784), categoria..." style="flex:1; min-width:260px; padding:0.55rem 0.9rem; background:var(--bg-primary); border:1px solid var(--border-color); border-radius:0.35rem; color:var(--text-primary); font-size:0.95rem;">
-      <span id="filter-count-badge" class="badge" style="background:rgba(56, 189, 248, 0.15); color:var(--accent-cyan); font-weight:600; padding:0.4rem 0.75rem;">Exibindo 28 pacotes</span>
+      <span id="filter-count-badge" class="badge" style="background:rgba(56, 189, 248, 0.15); color:var(--accent-cyan); font-weight:600; padding:0.4rem 0.75rem;">Exibindo 31 pacotes</span>
     </div>
 
     <!-- Timeline / Batches -->
     <div id="batches-container">
-      
+
+        <div class="batch-card" style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:0.75rem; margin-bottom:2.5rem; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.15);">
+          <div style="padding:1.25rem 1.5rem; background:linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(99, 102, 241, 0.04)); border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+            <div>
+              <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.4rem;">
+                <span class="badge" style="background:var(--accent-indigo); color:#ffffff; font-weight:700; font-size:0.8rem; padding:0.25rem 0.6rem; border-radius:0.35rem;">Lote #3</span>
+                <span style="font-size:0.85rem; color:var(--text-muted); font-family:var(--font-mono);">📅 2026-10-19</span>
+                <span class="badge" style="background:rgba(34, 197, 94, 0.15); color:#22c55e; border:1px solid #22c55e; font-weight:600; font-size:0.75rem;">3 Pacotes Decodificados</span>
+              </div>
+              <h2 style="font-size:1.35rem; font-weight:800; color:var(--text-primary); margin:0;">PSWGCommon: contenção, criação de objetos e chat confrontados com Binary Ninja</h2>
+              <p style="font-size:0.925rem; color:var(--text-secondary); margin-top:0.4rem; line-height:1.5;">Três layouts comparados com readers/writers nativos. Corrige o tipo do campo final de chat e registra diferenças da biblioteca, mantendo limites semânticos e completudes existentes.</p>
+            </div>
+            <div style="background:rgba(0,0,0,0.25); border:1px solid var(--border-color); border-radius:0.5rem; padding:0.6rem 0.9rem; font-size:0.8rem; max-width:380px;">
+              <strong style="color:var(--text-primary); display:block; margin-bottom:0.2rem;">🔬 Metodologia de Reversão:</strong>
+              <span style="color:var(--text-muted); font-family:var(--font-mono); font-size:0.75rem; line-height:1.3;">Binary Ninja MCP direto; RTTI -&gt; vtable -&gt; registro AutoVariable -&gt; codecs. 46 respostas retidas e nove trechos de memória comparados com o PE. Sem execução ou tráfego.</span>
+            </div>
+          </div>
+
+          <div class="table-wrap" style="margin:0; border:none; border-radius:0;">
+            <table class="doc-table" style="margin:0;">
+              <thead>
+                <tr>
+                  <th style="text-align:center;">#</th>
+                  <th>Mensagem / Pacote</th>
+                  <th>Opcode</th>
+                  <th>Direção</th>
+                  <th style="text-align:center;">Campos</th>
+                  <th>Rotina Unpack</th>
+                  <th>Detalhes da Reversão no Binário (SWGEmu.exe)</th>
+                  <th style="text-align:center;">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+
+            <tr class="history-row" data-name="updatecontainmentmessage" data-opcode="56cbde9e" data-category="pswgcommon / client cross-check">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#29</td>
+              <td>
+                <a href="../protocols/UpdateContainmentMessage.html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>UpdateContainmentMessage</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">PSWGCommon / client cross-check</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('56CBDE9E', this)" title="Click to copy opcode">56CBDE9E 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">5</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00adc6d0</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Opcode + dois NetworkIds de 8 bytes + int de 4 bytes; 26 bytes. Registro dos membros +0x38/+0x48/+0x58. Semântica dos arrangement IDs não foi rastreada.
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">Layout estático verificado</span>
+              </td>
+            </tr>
+
+            <tr class="history-row" data-name="scenecreateobjectbycrc" data-opcode="fe89ddea" data-category="pswgcommon / client cross-check">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#30</td>
+              <td>
+                <a href="../protocols/SceneCreateObjectByCrc.html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>SceneCreateObjectByCrc</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">PSWGCommon / client cross-check</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('FE89DDEA', this)" title="Click to copy opcode">FE89DDEA 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">12</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00ad51b0</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                NetworkId, Transform wire de 28 bytes (quaternion xyzw + posição xyz), CRC uint32 e bool; 47 bytes. Matriz interna de 48 bytes. ByteFlag permanece com semântica parcial; completude histórica mantida em 75%.
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-75" style="font-weight:700;">Layout estático; semântica parcial</span>
+              </td>
+            </tr>
+
+            <tr class="history-row" data-name="chatinstantmessagetoclient" data-opcode="3c565ced" data-category="pswgcommon / client cross-check">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#31</td>
+              <td>
+                <a href="../protocols/ChatInstantMessageToClient.html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>ChatInstantMessageToClient</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">PSWGCommon / client cross-check</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('3C565CED', this)" title="Click to copy opcode">3C565CED 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">7</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00af2610</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                ChatAvatarId (três strings de bytes) + duas strings Unicode. INT 0 final corrigido como comprimento da segunda string vazia. Contador nativo 4 versus encoder PSWGCommon 2. Conteúdo OOB e aceitação por todas as camadas não foram rastreados.
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">Layout estático verificado</span>
+              </td>
+            </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         <div class="batch-card" style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:0.75rem; margin-bottom:2.5rem; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.15);">
           <div style="padding:1.25rem 1.5rem; background:linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(99, 102, 241, 0.04)); border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
             <div>
@@ -136,7 +246,7 @@
                 </tr>
               </thead>
               <tbody>
-                
+
             <tr class="history-row" data-name="destroyshipcomponentmessage" data-opcode="3871d784" data-category="space & ship packets">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#18</td>
               <td>
@@ -160,7 +270,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="destroyshipmessage" data-opcode="5c680884" data-category="space & ship packets">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#19</td>
               <td>
@@ -184,7 +294,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="hyperspacemessage" data-opcode="cbf88482" data-category="space & ship packets">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#20</td>
               <td>
@@ -208,7 +318,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="playclienteffectobjecttransformmessage" data-opcode="4f5e09b6" data-category="general & system packets">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#21</td>
               <td>
@@ -232,7 +342,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="playclienteventlocmessage" data-opcode="0a4e222c" data-category="general & system packets">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#22</td>
               <td>
@@ -256,7 +366,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="playclienteventobjectmessage" data-opcode="af83c3f2" data-category="general & system packets">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#23</td>
               <td>
@@ -280,7 +390,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="shipupdatetransformcollisionmessage" data-opcode="763648d0" data-category="space & ship packets">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#24</td>
               <td>
@@ -304,7 +414,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="updatemissilemessage" data-opcode="1228cd01" data-category="space & ship packets">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#25</td>
               <td>
@@ -328,7 +438,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="createticketresponsemessage" data-opcode="550a407a" data-category="general & system packets">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#26</td>
               <td>
@@ -352,7 +462,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="getcommentsresponsemessage" data-opcode="eadb08ca" data-category="general & system packets">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#27</td>
               <td>
@@ -376,7 +486,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="suiupdatepagemessage" data-opcode="5f3342f6" data-category="scripted user interface (sui)">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#28</td>
               <td>
@@ -400,12 +510,12 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
               </tbody>
             </table>
           </div>
         </div>
-        
+
         <div class="batch-card" style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:0.75rem; margin-bottom:2.5rem; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.15);">
           <div style="padding:1.25rem 1.5rem; background:linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(99, 102, 241, 0.04)); border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
             <div>
@@ -438,7 +548,7 @@
                 </tr>
               </thead>
               <tbody>
-                
+
             <tr class="history-row" data-name="addmaplocationmessage" data-opcode="ab2174b6" data-category="general & system packets">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#1</td>
               <td>
@@ -462,7 +572,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="objectmenuselectmessage::message_type" data-opcode="7ca18726" data-category="general & system packets">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#2</td>
               <td>
@@ -486,7 +596,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="questtaskcountermessage" data-opcode="00000440" data-category="quest & missions">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#3</td>
               <td>
@@ -510,7 +620,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="questtasktimermessage" data-opcode="00000441" data-category="quest & missions">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#4</td>
               <td>
@@ -534,7 +644,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="craftselectschematic" data-opcode="0000010e" data-category="crafting">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#5</td>
               <td>
@@ -558,7 +668,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="craftrequestsession" data-opcode="0000010f" data-category="crafting">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#6</td>
               <td>
@@ -582,7 +692,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="shiphit" data-opcode="00000432" data-category="space combat">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#7</td>
               <td>
@@ -606,7 +716,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="updateshiponcollision" data-opcode="000003fd" data-category="space combat">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#8</td>
               <td>
@@ -630,7 +740,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="buffs" data-opcode="00000229" data-category="character & status">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#9</td>
               <td>
@@ -654,11 +764,11 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="imagedesign" data-opcode="0000022a" data-category="character & status">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#10</td>
               <td>
-                <a href="../controllers/ImageDesignStartMessage (0000022A).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                <a href="../controllers/ImageDesign (0000022A).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
                   <span>ImageDesign</span>
                 </a>
                 <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Character &amp; Status</div>
@@ -678,7 +788,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="abouttohyperspace" data-opcode="000003fe" data-category="space & ship">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#11</td>
               <td>
@@ -702,7 +812,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="startinglocationselectionresult" data-opcode="000001fd" data-category="character creation">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#12</td>
               <td>
@@ -726,7 +836,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="askgroupmembertolaunchintospace" data-opcode="00000438" data-category="group & space">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#13</td>
               <td>
@@ -750,7 +860,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="draftslotsqueryresponse" data-opcode="000001bf" data-category="crafting">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#14</td>
               <td>
@@ -774,7 +884,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="commandqueueadd" data-opcode="00000167" data-category="commands & actions">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#15</td>
               <td>
@@ -798,7 +908,7 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="commandqueueremove" data-opcode="00000117" data-category="commands & actions">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#16</td>
               <td>
@@ -822,11 +932,11 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
             <tr class="history-row" data-name="messagequeuenetworkid" data-opcode="000000e5" data-category="generic controller">
               <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#17</td>
               <td>
-                <a href="../controllers/NetworkId (000000E5).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                <a href="../controllers/MessageQueueNetworkId (000000E5).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
                   <span>MessageQueueNetworkId</span>
                 </a>
                 <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Generic Controller</div>
@@ -846,12 +956,12 @@
                 <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
               </td>
             </tr>
-            
+
               </tbody>
             </table>
           </div>
         </div>
-        
+
     </div>
 
     <!-- Automation Rule Card -->
@@ -878,8 +988,7 @@
     </div>
   </footer>
 
-  <script src="../assets/js/theme.js"></script>
-  <script src="../assets/js/search.js"></script>
+  <script src="../assets/js/app.js"></script>
   <script>
     // Live filter script
     const input = document.getElementById('history-filter-input');

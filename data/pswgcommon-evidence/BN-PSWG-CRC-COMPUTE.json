@@ -1,0 +1,17 @@
+{
+  "id": "BN-PSWG-CRC-COMPUTE",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0xaa4790",
+    "limit": 150
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0xaa4790\"\narch: \"x86\"\nname: \"sub_aa4790\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 150\ncount: 22\ntotal: 22\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  int32_t sub_aa4790(char* arg1)\n\n{\n    char* edx = arg1;\n\n    if (!edx)\n        return 0;\n\n    char i = *edx;\n    int32_t eax_1 = 0xffffffff;\n\n    while (i)\n    {\n        eax_1 = eax_1 << 8 ^ *(((eax_1 >> 0x18 ^ i) << 2) + &data_15ea5d0);\n        i = edx[1];\n        edx = &edx[1];\n    }\n\n    return ~eax_1;\n}\n````\n"
+      }
+    ],
+    "isError": false
+  }
+}

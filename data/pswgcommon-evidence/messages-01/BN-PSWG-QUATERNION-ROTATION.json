@@ -1,0 +1,19 @@
+{
+  "id": "BN-PSWG-QUATERNION-ROTATION",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0xaba530",
+    "limit": 180
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0xaba530\"\narch: \"x86\"\nname: \"sub_aba530\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 180\ncount: 58\ntotal: 58\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  float __thiscall sub_aba530(float* arg1, float arg2) __location(\"eax\")\n\n{\n    long double x87_r7_1 = 1.00000003e-27f + *arg1;\n    long double temp1 = 1f;\n    x87_r7_1 - temp1;\n    float result = arg2;\n\n    if (!(__builtin_popcount(*(&((x87_r7_1 < temp1 ? 1 : 0) << 8\n        | (FCMP_UO(x87_r7_1, temp1) ? 1 : 0) << 0xa | (x87_r7_1 == temp1 ? 1 : 0) << 0xe) + 1) & 5)\n        & 1))\n    {\n        *result = 0x3f800000;\n        *(result + 4) = 0;\n        *(result + 8) = 0;\n        *(result + 0x10) = 0;\n        *(result + 0x14) = 0x3f800000;\n        *(result + 0x18) = 0;\n        *(result + 0x20) = 0;\n        *(result + 0x24) = 0;\n        *(result + 0x28) = 0x3f800000;\n        return result;\n    }\n\n    long double x87_r7_2 = arg1[2];\n    long double x87_r7_3 = x87_r7_2 * x87_r7_2;\n    long double x87_r7_4 = x87_r7_3 + x87_r7_3;\n    long double x87_r6_1 = arg1[3];\n    long double x87_r6_2 = x87_r6_1 * x87_r6_1;\n    long double x87_r6_3 = x87_r6_2 + x87_r6_2;\n    long double x87_r5_2 = arg1[1] * arg1[2];\n    long double x87_r5_3 = x87_r5_2 + x87_r5_2;\n    long double x87_r4_1 = arg1[3] * *arg1;\n    long double x87_r4_2 = x87_r4_1 + x87_r4_1;\n    long double x87_r3_1 = arg1[1] * arg1[3];\n    float var_8 = x87_r3_1 + x87_r3_1;\n    long double x87_r3_4 = arg1[2] * *arg1;\n    float var_c = x87_r3_4 + x87_r3_4;\n    *result = 1f - x87_r7_4 - x87_r6_3;\n    *(result + 4) = x87_r5_3 - x87_r4_2;\n    *(result + 8) = var_c + var_8;\n    long double x87_r3_13 = arg1[1];\n    long double x87_r2_1 = x87_r3_13 * x87_r3_13;\n    long double x87_r3_16 = arg1[3] * arg1[2];\n    float var_10 = x87_r3_16 + x87_r3_16;\n    long double x87_r3_19 = arg1[1] * *arg1;\n    arg2 = x87_r3_19 + x87_r3_19;\n    *(result + 0x10) = x87_r4_2 + x87_r5_3;\n    long double x87_r5_6 = 1f - (x87_r2_1 + x87_r2_1);\n    *(result + 0x14) = x87_r5_6 - x87_r6_3;\n    *(result + 0x18) = var_10 - arg2;\n    *(result + 0x20) = var_8 - var_c;\n    *(result + 0x24) = arg2 + var_10;\n    *(result + 0x28) = x87_r5_6 - x87_r7_4;\n    return result;\n}\n````\n"
+      }
+    ],
+    "isError": false
+  },
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "classification": "static analysis; decompiler types and generated names may be approximate"
+}

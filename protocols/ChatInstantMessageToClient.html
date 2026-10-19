@@ -157,9 +157,9 @@
             </tr>
             
             <tr>
-              <td><span class="type-pill">INT</span></td>
-              <td style="font-weight:600;">0</td>
-              <td style="color:var(--text-muted); font-size:0.8rem;"></td>
+              <td><span class="type-pill">U_STRING</span></td>
+              <td style="font-weight:600;">OutOfBand</td>
+              <td style="color:var(--text-muted); font-size:0.8rem;">int32 UTF-16 code-unit count followed by 2*count bytes; historical sample is empty</td>
             </tr>
             
               </tbody>
@@ -187,7 +187,18 @@
         
         
         
-        <section class="doc-section">
+        <!-- pswgcommon-message-crosscheck:start -->
+<section class="doc-section">
+<h2>PSWGCommon / client cross-check</h2>
+<p>The final field is a second U_STRING, named outOfBand in PSWGCommon. Its int32 prefix counts UTF-16 code units and is followed by twice that many bytes in UTF-16LE. The historical sample&#x27;s trailing 00 00 00 00 is this empty string&#x27;s length prefix; the sample remains unchanged. It does not establish that the field must always be zero.</p>
+<p>The client reader at 0x00AF2610 registers ChatAvatarId and two Unicode strings (object members +0x38, +0x60, +0x70). These are in-memory offsets. The avatar decoder preserves the three narrow strings Game ID, Galaxy Name and Playername; Unicode unpack at 0x011948B0 reads int32 length followed by 2*length bytes.</p>
+<p>Header discrepancy: native archive pack at 0x0118B6F0 derives operand count from the registered-field vector: opcode plus three registered fields gives 4, matching the historical sample. PSWGCommon ChatInstantMessageToClient.encode() writes 2. Native unpack at 0x0118B740 consumes the short without checking its value; PSWGCommon checkDecode also discards it. This documents the implementation difference without changing the library or replacing the historical sample.</p>
+<p>With G/C the byte lengths of Galaxy Name/Playername and M/O the UTF-16 code-unit lengths of Message/OutOfBand: the message is 23+G+C+2*M+2*O bytes. Game ID starts at 6 (2-byte length plus SWG); Galaxy Name at 11; Playername at 13+G; Message at 15+G+C; OutOfBand at 19+G+C+2*M. Each offset identifies its length prefix. Offsets exclude SOE framing; lengths and opcode are little-endian.</p>
+<p>PSWGCommon&#x27;s A_STRING helper uses UTF-8 byte lengths, although this packet allocates space using Java String.length() for galaxy and character. Non-ASCII names can therefore exceed the allocated buffer. This is a library allocation limitation, not evidence that the native client uses UTF-8 for all narrow strings.</p>
+<p>See <a href="../guides/pswgcommon-client-messages.html">client message analysis</a>. Evidence: <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-CHAT-READ.json">BN-PSWG-CHAT-READ</a>, <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-ARCHIVE-PACK.json">BN-PSWG-ARCHIVE-PACK</a>, <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-ARCHIVE-UNPACK.json">BN-PSWG-ARCHIVE-UNPACK</a>, <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-AVATAR-UNPACK.json">BN-PSWG-AVATAR-UNPACK</a>, <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-UNICODE-UNPACK.json">BN-PSWG-UNICODE-UNPACK</a>.</p>
+</section>
+<!-- pswgcommon-message-crosscheck:end -->
+<section class="doc-section">
           <h2>📦 Sample Hex Dump / Packet Payload</h2>
           <div class="code-container">
             <div class="code-header">

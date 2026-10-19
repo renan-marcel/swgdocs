@@ -38,7 +38,18 @@ _none_
 - Opcode		     = FE89DDEA
 
 ## Notes
-_none_
+
+<!-- pswgcommon-message-crosscheck:start -->
+### PSWGCommon / client cross-check
+
+PSWGCommon encodes 47 bytes: operand count 5 at offset 0, opcode FE89DDEA at 2, object ID at 6, quaternion float32 x/y/z/w at 14/18/22/26, position float32 x/y/z at 30/34/38, object CRC at 42, and ByteFlag at 46. Offsets exclude SOE framing; numeric fields are little-endian.
+
+The client reader at 0x00AD51B0 registers NetworkId, Transform, uint32 and bool (object members +0x38, +0x48, +0x7C, +0x84). Transform pack/unpack at 0x005200C0/0x005201A0 uses seven float32 values in quaternion x/y/z/w then position x/y/z order (28 bytes), converting between quaternion and the internal matrix. Internal member offsets are not wire offsets.
+
+PSWGCommon Location transmits orientation and position only, not terrain. Its doubles are narrowed to float32. PSWGCommon names ByteFlag hyperspace and emits 0/1; the full gameplay meaning of the client's bool remains only partially established, so the historical 75% completion is retained.
+
+See [client message analysis](../guides/pswgcommon-client-messages.md). Evidence: [BN-PSWG-SCENE-READ](../../data/pswgcommon-evidence/messages-01/BN-PSWG-SCENE-READ.json), [BN-PSWG-TRANSFORM-PACK](../../data/pswgcommon-evidence/messages-01/BN-PSWG-TRANSFORM-PACK.json), [BN-PSWG-TRANSFORM-UNPACK](../../data/pswgcommon-evidence/messages-01/BN-PSWG-TRANSFORM-UNPACK.json).
+<!-- pswgcommon-message-crosscheck:end -->
 
 ## Tags
 - **S→C** - This packet originates on the server.

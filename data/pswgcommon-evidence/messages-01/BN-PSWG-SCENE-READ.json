@@ -1,0 +1,19 @@
+{
+  "id": "BN-PSWG-SCENE-READ",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0xad51b0",
+    "limit": 220
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0xad51b0\"\narch: \"x86\"\nname: \"sub_ad51b0\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 220\ncount: 98\ntotal: 98\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  int32_t* __fastcall sub_ad51b0(int32_t* arg1)\n\n{\n    int32_t var_8 = 0xffffffff;\n    int32_t var_c = 0x14bea9f;\n    TEB* fsbase;\n    struct _EXCEPTION_REGISTRATION_RECORD* ExceptionList = fsbase->NtTib.ExceptionList;\n    fsbase->NtTib.ExceptionList = &ExceptionList;\n    int32_t* var_18 = arg1;\n    int32_t var_8_1 = 0;\n    void* var_28 = nullptr;\n    int32_t var_24 = 0;\n    void var_11;\n    void* var_7c = &var_11;\n    int32_t var_20;\n    sub_406e50(&var_20, 0);\n    int32_t i = 0xffffffff;\n    char* edi = \"SceneCreateObjectByCrc\";\n\n    while (i)\n    {\n        bool cond:0_1 = 0 != *edi;\n        edi = &edi[1];\n        i -= 1;\n\n        if (!cond:0_1)\n            break;\n    }\n\n    var_8_1 = 1;\n    sub_415be0(&var_28, \"SceneCreateObjectByCrc\", ~i + 0x1875af7);\n    void** var_78_1 = &var_28;\n    var_8_1 = 2;\n    sub_acb270(arg1);\n    var_8_1 = 6;\n    sub_4061f0(&var_28);\n    var_8_1 = 4;\n    int32_t* var_1c = &arg1[0xe];\n    sub_118b780(&arg1[0xe]);\n    var_8_1 = 7;\n    sub_aa4920(&arg1[0x10], &data_19446c8);\n    arg1[0xe] = &data_15dda58;\n    var_8_1 = 8;\n    sub_118b780(&arg1[0x12]);\n    sub_41b440(&arg1[0x13]);\n    arg1[0x12] = 0x15dd9d8;\n    var_8_1 = 9;\n    sub_118b780(&arg1[0x1f]);\n    arg1[0x1f] = &data_15dda48;\n    var_8_1 = 0xa;\n    sub_118b780(&arg1[0x21]);\n    arg1[0x22] = 0;\n    arg1[0x21] = 0x15de44c;\n    var_8_1 = 0xb;\n    *arg1 = 0x15eafe8;\n    arg1[4] = 0x15eafe0;\n    sub_118b5f0(arg1, &arg1[0xe]);\n    sub_118b5f0(arg1, &arg1[0x12]);\n    sub_118b5f0(arg1, &arg1[0x1f]);\n    sub_118b5f0(arg1, &arg1[0x21]);\n    int32_t* arg_4;\n    sub_118b740(arg1, arg_4);\n    int32_t var_78_7 = arg1[0x20];\n    void var_68;\n    sub_131eae8(&var_68, \"recv.SceneCreateObjectByCrc.%08x\");\n    void* var_7c_1 = &var_11;\n    var_8_1 = 0xc;\n    var_28 = nullptr;\n    int32_t var_24_1 = 0;\n    sub_406e50(&var_20, 0);\n    int32_t i_1 = 0xffffffff;\n    void* edi_3 = &var_68;\n\n    while (i_1)\n    {\n        bool cond:1_1 = 0 != *edi_3;\n        edi_3 += 1;\n        i_1 -= 1;\n\n        if (!cond:1_1)\n            break;\n    }\n\n    void* var_78_8 = (&arg_4 + 3);\n    *(&arg_4 + 3) = *(&arg_4 + 3);\n    var_8_1 = 0xd;\n    int32_t __saved_ebp;\n    sub_407250(&var_28, &var_68, &__saved_ebp + ~i_1 - 1 - 0x64);\n    var_8_1 = 0xe;\n    sub_12b48e0(&var_28, 0x90);\n    void* eax_5 = var_28;\n    var_8_1 = 0xf;\n    sub_414d00(eax_5, var_20 - eax_5);\n    fsbase->NtTib.ExceptionList = ExceptionList;\n    return arg1;\n}\n````\n"
+      }
+    ],
+    "isError": false
+  },
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "classification": "static analysis; decompiler types and generated names may be approximate"
+}

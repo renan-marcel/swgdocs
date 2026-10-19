@@ -1,0 +1,19 @@
+{
+  "id": "BN-PSWG-ARCHIVE-REGISTER",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0x118b5f0",
+    "limit": 180
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0x118b5f0\"\narch: \"x86\"\nname: \"sub_118b5f0\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 180\ncount: 70\ntotal: 70\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  int32_t* __thiscall sub_118b5f0(void* arg1, int32_t arg2)\n\n{\n    int32_t* edi = *(arg1 + 8);\n\n    if (edi != *(arg1 + 0xc))\n    {\n        if (edi)\n            *edi = arg2;\n\n        int32_t eax_3 = *(arg1 + 8) + 4;\n        *(arg1 + 8) = eax_3;\n        return eax_3;\n    }\n\n    int32_t eax_6 = (edi - *(arg1 + 4)) >> 2;\n    int32_t var_8 = 1;\n    int32_t var_4 = eax_6;\n    int32_t* ecx = &var_8;\n\n    if (eax_6 >= 1)\n        ecx = &var_4;\n\n    int32_t ebp = *ecx;\n    int32_t ebp_1 = ebp + eax_6;\n    void* ebx_1;\n\n    if (ebp == -(eax_6))\n        ebx_1 = nullptr;\n    else\n    {\n        int32_t eax_7 = ebp_1 << 2;\n\n        if (eax_7 <= 0x80)\n            ebx_1 = sub_12ea770(eax_7);\n        else\n            ebx_1 = sub_ac15c0(eax_7);\n    }\n\n    char* eax_10 = *(arg1 + 4);\n    int32_t* eax_11;\n\n    if (edi != eax_10)\n    {\n        void* edi_1 = edi - eax_10;\n        eax_11 = sub_131d240(ebx_1, eax_10, edi_1) + edi_1;\n    }\n    else\n        eax_11 = ebx_1;\n\n    *eax_11 = arg2;\n    void* ecx_2 = *(arg1 + 4);\n\n    if (ecx_2)\n    {\n        int32_t eax_16 = (*(arg1 + 0xc) - ecx_2) >> 2 << 2;\n\n        if (eax_16 <= 0x80)\n            eax_11 = sub_12ea920(ecx_2, eax_16);\n        else\n            eax_11 = sub_ac1640(ecx_2);\n    }\n\n    *(arg1 + 4) = ebx_1;\n    *(arg1 + 8) = &eax_11[1];\n    *(arg1 + 0xc) = ebx_1 + (ebp_1 << 2);\n    return eax_11;\n}\n````\n"
+      }
+    ],
+    "isError": false
+  },
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "classification": "static analysis; decompiler types and generated names may be approximate"
+}

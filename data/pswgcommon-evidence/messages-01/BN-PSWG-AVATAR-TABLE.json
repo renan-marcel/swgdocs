@@ -1,0 +1,27 @@
+{
+  "id": "BN-PSWG-AVATAR-TABLE",
+  "tool": "bn_memory_read",
+  "params": {
+    "address": "0x15eb9cc",
+    "length": 16
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"address\":\"0x15eb9cc\",\"requestedLength\":\"0x10\",\"bytesRead\":16,\"hex\":\"c82562011011af00d010af00f010af00\",\"base64\":\"yCViARARrwDQEK8A8BCvAA==\\n\",\"warnings\":[]}"
+      }
+    ],
+    "structuredContent": {
+      "address": "0x15eb9cc",
+      "requestedLength": "0x10",
+      "bytesRead": 16,
+      "hex": "c82562011011af00d010af00f010af00",
+      "base64": "yCViARARrwDQEK8A8BCvAA==\n",
+      "warnings": []
+    },
+    "isError": false
+  },
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "classification": "static analysis; decompiler types and generated names may be approximate"
+}

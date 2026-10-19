@@ -1,0 +1,19 @@
+{
+  "id": "BN-PSWG-CONTAIN-SEND",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0xadc560",
+    "limit": 220
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0xadc560\"\narch: \"x86\"\nname: \"sub_adc560\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 220\ncount: 67\ntotal: 67\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  int32_t* __thiscall sub_adc560(int32_t* arg1, void** arg2, char arg3 @ 0x7, int32_t* arg4, int32_t arg5)\n\n{\n    int32_t var_8 = 0xffffffff;\n    int32_t var_c = 0x14c0479;\n    TEB* fsbase;\n    struct _EXCEPTION_REGISTRATION_RECORD* ExceptionList = fsbase->NtTib.ExceptionList;\n    fsbase->NtTib.ExceptionList = &ExceptionList;\n    int32_t* var_18 = arg1;\n    int32_t var_8_1 = 0;\n    void* var_28 = nullptr;\n    int32_t var_24 = 0;\n    void var_12;\n    void* var_3c = &var_12;\n    int32_t var_20;\n    sub_406e50(&var_20, 0);\n    int32_t i = 0xffffffff;\n    char* edi = \"UpdateContainmentMessage\";\n\n    while (i)\n    {\n        bool cond:0_1 = 0 != *edi;\n        edi = &edi[1];\n        i -= 1;\n\n        if (!cond:0_1)\n            break;\n    }\n\n    char var_11;\n    char* var_38 = &var_11;\n    var_8_1 = 1;\n    var_11 = arg3;\n    sub_407250(&var_28, \"UpdateContainmentMessage\", ~i + 0x18759b3);\n    void** var_38_1 = &var_28;\n    var_8_1 = 2;\n    sub_acb270(arg1);\n    void* eax_1 = var_28;\n    var_8_1 = 6;\n    sub_414d00(eax_1, var_20 - eax_1);\n    var_8_1 = 4;\n    void** var_1c = &arg1[0xe];\n    sub_118b780(&arg1[0xe]);\n    var_8_1 = 7;\n    sub_aa4920(&arg1[0x10], arg2);\n    arg1[0xe] = &data_15dda58;\n    var_8_1 = 8;\n    arg2 = &arg1[0x12];\n    sub_118b780(&arg1[0x12]);\n    var_8_1 = 9;\n    sub_aa4920(&arg1[0x14], arg4);\n    arg1[0x12] = &data_15dda58;\n    var_8_1 = 0xa;\n    sub_118b780(&arg1[0x16]);\n    arg1[0x17] = arg5;\n    arg1[0x16] = &data_15dda84;\n    var_8_1 = 0xb;\n    *arg1 = 0x15eb2d4;\n    arg1[4] = 0x15eb2cc;\n    sub_118b5f0(arg1, &arg1[0xe]);\n    sub_118b5f0(arg1, &arg1[0x12]);\n    sub_118b5f0(arg1, &arg1[0x16]);\n    fsbase->NtTib.ExceptionList = ExceptionList;\n    return arg1;\n}\n````\n"
+      }
+    ],
+    "isError": false
+  },
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "classification": "static analysis; decompiler types and generated names may be approximate"
+}

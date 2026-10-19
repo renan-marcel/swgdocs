@@ -1,0 +1,184 @@
+{
+  "id": "PSWG-MESSAGES-01-LOCATOR",
+  "target": "SWGEmu.exe",
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "image_base": "0x400000",
+  "method": "static bounded raw PE32 RTTI candidate search",
+  "limitations": [
+    "Raw immediate matches are candidates, not decoded code references.",
+    "RTTI/vtable candidates must be corroborated with Binary Ninja functions."
+  ],
+  "messages": [
+    {
+      "name": "UpdateContainmentMessage",
+      "rtti": [
+        {
+          "type_descriptor": "0x18b0b38",
+          "rtti_string": "0x18b0b40",
+          "locators": [
+            {
+              "locator": "0x1620b44",
+              "object_offset": 0,
+              "constructor_displacement": 0,
+              "vtables": [
+                {
+                  "vtable": "0x15eb2d4",
+                  "first_function": "0xadc6a0",
+                  "code_byte_references": [
+                    "0xadc664",
+                    "0xadc7c1"
+                  ]
+                }
+              ]
+            },
+            {
+              "locator": "0x1620b98",
+              "object_offset": 16,
+              "constructor_displacement": 0,
+              "vtables": [
+                {
+                  "vtable": "0x15eb2cc",
+                  "first_function": "0xadc810",
+                  "code_byte_references": [
+                    "0xadc66b",
+                    "0xadc7c8"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "literal_candidates": [
+        {
+          "string_va": "0x18759b4",
+          "code_byte_references": [
+            "0x51970a",
+            "0x51beed",
+            "0xadc5a4",
+            "0xadc5b2",
+            "0xadc5b9",
+            "0xadc714",
+            "0xadc722",
+            "0xadc729"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SceneCreateObjectByCrc",
+      "rtti": [
+        {
+          "type_descriptor": "0x18b0474",
+          "rtti_string": "0x18b047c",
+          "locators": [
+            {
+              "locator": "0x1620134",
+              "object_offset": 0,
+              "constructor_displacement": 0,
+              "vtables": [
+                {
+                  "vtable": "0x15eafe8",
+                  "first_function": "0xad5180",
+                  "code_byte_references": [
+                    "0xad50b9",
+                    "0xad52ac",
+                    "0xad53a4",
+                    "0xb650ec"
+                  ]
+                }
+              ]
+            },
+            {
+              "locator": "0x1620188",
+              "object_offset": 16,
+              "constructor_displacement": 0,
+              "vtables": [
+                {
+                  "vtable": "0x15eafe0",
+                  "first_function": "0xad5d90",
+                  "code_byte_references": [
+                    "0xad50c0",
+                    "0xad52b3",
+                    "0xad53ab"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "literal_candidates": [
+        {
+          "string_va": "0x1875af8",
+          "code_byte_references": [
+            "0x51962b",
+            "0x51bd80",
+            "0xad4ff1",
+            "0xad4ffc",
+            "0xad5002",
+            "0xad51f1",
+            "0xad51fc",
+            "0xad5202"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ChatInstantMessageToClient",
+      "rtti": [
+        {
+          "type_descriptor": "0x18b1e20",
+          "rtti_string": "0x18b1e28",
+          "locators": [
+            {
+              "locator": "0x162277c",
+              "object_offset": 0,
+              "constructor_displacement": 0,
+              "vtables": [
+                {
+                  "vtable": "0x15eba3c",
+                  "first_function": "0xaf25e0",
+                  "code_byte_references": [
+                    "0xaf259f",
+                    "0xaf278e",
+                    "0xaf2805"
+                  ]
+                }
+              ]
+            },
+            {
+              "locator": "0x16227d0",
+              "object_offset": 16,
+              "constructor_displacement": 0,
+              "vtables": [
+                {
+                  "vtable": "0x15eba34",
+                  "first_function": "0xaf28f0",
+                  "code_byte_references": [
+                    "0xaf25a6",
+                    "0xaf2795",
+                    "0xaf280c"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "literal_candidates": [
+        {
+          "string_va": "0x189e738",
+          "code_byte_references": [
+            "0xaf2454",
+            "0xaf2462",
+            "0xaf2469",
+            "0xaf2654",
+            "0xaf2662",
+            "0xaf2669"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "BN-PSWG-AVATAR-PACK",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0xb1bf70",
+    "limit": 100
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0xb1bf70\"\narch: \"x86\"\nname: \"sub_b1bf70\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 100\ncount: 80\ntotal: 80\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  int32_t sub_b1bf70(void* const arg1, int32_t* arg2)\n\n{\n    int32_t* esi = arg2;\n    int32_t edx = *esi;\n    void* const edi = arg1;\n    int32_t var_10 = 2;\n    int32_t* edx_1;\n\n    if (esi[1] - edx >= 0xffff)\n    {\n        arg2 = 0xffff;\n        sub_118b0e0(edi, &arg2, 2);\n        arg1 = esi[1] - *esi;\n        var_10 = 4;\n        edx_1 = &arg1;\n    }\n    else\n    {\n        int32_t* ecx = nullptr;\n        ecx = esi[1];\n        ecx -= edx;\n        edx_1 = &arg2;\n        arg2 = ecx;\n    }\n\n    sub_118b0e0(edi, edx_1, var_10);\n    int32_t eax_2 = *esi;\n    sub_118b0e0(edi, eax_2, esi[1] - eax_2);\n    int32_t ecx_8 = esi[3];\n    int32_t var_10_2 = 2;\n    int32_t* ecx_9;\n\n    if (esi[4] - ecx_8 >= 0xffff)\n    {\n        arg1 = 0xffff;\n        sub_118b0e0(edi, &arg1, 2);\n        arg2 = esi[4] - esi[3];\n        var_10_2 = 4;\n        ecx_9 = &arg2;\n    }\n    else\n    {\n        void* eax_3 = nullptr;\n        eax_3 = esi[4];\n        eax_3 -= ecx_8;\n        ecx_9 = &arg1;\n        arg1 = eax_3;\n    }\n\n    sub_118b0e0(edi, ecx_9, var_10_2);\n    int32_t eax_6 = esi[3];\n    sub_118b0e0(edi, eax_6, esi[4] - eax_6);\n    int32_t edx_7 = esi[6];\n    int32_t var_10_4 = 2;\n    void** edx_8;\n\n    if (esi[7] - edx_7 >= 0xffff)\n    {\n        arg1 = 0xffff;\n        sub_118b0e0(edi, &arg1, 2);\n        arg2 = esi[7] - esi[6];\n        var_10_4 = 4;\n        edx_8 = &arg2;\n    }\n    else\n    {\n        void* ecx_13 = nullptr;\n        ecx_13 = esi[7];\n        ecx_13 -= edx_7;\n        edx_8 = &arg1;\n        arg1 = ecx_13;\n    }\n\n    sub_118b0e0(edi, edx_8, var_10_4);\n    int32_t eax_9 = esi[6];\n    return sub_118b0e0(edi, eax_9, esi[7] - eax_9);\n}\n````\n"
+      }
+    ],
+    "isError": false
+  },
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "classification": "static analysis; decompiler types and generated names may be approximate"
+}

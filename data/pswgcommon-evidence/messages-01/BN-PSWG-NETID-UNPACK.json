@@ -1,0 +1,19 @@
+{
+  "id": "BN-PSWG-NETID-UNPACK",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0xaa5830",
+    "limit": 100
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0xaa5830\"\narch: \"x86\"\nname: \"sub_aa5830\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 100\ncount: 16\ntotal: 16\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  int32_t sub_aa5830(int32_t* arg1, int32_t* arg2)\n\n{\n    void* const __return_addr_1 = __return_addr;\n    int32_t var_18;\n    sub_aa57f0(arg1, &var_18);\n    void var_20;\n    int32_t var_14;\n    int32_t* eax_1 = sub_aa4900(&var_20, var_18, var_14);\n    *arg2 = *eax_1;\n    int32_t result = eax_1[1];\n    arg2[1] = result;\n    return result;\n}\n````\n"
+      }
+    ],
+    "isError": false
+  },
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "classification": "static analysis; decompiler types and generated names may be approximate"
+}

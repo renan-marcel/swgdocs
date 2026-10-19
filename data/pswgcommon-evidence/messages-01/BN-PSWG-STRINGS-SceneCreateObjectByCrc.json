@@ -1,0 +1,20 @@
+{
+  "id": "BN-PSWG-STRINGS-SceneCreateObjectByCrc",
+  "tool": "bn_string_list",
+  "params": {
+    "query": "SceneCreateObjectByCrc",
+    "limit": 15,
+    "previewBytes": 120
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_string_list\"\nquery: \"SceneCreateObjectByCrc\"\npreviewBytes: 120\noffset: 0\nlimit: 15\ncount: 6\ntotal: 6\nnextOffset: null\ntruncated: false\n---\n\n| string | type | length | previewEscaped | previewHex | previewTruncated |\n| --- | --- | --- | --- | --- | --- |\n| 0x186aeb8 | AsciiString | 0x45 | SceneCreateObjectByCrc crc %08x was not found in object template list | 5363656e654372656174654f626a656374427943726320637263202530387820776173206e6f7420666f756e6420696e206f626a6563742074656d706c617465206c697374 | false |\n| 0x1875af8 | AsciiString | 0x16 | SceneCreateObjectByCrc | 5363656e654372656174654f626a6563744279437263 | false |\n| 0x18b047c | AsciiString | 0x1c | .?AVSceneCreateObjectByCrc@@ | 2e3f41565363656e654372656174654f626a65637442794372634040 | false |\n| 0x18b049c | AsciiString | 0x20 | send.SceneCreateObjectByCrc.%08x | 73656e642e5363656e654372656174654f626a65637442794372632e25303878 | false |\n| 0x18b04c0 | AsciiString | 0x20 | recv.SceneCreateObjectByCrc.%08x | 726563762e5363656e654372656174654f626a65637442794372632e25303878 | false |\n| 0x18b0548 | AsciiString | 0x3d | SceneCreateObjectByCrc::ms_sceneCreateObjectByCrcBlockManager | 5363656e654372656174654f626a65637442794372633a3a6d735f7363656e654372656174654f626a6563744279437263426c6f636b4d616e61676572 | false |\n"
+      }
+    ],
+    "isError": false
+  },
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "classification": "static analysis; decompiler types and generated names may be approximate"
+}

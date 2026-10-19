@@ -52,3 +52,12 @@ _none_
 
 ## Categories
 Packets | Server Packets | 100% Complete
+<!-- pswgcommon:start -->
+
+## Referência de implementação PSWGCommon
+
+[Implementação PSWGCommon: envelope delta, índices e dados de atualização.](../guides/pswgcommon-network.md)
+
+Análise de fontes; não altera o status de verificação desta página.
+
+<!-- pswgcommon:end -->

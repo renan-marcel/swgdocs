@@ -1,0 +1,19 @@
+{
+  "id": "BN-PSWG-READ-BYTES",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0x439910",
+    "limit": 150
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0x439910\"\narch: \"x86\"\nname: \"sub_439910\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 150\ncount: 34\ntotal: 34\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  int32_t __thiscall sub_439910(int32_t* arg1, int32_t arg2, int32_t arg3)\n\n{\n    int32_t var_8 = 0xffffffff;\n    int32_t var_c = 0x1416758;\n    TEB* fsbase;\n    struct _EXCEPTION_REGISTRATION_RECORD* ExceptionList = fsbase->NtTib.ExceptionList;\n    fsbase->NtTib.ExceptionList = &ExceptionList;\n    void* ecx = arg1[1];\n\n    if (ecx)\n    {\n        sub_118b030(ecx, arg2, arg1, arg3);\n        struct _EXCEPTION_REGISTRATION_RECORD* ExceptionList_1 = ExceptionList;\n        int32_t result = *arg1 + arg3;\n        *arg1 = result;\n        fsbase->NtTib.ExceptionList = ExceptionList_1;\n        return result;\n    }\n\n    int32_t var_20;\n    sub_131eb5f(&var_20);\n    char* var_14 = \"Archive::ReadIterator::get - read operation on null stream object\";\n    var_20 = 0x15dd134;\n    int32_t var_8_1 = 0;\n    int32_t var_30;\n    sub_131eb5f(&var_30);\n    char* var_24 = var_14;\n    var_30 = 0x15dd134;\n    sub_131ec55(&var_30, 0x164239c);\n    /* no return */\n}\n````\n"
+      }
+    ],
+    "isError": false
+  },
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "classification": "static analysis; decompiler types and generated names may be approximate"
+}

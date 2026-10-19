@@ -1,0 +1,19 @@
+{
+  "id": "BN-PSWG-CHAT-READ",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0xaf2610",
+    "limit": 220
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0xaf2610\"\narch: \"x86\"\nname: \"sub_af2610\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 220\ncount: 90\ntotal: 90\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  int32_t* __thiscall sub_af2610(int32_t* arg1, int32_t* arg2, char arg3 @ 0x7)\n\n{\n    int32_t var_8 = 0xffffffff;\n    int32_t var_c = 0x14c5541;\n    TEB* fsbase;\n    struct _EXCEPTION_REGISTRATION_RECORD* ExceptionList = fsbase->NtTib.ExceptionList;\n    fsbase->NtTib.ExceptionList = &ExceptionList;\n    int32_t* var_1c = arg1;\n    int32_t var_8_1 = 0;\n    void* var_30 = nullptr;\n    int32_t var_2c = 0;\n    void var_12;\n    void* var_44 = &var_12;\n    int32_t var_28;\n    sub_406e50(&var_28, 0);\n    int32_t i = 0xffffffff;\n    char* edi = \"ChatInstantMessageToClient\";\n\n    while (i)\n    {\n        bool cond:0_1 = 0 != *edi;\n        edi = &edi[1];\n        i -= 1;\n\n        if (!cond:0_1)\n            break;\n    }\n\n    char var_11;\n    char* var_40 = &var_11;\n    var_8_1 = 1;\n    var_11 = arg3;\n    sub_407250(&var_30, \"ChatInstantMessageToClient\", ~i + 0x189e737);\n    void** var_40_1 = &var_30;\n    var_8_1 = 2;\n    sub_acb270(arg1);\n    void* eax_1 = var_30;\n    var_8_1 = 6;\n    sub_414d00(eax_1, var_28 - eax_1);\n    var_8_1 = 4;\n    int32_t* var_18 = &arg1[0xe];\n    sub_118b780(&arg1[0xe]);\n    var_8_1 = 7;\n    sub_af1150(&arg1[0xf]);\n    arg1[0xe] = 0x15eb9d0;\n    var_8_1 = 8;\n    int32_t* var_20 = &arg1[0x18];\n    sub_118b780(&arg1[0x18]);\n    int32_t* var_24 = &arg1[0x19];\n    void* var_44_3 = &var_12;\n    var_8_1 = 0xa;\n    arg1[0x19] = 0;\n    arg1[0x1a] = 0;\n    sub_424530(&arg1[0x1b], 0);\n    var_8_1 = 0xc;\n    int32_t* eax_2 = sub_12ea770(0x10);\n    arg1[0x19] = eax_2;\n    arg1[0x1a] = eax_2;\n    arg1[0x1b] = &eax_2[4];\n    *eax_2 = 0;\n    arg1[0x18] = 0x15ead30;\n    var_8_1 = 0xd;\n    int32_t* var_24_1 = &arg1[0x1c];\n    sub_118b780(&arg1[0x1c]);\n    int32_t* var_20_1 = &arg1[0x1d];\n    void* var_44_4 = &var_12;\n    var_8_1 = 0xf;\n    arg1[0x1d] = 0;\n    arg1[0x1e] = 0;\n    sub_424530(&arg1[0x1f], 0);\n    var_8_1 = 0x11;\n    int32_t* eax_3 = sub_12ea770(0x10);\n    arg1[0x1d] = eax_3;\n    arg1[0x1e] = eax_3;\n    arg1[0x1f] = &eax_3[4];\n    *eax_3 = 0;\n    arg1[0x1c] = 0x15ead30;\n    var_8_1 = 0x12;\n    *arg1 = 0x15eba3c;\n    arg1[4] = 0x15eba34;\n    sub_118b5f0(arg1, &arg1[0xe]);\n    sub_118b5f0(arg1, &arg1[0x18]);\n    sub_118b5f0(arg1, &arg1[0x1c]);\n    sub_118b740(arg1, arg2);\n    fsbase->NtTib.ExceptionList = ExceptionList;\n    return arg1;\n}\n````\n"
+      }
+    ],
+    "isError": false
+  },
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "classification": "static analysis; decompiler types and generated names may be approximate"
+}

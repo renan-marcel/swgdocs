@@ -1,0 +1,17 @@
+{
+  "id": "BN-PSWG-CRC-NORMALIZE",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0xaa2d10",
+    "limit": 150
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0xaa2d10\"\narch: \"x86\"\nname: \"sub_aa2d10\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 150\ncount: 47\ntotal: 47\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  int32_t sub_aa2d10(char* arg1, char* arg2)\n\n{\n    char* edi = arg2;\n    char i = *edi;\n    char ecx = 1;\n\n    if (!i)\n    {\n        *arg1 = 0;\n        return i;\n    }\n\n    char* esi = arg1;\n\n    do\n    {\n        if (i == 0x5c || i == 0x2f)\n        {\n            if (!ecx)\n            {\n                *esi = 0x2f;\n                ecx = 1;\n                esi = &esi[1];\n            }\n        }\n        else if (i != 0x2e)\n        {\n            *esi = sub_131d6e8(i);\n            esi = &esi[1];\n            ecx = 0;\n        }\n        else if (!ecx)\n        {\n            *esi = i;\n            esi = &esi[1];\n        }\n\n        i = edi[1];\n        edi = &edi[1];\n    } while (i);\n\n    *esi = i;\n    return i;\n}\n````\n"
+      }
+    ],
+    "isError": false
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "BN-PSWG-FLOAT-CLASSIFY",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0x131f25b",
+    "limit": 100
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0x131f25b\"\narch: \"x86\"\nname: \"sub_131f25b\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 100\ncount: 19\ntotal: 19\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  int32_t sub_131f25b(int32_t arg1, int32_t arg2, int16_t arg3 @ 0xa) __pure\n\n{\n    int16_t eax = arg3 & 0x7ff8;\n\n    if (eax != 0x7ff0)\n    {\n    label_131f27d:\n\n        if (eax != 0x7ff8)\n            return 0;\n    }\n    else if (!(arg2 & 0x7ffff) && !arg1)\n        goto label_131f27d;\n\n    return 1;\n}\n````\n"
+      }
+    ],
+    "isError": false
+  },
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "classification": "static analysis; decompiler types and generated names may be approximate"
+}

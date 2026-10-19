@@ -1,0 +1,22 @@
+{
+  "id": "PSWG-CRC-STATIC-VERIFY",
+  "method": "static-byte-comparison",
+  "target": "SWGEmu.exe",
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "machine": "0x14c",
+  "image_base": "0x400000",
+  "table_va": "0x15ea5d0",
+  "table_rva": "0x11ea5d0",
+  "table_file_offset": "0x11ea5d0",
+  "table_bytes": 1024,
+  "table_sha256": "0053f121cdcaf9f510a940ba891fb2bccd41487953c5a4c0048c4a3ccdec782e",
+  "java_source_sha256": "5664bade71842c9701d6cb920caf1a3d06128f43fddd08dd66750a71e2cd7ddb",
+  "table_entries": 256,
+  "pe_matches_binary_ninja": true,
+  "java_matches_binary_ninja": true,
+  "limitations": [
+    "Static bytes and pseudocode only; no client or JVM execution.",
+    "Shared table does not prove every call site normalizes strings identically.",
+    "No packet schema is promoted to binary verified by this comparison."
+  ]
+}

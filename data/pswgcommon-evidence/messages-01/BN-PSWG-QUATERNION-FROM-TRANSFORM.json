@@ -1,0 +1,19 @@
+{
+  "id": "BN-PSWG-QUATERNION-FROM-TRANSFORM",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0xaba340",
+    "limit": 240
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0xaba340\"\narch: \"x86\"\nname: \"sub_aba340\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 240\ncount: 62\ntotal: 62\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  int32_t* __thiscall sub_aba340(int32_t* arg1, int32_t arg2)\n\n{\n    float* edx = arg2;\n    *arg1 = 0x3f800000;\n    arg1[1] = 0;\n    arg1[2] = 0;\n    arg1[3] = 0;\n    long double x87_r7_3 = edx[0xa] + *edx + edx[5] + 1f;\n    long double temp1 = 2f;\n    x87_r7_3 - temp1;\n\n    if (!(*(&((x87_r7_3 < temp1 ? 1 : 0) << 8 | (FCMP_UO(x87_r7_3, temp1) ? 1 : 0) << 0xa\n        | (x87_r7_3 == temp1 ? 1 : 0) << 0xe | 0x3800) + 1) & 1))\n    {\n        long double x87_r7_4 = sqrtl(x87_r7_3);\n        *arg1 = 0.5f * x87_r7_4;\n        long double x87_r7_5 = 0.5f / x87_r7_4;\n        arg1[1] = (edx[9] - edx[6]) * x87_r7_5;\n        arg1[2] = (edx[2] - edx[8]) * x87_r7_5;\n        arg1[3] = (edx[4] - edx[1]) * x87_r7_5;\n        return arg1;\n    }\n\n    long double x87_r7_8 = edx[5];\n    int32_t esi_1 = 0;\n    long double temp2 = *edx;\n    x87_r7_8 - temp2;\n    int32_t edi = 1;\n    int32_t ebx = 2;\n\n    if (!(*(&((x87_r7_8 < temp2 ? 1 : 0) << 8 | (FCMP_UO(x87_r7_8, temp2) ? 1 : 0) << 0xa\n        | (x87_r7_8 == temp2 ? 1 : 0) << 0xe) + 1) & 0x41))\n    {\n        esi_1 = 1;\n        edi = 2;\n        ebx = 0;\n    }\n\n    long double x87_r7_9 = edx[0xa];\n    long double temp3 = edx[esi_1 * 5];\n    x87_r7_9 - temp3;\n\n    if (!(*(&((x87_r7_9 < temp3 ? 1 : 0) << 8 | (FCMP_UO(x87_r7_9, temp3) ? 1 : 0) << 0xa\n        | (x87_r7_9 == temp3 ? 1 : 0) << 0xe) + 1) & 0x41))\n    {\n        esi_1 = 2;\n        edi = 0;\n        ebx = 1;\n    }\n\n    int32_t eax_5 = esi_1 << 2;\n    long double x87_r7_15 = sqrtl(edx[esi_1 * 5] - edx[edi * 5] - edx[ebx * 5] + 1f) * 0.5f;\n    arg1[esi_1 + 1] = x87_r7_15;\n    long double x87_r7_17 = 1f / (x87_r7_15 * 4f);\n    arg1[edi + 1] = (edx[esi_1 + (edi << 2)] + edx[eax_5 + edi]) * x87_r7_17;\n    arg1[ebx + 1] = (edx[esi_1 + (ebx << 2)] + edx[eax_5 + ebx]) * x87_r7_17;\n    *arg1 = (edx[edi + (ebx << 2)] - edx[(edi << 2) + ebx]) * x87_r7_17;\n    return arg1;\n}\n````\n"
+      }
+    ],
+    "isError": false
+  },
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "classification": "static analysis; decompiler types and generated names may be approximate"
+}

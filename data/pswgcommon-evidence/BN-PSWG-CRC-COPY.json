@@ -1,0 +1,17 @@
+{
+  "id": "BN-PSWG-CRC-COPY",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0xaa3c10",
+    "limit": 150
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0xaa3c10\"\narch: \"x86\"\nname: \"sub_aa3c10\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 150\ncount: 21\ntotal: 21\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  char* __thiscall sub_aa3c10(void* arg1, char* arg2, char arg3)\n\n{\n    char* result = arg2;\n\n    if (arg3)\n        return sub_aa2d10(arg1 + 8, result);\n\n    char* edx_1 = arg1 + 8 - result;\n    char i;\n\n    do\n    {\n        i = *result;\n        *(edx_1 + result) = i;\n        result = &result[1];\n    } while (i);\n    return result;\n}\n````\n"
+      }
+    ],
+    "isError": false
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "BN-PSWG-CRC-HASH",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0xaa2df0",
+    "limit": 150
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0xaa2df0\"\narch: \"x86\"\nname: \"sub_aa2df0\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 150\ncount: 9\ntotal: 9\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  int32_t __fastcall sub_aa2df0(int32_t* arg1)\n\n{\n    int32_t result = sub_aa4790((*(*arg1 + 4))());\n    arg1[1] = result;\n    return result;\n}\n````\n"
+      }
+    ],
+    "isError": false
+  }
+}

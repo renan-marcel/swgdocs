@@ -1,0 +1,464 @@
+{
+  "id": "PSWG-MESSAGES-01-VERIFICATION",
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "method": "static byte comparison plus independent documentation sample decoder",
+  "memory_checks": [
+    {
+      "id": "BN-PSWG-ARCHIVE-PACK-BYTES",
+      "va": "0x118b6f0",
+      "file_offset": "0xd8b6f0",
+      "bytes": 73,
+      "sha256": "6298431ea9f04cd896b8deb40841dee7f77795031b63dd74b8d79741bfa5c7a8",
+      "matches": true
+    },
+    {
+      "id": "BN-PSWG-AUTOVARIABLE-TABLES",
+      "va": "0x15dd9d4",
+      "file_offset": "0x11dd9d4",
+      "bytes": 184,
+      "sha256": "2fb3a1e9c80719856436468bb80d60f574f76a96155e6fef9d88e4f1567ead70",
+      "matches": true
+    },
+    {
+      "id": "BN-PSWG-AVATAR-TABLE",
+      "va": "0x15eb9cc",
+      "file_offset": "0x11eb9cc",
+      "bytes": 16,
+      "sha256": "d91f3b91a02acfb8ba0efcff1fb4e9da0590cb3992a204698f74a0f6ed671243",
+      "matches": true
+    },
+    {
+      "id": "BN-PSWG-BOOL-TABLE",
+      "va": "0x15de448",
+      "file_offset": "0x11de448",
+      "bytes": 16,
+      "sha256": "d3d42d43d10cdbbc06ec6e53ddabffc4fbeb86aacb8126a7624119bd891a3eb3",
+      "matches": true
+    },
+    {
+      "id": "BN-PSWG-CHAT-READ-BYTES",
+      "va": "0xaf2610",
+      "file_offset": "0x6f2610",
+      "bytes": 452,
+      "sha256": "f3463f5462105844343622ce11f205c603e706cc00b1bc0b5aa2f847c9d53e41",
+      "matches": true
+    },
+    {
+      "id": "BN-PSWG-CONTAIN-READ-BYTES",
+      "va": "0xadc6d0",
+      "file_offset": "0x6dc6d0",
+      "bytes": 311,
+      "sha256": "8b7cd934b62c59dd0c0d9f4cc027d45a9fde8b6ad9bb0f835b777e4f6b9a9d56",
+      "matches": true
+    },
+    {
+      "id": "BN-PSWG-SCENE-READ-BYTES",
+      "va": "0xad51b0",
+      "file_offset": "0x6d51b0",
+      "bytes": 463,
+      "sha256": "dcdf1284e5637f51e38d8dc9775889bcff836ce924a9344798cd2ee3ee279cb0",
+      "matches": true
+    },
+    {
+      "id": "BN-PSWG-TRANSFORM-UNPACK-BYTES",
+      "va": "0x5201a0",
+      "file_offset": "0x1201a0",
+      "bytes": 562,
+      "sha256": "852152f53cb54b7a0f72e5ab4670c3475bf7f07e2401e04bce2a535d3601bee1",
+      "matches": true
+    },
+    {
+      "id": "BN-PSWG-UNICODE-TABLE",
+      "va": "0x15ead2c",
+      "file_offset": "0x11ead2c",
+      "bytes": 16,
+      "sha256": "76bc7f401bb2ea711894b1b9e5b2e400e482606ca490ff271f39eaf69bb8b8d3",
+      "matches": true
+    }
+  ],
+  "type_vtables": [
+    {
+      "vtable": "0x15dd9d8",
+      "col": "0x160ce88",
+      "type_descriptor": "0x1875e58",
+      "rtti": ".?AV?$AutoVariable@VTransform@@@Archive@@",
+      "destructor": "0x5210b0",
+      "pack": "0x5200a0",
+      "unpack": "0x520180"
+    },
+    {
+      "vtable": "0x15dda48",
+      "col": "0x160cc90",
+      "type_descriptor": "0x1875cf0",
+      "rtti": ".?AV?$AutoVariable@K@Archive@@",
+      "destructor": "0x520fd0",
+      "pack": "0x51ff20",
+      "unpack": "0x51ff40"
+    },
+    {
+      "vtable": "0x15dda58",
+      "col": "0x160cc48",
+      "type_descriptor": "0x1875cbc",
+      "rtti": ".?AV?$AutoVariable@VNetworkId@@@Archive@@",
+      "destructor": "0x521010",
+      "pack": "0x51ffc0",
+      "unpack": "0x51ffe0"
+    },
+    {
+      "vtable": "0x15dda84",
+      "col": "0x160cb98",
+      "type_descriptor": "0x1875c74",
+      "rtti": ".?AV?$AutoVariable@H@Archive@@",
+      "destructor": "0x521040",
+      "pack": "0x520010",
+      "unpack": "0x520030"
+    },
+    {
+      "vtable": "0x15de44c",
+      "col": "0x160e2d0",
+      "type_descriptor": "0x1879084",
+      "rtti": ".?AV?$AutoVariable@_N@Archive@@",
+      "destructor": "0x55e2f0",
+      "pack": "0x55e250",
+      "unpack": "0x55e270"
+    },
+    {
+      "vtable": "0x15eb9d0",
+      "col": "0x16225c8",
+      "type_descriptor": "0x18b1cd8",
+      "rtti": ".?AV?$AutoVariable@UChatAvatarId@@@Archive@@",
+      "destructor": "0xaf1110",
+      "pack": "0xaf10d0",
+      "unpack": "0xaf10f0"
+    },
+    {
+      "vtable": "0x15ead30",
+      "col": "0x161f6e8",
+      "type_descriptor": "0x18afc40",
+      "rtti": ".?AV?$AutoVariable@V?$basic_string@GV?$char_traits@G@_STL@@V?$allocator@G@2@@_STL@@@Archive@@",
+      "destructor": "0xacea90",
+      "pack": "0xacea50",
+      "unpack": "0xacea70"
+    }
+  ],
+  "queries": [
+    {
+      "id": "BN-PSWG-ARCHIVE-PACK-BYTES",
+      "tool": "bn_memory_read",
+      "sha256": "e654c71defd4614895199b0717a40d2f4ade3351151e884bb77d946067ae6175"
+    },
+    {
+      "id": "BN-PSWG-ARCHIVE-PACK",
+      "tool": "bn_function_decompile",
+      "sha256": "2e3cbdeed5fc55e285ba4cdb3b13f5dde567a4945a097c228e31e6af07029945"
+    },
+    {
+      "id": "BN-PSWG-ARCHIVE-REGISTER",
+      "tool": "bn_function_decompile",
+      "sha256": "38b636ba4f735161262b2fd78d3e06c1dc616e39fd3aba4f05c2ab82ed00c991"
+    },
+    {
+      "id": "BN-PSWG-ARCHIVE-UNPACK",
+      "tool": "bn_function_decompile",
+      "sha256": "bdf3bb6909025f70dfa04e91ec636ad4aae28b24d9bc18fcb77926d8c98d80c1"
+    },
+    {
+      "id": "BN-PSWG-ASCII-UNPACK-ASM",
+      "tool": "bn_function_disassembly",
+      "sha256": "ef51ddc9820fbbc188c2a033b925fbde1bc7a9799c71cc6f7ab27d9d3121e4e9"
+    },
+    {
+      "id": "BN-PSWG-ASCII-UNPACK",
+      "tool": "bn_function_decompile",
+      "sha256": "9d552fd7890d02c42bea95171d284d42ce5812d27647e1cbce575e16d6acc597"
+    },
+    {
+      "id": "BN-PSWG-AUTOVARIABLE-TABLES",
+      "tool": "bn_memory_read",
+      "sha256": "368867c3b238ef25747254702afad9f84bf8673c0c928dc080e96d767b576d61"
+    },
+    {
+      "id": "BN-PSWG-AVATAR-PACK",
+      "tool": "bn_function_decompile",
+      "sha256": "f283e1947f4988aaa95f55c0583bc506817db51ad227a9c34a253f8cabf98736"
+    },
+    {
+      "id": "BN-PSWG-AVATAR-READ",
+      "tool": "bn_function_decompile",
+      "sha256": "d0dc030fe5b93855ead3290f2fffb418bd170c06e2a33faad0413cfadf9aac7d"
+    },
+    {
+      "id": "BN-PSWG-AVATAR-TABLE",
+      "tool": "bn_memory_read",
+      "sha256": "7f6bda30bbf941312d795b2053c46ac81ca8b9b48213fcd9408683bf67462f8c"
+    },
+    {
+      "id": "BN-PSWG-AVATAR-UNPACK",
+      "tool": "bn_function_decompile",
+      "sha256": "68451f26db5767fb5ea44af3728cc36fabc17a3a8070e44b3fde19ae992f357d"
+    },
+    {
+      "id": "BN-PSWG-AVATAR-WRITE",
+      "tool": "bn_function_decompile",
+      "sha256": "3601fefd07e51438db359b1c6fd1b433429ff4fe43e30fce05e4bede2310634a"
+    },
+    {
+      "id": "BN-PSWG-BASE-CONSTRUCTOR",
+      "tool": "bn_function_decompile",
+      "sha256": "22dee4e7e09bfdc37d4ebe4b5029c4b7c1ec2f188fb801f1fb680fcfb6eb5c49"
+    },
+    {
+      "id": "BN-PSWG-BOOL-READ",
+      "tool": "bn_function_decompile",
+      "sha256": "1209c1c8d7cdbe5a4f5661bac0b54203e1d2acba3110f94130c5ff94b38bbcf4"
+    },
+    {
+      "id": "BN-PSWG-BOOL-TABLE",
+      "tool": "bn_memory_read",
+      "sha256": "f40fd0e7f2c5aaf3b6d6b2919e89f1baf80ed2bba412daf718bf45a4d17734af"
+    },
+    {
+      "id": "BN-PSWG-CHAT-READ-BYTES",
+      "tool": "bn_memory_read",
+      "sha256": "573231f199e7e8dc0530bb2bc44a75931520d8410f0bf24c207470f5b8b4dedf"
+    },
+    {
+      "id": "BN-PSWG-CHAT-READ",
+      "tool": "bn_function_decompile",
+      "sha256": "d4c065cf05c01299448cd3ef797cfa50eb361633e044eda1e85d4d2cbc4cdf10"
+    },
+    {
+      "id": "BN-PSWG-CHAT-SEND",
+      "tool": "bn_function_decompile",
+      "sha256": "bec126c11aa35885719f17e70f9f7a2480e8245d06387d8575c7e8e961bf9895"
+    },
+    {
+      "id": "BN-PSWG-CONTAIN-READ-BYTES",
+      "tool": "bn_memory_read",
+      "sha256": "428e1bd33a871d56dda1a7017d5929d16cfb680817d5de97c3216167de3e763e"
+    },
+    {
+      "id": "BN-PSWG-CONTAIN-READ",
+      "tool": "bn_function_decompile",
+      "sha256": "85fdffb2ba01525716928affb9e1f6e15e62e4c6caf9869d3461116c7c06e8ba"
+    },
+    {
+      "id": "BN-PSWG-CONTAIN-SEND",
+      "tool": "bn_function_decompile",
+      "sha256": "453156fe42e8f8852797f7710212a5653a9b6b2d8869e3eb05b83cecd5b90be4"
+    },
+    {
+      "id": "BN-PSWG-FLOAT-CLASSIFY",
+      "tool": "bn_function_decompile",
+      "sha256": "d5ff6083135c194c5494c85152701481a121655aaed54889bd1271c26423ce04"
+    },
+    {
+      "id": "BN-PSWG-INT-READ",
+      "tool": "bn_function_decompile",
+      "sha256": "471cd30e0abbf27d3eabbc731f026c106c4e458294c7a0329fd554a2e6786552"
+    },
+    {
+      "id": "BN-PSWG-NETID-READ",
+      "tool": "bn_function_decompile",
+      "sha256": "a8d0b717fcbc8c0474a90a6fe726d7b6e7ea7a3382b9e1d597a77331d9d44fd9"
+    },
+    {
+      "id": "BN-PSWG-NETID-UNPACK",
+      "tool": "bn_function_decompile",
+      "sha256": "aa5f13baaa423a6c3b7d4ebe8bb17bfac3785e7fdc8463c88f55dca85628ed64"
+    },
+    {
+      "id": "BN-PSWG-NETID-UNPACK64",
+      "tool": "bn_function_decompile",
+      "sha256": "eacdc4f99a23bed5e3591baf0ce5bcfda450daf2cec3758a90fedf0b3aa10272"
+    },
+    {
+      "id": "BN-PSWG-QUATERNION-DEFAULT",
+      "tool": "bn_function_decompile",
+      "sha256": "49a3abc811c6e57d3a473531945777e69a5ffbea6037873471e07adef143d866"
+    },
+    {
+      "id": "BN-PSWG-QUATERNION-FROM-TRANSFORM",
+      "tool": "bn_function_decompile",
+      "sha256": "a5810791dea52362c3a97cd679ee583a3fc727f3b3f8f1d34b6b413fc4869a6d"
+    },
+    {
+      "id": "BN-PSWG-QUATERNION-ROTATION",
+      "tool": "bn_function_decompile",
+      "sha256": "363e646cbe3050fd976375ba8b994b0b4cd8de6df4399f243e0a1a9fbd83dd94"
+    },
+    {
+      "id": "BN-PSWG-QUATERNION-TO-TRANSFORM",
+      "tool": "bn_function_decompile",
+      "sha256": "bee7f4a107b8970421639209a6b9f7f0ed0873149d4c0017236ff74acf87b62a"
+    },
+    {
+      "id": "BN-PSWG-READ-BYTES",
+      "tool": "bn_function_decompile",
+      "sha256": "eb730bb7c2497d8694fd3d8c58d5fb2d12e7a7bc6ea2ed2bef4178a4783d4bad"
+    },
+    {
+      "id": "BN-PSWG-SCENE-READ-BYTES",
+      "tool": "bn_memory_read",
+      "sha256": "9d423a76d13c81737b08b550008579051e66c2af41fe6559f534cf5b783a7e4a"
+    },
+    {
+      "id": "BN-PSWG-SCENE-READ",
+      "tool": "bn_function_decompile",
+      "sha256": "52d0de1e56981e27e3900eeb58fff4387f0e67354daea929f9ca5943fc3ee05f"
+    },
+    {
+      "id": "BN-PSWG-SCENE-SEND",
+      "tool": "bn_function_decompile",
+      "sha256": "31cf5bed3bd12f5c8309e36733e0b0649001e62487f4ff4bad5d8e31b89394f1"
+    },
+    {
+      "id": "BN-PSWG-STRINGS-ChatInstantMessageToClient",
+      "tool": "bn_string_list",
+      "sha256": "07af5ff3e2215c406aacb4dc8a858118d71859a7eaad1cbf61d8664f5104e02d"
+    },
+    {
+      "id": "BN-PSWG-STRINGS-SceneCreateObjectByCrc",
+      "tool": "bn_string_list",
+      "sha256": "fe1d6b1c218439e557ea94b59ac8fe1e7e3ce0dd470bfd60dfae6fcdc364bf31"
+    },
+    {
+      "id": "BN-PSWG-STRINGS-UpdateContainmentMessage",
+      "tool": "bn_string_list",
+      "sha256": "75763b6e58cb366c27c7306a147d94c1c314811b9424989eb25c58f2111c443c"
+    },
+    {
+      "id": "BN-PSWG-TRANSFORM-PACK",
+      "tool": "bn_function_decompile",
+      "sha256": "b3e679f05b46c50a38a5d0361c718a98a3303cfdc0a5c2b6ca7d4f63b09a30bc"
+    },
+    {
+      "id": "BN-PSWG-TRANSFORM-READ",
+      "tool": "bn_function_decompile",
+      "sha256": "dfea66ab2824655f6dbd6d6fb28cbe761d9aed0204190d9e22f74859326d0416"
+    },
+    {
+      "id": "BN-PSWG-TRANSFORM-UNPACK-BYTES",
+      "tool": "bn_memory_read",
+      "sha256": "8d4740b56aba071c226a7070dfd73604d022a8b73c1417917140d7f51795ea77"
+    },
+    {
+      "id": "BN-PSWG-TRANSFORM-UNPACK",
+      "tool": "bn_function_decompile",
+      "sha256": "eed7d096e2a58b55c61dba634177b7ee63f526f88fd63b8c09435260025bc8a2"
+    },
+    {
+      "id": "BN-PSWG-TRANSFORM-WRITE",
+      "tool": "bn_function_decompile",
+      "sha256": "24a0117d22214f721f52d640920d30648ed112522660f4fec1f22d6a3e770299"
+    },
+    {
+      "id": "BN-PSWG-UINT-READ",
+      "tool": "bn_function_decompile",
+      "sha256": "7249cee3cdc8bb31d0650943efd1a0a6dc83d18f7e7445046034aa79dc7cf2df"
+    },
+    {
+      "id": "BN-PSWG-UNICODE-READ",
+      "tool": "bn_function_decompile",
+      "sha256": "0ef53cf053c8b75ff028c81a0d7fe32c120d91ae9d65c5de2caf2fab0f1741e3"
+    },
+    {
+      "id": "BN-PSWG-UNICODE-TABLE",
+      "tool": "bn_memory_read",
+      "sha256": "3a9feb71da485b94263c3670ecc9d26be774f458d0309eba90d86c4bef4ed180"
+    },
+    {
+      "id": "BN-PSWG-UNICODE-UNPACK",
+      "tool": "bn_function_decompile",
+      "sha256": "82140402b8778dacf85a760119a8fff77ed60e91c07054cbb43dfca5801a3b1b"
+    }
+  ],
+  "documented_fixed_samples": [
+    {
+      "name": "UpdateContainmentMessage",
+      "kind": "existing documented sample; capture origin not re-established",
+      "bytes": 26,
+      "operand_count": 4,
+      "opcode": "56CBDE9E",
+      "decoded_values": [
+        129160169826,
+        1082877,
+        -1
+      ]
+    },
+    {
+      "name": "SceneCreateObjectByCrc",
+      "kind": "existing documented sample; capture origin not re-established",
+      "bytes": 47,
+      "operand_count": 5,
+      "opcode": "FE89DDEA",
+      "decoded_values": [
+        129160169826,
+        0.0,
+        -0.4574800133705139,
+        0.0,
+        0.8892198801040649,
+        20.520000457763672,
+        -0.8949930667877197,
+        4.099999904632568,
+        1756550775,
+        0
+      ]
+    }
+  ],
+  "documented_chat_sample": {
+    "operand_count": 4,
+    "opcode": "3C565CED",
+    "game": "SWG",
+    "galaxy": "Lowca",
+    "character": "hired",
+    "message": "lol",
+    "out_of_band": "",
+    "unicode_prefix_offsets": [
+      25,
+      35
+    ],
+    "bytes_consumed": 39
+  },
+  "synthetic_nonempty_oob": {
+    "classification": "synthetic; layout example only, not valid OOB grammar or captured traffic",
+    "hex": "04 00 ed 5c 56 3c 03 00 53 57 47 05 00 4c 6f 77 63 61 05 00 68 69 72 65 64 03 00 00 00 6c 00 6f 00 6c 00 01 00 00 00 58 00",
+    "decoded": {
+      "operand_count": 4,
+      "opcode": "3C565CED",
+      "game": "SWG",
+      "galaxy": "Lowca",
+      "character": "hired",
+      "message": "lol",
+      "out_of_band": "X",
+      "unicode_prefix_offsets": [
+        25,
+        35
+      ],
+      "bytes_consumed": 41
+    }
+  },
+  "synthetic_count2": {
+    "hex": "02 00 ed 5c 56 3c 03 00 53 57 47 05 00 4c 6f 77 63 61 05 00 68 69 72 65 64 03 00 00 00 6c 00 6f 00 6c 00 01 00 00 00 58 00",
+    "decoded": {
+      "operand_count": 2,
+      "opcode": "3C565CED",
+      "game": "SWG",
+      "galaxy": "Lowca",
+      "character": "hired",
+      "message": "lol",
+      "out_of_band": "X",
+      "unicode_prefix_offsets": [
+        25,
+        35
+      ],
+      "bytes_consumed": 41
+    },
+    "limitation": "Independent decoder accepts header value; this is not a client acceptance test."
+  },
+  "limitations": [
+    "No client/JVM execution or observed network traffic.",
+    "Not all packet semantic handlers were traced.",
+    "The ASCII decoder here handles fixture ASCII only; native charset is not established."
+  ]
+}

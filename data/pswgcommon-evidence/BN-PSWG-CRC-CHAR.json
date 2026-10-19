@@ -1,0 +1,17 @@
+{
+  "id": "BN-PSWG-CRC-CHAR",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0x131d6e8",
+    "limit": 120
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0x131d6e8\"\narch: \"x86\"\nname: \"sub_131d6e8\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 120\ncount: 35\ntotal: 35\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  uint32_t sub_131d6e8(uint32_t arg1)\n\n{\n    int32_t ebx = 0;\n\n    if (!data_19aa110)\n    {\n        if (arg1 >= 0x41 && arg1 <= 0x5a)\n            return arg1 + 0x20;\n\n        return arg1;\n    }\n\n    int32_t ecx_1 = InterlockedIncrement(&data_19bcfc8);\n\n    if (data_19bcfc4)\n    {\n        InterlockedDecrement(&data_19bcfc8);\n        sub_13234b3(0x13);\n        ecx_1 = 0x13;\n        ebx = 1;\n    }\n\n    uint32_t var_10_1 = arg1;\n    uint32_t eax_2 = sub_131d757(ecx_1);\n\n    if (!ebx)\n        InterlockedDecrement(&data_19bcfc8);\n    else\n        __unlock(0x13);\n\n    return eax_2;\n}\n````\n"
+      }
+    ],
+    "isError": false
+  }
+}

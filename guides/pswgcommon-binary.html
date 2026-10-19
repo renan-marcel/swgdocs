@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSWGCommon: evidências REA e Binary Ninja | SWG Docs</title>
+<meta name="description" content="Evidências do Binary Ninja e limitações do provedor REA.">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>.pswg-content{max-width:1200px;margin:2rem auto;padding:0 1.5rem;overflow-wrap:anywhere}
+.pswg-content h1,.pswg-content h2,.pswg-content h3{margin:1.5rem 0 1rem}
+.pswg-content p,.pswg-content ul,.pswg-content ol{margin:1rem 0;line-height:1.75}
+.pswg-content pre{overflow-x:auto;padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:.5rem;line-height:1.6}
+.pswg-content ul,.pswg-content ol{padding-left:1.5rem}.pswg-content .table-wrap{max-width:100%;overflow-x:auto}
+.pswg-content details{margin:1rem 0}.pswg-content summary{cursor:pointer;font-weight:600}</style></head>
+<body data-root="../"><header class="navbar">
+<div class="brand">
+<a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+<span style="font-size:1.4rem;">🪐</span>
+<span>SWG Docs</span>
+</a>
+<span class="tag">Protocol Wiki</span>
+</div>
+<ul class="nav-links">
+<li><a class="" href="../protocols/index.html">Protocols</a></li>
+<li><a class="" href="../commands/index.html">Commands</a></li>
+<li><a class="" href="../controllers/index.html">Controllers</a></li>
+<li><a class="" href="../baselines/index.html">Baselines</a></li>
+<li><a class="" href="../deltas/index.html">Deltas</a></li>
+<li><a class="active" href="../guides/index.html">Guides</a></li>
+<li><a class="" href="../tre-subfiles/index.html">TRE</a></li>
+</ul>
+<div class="nav-actions">
+<div class="search-bar-wrap">
+<span class="search-icon">🔍</span>
+<input autocomplete="off" id="global-search-input" placeholder="Search opcode, packet..." type="text"/>
+<div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+</div>
+<button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+</div>
+</header>
+<main class="pswg-content">
+<nav aria-label="Breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Guides</a> / PSWGCommon</nav>
+<details><summary>Guias PSWGCommon</summary><ul><li><a href="pswgcommon-overview.html">PSWGCommon: arquitetura e guia de leitura</a></li><li><a href="pswgcommon-network.html">PSWGCommon: codecs, pacotes e replicação</a></li><li><a href="pswgcommon-data.html">PSWGCommon: dados, serialização e persistência</a></li><li><a href="pswgcommon-assets.html">PSWGCommon: arquivos do cliente e terreno</a></li><li><a href="pswgcommon-binary.html">PSWGCommon: evidências REA e Binary Ninja</a></li><li><a href="pswgcommon-client-messages.html">PSWGCommon: três mensagens comparadas com o cliente</a></li><li><a href="pswgcommon-catalog.html">PSWGCommon: catálogo lexical das fontes</a></li></ul></details>
+<p><a href="../content/guides/pswgcommon-binary.md">Ler Markdown</a> · Revisão 9ab4234 · Evidência estática</p>
+<article class="guide-body"><h1 id="pswgcommon-evidencias-rea-e-binary-ninja">PSWGCommon: evidências REA e Binary Ninja</h1>
+<p>A biblioteca analisada tem fontes Java/Kotlin, sem JAR compilado incluído. O alvo nativo disponível é outro artefato: <code>SWGEmu.exe</code>, aberto pela base <code>SWGEmu.exe.bndb</code>. A comparação abaixo é restrita ao cálculo de CRC de nomes e à normalização observada nesse cliente; não é uma decompilação da biblioteca JVM nem prova de equivalência entre versões do jogo.</p>
+<p>A continuação pelo MCP do Binary Ninja está em <a href="pswgcommon-client-messages.html">três mensagens comparadas com o cliente</a>. Ela confronta contenção, criação de objetos e chat e registra uma diferença de contador, o tipo da segunda string de chat e o formato estendido de strings de bytes. A limitação REA descrita abaixo pertence à tentativa anterior de usar seu provedor Ghidra.</p>
+<h2 id="identidade-e-ferramentas">Identidade e ferramentas</h2>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>Item</th>
+<th>Identidade / resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fontes</td>
+<td><code>pswgcommon</code> revisão <code>9ab4234e94be480f3b48f539a1f0dd6f5bd408a4</code></td>
+</tr>
+<tr>
+<td>Executável</td>
+<td>PE x86 (<code>0x14c</code>), image base <code>0x400000</code></td>
+</tr>
+<tr>
+<td>SHA-256 do PE</td>
+<td><code>58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8</code></td>
+</tr>
+<tr>
+<td>Binary Ninja</td>
+<td>Base existente aberta via MCP; pseudocódigo e 1024 bytes da tabela exportados</td>
+</tr>
+<tr>
+<td>REA CLI</td>
+<td>Investigação nativa recusada pelo provedor Ghidra com <code>architecture_unsupported</code></td>
+</tr>
+<tr>
+<td>Execução</td>
+<td>Nenhuma execução do cliente ou da biblioteca; análise estática</td>
+</tr>
+</tbody>
+</table></div>
+<p>O diagnóstico REA também apontou <code>config_drift</code> no registro Codex. Não se alterou configuração: a CLI instalada foi chamada diretamente. O erro de análise foi mais específico: o perfil Ghidra/REA desse host Windows aceita PE x64, e o alvo é x86. Hopper é indisponível nesse host; IDA não estava configurado. Essas respostas não significam ausência das funções no executável. Estão preservadas em <a href="../data/pswgcommon-evidence/rea-doctor.json">rea-doctor.json</a> e <a href="../data/pswgcommon-evidence/rea-function.json">rea-function.json</a>.</p>
+<h2 id="caminho-crc-observado">Caminho CRC observado</h2>
+<p>O pseudocódigo do cliente mostra:</p>
+<pre><code class="language-text">0xaa3c50 -&gt; 0xaa3c10 (copiar ou normalizar string)
+         -&gt; 0xaa2df0 (obter string e calcular hash)
+                        -&gt; 0xaa4790 (laço CRC)
+
+0xaa3c10, quando o flag é verdadeiro -&gt; 0xaa2d10 (normalização)
+0xaa2d10 -&gt; 0x131d6e8 (conversão de caracteres)
+</code></pre>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>Evidência</th>
+<th>Observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../data/pswgcommon-evidence/BN-PSWG-CRC-SET.json">BN-PSWG-CRC-SET</a></td>
+<td>Encadeia cópia/normalização e cálculo</td>
+</tr>
+<tr>
+<td><a href="../data/pswgcommon-evidence/BN-PSWG-CRC-COPY.json">BN-PSWG-CRC-COPY</a></td>
+<td>O flag decide entre cópia literal e chamada de normalização</td>
+</tr>
+<tr>
+<td><a href="../data/pswgcommon-evidence/BN-PSWG-CRC-HASH.json">BN-PSWG-CRC-HASH</a></td>
+<td>Grava o resultado do hash no objeto</td>
+</tr>
+<tr>
+<td><a href="../data/pswgcommon-evidence/BN-PSWG-CRC-NORMALIZE.json">BN-PSWG-CRC-NORMALIZE</a></td>
+<td>Converte separadores, suprime barras repetidas/iniciais e ignora pontos enquanto está entre segmentos</td>
+</tr>
+<tr>
+<td><a href="../data/pswgcommon-evidence/BN-PSWG-CRC-CHAR.json">BN-PSWG-CRC-CHAR</a></td>
+<td>Um ramo converte ASCII <code>A..Z</code> para <code>a..z</code>; o outro depende de estado de locale e não foi inteiramente seguido</td>
+</tr>
+<tr>
+<td><a href="../data/pswgcommon-evidence/BN-PSWG-CRC-COMPUTE.json">BN-PSWG-CRC-COMPUTE</a></td>
+<td>Estado inicial <code>0xffffffff</code>, deslocamento à esquerda de oito bits, lookup em tabela e complemento final</td>
+</tr>
+<tr>
+<td><a href="../data/pswgcommon-evidence/BN-PSWG-CRC-TABLE.json">BN-PSWG-CRC-TABLE</a></td>
+<td>Exporta a tabela de 256 palavras em <code>0x15ea5d0</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>As assinaturas, nomes <code>sub_*</code> e expressões são resultados de análise do decompilador. Não devem ser lidos como código-fonte original recuperado ou como tipagem perfeita; os bytes preservados são a evidência mais direta da tabela.</p>
+<h2 id="comparacao-com-crcjava">Comparação com CRC.java</h2>
+<p>O verificador lê a tabela do MCP, a tabela declarada em <code>data/CRC.java</code> e o trecho correspondente do PE original. Os <strong>256 valores / 1024 bytes coincidem integralmente</strong>. O SHA-256 do trecho é <code>0053f121cdcaf9f510a940ba891fb2bccd41487953c5a4c0048c4a3ccdec782e</code>. O endereço virtual é <code>0x15ea5d0</code>, RVA <code>0x11ea5d0</code> e offset no arquivo <code>0x11ea5d0</code> para este PE. Resultado reproduzível: <a href="../data/pswgcommon-evidence/crc-verification.json">crc-verification.json</a>.</p>
+<p>Essa comparação, somada ao laço de <code>0xaa4790</code>, sustenta que as duas rotinas compartilham tabela e estrutura de atualização do CRC. A conclusão não se estende automaticamente aos bytes de entrada:</p>
+<ul>
+<li><code>CRC.getCrc(String)</code> aplica UTF-8 diretamente, sem normalizar caixa, barras ou pontos (<a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/CRC.java#L152"><code>CRC.java:152–161</code></a>).</li>
+<li>O caminho nativo tem opção de normalização antes do hash. A normalização de caminhos não é uma regra universal para todos os opcodes.</li>
+<li>O laço C observado encerra em NUL; a implementação Java itera todos os bytes do array. Uma string contendo NUL embutido não tem contrato idêntico.</li>
+<li>Charset/locale e caracteres fora de ASCII exigem investigação adicional; não foram testados.</li>
+</ul>
+<p>Na prática, não acrescente <code>lowercase()</code> a todo cálculo de opcode da biblioteca com base apenas nessa rotina de caminhos. Verifique o chamador e o nome literal usado por cada mensagem. O <a href="pswgcommon-data.html">guia de dados</a> explica o contrato da biblioteca; o <a href="swg-packet-crc.html">guia histórico de CRC</a> trata outro contexto que também deve ser distinguido do CRC de nomes.</p>
+<h2 id="reproduzir-a-comparacao-estatica">Reproduzir a comparação estática</h2>
+<p>Na raiz de <code>swgdocs</code>, com o clone irmão e o mesmo executável preservados:</p>
+<pre><code class="language-powershell">python scripts/verify_pswgcommon_evidence.py --source ../pswgcommon --binary ../recovered/installation/SWGEmu.exe
+</code></pre>
+<p>O script usa a biblioteca padrão Python, verifica as três sequências e regenera o relatório. Os arquivos de evidência estão incluídos no portal; não é necessário distribuir o executável. Nenhuma conclusão de tráfego, regra de jogo ou compatibilidade de pacote foi extraída desta verificação de CRC. Ela não gerou uma entrada no histórico; o lote 3 veio da etapa posterior de <a href="pswgcommon-client-messages.html">comparação de mensagens</a>.</p></article>
+</main><footer><a href="pswgcommon-overview.html">PSWGCommon</a> · <a href="../index.html">SWG Docs</a></footer>
+<script src="../assets/js/app.js"></script></body></html>

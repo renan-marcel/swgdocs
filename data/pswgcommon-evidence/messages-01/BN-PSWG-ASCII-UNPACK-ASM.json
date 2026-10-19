@@ -1,0 +1,19 @@
+{
+  "id": "BN-PSWG-ASCII-UNPACK-ASM",
+  "tool": "bn_function_disassembly",
+  "params": {
+    "function": "0x439f60",
+    "limit": 75
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_disassembly\"\nfunction: \"0x439f60\"\narch: \"x86\"\nname: \"sub_439f60\"\nplatform: \"windows-x86\"\noffset: 0\nlimit: 75\ncount: 75\ntotal: 173\nnextOffset: 75\ntruncated: true\n---\n\n````asm\n  void* sub_439f60()\n\n0x439f60  push    ebp {__saved_ebp}\n0x439f61  mov     ebp, esp {__saved_ebp}\n0x439f63  push    0xffffffff {var_8}  {0xffffffff}\n0x439f65  push    0x14167b0 {var_c}\n0x439f6a  mov     eax, dword [fs:0x0]\n0x439f70  push    eax {ExceptionList}\n0x439f71  mov     dword [fs:0x0], esp {ExceptionList}\n0x439f78  sub     esp, 0x28\n0x439f7b  push    esi {__saved_esi}\n0x439f7c  push    edi {__saved_edi}\n0x439f7d  mov     edi, dword [ebp+0x8 {arg_4}]\n0x439f80  mov     ecx, dword [edi+0x4]\n0x439f83  xor     esi, esi  {0x0}\n0x439f85  cmp     ecx, esi\n0x439f87  je      0x43a0cf\n\n0x439f8d  push    0x2\n0x439f8f  push    edi {var_48}\n0x439f90  lea     eax, [ebp-0xe {var_12}]\n0x439f93  push    eax {var_12} {var_4c}\n0x439f94  call    sub_118b030\n0x439f99  mov     edx, dword [edi]\n0x439f9b  mov     ax, word [ebp-0xe {var_12}]\n0x439f9f  add     edx, 0x2\n0x439fa2  cmp     ax, 0xffff\n0x439fa6  mov     dword [edi], edx\n0x439fa8  jae     0x439fb4\n\n0x439faa  xor     ecx, ecx  {0x0}\n0x439fac  mov     cx, ax\n0x439faf  mov     dword [ebp-0x14 {var_18}], ecx\n0x439fb2  jmp     0x439fce\n\n0x439fb4  mov     ecx, dword [edi+0x4]\n0x439fb7  cmp     ecx, esi\n0x439fb9  je      0x43a0a0\n\n0x439fbf  push    0x4\n0x439fc1  push    edi {var_48_1}\n0x439fc2  lea     edx, [ebp-0x14 {var_18}]\n0x439fc5  push    edx {var_18} {var_4c_1}\n0x439fc6  call    sub_118b030\n0x439fcb  add     dword [edi], 0x4\n\n0x439fce  mov     eax, dword [edi+0x4]\n0x439fd1  cmp     eax, esi\n0x439fd3  je      0x439fdc\n\n0x439fd5  mov     eax, dword [eax+0x10]\n0x439fd8  mov     esi, dword [eax]\n0x439fda  add     esi, dword [edi]\n\n0x439fdc  push    ebx\n0x439fdd  mov     ebx, dword [ebp-0x14 {var_18}]\n0x439fe0  xor     eax, eax  {0x0}\n0x439fe2  push    eax  {0x0}\n0x439fe3  lea     ecx, [ebp+0xb {arg_4+0x3}]\n0x439fe6  push    ecx {arg_4+0x3} {var_4c_2}\n0x439fe7  lea     ecx, [ebp-0x18 {var_1c}]\n0x439fea  mov     dword [ebp-0x20 {var_24}], eax  {0x0}\n0x439fed  mov     dword [ebp-0x1c {var_20}], eax  {0x0}\n0x439ff0  call    sub_406e50\n0x439ff5  mov     dl, byte [ebp+0xb {arg_4+0x3}]\n0x439ff8  lea     eax, [ebp+0xb {arg_4+0x3}]\n0x439ffb  push    eax {arg_4+0x3} {var_48_2}\n0x439ffc  add     ebx, esi\n0x439ffe  push    ebx {var_4c_3}\n0x439fff  push    esi {var_50}\n0x43a000  lea     ecx, [ebp-0x20 {var_24}]\n0x43a003  mov     dword [ebp-0x4 {var_8_1}], 0x2\n0x43a00a  mov     byte [ebp+0xb {arg_4+0x3}], dl\n0x43a00d  call    sub_407250\n````\n"
+      }
+    ],
+    "isError": false
+  },
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "classification": "static analysis; decompiler types and generated names may be approximate"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "BN-PSWG-CRC-SET",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0xaa3c50",
+    "limit": 150
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0xaa3c50\"\narch: \"x86\"\nname: \"sub_aa3c50\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 150\ncount: 8\ntotal: 8\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  int32_t __thiscall sub_aa3c50(int32_t* arg1, char* arg2, char arg3)\n\n{\n    sub_aa3c10(arg1, arg2, arg3);\n    return sub_aa2df0(arg1);\n}\n````\n"
+      }
+    ],
+    "isError": false
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "BN-PSWG-ARCHIVE-UNPACK",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0x118b740",
+    "limit": 180
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0x118b740\"\narch: \"x86\"\nname: \"sub_118b740\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 180\ncount: 21\ntotal: 21\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  int32_t __thiscall sub_118b740(void* arg1, int32_t* arg2)\n\n{\n    int32_t* ebx = arg2;\n    int32_t result = sub_439910(ebx, &arg2, 2);\n    int32_t* esi = *(arg1 + 4);\n\n    if (esi != *(arg1 + 8))\n    {\n        do\n        {\n            (*(**esi + 8))(ebx);\n            result = *(arg1 + 8);\n            esi = &esi[1];\n        } while (esi != result);\n    }\n\n    return result;\n}\n````\n"
+      }
+    ],
+    "isError": false
+  },
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "classification": "static analysis; decompiler types and generated names may be approximate"
+}

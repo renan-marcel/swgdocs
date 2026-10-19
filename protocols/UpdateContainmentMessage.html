@@ -159,7 +159,15 @@
         
         
         
-        <section class="doc-section">
+        <!-- pswgcommon-message-crosscheck:start -->
+<section class="doc-section">
+<h2>PSWGCommon / client cross-check</h2>
+<p>PSWGCommon encodes 26 bytes: operand count 4 at offset 0, opcode 56CBDE9E at 2, objectId (8 bytes) at 6, containerId (8 bytes) at 14, and slotIndex (4 bytes) at 22. Offsets start at the SWG message and exclude SOE framing; integers are little-endian.</p>
+<p>The client reader at 0x00ADC6D0 registers two NetworkId fields and one int in that order (object members +0x38, +0x48, +0x58). These are in-memory offsets, not packet offsets. This corroborates the field sequence; arrangement/slot semantics and special values are not established by the registration alone.</p>
+<p>See <a href="../guides/pswgcommon-client-messages.html">client message analysis</a>. Evidence: <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-CONTAIN-READ.json">BN-PSWG-CONTAIN-READ</a>.</p>
+</section>
+<!-- pswgcommon-message-crosscheck:end -->
+<section class="doc-section">
           <h2>📦 Sample Hex Dump / Packet Payload</h2>
           <div class="code-container">
             <div class="code-header">

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSWGCommon: três mensagens comparadas com o cliente | SWG Docs</title>
+<meta name="description" content="Contenção, criação de objetos e chat confrontados com leitores e escritores do cliente.">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>.pswg-content{max-width:1200px;margin:2rem auto;padding:0 1.5rem;overflow-wrap:anywhere}
+.pswg-content h1,.pswg-content h2,.pswg-content h3{margin:1.5rem 0 1rem}
+.pswg-content p,.pswg-content ul,.pswg-content ol{margin:1rem 0;line-height:1.75}
+.pswg-content pre{overflow-x:auto;padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:.5rem;line-height:1.6}
+.pswg-content ul,.pswg-content ol{padding-left:1.5rem}.pswg-content .table-wrap{max-width:100%;overflow-x:auto}
+.pswg-content details{margin:1rem 0}.pswg-content summary{cursor:pointer;font-weight:600}</style></head>
+<body data-root="../"><header class="navbar">
+<div class="brand">
+<a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+<span style="font-size:1.4rem;">🪐</span>
+<span>SWG Docs</span>
+</a>
+<span class="tag">Protocol Wiki</span>
+</div>
+<ul class="nav-links">
+<li><a class="" href="../protocols/index.html">Protocols</a></li>
+<li><a class="" href="../commands/index.html">Commands</a></li>
+<li><a class="" href="../controllers/index.html">Controllers</a></li>
+<li><a class="" href="../baselines/index.html">Baselines</a></li>
+<li><a class="" href="../deltas/index.html">Deltas</a></li>
+<li><a class="active" href="../guides/index.html">Guides</a></li>
+<li><a class="" href="../tre-subfiles/index.html">TRE</a></li>
+</ul>
+<div class="nav-actions">
+<div class="search-bar-wrap">
+<span class="search-icon">🔍</span>
+<input autocomplete="off" id="global-search-input" placeholder="Search opcode, packet..." type="text"/>
+<div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+</div>
+<button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+</div>
+</header>
+<main class="pswg-content">
+<nav aria-label="Breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Guides</a> / PSWGCommon</nav>
+<details><summary>Guias PSWGCommon</summary><ul><li><a href="pswgcommon-overview.html">PSWGCommon: arquitetura e guia de leitura</a></li><li><a href="pswgcommon-network.html">PSWGCommon: codecs, pacotes e replicação</a></li><li><a href="pswgcommon-data.html">PSWGCommon: dados, serialização e persistência</a></li><li><a href="pswgcommon-assets.html">PSWGCommon: arquivos do cliente e terreno</a></li><li><a href="pswgcommon-binary.html">PSWGCommon: evidências REA e Binary Ninja</a></li><li><a href="pswgcommon-client-messages.html">PSWGCommon: três mensagens comparadas com o cliente</a></li><li><a href="pswgcommon-catalog.html">PSWGCommon: catálogo lexical das fontes</a></li></ul></details>
+<p><a href="../content/guides/pswgcommon-client-messages.md">Ler Markdown</a> · Revisão 9ab4234 · Evidência estática</p>
+<article class="guide-body"><h1 id="pswgcommon-tres-mensagens-comparadas-com-o-cliente">PSWGCommon: três mensagens comparadas com o cliente</h1>
+<p>Esta etapa confronta <code>UpdateContainmentMessage</code>, <code>SceneCreateObjectByCrc</code> e <code>ChatInstantMessageToClient</code> da revisão <code>9ab4234e94be480f3b48f539a1f0dd6f5bd408a4</code> de PSWGCommon com leitores e escritores do cliente <code>SWGEmu.exe</code>. O Binary Ninja foi usado diretamente pelo MCP, seguindo o método de coleta e delimitação de evidências da skill REA. O REA CLI não foi usado como motor de decompilação nesta etapa.</p>
+<p>O alvo é o PE x86 de SHA-256 <code>58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8</code>. Todas as observações são estáticas. Não houve execução da biblioteca, execução do cliente ou captura de tráfego. Os layouts são de mensagens SWG a partir do contador inicial; não incluem enquadramento SOE, compressão, criptografia ou o prefixo próprio de <code>NetworkProtocol</code>.</p>
+<h2 id="resultado-da-comparacao">Resultado da comparação</h2>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>Mensagem</th>
+<th>Resultado estrutural</th>
+<th>Diferença ou limite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../protocols/UpdateContainmentMessage.html">UpdateContainmentMessage</a></td>
+<td>Dois NetworkIds de 64 bits e um inteiro de 32 bits; 26 bytes com cabeçalho</td>
+<td><code>slotIndex</code> na biblioteca corresponde ao campo chamado Arrangement Id na documentação; significado de cada valor não foi demonstrado pelo codec</td>
+</tr>
+<tr>
+<td><a href="../protocols/SceneCreateObjectByCrc.html">SceneCreateObjectByCrc</a></td>
+<td>NetworkId, transform de 28 bytes, CRC de template e boolean; 47 bytes</td>
+<td>O cliente mantém matriz 3×4 em memória e quaternion/posição na rede; semântica completa de ByteFlag permanece parcial</td>
+</tr>
+<tr>
+<td><a href="../protocols/ChatInstantMessageToClient.html">ChatInstantMessageToClient</a></td>
+<td>Avatar de três strings de bytes, mensagem Unicode e outra string Unicode</td>
+<td>O <code>INT 0</code> final da página histórica era apenas o caso vazio dessa segunda string; biblioteca escreve contador <code>2</code>, mas serializador nativo produz <code>4</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Os CRCs de nome calculados independentemente por algoritmo bit a bit são <code>56CBDE9E</code>, <code>FE89DDEA</code> e <code>3C565CED</code>, respectivamente. Eles coincidem com os valores documentados. Esse cálculo não é o CRC de transporte SOE e não implica equivalência integral entre clientes NGE e o executável deste workspace.</p>
+<h2 id="como-os-alvos-foram-identificados">Como os alvos foram identificados</h2>
+<p>O <a href="../scripts/locate_pswgcommon_messages.py">localizador reproduzível</a> procura RTTI exato, candidatos a CompleteObjectLocator, vtables e ocorrências de seus endereços nos bytes das seções executáveis. Ocorrências brutas são apenas candidatas. Os construtores selecionados foram então lidos pelo Binary Ninja: eles referenciam o nome da mensagem, instalam as vtables e registram as variáveis antes de chamar o desempacotador. O <a href="../data/pswgcommon-evidence/messages-01/locator.json">resultado do localizador</a> preserva também candidatos que não foram seguidos.</p>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>Mensagem</th>
+<th>Type descriptor</th>
+<th>Vtables principal / base +0x10</th>
+<th>Construtor com valores / leitor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contenção</td>
+<td><code>0x18b0b38</code></td>
+<td><code>0x15eb2d4</code> / <code>0x15eb2cc</code></td>
+<td><code>0xadc560</code> / <code>0xadc6d0</code></td>
+</tr>
+<tr>
+<td>Criação por CRC</td>
+<td><code>0x18b0474</code></td>
+<td><code>0x15eafe8</code> / <code>0x15eafe0</code></td>
+<td><code>0xad4fb0</code> / <code>0xad51b0</code></td>
+</tr>
+<tr>
+<td>Chat para cliente</td>
+<td><code>0x18b1e20</code></td>
+<td><code>0x15eba3c</code> / <code>0x15eba34</code></td>
+<td><code>0xaf2410</code> / <code>0xaf2610</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Os nomes <code>sub_*</code> e algumas assinaturas de funções são aproximações do decompilador. A interpretação abaixo foi apoiada por ordem de registro, RTTI dos AutoVariables, rotinas de leitura/escrita e, quando necessário, instruções x86. Offset de membro C++ não equivale a offset no pacote.</p>
+<h2 id="contador-e-ordem-de-variaveis-em-archive">Contador e ordem de variáveis em Archive</h2>
+<p>O construtor base em <code>0xacb270</code> registra o opcode como <code>AutoVariable&lt;unsigned long&gt;</code> em <code>this+0x30</code>, com valor em <code>+0x34</code>. Os construtores concretos acrescentam suas variáveis usando <code>0x118b5f0</code>, que as insere em ordem em um vetor. A expressão <code>arg1[n]</code> nos exports usa ponteiro de 32 bits; por isso, <code>arg1[0xe]</code> significa offset de bytes <code>+0x38</code>.</p>
+<p><code>0x118b6f0</code> calcula <code>(fim - início) / 4</code> para esse vetor, escreve os dois bytes baixos do resultado e chama o método virtual de escrita de cada variável. Logo, o contador é <strong>quantidade de variáveis registradas incluindo o opcode</strong>, não quantidade de todos os campos escalares de uma estrutura composta.</p>
+<p>O leitor <code>0x118b740</code> lê dois bytes iniciais em uma variável temporária e percorre o vetor chamando os métodos virtuais de leitura. Nessa função, o valor recebido do contador não controla o laço e não é comparado com a quantidade registrada. Isso explica como <code>4</code> pode representar opcode + avatar + duas strings, embora o avatar contenha três strings internas. Não demonstra aceitação de um pacote malformado por todas as camadas do cliente.</p>
+<p>Evidências: <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-BASE-CONSTRUCTOR.json">BASE-CONSTRUCTOR</a>, <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-ARCHIVE-REGISTER.json">ARCHIVE-REGISTER</a>, <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-ARCHIVE-PACK.json">ARCHIVE-PACK</a> e <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-ARCHIVE-UNPACK.json">ARCHIVE-UNPACK</a>.</p>
+<h2 id="updatecontainmentmessage">UpdateContainmentMessage</h2>
+<p>O leitor registra em ordem AutoVariable de NetworkId em <code>+0x38</code>, outro em <code>+0x48</code> e int em <code>+0x58</code>. Os NetworkIds guardam seus oito bytes em <code>+0x40</code> e <code>+0x50</code>; o inteiro fica em <code>+0x5c</code>. O leitor virtual de NetworkId chega a <code>0xaa57f0</code>, que solicita oito bytes; o de int solicita quatro.</p>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th style="text-align: right;">Offset no wire</th>
+<th style="text-align: right;">Bytes</th>
+<th>Campo</th>
+<th>Confirmação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td>Contador <code>4</code></td>
+<td>Opcode base + três membros</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td>Opcode <code>56CBDE9E</code></td>
+<td>CRC do nome e cabeçalho documentado</td>
+</tr>
+<tr>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">8</td>
+<td>Object ID</td>
+<td>Primeiro NetworkId</td>
+</tr>
+<tr>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">8</td>
+<td>Parent/container ID</td>
+<td>Segundo NetworkId</td>
+</tr>
+<tr>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">4</td>
+<td>Arrangement ID / <code>slotIndex</code></td>
+<td>AutoVariable int</td>
+</tr>
+</tbody>
+</table></div>
+<p>O sample existente tem 26 bytes, opcode correto e último inteiro <code>-1</code>. O significado desse valor não foi inferido somente por vê-lo em uma amostra. Fonte PSWGCommon: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/UpdateContainmentMessage.java#L49"><code>network/packets/swg/zone/UpdateContainmentMessage.java:49–63</code></a>. Evidências: <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-CONTAIN-READ.json">CONTAIN-READ</a>, <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-CONTAIN-SEND.json">CONTAIN-SEND</a> e <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-NETID-UNPACK64.json">NETID-UNPACK64</a>.</p>
+<h2 id="scenecreateobjectbycrc-e-transform">SceneCreateObjectByCrc e Transform</h2>
+<p>O leitor registra <code>NetworkId</code> em <code>+0x38</code>, <code>Transform</code> em <code>+0x48</code>, unsigned long em <code>+0x7c</code> e bool em <code>+0x84</code>. Os valores começam em <code>+0x40</code>, <code>+0x4c</code>, <code>+0x80</code> e <code>+0x88</code>. O transform ocupa 48 bytes de matriz em memória; isso não significa 48 bytes na rede.</p>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th style="text-align: right;">Offset no wire</th>
+<th style="text-align: right;">Bytes</th>
+<th>Campo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td>Contador <code>5</code></td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td>Opcode <code>FE89DDEA</code></td>
+</tr>
+<tr>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">8</td>
+<td>Object ID</td>
+</tr>
+<tr>
+<td style="text-align: right;">14, 18, 22, 26</td>
+<td style="text-align: right;">4 cada</td>
+<td>Quaternion <code>x, y, z, w</code></td>
+</tr>
+<tr>
+<td style="text-align: right;">30, 34, 38</td>
+<td style="text-align: right;">4 cada</td>
+<td>Posição <code>x, y, z</code></td>
+</tr>
+<tr>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">4</td>
+<td>CRC do template</td>
+</tr>
+<tr>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">1</td>
+<td>Boolean / ByteFlag</td>
+</tr>
+</tbody>
+</table></div>
+<p><code>0x5200c0</code> extrai um quaternion da matriz por <code>0xaba340</code>, escreve seus três componentes vetoriais e o componente escalar, depois as três posições da matriz. São sete escritas de quatro bytes. A rotina de conversão inicializa internamente <code>(w,x,y,z)=(1,0,0,0)</code>, mas o wire emite <code>x,y,z,w</code>. <code>0x5201a0</code> lê os mesmos sete floats, reconstrói a rotação e grava posição nos offsets de matriz <code>+0x0c,+0x1c,+0x2c</code>.</p>
+<p>O leitor testa os quatro componentes do quaternion com uma rotina de classificação de NaN e, se algum for NaN, substitui a orientação pelo quaternion identidade antes de convertê-la para matriz. A biblioteca, em contrapartida, rejeita NaN em orientação ou posição por <code>verifyInternals</code>. Não se concluiu que os dois caminhos possuem a mesma política para todos os valores inválidos, infinitos ou quaternions não unitários. Não houve teste dinâmico dessas condições.</p>
+<p>A última variável tem RTTI bool e seu leitor consome um byte sem uma normalização visível nesse wrapper. A fonte chama o campo <code>hyperspace</code>, mas o codec, sozinho, não demonstra em quais estados ele ativa efeitos no cliente. Mantém-se o status histórico parcial da página, com o layout agora confrontado com o binário.</p>
+<p>Fontes: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/SceneCreateObjectByCrc.java#L54"><code>network/packets/swg/zone/SceneCreateObjectByCrc.java:54–73</code></a>, <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/location/Location.java#L204"><code>data/location/Location.java:204–223</code></a>, <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/location/Quaternion.java#L208"><code>Quaternion.java:208–229</code></a> e <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/data/location/Point3D.java#L171"><code>Point3D.java:171–189</code></a>. Evidências: <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-SCENE-READ.json">SCENE-READ</a>, <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-TRANSFORM-PACK.json">TRANSFORM-PACK</a>, <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-TRANSFORM-UNPACK.json">TRANSFORM-UNPACK</a>, <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-QUATERNION-FROM-TRANSFORM.json">QUATERNION-FROM-TRANSFORM</a>, <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-QUATERNION-ROTATION.json">QUATERNION-ROTATION</a> e <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-FLOAT-CLASSIFY.json">FLOAT-CLASSIFY</a>.</p>
+<h2 id="chatinstantmessagetoclient-o-caso-vazio-escondia-uma-string">ChatInstantMessageToClient: o caso vazio escondia uma string</h2>
+<p>O cliente registra três AutoVariables: <code>ChatAvatarId</code> em <code>+0x38</code>, string Unicode em <code>+0x60</code> e outra string Unicode em <code>+0x70</code>. Ambas as strings usam a mesma vtable <code>0x15ead30</code>. O avatar tem vtable <code>0x15eb9d0</code> e seu leitor <code>0xb1bf40</code> chama três vezes o leitor de strings de bytes <code>0x439f60</code>. A rotina Unicode <code>0x11948b0</code> lê um comprimento de quatro bytes e consome duas vezes esse valor em bytes.</p>
+<p>O resultado é:</p>
+<pre><code class="language-text">u16 count=4 | u32 opcode=3C565CED
+byte_string game | byte_string galaxy | byte_string character
+u32 message_units | message UTF-16LE
+u32 second_string_units | second_string UTF-16LE
+</code></pre>
+<p>A biblioteca chama a segunda string de <code>outOfBand</code>. O binário demonstra seu tipo e sua posição; o tratamento semântico do conteúdo OOB pelo consumidor não foi rastreado nesta etapa. Um <code>00 00 00 00</code> final demonstra somente comprimento zero, não que esse campo é uma constante obrigatória nem que o pacote termina sempre imediatamente após esse inteiro.</p>
+<p>Para strings de avatar com comprimento menor que <code>65535</code>, sejam <code>G</code> e <code>C</code> os tamanhos em bytes de galaxy e character e <code>M</code> e <code>O</code> os tamanhos em unidades UTF-16 das duas strings:</p>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th style="text-align: right;">Offset decimal</th>
+<th style="text-align: right;">Bytes</th>
+<th>Campo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td>Contador: <code>4</code> nativo; <code>2</code> em PSWGCommon</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td>Opcode</td>
+</tr>
+<tr>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">5</td>
+<td><code>03 00 53 57 47</code> (<code>SWG</code>)</td>
+</tr>
+<tr>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">2 + G</td>
+<td>Galaxy</td>
+</tr>
+<tr>
+<td style="text-align: right;">13 + G</td>
+<td style="text-align: right;">2 + C</td>
+<td>Character</td>
+</tr>
+<tr>
+<td style="text-align: right;">15 + G + C</td>
+<td style="text-align: right;">4 + 2M</td>
+<td>Message</td>
+</tr>
+<tr>
+<td style="text-align: right;">19 + G + C + 2M</td>
+<td style="text-align: right;">4 + 2O</td>
+<td>Segunda string / <code>outOfBand</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Total: <code>23 + G + C + 2M + 2O</code>. A hipótese game=<code>SWG</code> é da biblioteca e do sample; o tipo nativo avatar é mais geral e contém três strings.</p>
+<h3 id="duas-diferencas-concretas-da-biblioteca">Duas diferenças concretas da biblioteca</h3>
+<p><code>ChatInstantMessageToClient.encode()</code> escreve <code>addShort(2)</code> em vez do <code>4</code> obtido da lista de variáveis nativa. A documentação conserva o valor nativo/sample <code>4</code> e registra a divergência da implementação. Tanto o <code>checkDecode</code> da biblioteca quanto o leitor Archive inspecionado consomem o contador sem validá-lo nessa camada. Isso não autoriza afirmar que todo caminho de recepção aceita qualquer valor.</p>
+<p>Há também diferença nos limites de strings de bytes. O leitor nativo trata o tamanho inicial como unsigned short; <code>0xffff</code> sinaliza um comprimento adicional de 32 bits. O escritor de avatar <code>0xb1bf70</code> usa esse formato estendido quando o tamanho é pelo menos <code>65535</code>. A comparação <code>cmp ax,0xffff</code> seguida de <code>jae</code> foi conferida na desmontagem. <code>NetBuffer.array</code>, usado por <code>ascii</code>, lê um short Java/Kotlin com sinal e não implementa esse escape. Comprimentos de <code>32768..65534</code> e o escape <code>65535</code> não têm o mesmo contrato nos dois leitores.</p>
+<p>Além disso, o pacote Java reserva espaço para galaxy/character com <code>String.length</code>, enquanto <code>addAscii</code> escreve bytes UTF-8. Entradas multibyte podem ultrapassar a capacidade calculada. O leitor nativo aqui demonstra strings de bytes, não seu charset para todos os contextos; não se atribuiu UTF-8 ao cliente somente a partir da biblioteca.</p>
+<p>Fontes: <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/swg/zone/chat/ChatInstantMessageToClient.java#L59"><code>network/packets/swg/zone/chat/ChatInstantMessageToClient.java:59–78</code></a>, <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/packets/SWGPacket.java#L70"><code>network/packets/SWGPacket.java:70–77</code></a> e <a href="https://github.com/ProjectSWGCore/pswgcommon/blob/9ab4234e94be480f3b48f539a1f0dd6f5bd408a4/src/main/java/com/projectswg/common/network/NetBuffer.kt#L209"><code>network/NetBuffer.kt:209–213,248–251</code></a>. Evidências: <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-CHAT-READ.json">CHAT-READ</a>, <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-CHAT-SEND.json">CHAT-SEND</a>, <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-AVATAR-UNPACK.json">AVATAR-UNPACK</a>, <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-AVATAR-PACK.json">AVATAR-PACK</a>, <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-UNICODE-UNPACK.json">UNICODE-UNPACK</a>, <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-ASCII-UNPACK.json">ASCII-UNPACK</a> e <a href="../data/pswgcommon-evidence/messages-01/BN-PSWG-ASCII-UNPACK-ASM.json">desmontagem parcial do ramo de comprimento</a>.</p>
+<h2 id="verificacao-e-reproducao">Verificação e reprodução</h2>
+<p>O <a href="../data/pswgcommon-evidence/messages-01/verification.json">relatório de verificação</a> conserva os hashes das 46 respostas MCP, o vínculo RTTI de sete vtables de tipos, nove comparações de memória com o PE original — 2093 bytes ao todo — e a leitura independente dos samples documentados. Os trechos incluem os três construtores de leitura completos, o escritor do contador e o leitor completo de transform. São exports estáticos da base existente; não se trata de um replay de execução.</p>
+<p>O verificador também constrói uma amostra sintética com segunda string <code>X</code>, seguida de uma variante com contador <code>2</code>. Elas demonstram offsets e consumo de bytes no decodificador independente; <code>X</code> não é apresentado como conteúdo OOB semanticamente válido. Nenhuma dessas amostras é tráfego capturado ou prova de aceitação pelo cliente.</p>
+<p>Na raiz de <code>swgdocs</code>, com o mesmo executável preservado:</p>
+<pre><code class="language-powershell">python scripts/locate_pswgcommon_messages.py
+python scripts/verify_pswgcommon_messages.py
+python scripts/apply_pswgcommon_message_crosscheck.py
+python scripts/record_pswgcommon_messages.py
+python scripts/build_pswgcommon_docs.py
+python scripts/validate_pswgcommon_docs.py
+</code></pre>
+<p>O primeiro script encontra candidatos; o segundo verifica exports retidos e exemplos; o terceiro sincroniza notas e a correção do campo de chat; <code>record_pswgcommon_messages.py</code> registra o lote de histórico sem duplicá-lo. Os dois últimos renderizam e validam os guias. Na raiz do workspace, execute também <code>python scripts/update_history.py</code>, <code>python scripts/generate_protocol_data.py</code> e <code>python scripts/generate_pending_page.py</code> para atualizar histórico, Inspector e backlog. Para repetir a decompilação, abra a mesma base no Binary Ninja e use os endereços e parâmetros registrados nos JSON. Os resultados foram separados do <a href="pswgcommon-catalog.html">inventário lexical</a>, cujo cruzamento nominal continua sem implicar confirmação de payload.</p>
+<h2 id="questoes-que-permanecem-abertas">Questões que permanecem abertas</h2>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>Questão</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tipos, ordem e larguras dos três layouts</td>
+<td>Confrontados estaticamente com readers/writers</td>
+</tr>
+<tr>
+<td>Contador de Chat e segunda string</td>
+<td>Divergência e tipo confirmados por registro e serialização</td>
+</tr>
+<tr>
+<td>Transform e limites de strings de bytes</td>
+<td>Diferenças de representação e limites identificadas</td>
+</tr>
+<tr>
+<td>Significado de todos os arrangement IDs</td>
+<td>Consumidor não rastreado</td>
+</tr>
+<tr>
+<td>Estados exatos do flag de hyperspace</td>
+<td>Nome da fonte; semântica de execução ainda parcial</td>
+</tr>
+<tr>
+<td>Gramática e aplicação de OOB no chat</td>
+<td>Tipo e posição confirmados; consumidor não rastreado</td>
+</tr>
+<tr>
+<td>Compatibilidade completa NGE / cliente disponível</td>
+<td>Não estabelecida</td>
+</tr>
+<tr>
+<td>Testes dinâmicos e tráfego</td>
+<td>Não executados</td>
+</tr>
+</tbody>
+</table></div></article>
+</main><footer><a href="pswgcommon-overview.html">PSWGCommon</a> · <a href="../index.html">SWG Docs</a></footer>
+<script src="../assets/js/app.js"></script></body></html>

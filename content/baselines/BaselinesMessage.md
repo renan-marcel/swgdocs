@@ -50,3 +50,12 @@ _none_
 
 ## Categories
 Packets | Server Packets | 50% Complete
+<!-- pswgcommon:start -->
+
+## Referência de implementação PSWGCommon
+
+[Implementação PSWGCommon: envelope baseline e limitações ao decodificar e serializar novamente.](../guides/pswgcommon-network.md)
+
+Análise de fontes; não altera o status de verificação desta página.
+
+<!-- pswgcommon:end -->

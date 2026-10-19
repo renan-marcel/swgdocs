@@ -1,0 +1,19 @@
+{
+  "id": "BN-PSWG-CHAT-SEND",
+  "tool": "bn_function_decompile",
+  "params": {
+    "function": "0xaf2410",
+    "limit": 220
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "---\ntool: \"bn_function_decompile\"\nfunction: \"0xaf2410\"\narch: \"x86\"\nname: \"sub_af2410\"\nplatform: \"windows-x86\"\nlanguage: \"Pseudo C\"\noffset: 0\nlimit: 220\ncount: 84\ntotal: 84\nnextOffset: null\ntruncated: false\nneedsUpdate: false\n---\n\n````bn-pseudoc\n  int32_t* __thiscall sub_af2410(int32_t* arg1, char arg2 @ 0x7, int32_t* arg3 @ 0x8, int32_t* arg4 @ 0xc)\n\n{\n    int32_t var_8 = 0xffffffff;\n    int32_t var_c = 0x14c54b4;\n    TEB* fsbase;\n    struct _EXCEPTION_REGISTRATION_RECORD* ExceptionList = fsbase->NtTib.ExceptionList;\n    fsbase->NtTib.ExceptionList = &ExceptionList;\n    int32_t* var_1c = arg1;\n    int32_t var_8_1 = 0;\n    void* var_2c = nullptr;\n    int32_t var_28 = 0;\n    void var_12;\n    void* var_40 = &var_12;\n    int32_t var_24;\n    sub_406e50(&var_24, 0);\n    int32_t i = 0xffffffff;\n    char* edi = \"ChatInstantMessageToClient\";\n\n    while (i)\n    {\n        bool cond:0_1 = 0 != *edi;\n        edi = &edi[1];\n        i -= 1;\n\n        if (!cond:0_1)\n            break;\n    }\n\n    char var_11;\n    char* var_3c = &var_11;\n    var_8_1 = 1;\n    var_11 = arg2;\n    sub_407250(&var_2c, \"ChatInstantMessageToClient\", ~i + 0x189e737);\n    void** var_3c_1 = &var_2c;\n    var_8_1 = 2;\n    sub_acb270(arg1);\n    void* eax_1 = var_2c;\n    var_8_1 = 6;\n    sub_414d00(eax_1, var_24 - eax_1);\n    var_8_1 = 4;\n    int32_t* var_18 = &arg1[0xe];\n    sub_118b780(&arg1[0xe]);\n    int32_t arg_4;\n    int32_t var_3c_3 = arg_4;\n    var_8_1 = 7;\n    int32_t* var_20 = &arg1[0xf];\n    sub_406c00(&arg1[0xf]);\n    int32_t var_3c_4 = arg_4 + 0xc;\n    var_8_1 = 8;\n    sub_406c00(&arg1[0x12]);\n    int32_t var_3c_5 = arg_4 + 0x18;\n    var_8_1 = 9;\n    sub_406c00(&arg1[0x15]);\n    arg1[0xe] = 0x15eb9d0;\n    var_8_1 = 0xa;\n    int32_t* var_20_1 = &arg1[0x18];\n    sub_118b780(&arg1[0x18]);\n    var_8_1 = 0xb;\n    var_8_1 = 0xc;\n    sub_425460(&arg1[0x19], sub_424b40((&arg_4 + 3)));\n    var_8_1 = 0xe;\n    sub_4384c0(&arg1[0x19], *arg3, arg3[1]);\n    arg1[0x18] = 0x15ead30;\n    var_8_1 = 0xf;\n    int32_t* var_20_2 = &arg1[0x1c];\n    sub_118b780(&arg1[0x1c]);\n    var_8_1 = 0x10;\n    var_8_1 = 0x11;\n    sub_425460(&arg1[0x1d], sub_424b40((&arg_4 + 3)));\n    var_8_1 = 0x13;\n    sub_4384c0(&arg1[0x1d], *arg4, arg4[1]);\n    arg1[0x1c] = 0x15ead30;\n    var_8_1 = 0x14;\n    *arg1 = 0x15eba3c;\n    arg1[4] = 0x15eba34;\n    sub_118b5f0(arg1, &arg1[0xe]);\n    sub_118b5f0(arg1, &arg1[0x18]);\n    sub_118b5f0(arg1, &arg1[0x1c]);\n    fsbase->NtTib.ExceptionList = ExceptionList;\n    return arg1;\n}\n````\n"
+      }
+    ],
+    "isError": false
+  },
+  "target_sha256": "58012e57cebc499454812ba7ed96b1289db01e520963b4fc364edb41c322b2a8",
+  "classification": "static analysis; decompiler types and generated names may be approximate"
+}
