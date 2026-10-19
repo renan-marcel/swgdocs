@@ -17,10 +17,21 @@ This repository is ready to be hosted directly on **GitHub Pages** with zero con
 | [**Deltas**](deltas/) | **76** | Differential update packets modifying object baselines and counters |
 | [**Guides**](guides/) | **22** | Technical guides on SOE transport, CRC, compression, encryption, and reversing |
 | [**TRE Sub-Files**](tre-subfiles/) | **9** | Client asset file specifications (`TRE`, `STF`, `QST`, `TRN`, `TOC`) |
+| [**Reversal History**](history/) | **28** | Chronological ledger of all decoded/reversed packets with unpack VAs and schemas |
+| [**Interactive Inspector**](tools/inspector.html) | **Tool** | Real-time packet inspector, decoder, and payload generator for opcodes and controllers |
 
 ---
 
-## 🚀 Key Features
+## 🛠️ Reverse Engineering Workflow & Automation
+
+For detailed reverse engineering guidelines, binary evidence extraction procedures (`SWGEmu.exe`), and instructions for the **automated history update task**, please consult:
+
+👉 [**WORKFLOW.md**](WORKFLOW.md)
+
+To automatically rebuild and update the Reversal History page at any time:
+```bash
+python scripts/update_history.py
+```
 
 - **Instant Search & Opcode Finder**: Search by 8-digit hex opcode (e.g. `9CA80F98`, `00000116`), packet name, or field across all 1,427 documents.
 - **Interactive Multi-Filter Table**: Filter by section, packet direction (`S→C` / `C→S`), completion badge (`100%`, `75%`, etc.), or sample packet status.

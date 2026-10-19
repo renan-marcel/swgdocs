@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reversal History & Decoded Packets Timeline | SWG Docs</title>
+  <meta name="description" content="Chronological history, disassembly logs, and verification records of all reverse-engineered network packets and controllers in Star Wars Galaxies.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .history-row:hover {
+      background: var(--bg-card-hover) !important;
+    }
+  </style>
+</head>
+<body data-root="../">
+  
+  <header class="navbar">
+    <div class="brand">
+      <a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+        <span style="font-size:1.4rem;">🪐</span>
+        <span>SWG Docs</span>
+      </a>
+      <span class="tag">Protocol Wiki</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../protocols/index.html" class="">Protocols</a></li>
+      <li><a href="../commands/index.html" class="">Commands</a></li>
+      <li><a href="../controllers/index.html" class="">Controllers</a></li>
+      <li><a href="../baselines/index.html" class="">Baselines</a></li>
+      <li><a href="../deltas/index.html" class="">Deltas</a></li>
+      <li><a href="../guides/index.html" class="">Guides</a></li>
+      <li><a href="../tre-subfiles/index.html" class="">TRE</a></li>
+      <li><a href="../tools/inspector.html" class="" style="color:var(--accent-cyan); font-weight:700;">🛠️ Inspector</a></li>
+      <li><a href="index.html" class="active" style="color:#f59e0b; font-weight:700;">📜 History</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search-input" placeholder="Search opcode, packet..." autocomplete="off">
+        <div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+    </div>
+  </header>
+
+  <div class="container" style="max-width:1250px; margin:2rem auto; padding:0 1.5rem;">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <span style="color:var(--text-primary); font-weight:600;">Reversal History & Decoded Packets</span>
+    </div>
+
+    <div style="margin-bottom:2rem; padding-bottom:1.5rem; border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.25rem;">
+      <div>
+        <h1 style="font-size:2.5rem; font-weight:800; letter-spacing:-0.025em; margin-bottom:0.5rem;">📜 Histórico de Pacotes Decodificados</h1>
+        <p style="color:var(--text-secondary); font-size:1.1rem; max-width:850px;">
+          Registro cronológico auditável de todos os pacotes de rede e mensagens de controle deserializados e verificados no binário cliente <code>SWGEmu.exe</code> através de evidências de desmonte x86 e RTTI.
+        </p>
+      </div>
+      <div style="display:flex; gap:0.75rem;">
+        <a href="../data/reversal_history.json" download class="btn-primary" style="display:flex; align-items:center; gap:0.4rem; padding:0.6rem 1rem; font-size:0.875rem; text-decoration:none; background:var(--bg-secondary); border:1px solid var(--border-color); color:var(--text-primary); border-radius:0.5rem; font-weight:600;">
+          📥 Download JSON Histórico
+        </a>
+        <a href="../tools/inspector.html" class="btn-primary" style="display:flex; align-items:center; gap:0.4rem; padding:0.6rem 1.1rem; font-size:0.875rem; text-decoration:none; background:var(--accent-cyan); color:#000000; border-radius:0.5rem; font-weight:700;">
+          🛠️ Testar no Inspector
+        </a>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid" style="margin-bottom:2.5rem;">
+      <div class="stat-card">
+        <div class="stat-num" style="color:#22c55e;">28</div>
+        <div class="stat-label">Total de Pacotes Revertidos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="color:var(--accent-cyan);">13</div>
+        <div class="stat-label">Protocolos Top-Level</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="color:var(--accent-purple);">15</div>
+        <div class="stat-label">ObjectControllers Mapeados</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="color:#f59e0b;">122</div>
+        <div class="stat-label">Campos Wire Revertidos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="color:#38bdf8;">100%</div>
+        <div class="stat-label">Completude Verificada</div>
+      </div>
+    </div>
+
+    <!-- Live Filter Input -->
+    <div style="margin-bottom:2rem; display:flex; gap:1rem; align-items:center; flex-wrap:wrap; background:var(--bg-secondary); padding:1rem 1.25rem; border:1px solid var(--border-color); border-radius:0.5rem;">
+      <span style="font-weight:700; color:var(--text-primary); display:flex; align-items:center; gap:0.5rem;">
+        <span>🔍</span> Filtrar Histórico:
+      </span>
+      <input type="text" id="history-filter-input" placeholder="Buscar por nome, opcode (ex: 3871D784), categoria..." style="flex:1; min-width:260px; padding:0.55rem 0.9rem; background:var(--bg-primary); border:1px solid var(--border-color); border-radius:0.35rem; color:var(--text-primary); font-size:0.95rem;">
+      <span id="filter-count-badge" class="badge" style="background:rgba(56, 189, 248, 0.15); color:var(--accent-cyan); font-weight:600; padding:0.4rem 0.75rem;">Exibindo 28 pacotes</span>
+    </div>
+
+    <!-- Timeline / Batches -->
+    <div id="batches-container">
+      
+        <div class="batch-card" style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:0.75rem; margin-bottom:2.5rem; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.15);">
+          <div style="padding:1.25rem 1.5rem; background:linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(99, 102, 241, 0.04)); border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+            <div>
+              <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.4rem;">
+                <span class="badge" style="background:var(--accent-indigo); color:#ffffff; font-weight:700; font-size:0.8rem; padding:0.25rem 0.6rem; border-radius:0.35rem;">Lote #2</span>
+                <span style="font-size:0.85rem; color:var(--text-muted); font-family:var(--font-mono);">📅 2026-10-18</span>
+                <span class="badge" style="background:rgba(34, 197, 94, 0.15); color:#22c55e; border:1px solid #22c55e; font-weight:600; font-size:0.75rem;">11 Pacotes Decodificados</span>
+              </div>
+              <h2 style="font-size:1.35rem; font-weight:800; color:var(--text-primary); margin:0;">Fase 2: Protocolos com Baixa Completude (&lt;25%) Decodificados do Binário SWGEmu.exe</h2>
+              <p style="font-size:0.925rem; color:var(--text-secondary); margin-top:0.4rem; line-height:1.5;">Engenharia reversa sistemática e desmontagem estática x86 das rotinas de desempacotamento de 11 protocolos de rede de jogo com status pendente (&lt;25%), abrangendo combate espacial, mísseis, colisões dinâmicas, suporte ao jogador (CSR) e Scripted User Interface (SUI).</p>
+            </div>
+            <div style="background:rgba(0,0,0,0.25); border:1px solid var(--border-color); border-radius:0.5rem; padding:0.6rem 0.9rem; font-size:0.8rem; max-width:380px;">
+              <strong style="color:var(--text-primary); display:block; margin-bottom:0.2rem;">🔬 Metodologia de Reversão:</strong>
+              <span style="color:var(--text-muted); font-family:var(--font-mono); font-size:0.75rem; line-height:1.3;">Rastreamento de RTTI (.?AV&lt;Class&gt;@@) -&gt; CompleteObjectLocator -&gt; Virtual Table -&gt; Construtor ReadIterator (0x0118b740) -&gt; Registro de AutoVariables (0x0118b5f0).</span>
+            </div>
+          </div>
+
+          <div class="table-wrap" style="margin:0; border:none; border-radius:0;">
+            <table class="doc-table" style="margin:0;">
+              <thead>
+                <tr>
+                  <th style="text-align:center;">#</th>
+                  <th>Mensagem / Pacote</th>
+                  <th>Opcode</th>
+                  <th>Direção</th>
+                  <th style="text-align:center;">Campos</th>
+                  <th>Rotina Unpack</th>
+                  <th>Detalhes da Reversão no Binário (SWGEmu.exe)</th>
+                  <th style="text-align:center;">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr class="history-row" data-name="destroyshipcomponentmessage" data-opcode="3871d784" data-category="space & ship packets">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#18</td>
+              <td>
+                <a href="../protocols/DestroyShipComponentMessage.html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>DestroyShipComponentMessage</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Space &amp; Ship Packets</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('3871D784', this)" title="Click to copy opcode">3871D784 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">5</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00ad2bd5</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Registra 3 Archive::AutoVariable membros: AutoVariable&lt;NetworkId&gt; NetworkId (+0x2c), AutoVariable&lt;int&gt; ComponentIndex (+0x3c) e AutoVariable&lt;float&gt; Severity (+0x4c).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="destroyshipmessage" data-opcode="5c680884" data-category="space & ship packets">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#19</td>
+              <td>
+                <a href="../protocols/DestroyShipMessage.html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>DestroyShipMessage</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Space &amp; Ship Packets</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('5C680884', this)" title="Click to copy opcode">5C680884 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">4</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00ad291c</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Registra 2 Archive::AutoVariable membros: AutoVariable&lt;NetworkId&gt; NetworkId (+0x2c) e AutoVariable&lt;float&gt; Severity (+0x3c).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="hyperspacemessage" data-opcode="cbf88482" data-category="space & ship packets">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#20</td>
+              <td>
+                <a href="../protocols/HyperspaceMessage.html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>HyperspaceMessage</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Space &amp; Ship Packets</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('CBF88482', this)" title="Click to copy opcode">CBF88482 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">3</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00ad5fba</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Registra 1 Archive::AutoVariable membro: AutoVariable&lt;NetworkId&gt; NetworkId (+0x2c).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="playclienteffectobjecttransformmessage" data-opcode="4f5e09b6" data-category="general & system packets">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#21</td>
+              <td>
+                <a href="../protocols/PlayClientEffectObjectTransformMessage.html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>PlayClientEffectObjectTransformMessage</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">General &amp; System Packets</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('4F5E09B6', this)" title="Click to copy opcode">4F5E09B6 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">5</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00adce74</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Registra AutoVariable&lt;std::string&gt; EffectName (+0x2c), AutoVariable&lt;NetworkId&gt; TargetId (+0x48) e AutoVariable&lt;Transform&gt; LocalTransform (+0x58).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="playclienteventlocmessage" data-opcode="0a4e222c" data-category="general & system packets">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#22</td>
+              <td>
+                <a href="../protocols/PlayClientEventLocMessage.html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>PlayClientEventLocMessage</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">General &amp; System Packets</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('0A4E222C', this)" title="Click to copy opcode">0A4E222C 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">8</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00adde0bd</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Registra AutoVariable&lt;std::string&gt; EventName (+0x2c), AutoVariable&lt;std::string&gt; SceneName (+0x48), AutoVariable&lt;Vector&gt; Location (+0x64) e AutoVariable&lt;NetworkId&gt; CellId (+0x7c).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="playclienteventobjectmessage" data-opcode="af83c3f2" data-category="general & system packets">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#23</td>
+              <td>
+                <a href="../protocols/PlayClientEventObjectMessage.html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>PlayClientEventObjectMessage</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">General &amp; System Packets</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('AF83C3F2', this)" title="Click to copy opcode">AF83C3F2 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">5</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00add830</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Registra AutoVariable&lt;std::string&gt; EventName (+0x2c), AutoVariable&lt;std::string&gt; HardpointName (+0x48) e AutoVariable&lt;NetworkId&gt; TargetId (+0x64).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="shipupdatetransformcollisionmessage" data-opcode="763648d0" data-category="space & ship packets">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#24</td>
+              <td>
+                <a href="../protocols/ShipUpdateTransformCollisionMessage.html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>ShipUpdateTransformCollisionMessage</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Space &amp; Ship Packets</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('763648D0', this)" title="Click to copy opcode">763648D0 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">6</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00ad611c</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Registra AutoVariable&lt;NetworkId&gt; ShipId (+0x2c), AutoVariable&lt;Transform&gt; Transform (+0x3c), AutoVariable&lt;Vector&gt; Velocity (+0x74) e AutoVariable&lt;unsigned long&gt; SyncStamp (+0x8c).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="updatemissilemessage" data-opcode="1228cd01" data-category="space & ship packets">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#25</td>
+              <td>
+                <a href="../protocols/UpdateMissileMessage.html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>UpdateMissileMessage</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Space &amp; Ship Packets</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('1228CD01', this)" title="Click to copy opcode">1228CD01 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">6</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00ad6e6e</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Registra AutoVariable&lt;NetworkId&gt; NetworkId (+0x2c), AutoVariable&lt;int&gt; WeaponIndex (+0x3c), AutoVariable&lt;int&gt; TargetComponent (+0x4c) e AutoVariable&lt;int&gt; Status (+0x5c).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="createticketresponsemessage" data-opcode="550a407a" data-category="general & system packets">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#26</td>
+              <td>
+                <a href="../protocols/CreateTicketResponseMessage.html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>CreateTicketResponseMessage</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">General &amp; System Packets</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('550A407A', this)" title="Click to copy opcode">550A407A 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">4</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00afa5ee</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Registra AutoVariable&lt;unsigned int&gt; TicketId (+0x2c) e AutoVariable&lt;unsigned int&gt; ResultCode (+0x3c).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="getcommentsresponsemessage" data-opcode="eadb08ca" data-category="general & system packets">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#27</td>
+              <td>
+                <a href="../protocols/GetCommentsResponseMessage.html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>GetCommentsResponseMessage</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">General &amp; System Packets</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('EADB08CA', this)" title="Click to copy opcode">EADB08CA 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">9</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00af8dd4</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Registra AutoVariable&lt;unsigned int&gt; TicketId (+0x2c) e AutoArray&lt;CustomerServiceComment&gt; (+0x40). Serialização de CustomerServiceComment verificada em 0x00b1cbc0.
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="suiupdatepagemessage" data-opcode="5f3342f6" data-category="scripted user interface (sui)">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#28</td>
+              <td>
+                <a href="../protocols/SuiUpdatePageMessage.html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>SuiUpdatePageMessage</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Scripted User Interface (SUI)</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('5F3342F6', this)" title="Click to copy opcode">5F3342F6 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">6</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00b002bf</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Desempacota PageId e aplica vetor delta de propriedades AutoDeltaVariable&lt;SuiPageData&gt;.
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <div class="batch-card" style="background:var(--bg-card); border:1px solid var(--border-color); border-radius:0.75rem; margin-bottom:2.5rem; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.15);">
+          <div style="padding:1.25rem 1.5rem; background:linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(99, 102, 241, 0.04)); border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem;">
+            <div>
+              <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.4rem;">
+                <span class="badge" style="background:var(--accent-indigo); color:#ffffff; font-weight:700; font-size:0.8rem; padding:0.25rem 0.6rem; border-radius:0.35rem;">Lote #1</span>
+                <span style="font-size:0.85rem; color:var(--text-muted); font-family:var(--font-mono);">📅 2026-10-18</span>
+                <span class="badge" style="background:rgba(34, 197, 94, 0.15); color:#22c55e; border:1px solid #22c55e; font-weight:600; font-size:0.75rem;">17 Pacotes Decodificados</span>
+              </div>
+              <h2 style="font-size:1.35rem; font-weight:800; color:var(--text-primary); margin:0;">Fase 1: Reversão Central de Controladores e Mensagens Top-Level</h2>
+              <p style="font-size:0.925rem; color:var(--text-secondary); margin-top:0.4rem; line-height:1.5;">Engenharia reversa inicial de mensagens de rede e mapeamento completo da tabela central ControllerMessageFactory (0x00b0cfc0 / 0x00b0d190) para o despachante ObjControllerMessage (0x80CE5E46).</p>
+            </div>
+            <div style="background:rgba(0,0,0,0.25); border:1px solid var(--border-color); border-radius:0.5rem; padding:0.6rem 0.9rem; font-size:0.8rem; max-width:380px;">
+              <strong style="color:var(--text-primary); display:block; margin-bottom:0.2rem;">🔬 Metodologia de Reversão:</strong>
+              <span style="color:var(--text-muted); font-family:var(--font-mono); font-size:0.75rem; line-height:1.3;">Desmonte de ControllerMessageFactory::registerMessage (0x00b0cfc0) e construtores de GameNetworkMessage.</span>
+            </div>
+          </div>
+
+          <div class="table-wrap" style="margin:0; border:none; border-radius:0;">
+            <table class="doc-table" style="margin:0;">
+              <thead>
+                <tr>
+                  <th style="text-align:center;">#</th>
+                  <th>Mensagem / Pacote</th>
+                  <th>Opcode</th>
+                  <th>Direção</th>
+                  <th style="text-align:center;">Campos</th>
+                  <th>Rotina Unpack</th>
+                  <th>Detalhes da Reversão no Binário (SWGEmu.exe)</th>
+                  <th style="text-align:center;">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+            <tr class="history-row" data-name="addmaplocationmessage" data-opcode="ab2174b6" data-category="general & system packets">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#1</td>
+              <td>
+                <a href="../protocols/AddMapLocationMessage.html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>AddMapLocationMessage</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">General &amp; System Packets</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('AB2174B6', this)" title="Click to copy opcode">AB2174B6 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">9</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00ace640</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Registra 7 Archive::AutoVariable membros: PlanetName, NetworkId, LocationName, X, Z, LocationType e SubCategory.
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="objectmenuselectmessage::message_type" data-opcode="7ca18726" data-category="general & system packets">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#2</td>
+              <td>
+                <a href="../protocols/ObjectMenuSelectMessage%3A%3AMESSAGE_TYPE.html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>ObjectMenuSelectMessage::MESSAGE_TYPE</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">General &amp; System Packets</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('7CA18726', this)" title="Click to copy opcode">7CA18726 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-cs" title="C→S">C→S (Client)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">4</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00af3c3c</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Registra AutoVariable&lt;NetworkId&gt; TargetObjectId (+0x38) e AutoVariable&lt;unsigned char&gt; SelectedMenuItem (+0x48).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="questtaskcountermessage" data-opcode="00000440" data-category="quest & missions">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#3</td>
+              <td>
+                <a href="../controllers/QuestTaskCounterMessage (00000440).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>QuestTaskCounterMessage</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Quest &amp; Missions</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('00000440', this)" title="Click to copy opcode">00000440 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">5</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00b0f6f0</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Unpack 0x00b0f6f0. Campos: TaskName (ASCII), TaskId (INT), CounterSource (UNICODE), Count (INT), MaxCount (INT).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="questtasktimermessage" data-opcode="00000441" data-category="quest & missions">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#4</td>
+              <td>
+                <a href="../controllers/QuestTaskTimerMessage (00000441).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>QuestTaskTimerMessage</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Quest &amp; Missions</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('00000441', this)" title="Click to copy opcode">00000441 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">4</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00b0f0d0</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Unpack 0x00b0f0d0. Campos: TaskName (ASCII), TaskId (INT), TimerSource (UNICODE), TimeLeft (FLOAT).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="craftselectschematic" data-opcode="0000010e" data-category="crafting">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#5</td>
+              <td>
+                <a href="../controllers/CraftSelectSchematic (0000010E).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>CraftSelectSchematic</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Crafting</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('0000010E', this)" title="Click to copy opcode">0000010E 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-cs" title="C→S">C→S (Client)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">1</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00b1a7f0</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Unpack 0x00b1a7f0. Campo: SchematicIndex (INT).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="craftrequestsession" data-opcode="0000010f" data-category="crafting">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#6</td>
+              <td>
+                <a href="../controllers/CraftRequestSession (0000010F).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>CraftRequestSession</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Crafting</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('0000010F', this)" title="Click to copy opcode">0000010F 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-cs" title="C→S">C→S (Client)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">2</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00b1aac0</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Unpack 0x00b1aac0. Campos: CraftingStationId (LONG), CraftingMode (BYTE).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="shiphit" data-opcode="00000432" data-category="space combat">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#7</td>
+              <td>
+                <a href="../controllers/ShipHit (00000432).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>ShipHit</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Space Combat</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('00000432', this)" title="Click to copy opcode">00000432 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">6</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00b107a0</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Unpack 0x00b107a0. 24 bytes binários: DirX, DirY, DirZ, Damage (FLOAT), HitLocation, WeaponIndex (INT).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="updateshiponcollision" data-opcode="000003fd" data-category="space combat">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#8</td>
+              <td>
+                <a href="../controllers/UpdateShipOnCollision (000003FD).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>UpdateShipOnCollision</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Space Combat</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('000003FD', this)" title="Click to copy opcode">000003FD 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">7</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00b10c10</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Unpack 0x00b10c10. 28 bytes binários: NormalX, NormalY, NormalZ, VelX, VelY, VelZ, Severity (FLOAT).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="buffs" data-opcode="00000229" data-category="character & status">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#9</td>
+              <td>
+                <a href="../controllers/Buffs (00000229).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>Buffs</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Character &amp; Status</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('00000229', this)" title="Click to copy opcode">00000229 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">2</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00ac81c0</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Unpack 0x00ac81c0. Campos: BuffCrc (INT), BuffValue (INT).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="imagedesign" data-opcode="0000022a" data-category="character & status">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#10</td>
+              <td>
+                <a href="../controllers/ImageDesign (0000022A).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>ImageDesign</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Character &amp; Status</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('0000022A', this)" title="Click to copy opcode">0000022A 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">1</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00ac80c0</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Unpack 0x00ac80c0. Campo: SessionType (INT).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="abouttohyperspace" data-opcode="000003fe" data-category="space & ship">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#11</td>
+              <td>
+                <a href="../controllers/AboutToHyperspace (000003FE).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>AboutToHyperspace</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Space &amp; Ship</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('000003FE', this)" title="Click to copy opcode">000003FE 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">4</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x01195b30</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Unpack 0x01195b30. Campos: PointName (ASCII), PosX, PosY, PosZ (FLOAT).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="startinglocationselectionresult" data-opcode="000001fd" data-category="character creation">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#12</td>
+              <td>
+                <a href="../controllers/StartingLocationSelectionResult (000001FD).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>StartingLocationSelectionResult</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Character Creation</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('000001FD', this)" title="Click to copy opcode">000001FD 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">2</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x011965b0</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Unpack 0x011965b0. Campos: LocationName (ASCII), ResultCode (BYTE).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="askgroupmembertolaunchintospace" data-opcode="00000438" data-category="group & space">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#13</td>
+              <td>
+                <a href="../controllers/AskGroupMemberToLaunchIntoSpace (00000438).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>AskGroupMemberToLaunchIntoSpace</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Group &amp; Space</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('00000438', this)" title="Click to copy opcode">00000438 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">2</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x01196ee0</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Unpack 0x01196ee0. Campos: GroupMemberId (LONG), Response (BYTE).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="draftslotsqueryresponse" data-opcode="000001bf" data-category="crafting">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#14</td>
+              <td>
+                <a href="../controllers/DraftSlotsQueryResponse (000001BF).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>DraftSlotsQueryResponse</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Crafting</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('000001BF', this)" title="Click to copy opcode">000001BF 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">5</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00b19cb0</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Unpack 0x00b19cb0. Campos: DraftSchematicCrc (INT), SlotCount (INT), ClientSlots (INT), Options (INT), ResponseFlag (BYTE).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="commandqueueadd" data-opcode="00000167" data-category="commands & actions">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#15</td>
+              <td>
+                <a href="../controllers/CommandQueueAdd (00000167).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>CommandQueueAdd</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Commands &amp; Actions</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('00000167', this)" title="Click to copy opcode">00000167 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">2</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x01195040</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Unpack 0x01195040. Campos: SequenceId (INT), CommandCrc (INT).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="commandqueueremove" data-opcode="00000117" data-category="commands & actions">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#16</td>
+              <td>
+                <a href="../controllers/CommandQueueRemove (00000117).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>CommandQueueRemove</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Commands &amp; Actions</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('00000117', this)" title="Click to copy opcode">00000117 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">4</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00ae3850</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Unpack 0x00ae3850. Campos: ActionSequenceId (INT), ExecutionTime (FLOAT), CommandCrc (INT), ErrorCode (INT).
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+            <tr class="history-row" data-name="messagequeuenetworkid" data-opcode="000000e5" data-category="generic controller">
+              <td style="font-family:var(--font-mono); font-weight:700; color:var(--text-muted); text-align:center; width:45px;">#17</td>
+              <td>
+                <a href="../controllers/MessageQueueNetworkId (000000E5).html" style="font-weight:700; color:var(--text-primary); text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
+                  <span>MessageQueueNetworkId</span>
+                </a>
+                <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Generic Controller</div>
+              </td>
+              <td style="width:130px;">
+                <span class="opcode-pill" onclick="copyToClipboard('000000E5', this)" title="Click to copy opcode">000000E5 📋</span>
+              </td>
+              <td style="width:100px;">
+                <span class="badge badge-sc" title="S→C">S→C (Server)</span>
+              </td>
+              <td style="text-align:center; width:75px; font-weight:600;">1</td>
+              <td style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); width:110px;">0x00ade520</td>
+              <td style="font-size:0.825rem; color:var(--text-secondary); line-height:1.4;">
+                Unpack 0x00ade520. Campo: TargetId (LONG). Base para 12 variantes de controladores.
+              </td>
+              <td style="width:125px; text-align:center;">
+                <span class="badge badge-100" style="font-weight:700;">100% Verified</span>
+              </td>
+            </tr>
+            
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+    </div>
+
+    <!-- Automation Rule Card -->
+    <div class="notice-box" style="margin-top:3rem; background:rgba(56, 189, 248, 0.05); border-left:4px solid var(--accent-cyan); padding:1.25rem 1.5rem; border-radius:0.5rem;">
+      <h3 style="margin-top:0; font-size:1.15rem; color:var(--text-primary); display:flex; align-items:center; gap:0.5rem;">
+        <span>⚙️</span> Diretriz Obrigatória: Atualização Automática do Histórico
+      </h3>
+      <p style="font-size:0.95rem; color:var(--text-secondary); line-height:1.6; margin-top:0.5rem;">
+        Sempre que uma nova rotina de deserialização ou protocolo for revertido no binário cliente (<code>SWGEmu.exe</code>):
+      </p>
+      <ol style="margin-left:1.5rem; margin-top:0.5rem; color:var(--text-secondary); font-size:0.925rem; line-height:1.6;">
+        <li>Registre o novo lote de mensagens com seus metadados em <code>swgdocs/data/reversal_history.json</code>.</li>
+        <li>Execute <code>python scripts/update_history.py</code> para recompilar esta página de histórico automaticamente.</li>
+        <li>Gere a documentação técnica HTML correspondente e atualize <code>all_packets.csv</code> e <code>packets_summary.json</code>.</li>
+        <li>Recompile os dados interativos com <code>python scripts/generate_protocol_data.py</code> para atualizar o <strong>Inspector</strong>.</li>
+      </ol>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>Star Wars Galaxies network protocol documentation generated from SWGANH Wiki & binary analysis.</p>
+      <p style="font-size:0.8rem; color:var(--text-muted);">SWG Docs • Documentation Archive & Protocol Reference</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/search.js"></script>
+  <script>
+    // Live filter script
+    const input = document.getElementById('history-filter-input');
+    const badge = document.getElementById('filter-count-badge');
+    const rows = document.querySelectorAll('.history-row');
+    const total = rows.length;
+
+    input.addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase().trim();
+      let matched = 0;
+      rows.forEach(r => {
+        const name = r.dataset.name || '';
+        const op = r.dataset.opcode || '';
+        const cat = r.dataset.category || '';
+        if (!term || name.includes(term) || op.includes(term) || cat.includes(term)) {
+          r.style.display = '';
+          matched++;
+        } else {
+          r.style.display = 'none';
+        }
+      });
+      badge.textContent = `Exibindo ${matched} de ${total} pacotes`;
+    });
+
+    function copyToClipboard(text, el) {
+      navigator.clipboard.writeText(text).then(() => {
+        const orig = el.textContent;
+        el.textContent = 'Copiado!';
+        setTimeout(() => el.textContent = orig, 1500);
+      });
+    }
+  </script>
+</body>
+</html>
