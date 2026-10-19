@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holocore: transporte de rede e fluxo de pacotes | SWG Docs</title>
+<meta name="description" content="Transporte TCP/WebSocket, handshake, CRC e comparação estática com Binary Ninja.">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>.holocore-content{max-width:1200px;margin:2rem auto;padding:0 1.5rem;overflow-wrap:anywhere}
+.holocore-content h1,.holocore-content h2,.holocore-content h3{margin:1.5rem 0 1rem}
+.holocore-content p,.holocore-content ul,.holocore-content ol{margin:1rem 0;line-height:1.75}
+.holocore-content pre{overflow:auto;padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:.5rem}
+.holocore-content ul,.holocore-content ol{padding-left:1.5rem}.holocore-content .table-wrap{overflow-x:auto}</style></head>
+<body data-root="../"><header class="navbar">
+<div class="brand">
+<a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+<span style="font-size:1.4rem;">🪐</span>
+<span>SWG Docs</span>
+</a>
+<span class="tag">Protocol Wiki</span>
+</div>
+<ul class="nav-links">
+<li><a class="" href="../protocols/index.html">Protocols</a></li>
+<li><a class="" href="../commands/index.html">Commands</a></li>
+<li><a class="" href="../controllers/index.html">Controllers</a></li>
+<li><a class="" href="../baselines/index.html">Baselines</a></li>
+<li><a class="" href="../deltas/index.html">Deltas</a></li>
+<li><a class="active" href="../guides/index.html">Guides</a></li>
+<li><a class="" href="../tre-subfiles/index.html">TRE</a></li>
+</ul>
+<div class="nav-actions">
+<div class="search-bar-wrap">
+<span class="search-icon">🔍</span>
+<input autocomplete="off" id="global-search-input" placeholder="Search opcode, packet..." type="text"/>
+<div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+</div>
+<button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+</div>
+</header>
+<main class="holocore-content"><nav aria-label="Breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Guides</a> / Holocore</nav>
+<details><summary>Guias Holocore</summary><ul><li><a href="holocore-overview.html">Holocore: arquitetura e mapa funcional</a></li><li><a href="holocore-network.html">Holocore: transporte de rede e fluxo de pacotes</a></li><li><a href="holocore-services.html">Holocore: serviços, intents e gameplay</a></li><li><a href="holocore-clientdata.html">Holocore: conversão de dados do cliente</a></li></ul></details>
+<p><a href="../content/guides/holocore-network.md">Ler Markdown</a> · Revisão ff53903 · Análise estática</p>
+<article class="guide-body"><h1 id="holocore-transporte-de-rede-e-fluxo-de-pacotes">Holocore: transporte de rede e fluxo de pacotes</h1>
+<p>Este guia acompanha a implementação local na revisão <a href="https://github.com/ProjectSWGCore/Holocore/tree/ff53903bbb8b0ff2edcd2493d66f940767036aaa">ff53903bbb8b0ff2edcd2493d66f940767036aaa</a>. Holocore implementa a conexão e o despacho para serviços. Os codecs SWG importados pertencem ao submódulo pswgcommon, que está desinicializado neste checkout; portanto, os detalhes de NetBuffer, CRC e classes de pacote são identificados como dependência externa.</p>
+<h2 id="caminho-de-entrada">Caminho de entrada</h2>
+<p>NetworkClientService cria um servidor TCP e um serviço UDP na porta configurada bindPort (padrão 44463). A camada TCP usa NIO/selector. O fluxo normal do cliente segue uma negociação WebSocket sobre TCP: NetworkClient valida os parâmetros username, password e protocolVersion da URL, decodifica cada valor com o decoder Base64 padrão do Java, compara a versão do protocolo e notifica a conexão. Depois emite HoloConnectionStarted e um RequestLoginIntent.</p>
+<p>Após a negociação, os dados binários recebidos são mensagens binárias WebSocket. O cliente exige pelo menos seis bytes, lê o CRC de 32 bits no deslocamento 2 via NetBuffer e escolhe o caminho:</p>
+<pre><code>frame binário WebSocket
+  -&gt; mensagem SWG
+  -&gt; CRC no deslocamento 2
+  -&gt; ObjectController.decodeController(...) se for o CRC de controller
+     ou PacketType.getForCrc(crc).decode(...) para pacote comum
+  -&gt; InboundPacketIntent
+  -&gt; serviço inscrito no tipo de pacote
+</code></pre>
+<p>Esse diagrama descreve o despacho de código observado. O framing interno, endian e mapeamento completo de CRCs residem nos codecs externos. A conexão também trata endpoints HTTP /health-check e /stats. O UDP é separado: datagrama iniciado pelo byte 1 recebe o byte 1 seguido do estado textual da galáxia.</p>
+<h2 id="entrada-no-login-e-sessoes">Entrada no login e sessões</h2>
+<p>O upgrade WebSocket fornece credenciais e versão. O código compara NetworkProtocol.VERSION; no caminho observado, o intent de login usa a string de versão de cliente fixa 20051010-17:00. O LoginService aceita HoloLoginRequestPacket e o caminho legado LoginClientId, verifica credenciais/estado, envia respostas de login e pode listar galáxias/personagens. A negociação de transporte e a autenticação são fases distintas no código.</p>
+<p>Ao abrir a conexão, ConnectionOpenedIntent permite que o serviço de sessão associe a conexão a um jogador; fechar a conexão segue intents de fechamento. Pacotes recebidos viram intents para que serviços de domínio tratem o conteúdo.</p>
+<h2 id="caminhos-de-pacote-vistos-em-holocore">Caminhos de pacote vistos em Holocore</h2>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>Fluxo</th>
+<th>Implementação no servidor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Atualização de objeto visível</td>
+<td>CreatureObjectAwareness envia SceneCreateObjectByCrc, baselines e, se houver pai, UpdateContainmentMessage</td>
+</tr>
+<tr>
+<td>Mensagem privada</td>
+<td>ChatInstantMessageService recebe ChatInstantMessageToCharacter, verifica destinatário/estado/ignore e envia resposta e ChatInstantMessageToClient</td>
+</tr>
+<tr>
+<td>Movimento recebido</td>
+<td>ClientAwarenessService valida objeto, identidade, pai, postura e estado de teleporte antes de produzir MoveObjectIntent</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="confronto-com-o-binary-ninja">Confronto com o Binary Ninja</h2>
+<p>O banco SWGEmu.exe.bndb foi aberto apenas para leitura no Binary Ninja. Nas funções nativas, os construtores e readers registram estes campos:</p>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>Mensagem</th>
+<th>CRC</th>
+<th>Registro observado no cliente nativo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SceneCreateObjectByCrc</td>
+<td>FE89DDEA</td>
+<td>NetworkId, Transform, uint32, bool</td>
+</tr>
+<tr>
+<td>UpdateContainmentMessage</td>
+<td>56CBDE9E</td>
+<td>NetworkId, NetworkId, int</td>
+</tr>
+<tr>
+<td>ChatInstantMessageToClient</td>
+<td>3C565CED</td>
+<td>ChatAvatarId, string UTF-16, string UTF-16</td>
+</tr>
+</tbody>
+</table></div>
+<p>Os endereços e pseudocódigos dos readers e construtores estão preservados em <a href="../data/holocore-evidence/binary-ninja-client-messages.json">binary-ninja-client-messages.json</a> e <a href="../data/holocore-evidence/binary-ninja-client-readers.json">binary-ninja-client-readers.json</a>. Para os dois primeiros layouts, a serialização de referência tem 47 e 26 bytes. A mensagem de chat ilustra que o cliente registra quatro operandos incluindo opcode, enquanto o serializer PSWGCommon analisado registra contador diferente. O guia <a href="pswgcommon-client-messages.html">PSWGCommon: mensagens confrontadas com o cliente</a> detalha essas diferenças e os limites da evidência.</p>
+<p>O confronto mostra que o código de Holocore usa classes cujos campos coincidem com as mensagens nativas selecionadas. Não demonstra que todos os pacotes de Holocore sejam compatíveis nem que o servidor foi aceito pelo cliente em execução.</p>
+<h2 id="fontes-consultadas">Fontes consultadas</h2>
+<ul>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/main/java/com/projectswg/holocore/resources/support/global/network/NetworkClient.kt#L67">NetworkClient.kt</a></li>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/main/java/com/projectswg/holocore/services/support/global/network/NetworkClientService.kt#L48">NetworkClientService.kt</a></li>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/main/java/com/projectswg/holocore/services/support/global/zone/LoginService.java">LoginService.java</a></li>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/main/java/com/projectswg/holocore/services/support/global/chat/ChatInstantMessageService.java#L50">ChatInstantMessageService.java</a></li>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/main/java/com/projectswg/holocore/resources/support/objects/swg/creature/CreatureObjectAwareness.kt#L158">CreatureObjectAwareness.kt</a></li>
+</ul></article></main>
+<footer><a href="holocore-overview.html">Holocore</a> · <a href="../index.html">SWG Docs</a></footer>
+<script src="../assets/js/app.js"></script></body></html>

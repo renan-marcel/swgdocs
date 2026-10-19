@@ -15,10 +15,11 @@ This repository is ready to be hosted directly on **GitHub Pages** with zero con
 | [**Object Controllers**](controllers/) | **177** | `ObjControllerMessage` (0000000B) sub-handlers and controller IDs |
 | [**Baselines**](baselines/) | **77** | Full object serialization definitions (`CREO`, `PLAY`, `TANO`, `SHIP`, etc.) |
 | [**Deltas**](deltas/) | **76** | Differential update packets modifying object baselines and counters |
-| [**Guides**](guides/) | **22** | Technical guides on SOE transport, CRC, compression, encryption, and reversing |
+| [**Guides**](guides/) | **20** | Technical guides on SOE transport, CRC, compression, encryption, reversing, and server implementation |
 | [**PSWGCommon**](guides/pswgcommon-overview.html) | **7 guides** | Architecture, codecs, models, assets, source catalog, and Binary Ninja message comparisons |
+| [**Holocore**](guides/holocore-overview.html) | **4 guides** | Server architecture, network flow, gameplay services, and client-data conversion |
 | [**TRE Sub-Files**](tre-subfiles/) | **9** | Client asset file specifications (`TRE`, `STF`, `QST`, `TRN`, `TOC`) |
-| [**Reversal History**](history/) | **28** | Chronological ledger of all decoded/reversed packets with unpack VAs and schemas |
+| [**Reversal History**](history/) | **31** | Chronological ledger of decoded/reversed packets with unpack VAs and schemas |
 | [**Pending Backlog (0%)**](pending/) | **895** | Master catalog of all unmapped packets, commands, and controllers at 0% completion |
 | [**Interactive Inspector**](tools/inspector.html) | **Tool** | Real-time packet inspector, decoder, and payload generator for opcodes and controllers |
 
@@ -78,6 +79,18 @@ python -m http.server 8000
 npx serve .
 ```
 Then visit `http://localhost:8000`.
+
+### Holocore implementation reference
+
+The [Holocore guides](content/guides/holocore-overview.md) describe revision `ff53903bbb8b0ff2edcd2493d66f940767036aaa` and inventory 828 Java/Kotlin files across main, test, and utility source sets. The local `Holocore/pswgcommon` Git submodule is uninitialized; shared packet codecs are documented as an external dependency. Binary Ninja client cross-checks and retained pseudocode are under `data/holocore-evidence/`. REA MCP was unavailable in the analysis session, so no REA setup or client execution was performed.
+
+With the Holocore checkout adjacent to this repository, regenerate and validate its source inventory and guides from the `swgdocs` directory:
+
+```powershell
+python scripts/inventory_holocore.py
+python scripts/build_holocore_docs.py
+python scripts/validate_holocore_docs.py
+```
 
 ---
 

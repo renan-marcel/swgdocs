@@ -10,6 +10,10 @@ Os scripts desta extensão ficam dentro de `swgdocs/scripts/`: `inventory_pswgco
 
 Correspondência nominal de mensagens, existência de um encoder ou coincidência da tabela CRC não autorizam promover um pacote a `100% Verified`. Mantenha o histórico de pacotes para desserializações efetivamente demonstradas no alvo pertinente. Limitações de provedor e afirmações por leitura de fontes devem permanecer separadas de evidência binária e de tráfego observado. A fase inicial da análise da biblioteca não gerou entradas artificiais no histórico. A continuação pelo Binary Ninja registrou três layouts demonstrados no lote 3, com o limite semântico de SceneCreateObjectByCrc preservado. O backlog de protocolos continua sem mudanças de completude nesta etapa.
 
+## Referência de implementação Holocore
+
+Os guias `content/guides/holocore-*.md` registram a leitura estática da revisão `ff53903bbb8b0ff2edcd2493d66f940767036aaa`, o inventário `data/holocore-inventory.json` e as pseudodescompilações Binary Ninja em `data/holocore-evidence/`. Para regenerar a documentação, use `scripts/inventory_holocore.py`, `scripts/build_holocore_docs.py` e `scripts/validate_holocore_docs.py`. O submódulo `Holocore/pswgcommon` estava desinicializado; não atribua os codecs comuns ao checkout de Holocore. REA MCP não estava registrado nesta sessão, e nenhuma configuração foi alterada.
+
 ---
 
 ## 📌 1. Visão Geral da Arquitetura

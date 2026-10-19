@@ -18226,5 +18226,53 @@
     "ss": "absent",
     "u": "guides/pswgcommon-catalog.html",
     "k": "Inventário completo de arquivos e cruzamento nominal de mensagens. pswgcommon-catalog pswgcommon Java Kotlin ProjectSWG REA Binary Ninja"
+  },
+  {
+    "t": "Holocore: arquitetura e mapa funcional",
+    "s": "guides",
+    "st": "Packet Guides",
+    "sc": "Holocore",
+    "o": "",
+    "d": "unknown",
+    "c": "source",
+    "ss": "absent",
+    "u": "guides/holocore-overview.html",
+    "k": "Mapa funcional, estrutura do repositório, inicialização e limites. Holocore Java Kotlin ProjectSWG server networking gameplay"
+  },
+  {
+    "t": "Holocore: transporte de rede e fluxo de pacotes",
+    "s": "guides",
+    "st": "Packet Guides",
+    "sc": "Holocore",
+    "o": "",
+    "d": "unknown",
+    "c": "source",
+    "ss": "absent",
+    "u": "guides/holocore-network.html",
+    "k": "Transporte TCP/WebSocket, handshake, CRC e comparação estática com Binary Ninja. Holocore Java Kotlin ProjectSWG server networking gameplay"
+  },
+  {
+    "t": "Holocore: serviços, intents e gameplay",
+    "s": "guides",
+    "st": "Packet Guides",
+    "sc": "Holocore",
+    "o": "",
+    "d": "unknown",
+    "c": "source",
+    "ss": "absent",
+    "u": "guides/holocore-services.html",
+    "k": "Managers, intents, gameplay, objetos, login, chat e persistência. Holocore Java Kotlin ProjectSWG server networking gameplay"
+  },
+  {
+    "t": "Holocore: conversão de dados do cliente",
+    "s": "guides",
+    "st": "Packet Guides",
+    "sc": "Holocore",
+    "o": "",
+    "d": "unknown",
+    "c": "source",
+    "ss": "absent",
+    "u": "guides/holocore-clientdata.html",
+    "k": "Conversores de clientdata, arquivos SDB/IFF e loaders runtime. Holocore Java Kotlin ProjectSWG server networking gameplay"
   }
 ]

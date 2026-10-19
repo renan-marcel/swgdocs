@@ -3,7 +3,7 @@
   "wiki_title": "Packet Guides",
   "wiki_url": "https://wiki.swganh.org/index.php/Packet_Guides",
   "description": "Technical tutorials and foundational architecture references on Star Wars Galaxies networking, SOE protocol, encryption, CRC checksums, and packet reversing.",
-  "total_guides": 16,
+  "total_guides": 20,
   "sections": [
     {
       "id": "generic-tutorials",
@@ -185,6 +185,49 @@
           "badge": "Source analysis",
           "summary": "Inventário completo de arquivos e cruzamento nominal de mensagens.",
           "category": "PSWGCommon"
+        }
+      ]
+    },
+    {
+      "id": "holocore",
+      "title": "Holocore",
+      "count": 4,
+      "guides": [
+        {
+          "title": "Holocore: arquitetura e mapa funcional",
+          "slug": "holocore-overview",
+          "html_file": "holocore-overview.html",
+          "md_file": "holocore-overview.md",
+          "badge": "Source analysis",
+          "summary": "Mapa funcional, estrutura do repositório, inicialização e limites.",
+          "category": "Holocore"
+        },
+        {
+          "title": "Holocore: transporte de rede e fluxo de pacotes",
+          "slug": "holocore-network",
+          "html_file": "holocore-network.html",
+          "md_file": "holocore-network.md",
+          "badge": "Source analysis",
+          "summary": "Transporte TCP/WebSocket, handshake, CRC e comparação estática com Binary Ninja.",
+          "category": "Holocore"
+        },
+        {
+          "title": "Holocore: serviços, intents e gameplay",
+          "slug": "holocore-services",
+          "html_file": "holocore-services.html",
+          "md_file": "holocore-services.md",
+          "badge": "Source analysis",
+          "summary": "Managers, intents, gameplay, objetos, login, chat e persistência.",
+          "category": "Holocore"
+        },
+        {
+          "title": "Holocore: conversão de dados do cliente",
+          "slug": "holocore-clientdata",
+          "html_file": "holocore-clientdata.html",
+          "md_file": "holocore-clientdata.md",
+          "badge": "Source analysis",
+          "summary": "Conversores de clientdata, arquivos SDB/IFF e loaders runtime.",
+          "category": "Holocore"
         }
       ]
     }

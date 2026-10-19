@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holocore: conversão de dados do cliente | SWG Docs</title>
+<meta name="description" content="Conversores de clientdata, arquivos SDB/IFF e loaders runtime.">
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>.holocore-content{max-width:1200px;margin:2rem auto;padding:0 1.5rem;overflow-wrap:anywhere}
+.holocore-content h1,.holocore-content h2,.holocore-content h3{margin:1.5rem 0 1rem}
+.holocore-content p,.holocore-content ul,.holocore-content ol{margin:1rem 0;line-height:1.75}
+.holocore-content pre{overflow:auto;padding:1rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:.5rem}
+.holocore-content ul,.holocore-content ol{padding-left:1.5rem}.holocore-content .table-wrap{overflow-x:auto}</style></head>
+<body data-root="../"><header class="navbar">
+<div class="brand">
+<a href="../index.html" style="display:flex; align-items:center; gap:0.5rem; color:inherit; text-decoration:none;">
+<span style="font-size:1.4rem;">🪐</span>
+<span>SWG Docs</span>
+</a>
+<span class="tag">Protocol Wiki</span>
+</div>
+<ul class="nav-links">
+<li><a class="" href="../protocols/index.html">Protocols</a></li>
+<li><a class="" href="../commands/index.html">Commands</a></li>
+<li><a class="" href="../controllers/index.html">Controllers</a></li>
+<li><a class="" href="../baselines/index.html">Baselines</a></li>
+<li><a class="" href="../deltas/index.html">Deltas</a></li>
+<li><a class="active" href="../guides/index.html">Guides</a></li>
+<li><a class="" href="../tre-subfiles/index.html">TRE</a></li>
+</ul>
+<div class="nav-actions">
+<div class="search-bar-wrap">
+<span class="search-icon">🔍</span>
+<input autocomplete="off" id="global-search-input" placeholder="Search opcode, packet..." type="text"/>
+<div id="search-dropdown-results" style="display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:0.5rem; box-shadow:0 10px 25px rgba(0,0,0,0.5); z-index:100; max-height:350px; overflow-y:auto; margin-top:0.25rem;"></div>
+</div>
+<button class="theme-toggle-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Theme">☀️</button>
+</div>
+</header>
+<main class="holocore-content"><nav aria-label="Breadcrumb"><a href="../index.html">Home</a> / <a href="index.html">Guides</a> / Holocore</nav>
+<details><summary>Guias Holocore</summary><ul><li><a href="holocore-overview.html">Holocore: arquitetura e mapa funcional</a></li><li><a href="holocore-network.html">Holocore: transporte de rede e fluxo de pacotes</a></li><li><a href="holocore-services.html">Holocore: serviços, intents e gameplay</a></li><li><a href="holocore-clientdata.html">Holocore: conversão de dados do cliente</a></li></ul></details>
+<p><a href="../content/guides/holocore-clientdata.md">Ler Markdown</a> · Revisão ff53903 · Análise estática</p>
+<article class="guide-body"><h1 id="holocore-conversao-de-dados-do-cliente">Holocore: conversão de dados do cliente</h1>
+<p>Holocore separa arquivos brutos do cliente e dados prontos para o servidor. O conjunto de utilitários em src/utility lê clientdata/ e grava representações em serverdata/; loaders em runtime leem esses arquivos para instanciar objetos e tabelas. O fluxo não converte genericamente todos os assets: cada conversor implementa um escopo próprio.</p>
+<h2 id="fluxo-de-geracao-e-leitura">Fluxo de geração e leitura</h2>
+<pre><code>clientdata (IFF, datatables, STF, templates)
+  -&gt; ClientFactory / SWGParser e conversores especializados
+  -&gt; SDB e IFF preparados em serverdata
+  -&gt; loaders de dados durante a inicialização e serviços de mundo
+</code></pre>
+<p>A tarefa Gradle runClientdataConversion executa ClientdataConvertAll. Ela chama conversores em sequência; ClientdataConvertSpecific é um ponto de entrada reduzido para células de edifícios. A biblioteca pswgcommon fornece parsers e modelos compartilhados, mas seu submódulo local não foi inicializado neste checkout.</p>
+<h2 id="formato-sdb-observado">Formato SDB observado</h2>
+<p>SdbGenerator escreve um cabeçalho de colunas separado por tabulações, uma linha vazia para indicar ausência de tipos e linhas de dados tabulares. Coleções são achatadas usando ;, mapas viram pares chave=valor separados por vírgulas, e null é gravado como string vazia. A saída é ASCII. A conversão de strings escapa tabulações e quebras de linha para sequências textuais.</p>
+<p>Esse formato exige cuidado com valores que contenham separadores. O teste TestSdbGenerator cobre escalares, nulos, coleções e mapas, mas isso não valida todos os conversores e loaders.</p>
+<h2 id="familias-de-conversao">Famílias de conversão</h2>
+<div class="table-wrap"><table class="doc-table">
+<thead>
+<tr>
+<th>Família</th>
+<th>Entrada e saída principal</th>
+<th>Consumidor ou observação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Datatables</td>
+<td>IFF de tabelas para SDBs de comandos, buffs, skills, crafting, facções, criação e outros catálogos</td>
+<td>Converters lista os destinos</td>
+</tr>
+<tr>
+<td>Dados de objetos</td>
+<td>clientdata/object/**/*.iff para objects/object_data.sdb</td>
+<td>ObjectDataLoader converte colunas para tipos do servidor</td>
+</tr>
+<tr>
+<td>Células</td>
+<td>Layouts IFF e portais para building_cells.sdb, incluindo vizinhos JSON</td>
+<td>BuildingCellLoader interpreta relações de célula</td>
+</tr>
+<tr>
+<td>Buildouts</td>
+<td>Tabelas de áreas/cenas para areas.sdb e objects.sdb</td>
+<td>BuildoutLoader filtra eventos e recria objetos</td>
+</tr>
+<tr>
+<td>Terreno</td>
+<td>Lista fixa de 21 terrenos; reescreve IFF, relê para validação e copia bitmaps referenciados</td>
+<td>Não é varredura genérica de terreno</td>
+</tr>
+<tr>
+<td>Strings</td>
+<td>Arquivos clientdata/string/en/**/*.stf para strings.sdb</td>
+<td>Ordena arquivos e chaves; escapa newline/tab</td>
+</tr>
+<tr>
+<td>Quests</td>
+<td>Listas e tarefas IFF para SDBs agregados ou por quest</td>
+<td>QuestLoader lê manifesto e tarefas sob demanda</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="lacunas-e-inconsistencias-verificadas">Lacunas e inconsistências verificadas</h2>
+<ul>
+<li>ConvertAppearances lista arquivos e prepara cabeçalho, mas a escrita dos registros está comentada; não faz parte da sequência principal.</li>
+<li>ConvertBuildingList declara três colunas e escreve oito valores por linha; também não integra a sequência principal.</li>
+<li>ConvertQuestLists grava quest.sdb, enquanto QuestLoader consulta questlist.msdb; o manifesto versionado conecta o fluxo atual.</li>
+<li>ConvertTerrain processa nomes fixos e copia apenas bitmaps referenciados.</li>
+</ul>
+<p>Esses pontos delimitam o que o pipeline implementa hoje na revisão analisada. A conversão não foi executada, então não foram comparados arquivos gerados com saídas reais neste trabalho.</p>
+<h2 id="caminhos-de-codigo">Caminhos de código</h2>
+<p>O inventário de fontes mantém hashes e classificações de src/main, src/test e src/utility. As implementações chave estão em src/utility/java/com/projectswg/utility/clientdata/, src/main/java/com/projectswg/holocore/resources/support/data/server_info/loader/ e src/main/java/com/projectswg/holocore/utilities/SdbGenerator.java, na revisão pinada no <a href="holocore-overview.html">guia principal</a>.</p>
+<h2 id="fontes-consultadas">Fontes consultadas</h2>
+<ul>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/utility/java/com/projectswg/utility/ClientdataConvertAll.java">ClientdataConvertAll.java</a></li>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/utility/java/com/projectswg/utility/clientdata/Converters.java">Converters.java</a></li>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/main/java/com/projectswg/holocore/utilities/SdbGenerator.java">SdbGenerator.java</a></li>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/utility/java/com/projectswg/utility/clientdata/ConvertBuildouts.java">ConvertBuildouts.java</a></li>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/main/java/com/projectswg/holocore/resources/support/data/server_info/loader/QuestLoader.kt">QuestLoader.kt</a></li>
+<li><a href="https://github.com/ProjectSWGCore/Holocore/blob/ff53903bbb8b0ff2edcd2493d66f940767036aaa/src/test/java/com/projectswg/holocore/utilities/TestSdbGenerator.java">TestSdbGenerator.java</a></li>
+</ul></article></main>
+<footer><a href="holocore-overview.html">Holocore</a> · <a href="../index.html">SWG Docs</a></footer>
+<script src="../assets/js/app.js"></script></body></html>
